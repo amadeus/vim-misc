@@ -1,12 +1,3 @@
-"filetype on
-"filetype plugin on
-"filetype indent on
-
-""" Initialize Pathogen
-"call pathogen#infect()
-"call pathogen#helptags()
-
-
 """ General App Settings
 set nowrap
 set lbr
@@ -19,6 +10,8 @@ set noexpandtab
 set list
 set listchars=tab:▸\ ,eol:¬
 set showbreak=↪
+" Disable matching parens
+let loaded_matchparen = 1
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set history=1000
@@ -65,8 +58,8 @@ nnoremap K <nop>
 nmap <leader>w :w<cr>
 nmap <leader>q :q<cr>
 nmap <leader>n :nohl<cr>
-map <leader>e :e ~/.vimrc<cr>
-map <leader>c :e ~/.vim/colors/monokai.vim<cr>
+map <leader>e :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
+map <leader>c :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 " Slick way to move around slices
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -103,7 +96,7 @@ set directory=~/.vim/swap
 set backupdir=~/.vim/backup
 set backup
 " Remove trailing whitespace on save
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 " Automatically read files when they were modified externally
 set autoread
 
@@ -116,15 +109,10 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_jump_to_buffer = 1
 
 
-""" Temp & Testing
-" Update splits on window resize
-" au VimResized * exe "normal! \<c-w>="
+""" Javascript Lint
+let jslint_command_options = '-conf ~/.jslintrc -nofilelisting -nocontext -nosummary -nologo -process'
 
+
+""" Temp & Testing
 " Get file folder
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" Disable matching parens
-let loaded_matchparen = 1
-
-" Javascript Lint
-let jslint_command_options = '-conf ~/.jslintrc -nofilelisting -nocontext -nosummary -nologo -process'
