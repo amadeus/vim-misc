@@ -35,7 +35,6 @@ set background=dark
 colorscheme monokai
 set transparency=0
 set guioptions=aAce
-"set guioptions-=T
 set title titlestring=%t
 set number
 set ruler
