@@ -3,9 +3,10 @@ set nowrap
 set lbr
 set tabstop=4
 set shiftwidth=4
-set smarttab
-set autoindent
-set smartindent
+" Trying out new indent settings
+"set smarttab
+"set autoindent
+"set smartindent
 set noexpandtab
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -15,6 +16,7 @@ let loaded_matchparen = 1
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set history=1000
+"set cursorline
 
 
 """ Searching
@@ -26,7 +28,7 @@ set smartcase
 
 """ Tab completion when entering filenames, etc
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc
+set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.jpeg,*.png,*.gif,*.bmp
 
 
 """ Syntax, color scheme and gui options
@@ -49,7 +51,7 @@ set sidescrolloff=3
 
 
 """ Various Keyboard shortcuts
-let mapleader=","
+"let mapleader=","
 " Disable annoying keys
 noremap <F1> <nop>
 nnoremap K <nop>
@@ -83,7 +85,7 @@ let g:Powerline_colorscheme = "custom"
 
 """ File and Filetype Settings
 " Javascript test
-au FileType javascript setl nocindent
+"au FileType javascript setl nocindent
 " Set htmldjango.html on all html files
 au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
 " Fix Python
@@ -115,3 +117,16 @@ let jslint_command_options = '-conf ~/.jslintrc -nofilelisting -nocontext -nosum
 """ Temp & Testing
 " Get file folder
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" Indent Tests
+set cindent
+set smartindent
+set autoindent
+set cinkeys=0{,0},:,0#,!,!^F
+
+" Testing hidden
+set hidden
+
+" Fix marks
+nnoremap ' `
+nnoremap ` '
