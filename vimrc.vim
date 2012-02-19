@@ -3,10 +3,12 @@ set nowrap
 set lbr
 set tabstop=4
 set shiftwidth=4
-" Trying out new indent settings
-"set smarttab
-"set autoindent
-"set smartindent
+
+set cindent
+set smartindent
+set autoindent
+set cinkeys=0{,0},:,0#,!,!^F
+
 set noexpandtab
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -16,6 +18,7 @@ let loaded_matchparen = 1
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set history=1000
+set hidden
 "set cursorline
 
 
@@ -61,6 +64,7 @@ nmap <leader>q :q<cr>
 nmap <leader>n :nohl<cr>
 map <leader>e :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 map <leader>c :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+map <leader>s :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " Slick way to move around slices
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -68,8 +72,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 " Save and restore vim session
 set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages,winsize
-map <C-Z> :mksession! ~/.vim/.session <CR>
-map <C-X> :source ~/.vim/.session <CR>
+map <C-Z> :mksession! ~/.vim/.session <cr>
+map <C-X> :source ~/.vim/.session <cr>
 " Toggle spellcheck
 map <leader>ss :setlocal spell!<cr>
 " Disable Ex Mode
@@ -113,25 +117,18 @@ let g:ctrlp_jump_to_buffer = 1
 """ Syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_javascript_jsl_conf = "-conf ~/.jslintrc"
-let g:syntastic_mode_map = { 'mode': 'active',
-	\ 'active_filetypes': [],
-	\ 'passive_filetypes': ['html', 'htmldjango'] }
+let g:syntastic_mode_map['passive_filetypes'] = ['html', 'htmldjango']
+"let g:syntastic_mode_map = { 'mode': 'active',
+"	\ 'active_filetypes': [],
+"	\ 'passive_filetypes': [] }
 
 
 """ Temp & Testing
 " Get file folder
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" Indent Tests
-set cindent
-set smartindent
-set autoindent
-set cinkeys=0{,0},:,0#,!,!^F
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Testing hidden
-set hidden
 
 " Fix marks
 nnoremap ' `
 nnoremap ` '
-
