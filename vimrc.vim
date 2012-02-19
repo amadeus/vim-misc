@@ -117,17 +117,15 @@ let g:ctrlp_jump_to_buffer = 1
 """ Syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_javascript_jsl_conf = "-conf ~/.jslintrc"
-let g:syntastic_mode_map['passive_filetypes'] = ['html', 'htmldjango']
-"let g:syntastic_mode_map = { 'mode': 'active',
-"	\ 'active_filetypes': [],
-"	\ 'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'active',
+	\ 'active_filetypes': [],
+	\ 'passive_filetypes': ['html', 'htmldjango'] }
 
 
 """ Temp & Testing
+
 " Get file folder
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" Testing hidden
 
 " Fix marks
 nnoremap ' `
