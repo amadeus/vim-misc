@@ -17,15 +17,17 @@ hi CursorColumn						guifg=NONE		guibg=#2d2d27	gui=NONE
 hi LineNr							guifg=#666666	guibg=#000000	gui=NONE
 hi SignColumn						guifg=#666666	guibg=#000000	gui=NONE
 hi VertSplit						guifg=#808080	guibg=#000000	gui=bold
-"hi MatchParen										guibg=#000000	gui=NONE
+hi MatchParen										guibg=#000000	gui=NONE
 hi StatusLine						guifg=#ffffff	guibg=#222222	gui=bold
 hi StatusLineNC						guifg=#444444	guibg=#222222	gui=NONE
 hi Pmenu 							guifg=NONE		guibg=NONE		gui=NONE
 hi PmenuSel							guifg=NONE		guibg=#00badc	gui=NONE
-hi IncSearch						guifg=NONE		guibg=#64310e	gui=NONE
-hi Search							guifg=NONE		guibg=#64310e	gui=NONE
+hi IncSearch						guifg=#000000	guibg=#ffe402	gui=NONE
+hi Search							guifg=#ffffff	guibg=#f92672	gui=NONE
 hi Directory						guifg=#bb40f5	guibg=NONE		gui=NONE
 hi Folded							guifg=#75715e	guibg=#000000	gui=NONE
+hi FoldColumn						guifg=#75715e	guibg=#000000	gui=NONE
+hi Ignore							guifg=#000000
 
 hi Normal							guifg=#ffffff	guibg=#1e1e1a	gui=NONE
 hi Boolean							guifg=#bb40f5	guibg=NONE		gui=NONE
@@ -36,7 +38,7 @@ hi Constant							guifg=NONE		guibg=NONE		gui=NONE
 hi Define							guifg=#ff0013	guibg=NONE		gui=NONE
 hi ErrorMsg							guifg=#f8f8f0	guibg=#f92672	gui=inverse
 hi WarningMsg						guifg=#f8f8f0	guibg=#f92672	gui=NONE
-hi Float							guifg=#b700ff	guibg=NONE		gui=NONE
+hi Float							guifg=#bb40f5	guibg=NONE		gui=NONE
 hi Identifier						guifg=#00d9ef	guibg=NONE		gui=italic
 hi Keyword							guifg=#ff0013	guibg=NONE		gui=NONE
 hi Label							guifg=#7ae902	guibg=NONE		gui=NONE
@@ -46,10 +48,8 @@ hi NonText							guifg=#333333	guibg=NONE		gui=NONE
 hi SpecialKey						guifg=#333333	guibg=NONE		gui=NONE
 hi Delimiter						guifg=#ff0275	guibg=NONE		gui=NONE
 
-hi Number							guifg=#b700ff	guibg=NONE		gui=NONE
+hi Number							guifg=#bb40f5	guibg=NONE		gui=NONE
 hi Operator							guifg=#ff0013	guibg=NONE		gui=NONE
-"hi PreProc							guifg=#ff0013	guibg=NONE		gui=NONE
-"hi PreProc							guifg=#66d9ef	guibg=NONE		gui=NONE
 hi PreProc							guifg=#bb40f5	guibg=NONE		gui=NONE
 hi Special							guifg=#ffffff	guibg=NONE		gui=NONE
 hi Statement 						guifg=#ff0013 	guibg=NONE 		gui=NONE
@@ -61,6 +61,10 @@ hi Todo 							guifg=#75715e 	guibg=#000000 	gui=inverse,bold,italic
 hi Type 							guifg=NONE 		guibg=NONE 		gui=NONE
 hi Underlined 						guifg=NONE 		guibg=NONE 		gui=NONE
 hi Type								guifg=#66d9ef
+hi DiffAdd							guifg=NONE		guibg=#005706	gui=NONE
+hi DiffChange						guifg=NONE		guibg=#430077	gui=NONE
+hi DiffDelete						guifg=NONE		guibg=#7f0000	gui=NONE
+hi DiffText							guifg=NONE		guibg=#001962	gui=NONE
 
 """ Language Specific Stuff
 hi yamlKey							guifg=#36a6ff	guibg=#002d53 	gui=NONE
@@ -140,18 +144,3 @@ hi cssPrefix						guifg=#66d9ef	guibg=#10282c
 hi cssFuncBracket 					guifg=#ff027e
 hi cssPunctuation					guifg=#00ff00
 hi cssFunction						guifg=#66d9ef
-
-"hi cssValFn							guifg=#ff0000
-"hi myBraket							guifg=#ff0000
-"hi cssFunction						guifg=#ff0000
-"hi cssFnValBlock					guifg=#ff0000
-"hi cssFuncRegion					guifg=#ff0000
-"hi cssAttValFn						guifg=#00ff00
-"hi cssValBlock						guifg=#00ff00
-"hi cssValFn							guifg=#00ff00
-"hi cssClass							guifg=#00ff00
-"hi cssFunction						guifg=#00ff00
-"hi cssFnValBlock					guifg=#00ff00
-"hi cssFunction						guifg=#ff0000
-"hi cssAtProps						guifg=#00ff00
-"hi cssAttValFn						guifg=#000000
