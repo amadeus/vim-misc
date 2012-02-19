@@ -110,8 +110,12 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_jump_to_buffer = 1
 
 
-""" Javascript Lint
-let jslint_command_options = '-conf ~/.jslintrc -nofilelisting -nocontext -nosummary -nologo -process'
+""" Syntastic
+let g:syntastic_auto_loc_list=1
+let g:syntastic_javascript_jsl_conf = "-conf ~/.jslintrc"
+let g:syntastic_mode_map = { 'mode': 'active',
+	\ 'active_filetypes': [],
+	\ 'passive_filetypes': ['html', 'htmldjango'] }
 
 
 """ Temp & Testing
@@ -130,3 +134,4 @@ set hidden
 " Fix marks
 nnoremap ' `
 nnoremap ` '
+
