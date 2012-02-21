@@ -78,7 +78,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Save and restore vim session
-set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages,winsize
+set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
 map <C-Z> :mksession! ~/.vim/.session <cr>
 map <C-X> :source ~/.vim/.session <cr>
 
