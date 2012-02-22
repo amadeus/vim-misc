@@ -70,6 +70,7 @@ nmap <leader>n :nohl<cr>
 map <leader>e :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 map <leader>c :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 map <leader>s :so $VIMRUNTIME/syntax/hitest.vim<cr>
+map <leader>u :GundoToggle<cr>
 
 " Slicker way to move around splits
 map <C-j> <C-W>j
@@ -102,7 +103,9 @@ au FileType python syn keyword pythonDecorator True None False self
 " Swap and backup folder configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
+set undodir=~/.vim/undo
 set backup
+set undofile
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
