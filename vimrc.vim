@@ -100,7 +100,7 @@ au FileType make set noexpandtab
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
-" Swap and backup folder configuration
+" Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
 set undodir=~/.vim/undo
