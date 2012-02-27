@@ -64,6 +64,7 @@ nnoremap K <nop>
 nnoremap Q <Nop>
 
 " Various leader shortcuts
+let mapleader=","
 nmap <leader>w :w<cr>
 nmap <leader>q :q<cr>
 nmap <leader>n :nohl<cr>
@@ -127,6 +128,9 @@ let g:syntastic_mode_map = { 'mode': 'active',
 	\ 'active_filetypes': [],
 	\ 'passive_filetypes': ['html', 'htmldjango'] }
 
+" Gist settings
+let g:gist_clip_command = 'pbcopy'
+
 " TESTING - Get file folder
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
@@ -148,9 +152,3 @@ nmap <D-0> g^
 
 " TESTING - Javascript test
 " au FileType javascript setl nocindent
-
-" TESTING - Definie mapleader, currently testing default \
-let mapleader=","
-
-" TESTING - Gist auto copy
-let g:gist_clip_command = 'pbcopy'
