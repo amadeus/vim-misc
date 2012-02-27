@@ -157,3 +157,6 @@ nmap <D-0> g^
 " TESTING - Encoding
 set encoding=utf-8
 set relativenumber
+
+" TESTING - Indent Guides
+let g:indent_guides_guide_size = 1
