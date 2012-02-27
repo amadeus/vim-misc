@@ -6,7 +6,6 @@ set linebreak
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
-set cindent
 set smartindent
 set autoindent
 set cinkeys=0{,0},:,0#,!,!^F
