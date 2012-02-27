@@ -150,4 +150,7 @@ nmap <D-0> g^
 " au FileType javascript setl nocindent
 
 " TESTING - Definie mapleader, currently testing default \
-"let mapleader=","
+let mapleader=","
+
+" TESTING - Gist auto copy
+let g:gist_clip_command = 'pbcopy'
