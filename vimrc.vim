@@ -96,6 +96,8 @@ let g:Powerline_colorscheme = "custom"
 
 " Set htmldjango.html on all html files
 au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
+au BufNewFile,BufRead,BufWrite *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+au BufLeave *.py,*.rb,Vagrantfile exe 'IndentGuidesDisable'
 
 " Fix Python
 au FileType make set noexpandtab
@@ -160,3 +162,5 @@ set relativenumber
 
 " TESTING - Indent Guides
 let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+" let g:indent_guides_color_change_percent = 3

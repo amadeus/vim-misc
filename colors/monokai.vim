@@ -45,7 +45,6 @@ hi Keyword							guifg=#ff0013	guibg=NONE		gui=NONE
 hi Label							guifg=#7ae902	guibg=NONE		gui=NONE
 hi Globals							guifg=#7ae902	guibg=NONE		gui=NONE
 hi Function							guifg=#85ff00	guibg=NONE		gui=NONE
-"hi NonText							guifg=#333333	guibg=NONE		gui=NONE
 hi NonText							guifg=#1e1e1a	guibg=NONE		gui=NONE
 hi SpecialKey						guifg=#333333	guibg=NONE		gui=NONE
 hi Delimiter						guifg=#ff0275	guibg=NONE		gui=NONE
@@ -146,3 +145,6 @@ hi cssPrefix						guifg=#66d9ef	guibg=#10282c
 hi cssFuncBracket 					guifg=#ff027e
 hi cssPunctuation					guifg=#00ff00
 hi cssFunction						guifg=#66d9ef
+
+hi IndentGuidesOdd					guibg=#2a2a26
+hi IndentGuidesEven					guibg=#2a2a26
