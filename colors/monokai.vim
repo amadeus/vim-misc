@@ -10,7 +10,8 @@ endif
 
 let g:colors_name = "monokai"
 
-hi Cursor							guifg=#000000	guibg=#fffff8	gui=NONE
+"hi Cursor							guifg=#000000	guibg=#fffff8	gui=NONE
+hi Cursor							guifg=#000000	guibg=#04a0f7	gui=NONE
 hi Visual											guibg=#114483	gui=NONE
 hi CursorLine										guibg=#000000	gui=NONE
 hi CursorColumn						guifg=NONE		guibg=#2d2d27	gui=NONE
