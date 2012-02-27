@@ -45,7 +45,7 @@ hi Keyword							guifg=#ff0013	guibg=NONE		gui=NONE
 hi Label							guifg=#7ae902	guibg=NONE		gui=NONE
 hi Globals							guifg=#7ae902	guibg=NONE		gui=NONE
 hi Function							guifg=#85ff00	guibg=NONE		gui=NONE
-hi NonText							guifg=#1e1e1a	guibg=NONE		gui=NONE
+hi NonText							guifg=#333333	guibg=NONE		gui=NONE
 hi SpecialKey						guifg=#333333	guibg=NONE		gui=NONE
 hi Delimiter						guifg=#ff0275	guibg=NONE		gui=NONE
 
