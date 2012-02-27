@@ -58,10 +58,11 @@ set scrolloff=3
 set sidescroll=1
 set sidescrolloff=3
 
-" Disable annoying keys
+" Disable annoying keys and fix common errors
 noremap <F1> <nop>
 nnoremap K <nop>
 nnoremap Q <Nop>
+command! W write
 
 " Various leader shortcuts
 let mapleader=","
