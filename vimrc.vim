@@ -13,7 +13,7 @@ set cinkeys=0{,0},:,0#,!,!^F
 
 " Show invisibles
 set list
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
 " Disable matching parens - the real way
@@ -156,3 +156,4 @@ nmap <D-0> g^
 
 " TESTING - Encoding
 set encoding=utf-8
+set relativenumber
