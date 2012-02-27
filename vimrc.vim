@@ -152,3 +152,6 @@ nmap <D-0> g^
 
 " TESTING - Javascript test
 " au FileType javascript setl nocindent
+
+" TESTING - Encoding
+set encoding=utf-8
