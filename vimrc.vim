@@ -121,7 +121,9 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_height = 20
 let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_jump_to_buffer = 1
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store'
 map <leader>t :CtrlP<cr>
+map <leader>b :CtrlPBuffer<cr>
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
@@ -161,4 +163,7 @@ set encoding=utf-8
 " TESTING - Indent Guides
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
-" let g:indent_guides_color_change_percent = 3
+let g:indent_guides_start_level = 1
+
+" TESTING - LocalVimRC
+let g:localvimrc_ask = 0
