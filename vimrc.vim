@@ -95,7 +95,7 @@ let g:Powerline_colorscheme = "custom"
 
 " Set htmldjango.html on all html files
 au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
-au BufNewFile,BufRead,BufWrite *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+au BufNewFile,BufRead,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
 au BufLeave *.py,*.rb,Vagrantfile exe 'IndentGuidesDisable'
 
 " Fix Python
@@ -157,7 +157,6 @@ nmap <D-0> g^
 
 " TESTING - Encoding
 set encoding=utf-8
-set relativenumber
 
 " TESTING - Indent Guides
 let g:indent_guides_guide_size = 1
