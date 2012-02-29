@@ -62,10 +62,18 @@ hi Todo 							guifg=#75715e 	guibg=#000000 	gui=inverse,bold,italic
 hi Type 							guifg=NONE 		guibg=NONE 		gui=NONE
 hi Underlined 						guifg=NONE 		guibg=NONE 		gui=NONE
 hi Type								guifg=#66d9ef
+
 hi DiffAdd							guifg=NONE		guibg=#005706	gui=NONE
 hi DiffChange						guifg=NONE		guibg=#430077	gui=NONE
 hi DiffDelete						guifg=NONE		guibg=#7f0000	gui=NONE
 hi DiffText							guifg=NONE		guibg=#001962	gui=NONE
+
+hi diffAdded						guifg=NONE		guibg=#005706	gui=NONE
+hi diffRemoved						guifg=NONE		guibg=#7f0000		gui=NONE
+hi diffLine							guifg=NONE		guibg=NONE		gui=NONE
+"hi diffAdd							guifg=NONE		guibg=#005706	gui=NONE
+"hi diffRemoved						guifg=#ff0013	guibg=NONE		gui=NONE
+"hi diffLine							guifg=NONE		guibg=NONE		gui=NONE
 
 """ Language Specific Stuff
 hi yamlKey							guifg=#36a6ff	guibg=#002d53 	gui=NONE

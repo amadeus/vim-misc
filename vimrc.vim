@@ -72,6 +72,7 @@ map <leader>e :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 map <leader>c :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 map <leader>s :so $VIMRUNTIME/syntax/hitest.vim<cr>
 map <leader>u :GundoToggle<cr>
+map <leader>d :bd<cr>
 
 " Slicker way to move around splits
 map <C-j> <C-W>j
@@ -95,7 +96,7 @@ let g:Powerline_colorscheme = "custom"
 
 " Set htmldjango.html on all html files
 au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
-au BufNewFile,BufRead,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+au BufNewFile,BufRead,BufEnter,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
 au BufLeave *.py,*.rb,Vagrantfile exe 'IndentGuidesDisable'
 
 " Fix Python
@@ -122,6 +123,7 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_jump_to_buffer = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store'
+let g:ctrlp_open_new_file = 'r'
 map <leader>t :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
 
