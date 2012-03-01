@@ -122,7 +122,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_height = 20
 let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_jump_to_buffer = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|env'
 let g:ctrlp_open_new_file = 'r'
 map <leader>t :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
