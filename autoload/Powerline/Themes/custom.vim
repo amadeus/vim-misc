@@ -8,8 +8,6 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 		\ , Pl#Segment#Truncate()
 		\ , 'cfi:current_function'
 		\ , Pl#Segment#Split()
-		\ , 'fileformat'
-		\ , 'fileencoding'
 		\ , 'filetype'
 		\ , 'scrollpercent'
 		\ , 'lineinfo'
