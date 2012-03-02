@@ -62,6 +62,7 @@ noremap <F1> <nop>
 nnoremap K <nop>
 nnoremap Q <Nop>
 command! W write
+command! Q quit
 
 " Various leader shortcuts
 let mapleader=","
