@@ -3,7 +3,7 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 		\ , 'mode_indicator'
 		\ , 'fugitive:branch'
 		\ , 'amadeus:current_dir'
-		\ , 'fileinfo'
+		\ , 'amadeus:fileinfo'
 		\ , 'syntastic:errors'
 		\ , Pl#Segment#Truncate()
 		\ , 'cfi:current_function'
@@ -38,7 +38,7 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 	\
 	\ Pl#Theme#Buffer('ft_help'
 		\ , ['static_str.name', 'Help']
-		\ , 'filename'
+		\ , 'amadeus:filename'
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
 		\ , 'scrollpercent'
@@ -46,7 +46,7 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 	\
 	\ Pl#Theme#Buffer('ft_vimpager'
 		\ , ['static_str.name', 'Pager']
-		\ , 'filename'
+		\ , 'amadeus:filename'
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
 		\ , 'scrollpercent'
@@ -61,7 +61,7 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 	\
 	\ Pl#Theme#Buffer('ft_man'
 		\ , ['static_str.name', 'Man page']
-		\ , 'filename'
+		\ , 'amadeus:filename'
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
 		\ , 'scrollpercent'
