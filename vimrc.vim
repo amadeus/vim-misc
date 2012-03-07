@@ -71,9 +71,10 @@ nmap <leader>q :q<cr>
 nmap <leader>n :nohl<cr>
 map <leader>e :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 map <leader>c :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
-map <leader>s :so $VIMRUNTIME/syntax/hitest.vim<cr>
+map <leader>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
 map <leader>u :GundoToggle<cr>
 map <leader>d :bd<cr>
+map <leader>s :setlocal spell!<cr>
 
 " Slicker way to move around splits
 map <C-j> <C-W>j
@@ -85,9 +86,6 @@ map <C-l> <C-W>l
 set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
 map <C-Z> :mksession! ~/.vim/.session <cr>
 map <C-X> :source ~/.vim/.session <cr>
-
-" Toggle spellcheck
-map <leader>ss :setlocal spell!<cr>
 
 " Powerline Settings
 set guifont=Menlo\ Regular\ for\ Powerline:h12
