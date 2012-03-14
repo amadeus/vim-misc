@@ -168,3 +168,6 @@ let g:indent_guides_start_level = 1
 
 " TESTING - LocalVimRC
 let g:localvimrc_ask = 0
+
+" TESTING - Gdiff in new tab
+command Gdifft tabedit %|Gdiff
