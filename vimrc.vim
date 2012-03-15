@@ -139,9 +139,10 @@ let g:gist_clip_command = 'pbcopy'
 " TESTING - Get file folder
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" TESTING - Fix marks
-nnoremap ' `
-nnoremap ` '
+" TESTING - Fix marks - Not sure what this does yet, don't want to change
+" something I don't use yet
+"nnoremap ' `
+"nnoremap ` '
 
 " TESTING - Testing wrap movement
 vmap <D-j> gj
@@ -149,11 +150,6 @@ vmap <D-k> gk
 vmap <D-4> g$
 vmap <D-6> g^
 vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
 
 " TESTING - Javascript test
 " au FileType javascript setl nocindent
