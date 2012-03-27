@@ -168,3 +168,6 @@ let g:localvimrc_ask = 0
 
 " TESTING - Gdiff in new tab
 command Gdifft tabedit %|Gdiff
+
+" TESTING - Enabling NeoCompleteCache
+let g:neocomplcache_enable_at_startup = 1
