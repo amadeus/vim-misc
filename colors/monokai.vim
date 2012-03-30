@@ -21,7 +21,7 @@ hi VertSplit						guifg=#808080	guibg=#000000	gui=bold
 hi MatchParen										guibg=#000000	gui=NONE
 hi StatusLine						guifg=#ffffff	guibg=#222222	gui=bold
 hi StatusLineNC						guifg=#444444	guibg=#222222	gui=NONE
-hi Pmenu 							guifg=NONE		guibg=#000000	gui=NONE
+hi Pmenu 							guifg=NONE		guibg=#373730	gui=NONE
 hi PmenuSel							guifg=NONE		guibg=#00badc	gui=NONE
 hi IncSearch						guifg=#000000	guibg=#ffe402	gui=NONE
 hi Search							guifg=#ffffff	guibg=#f92672	gui=NONE
