@@ -99,7 +99,6 @@ au BufNewFile,BufRead,BufEnter,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'I
 au BufLeave *.py,*.rb,Vagrantfile exe 'IndentGuidesDisable'
 
 " Fix Python
-au FileType make set noexpandtab
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
@@ -168,11 +167,14 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 1
 
-" TESTING - LocalVimRC
-let g:localvimrc_ask = 0
-
 " TESTING - Gdiff in new tab
 command Gdifft tabedit %|Gdiff
 
 " TESTING - Enabling NeoCompleteCache
 let g:neocomplcache_enable_at_startup = 1
+
+" TESTING - DetectIndent
+let g:detectindent_preferred_expandtab = 0
+let g:detectindent_max_lines_to_analyse = 100
+let g:detectindent_preferred_indent = 4
+autocmd BufReadPost * :DetectIndent
