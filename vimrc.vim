@@ -60,7 +60,7 @@ set sidescrolloff=3
 " Disable annoying keys and fix common errors
 noremap <F1> <nop>
 nnoremap K <nop>
-nnoremap Q <Nop>
+nnoremap Q <nop>
 command! W write
 command! Q quit
 
@@ -75,6 +75,9 @@ map <leader>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
 map <leader>u :GundoToggle<cr>
 map <leader>d :bd<cr>
 map <leader>s :setlocal spell!<cr>
+map <leader>gs :Gstatus<cr>
+map <leader>gc :Gcommit -v<cr>
+map <leader>gd :Git difftool --staged<cr>
 
 " Slicker way to move around splits
 map <C-j> <C-W>j
@@ -177,4 +180,5 @@ let g:neocomplcache_enable_at_startup = 1
 let g:detectindent_preferred_expandtab = 0
 let g:detectindent_max_lines_to_analyse = 100
 let g:detectindent_preferred_indent = 4
+let g:detectindent_verbosity = 1
 autocmd BufReadPost * :DetectIndent
