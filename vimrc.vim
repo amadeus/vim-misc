@@ -85,11 +85,6 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Save and restore vim session
-set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
-map <C-Z> :mksession! ~/.vim/.session <cr>
-map <C-X> :source ~/.vim/.session <cr>
-
 " Powerline Settings
 set guifont=Menlo\ Regular\ for\ Powerline:h12
 let g:Powerline_symbols = 'fancy'
@@ -168,7 +163,7 @@ set ttyfast
 " TESTING - Indent Guides
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 1
+let g:indent_guides_start_level = 2
 
 " TESTING - Gdiff in new tab
 command Gdifft tabedit %|Gdiff
@@ -182,3 +177,13 @@ let g:detectindent_max_lines_to_analyse = 100
 let g:detectindent_preferred_indent = 4
 let g:detectindent_verbosity = 1
 autocmd BufReadPost * :DetectIndent
+
+" TESTING - JS Autocomplete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"imap <C-x> <C-x><C-o>
+"
+" Save and restore vim session
+set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
+map <C-Z> :mksession! ~/.vim/.session <cr>
+map <C-X> :source ~/.vim/.session <cr>
+
