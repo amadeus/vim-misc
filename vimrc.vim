@@ -186,3 +186,6 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
 map <C-Z> :mksession! ~/.vim/.session <cr>
 map <C-X> :source ~/.vim/.session <cr>
+
+" TESTING: Actionscript stuff
+au BufNewFile,BufRead,BufWrite *.as setl filetype=actionscript

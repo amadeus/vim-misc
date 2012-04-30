@@ -1,13 +1,20 @@
 let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 	\ Pl#Theme#Buffer(''
+		\ , 'paste_indicator'
 		\ , 'mode_indicator'
 		\ , 'fugitive:branch'
 		\ , 'amadeus:current_dir'
 		\ , 'amadeus:fileinfo'
+		\ , 'hgrev:branch'
+		\ , 'aurum:status'
 		\ , 'syntastic:errors'
 		\ , Pl#Segment#Truncate()
 		\ , 'cfi:current_function'
 		\ , Pl#Segment#Split()
+		\ , 'rvm:string'
+		\ , 'virtualenv:statusline'
+		\ , 'fileformat'
+		\ , 'fileencoding'
 		\ , 'filetype'
 		\ , 'scrollpercent'
 		\ , 'lineinfo'
@@ -34,7 +41,7 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 		\ , Pl#Segment#Split()
 	\ ),
 	\
-	\ Pl#Theme#Buffer('ft_help'
+	\ Pl#Theme#Buffer('bt_help'
 		\ , ['static_str.name', 'Help']
 		\ , 'amadeus:filename'
 		\ , Pl#Segment#Truncate()
@@ -104,8 +111,9 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 	\ ),
 	\
 	\ Pl#Theme#Buffer('nerdtree'
-		\ , ['raw.name', '%{expand("%:p:h")}']
+		\ , ['raw.name', '%{Powerline#Functions#GetShortPath(4)}']
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
 	\ )
 \ )
+

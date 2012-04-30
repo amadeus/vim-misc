@@ -56,14 +56,20 @@ let g:Powerline#Colorschemes#custom#colorscheme = Pl#Colorscheme#Init([
 	\
 	\ Pl#Hi#Segments(['branch', 'amadeus:current_dir', 'scrollpercent', 'raw', 'filesize'], {
 		\ 'n': ['gray9', 'gray4'],
-		\ 'N': ['gray3', 'gray1'],
+		\ 'N': ['gray4', 'gray1'],
 		\ 'i': ['mediumcyan', 'darkblue'],
 		\ }),
 	\
 	\ Pl#Hi#Segments(['fileinfo', 'filename'], {
 		\ 'n': ['white', 'gray4', ['bold']],
-		\ 'N': ['gray7', 'gray1', ['bold']],
+		\ 'N': ['gray7', 'gray0', ['bold']],
 		\ 'i': ['white', 'darkblue', ['bold']],
+		\ }),
+	\
+	\ Pl#Hi#Segments(['fileinfo.filepath', 'status'], {
+		\ 'n': ['gray10'],
+		\ 'N': ['gray5'],
+		\ 'i': ['mediumcyan'],
 		\ }),
 	\
 	\ Pl#Hi#Segments(['static_str'], {
@@ -100,9 +106,8 @@ let g:Powerline#Colorschemes#custom#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['darkestcyan'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['ws_marker'], {
-		\ 'n': ['white', 'brightestred'],
-		\ 'i': ['darkestcyan', 'white'],
+	\ Pl#Hi#Segments(['paste_indicator', 'ws_marker'], {
+		\ 'n': ['white', 'brightred', ['bold']],
 		\ }),
 	\
 	\ Pl#Hi#Segments(['gundo:static_str.name', 'command_t:static_str.name'], {
