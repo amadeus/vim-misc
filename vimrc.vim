@@ -189,3 +189,6 @@ map <C-X> :source ~/.vim/.session <cr>
 
 " TESTING: Actionscript stuff
 au BufNewFile,BufRead,BufWrite *.as setl filetype=actionscript
+
+" TESTING: Trailing whitespace indicator in Powerline
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
