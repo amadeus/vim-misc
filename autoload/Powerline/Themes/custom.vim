@@ -13,8 +13,6 @@ let g:Powerline#Themes#custom#theme = Pl#Theme#Create(
 		\ , Pl#Segment#Split()
 		\ , 'rvm:string'
 		\ , 'virtualenv:statusline'
-		\ , 'fileformat'
-		\ , 'fileencoding'
 		\ , 'filetype'
 		\ , 'scrollpercent'
 		\ , 'lineinfo'
