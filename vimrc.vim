@@ -70,28 +70,28 @@ set sidescrolloff=3
 
 
 " Disable annoying keys and fix common errors
-noremap <F1> <nop>
-nnoremap K <nop>
-nnoremap Q <nop>
-cnoreabbrev W w
-cnoreabbrev Wq wq
-cnoreabbrev WQ wq
-cnoreabbrev Q q
+noremap     <F1> <ESC>
+nnoremap    K    <NOP>
+nnoremap    Q    <NOP>
+cnoreabbrev W    w
+cnoreabbrev Wq   wq
+cnoreabbrev WQ   wq
+cnoreabbrev Q    q
 
 
 " Courtney Trolling
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+vnoremap <Up>    <NOP>
+vnoremap <Down>  <NOP>
+vnoremap <Left>  <NOP>
+vnoremap <Right> <NOP>
+noremap  <Up>    <NOP>
+noremap  <Down>  <NOP>
+noremap  <Left>  <NOP>
+noremap  <Right> <NOP>
 
 
 " Various leader shortcuts
