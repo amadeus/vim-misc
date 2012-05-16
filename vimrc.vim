@@ -73,8 +73,25 @@ set sidescrolloff=3
 noremap <F1> <nop>
 nnoremap K <nop>
 nnoremap Q <nop>
-command! W write
-command! Q quit
+cnoreabbrev W w
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
+cnoreabbrev Q q
+
+
+" Courtney Trolling
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+vnoremap <up> <nop>
+vnoremap <down> <nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 
 " Various leader shortcuts
