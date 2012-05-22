@@ -70,9 +70,9 @@ set sidescrolloff=3
 
 
 " Disable annoying keys and fix common errors
-noremap     <F1> <ESC>
-nnoremap    K    <NOP>
-nnoremap    Q    <NOP>
+noremap     <F1> <Esc>
+nnoremap    K    <Nop>
+nnoremap    Q    <Nop>
 cnoreabbrev W    w
 cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
@@ -80,18 +80,18 @@ cnoreabbrev Q    q
 
 
 " Courtney Trolling
-inoremap <Up>    <NOP>
-inoremap <Down>  <NOP>
-inoremap <Left>  <NOP>
-inoremap <Right> <NOP>
-vnoremap <Up>    <NOP>
-vnoremap <Down>  <NOP>
-vnoremap <Left>  <NOP>
-vnoremap <Right> <NOP>
-noremap  <Up>    <NOP>
-noremap  <Down>  <NOP>
-noremap  <Left>  <NOP>
-noremap  <Right> <NOP>
+inoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+inoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+vnoremap <Up>    <Nop>
+vnoremap <Down>  <Nop>
+vnoremap <Left>  <Nop>
+vnoremap <Right> <Nop>
+noremap  <Up>    <Nop>
+noremap  <Down>  <Nop>
+noremap  <Left>  <Nop>
+noremap  <Right> <Nop>
 
 
 " Various leader shortcuts
@@ -245,10 +245,14 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "imap <C-x> <C-x><C-o>
 
 
+" TESTING: CSS Autocomplete
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+
 " TESTING: Save and restore vim session
-set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
-map <C-Z> :mksession! ~/.vim/.session <cr>
-map <C-X> :source ~/.vim/.session <cr>
+"set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
+"map <C-Z> :mksession! ~/.vim/.session <cr>
+"map <C-X> :source ~/.vim/.session <cr>
 
 
 " TESTING: Actionscript stuff
@@ -261,11 +265,34 @@ call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " TESTING: CtrlP Optimizations
 let g:ctrlp_max_files = 10000
+
+let ctrlp_filter_greps = "".
+    \ "egrep -iv '\\.(" .
+    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
+    \ ")$' | " .
+    \ "egrep -v '^(\\./)?(" .
+    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
+    \ ")'"
+
+let my_ctrlp_git_command = "" .
+    \ "cd %s && git ls-files | " .
+    \ ctrlp_filter_greps
+
 if has("unix")
-    let g:ctrlp_user_command = {
-        \ 'types': {
-            \ 1: ['.git/', 'cd %s && git ls-files']
-        \ },
-        \ 'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-    \ }
+    let my_ctrlp_user_command = "" .
+    \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
+    \ ctrlp_filter_greps
+
+    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+elseif has('win32')
+    let my_ctrlp_user_command = "" .
+    \ "dir %s /-n /b /s /a-d" .
+    \ ctrlp_filter_greps
+
+    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+else
+    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
+
+" TESTING: New way of escaping insert mode
+inoremap jj <Esc>
