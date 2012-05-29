@@ -130,7 +130,9 @@ let g:Powerline_colorscheme = "custom"
 
 " Set htmldjango.html on all html files
 au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
-au BufNewFile,BufRead,BufEnter,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+"au BufNewFile,BufRead,BufEnter,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+" TESTING: A simpler, more refined indent guide enabler
+au BufEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
 au BufLeave *.py,*.rb,Vagrantfile exe 'IndentGuidesDisable'
 
 
@@ -234,8 +236,8 @@ let g:neocomplcache_enable_at_startup = 1
 
 " TESTING: DetectIndent
 let g:detectindent_preferred_expandtab = 0
-let g:detectindent_max_lines_to_analyse = 100
 let g:detectindent_preferred_indent = 4
+let g:detectindent_max_lines_to_analyse = 200
 let g:detectindent_verbosity = 1
 autocmd BufReadPost * :DetectIndent
 
