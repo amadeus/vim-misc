@@ -96,15 +96,16 @@ noremap  <Right> <Nop>
 
 " Various leader shortcuts
 let mapleader=","
-nmap <leader>w :w<cr>
-nmap <leader>q :q<cr>
-nmap <leader>n :nohl<cr>
-map <leader>e :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-map <leader>c :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
-map <leader>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
-map <leader>u :GundoToggle<cr>
-map <leader>d :bd<cr>
-map <leader>s :setlocal spell!<cr>
+nmap <leader>w  :w<cr>
+nmap <leader>q  :q<cr>
+nmap <leader>n  :nohl<cr>
+map  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
+map  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+map  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
+map  <leader>u  :GundoToggle<cr>
+map  <leader>d  :bd<cr>
+map  <leader>s  :setlocal spell!<cr>
+map  <leader>gq :diffoff<cr>:q<cr>:q<cr>
 
 
 " Vim Fugitive
