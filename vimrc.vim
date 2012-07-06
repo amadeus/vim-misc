@@ -71,6 +71,7 @@ set sidescrolloff=3
 
 " Disable annoying keys and fix common errors
 noremap     <F1> <Esc>
+inoremap    <F1> <Esc>
 nnoremap    K    <Nop>
 nnoremap    Q    <Nop>
 cnoreabbrev W    w
@@ -105,7 +106,9 @@ map  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 map  <leader>u  :GundoToggle<cr>
 map  <leader>d  :bd<cr>
 map  <leader>s  :setlocal spell!<cr>
-map  <leader>gq :diffoff<cr>:q<cr>:q<cr>
+" Testing some stuff
+map  <leader>gq :diffoff<cr><c-h>:q<cr>
+map  <leader>gg :Gdiff<cr>
 
 
 " Vim Fugitive
@@ -131,10 +134,11 @@ let g:Powerline_colorscheme = "custom"
 
 " Set htmldjango.html on all html files
 au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
-"au BufNewFile,BufRead,BufEnter,BufWrite,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
-" TESTING: A simpler, more refined indent guide enabler
+
+
+" A simpler, more refined indent guide enabler
+au BufEnter * exe 'IndentGuidesDisable'
 au BufEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
-au BufLeave *.py,*.rb,Vagrantfile exe 'IndentGuidesDisable'
 
 
 " Fix Python
@@ -238,7 +242,7 @@ let g:neocomplcache_enable_at_startup = 1
 " TESTING: DetectIndent
 let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
-let g:detectindent_max_lines_to_analyse = 200
+let g:detectindent_max_lines_to_analyse = 100
 let g:detectindent_verbosity = 1
 autocmd BufReadPost * :DetectIndent
 
@@ -271,7 +275,7 @@ let g:ctrlp_max_files = 10000
 
 let ctrlp_filter_greps = "".
     \ "egrep -iv '\\.(" .
-    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
+    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po|DS_Store" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
     \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
@@ -299,3 +303,7 @@ endif
 
 " TESTING: New way of escaping insert mode
 inoremap jj <Esc>
+
+
+" TESTING: .conf to yaml
+au BufNewFile,BufRead *.conf setl filetype=yaml

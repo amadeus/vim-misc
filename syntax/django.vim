@@ -21,7 +21,7 @@ syn match djangoError "%}\|}}\|#}"
 syn keyword djangoStatement contained autoescape csrf_token empty
 " FIXME ==, !=, <, >, <=, and >= should be djangoStatements:
 " syn keyword djangoStatement contained == != < > <= >=
-syn keyword djangoStatement contained and as block end endblock by cycle debug else
+syn keyword djangoStatement contained and as block elif end endblock by cycle debug else
 syn keyword djangoStatement contained extends filter endfilter firstof for
 syn keyword djangoStatement contained endfor if endif ifchanged endifchanged
 syn keyword djangoStatement contained ifequal endifequal ifnotequal
