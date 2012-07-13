@@ -19,7 +19,7 @@ set showbreak=↪
 
 
 " Disable matching parens - the real way
-let loaded_matchparen = 1
+let loaded_matchparen = 0
 
 
 " Allow backspacing over everything in insert mode
@@ -49,13 +49,22 @@ set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Stor
 " Syntax, Colorscheme and Gui Options
 syntax on
 set background=dark
-colorscheme monokai
-set transparency=0
+
+if has("gui_running")
+    colorscheme monokai
+else
+    colorscheme molokai
+endif
+
 set guioptions=aAce
 set title titlestring=%t
 set number
 set ruler
 set laststatus=2
+
+if has("gui_running")
+    set transparency=0
+endif
 
 
 " Improve splitting logic
@@ -64,7 +73,6 @@ set splitbelow
 
 
 " Add buffer to cursor while scrolling
-set scrolloff=3
 set sidescroll=1
 set sidescrolloff=3
 
@@ -98,7 +106,7 @@ noremap  <Right> <Nop>
 " Various leader shortcuts
 let mapleader=","
 nmap <leader>w  :w<cr>
-nmap <leader>q  :q<cr>
+nmap <leader>q  :bunload<cr>
 nmap <leader>n  :nohl<cr>
 map  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 map  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
@@ -107,7 +115,7 @@ map  <leader>u  :GundoToggle<cr>
 map  <leader>d  :bd<cr>
 map  <leader>s  :setlocal spell!<cr>
 " Testing some stuff
-map  <leader>gq :diffoff<cr><c-h>:q<cr>
+map  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 map  <leader>gg :Gdiff<cr>
 
 
@@ -307,3 +315,12 @@ inoremap jj <Esc>
 
 " TESTING: .conf to yaml
 au BufNewFile,BufRead *.conf setl filetype=yaml
+
+" TESTING: ZenCoding Tweaks
+nmap <c-a> <c-y>
+imap <c-a> <c-y>
+vmap <c-a> <c-y>
+
+" TESTING: NerdTree
+nmap <leader>nt ::NERDTreeToggle<cr>
+

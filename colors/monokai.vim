@@ -18,7 +18,8 @@ hi CursorColumn						guifg=NONE		guibg=#2d2d27	gui=NONE
 hi LineNr							guifg=#666666	guibg=#000000	gui=NONE
 hi SignColumn						guifg=#666666	guibg=#000000	gui=NONE
 hi VertSplit						guifg=#808080	guibg=#000000	gui=bold
-hi MatchParen										guibg=#000000	gui=NONE
+hi MatchParen						guifg=#04a0f7	guibg=#000000	gui=NONE
+"hi MatchParen										guibg=#000000	gui=NONE
 hi StatusLine						guifg=#ffffff	guibg=#222222	gui=bold
 hi StatusLineNC						guifg=#444444	guibg=#222222	gui=NONE
 hi Pmenu 							guifg=NONE		guibg=#373730	gui=NONE
