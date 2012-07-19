@@ -73,6 +73,7 @@ set splitbelow
 
 
 " Add buffer to cursor while scrolling
+set scrolloff=3
 set sidescroll=1
 set sidescrolloff=3
 
@@ -106,7 +107,7 @@ noremap  <Right> <Nop>
 " Various leader shortcuts
 let mapleader=","
 nmap <leader>w  :w<cr>
-nmap <leader>q  :bunload<cr>
+nmap <leader>q  :q<cr>
 nmap <leader>n  :nohl<cr>
 map  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 map  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
@@ -203,6 +204,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 " Gist settings
 let g:gist_clip_command = 'pbcopy'
+let g:gist_open_browser_after_post = 1
 
 
 " TESTING: - Get file folder
@@ -286,7 +288,7 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po|DS_Store" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
+    \ "deploy/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
     \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -323,4 +325,3 @@ vmap <c-a> <c-y>
 
 " TESTING: NerdTree
 nmap <leader>nt ::NERDTreeToggle<cr>
-
