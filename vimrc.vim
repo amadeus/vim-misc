@@ -9,7 +9,7 @@ set shiftwidth=4
 set noexpandtab
 set smartindent
 set autoindent
-set cinkeys=0{,0},:,0#,!,!^F
+"set cinkeys=0{,0},:,0#,!,!^F
 
 
 " Show invisibles
@@ -108,9 +108,9 @@ noremap  <Right> <Nop>
 let mapleader=","
 nmap <leader>w  :w<cr>
 nmap <leader>q  :q<cr>
-nmap <leader>n  :nohl<cr>
+nmap <leader>nn :nohl<cr>
 map  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-map  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+map  <leader>cc  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 map  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 map  <leader>u  :GundoToggle<cr>
 map  <leader>d  :bd<cr>
@@ -118,6 +118,8 @@ map  <leader>s  :setlocal spell!<cr>
 " Testing some stuff
 map  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 map  <leader>gg :Gdiff<cr>
+map  <leader>ct :CtrlPBufTag<cr>
+
 
 
 " Vim Fugitive
@@ -231,7 +233,7 @@ nmap <D-0> g^
 
 
 " TESTING: Javascript test
-" au FileType javascript setl nocindent
+"au FileType javascript setl nocindent
 
 
 " TESTING: Encoding
@@ -258,12 +260,16 @@ autocmd BufReadPost * :DetectIndent
 
 
 " TESTING: JS Autocomplete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "imap <C-x> <C-x><C-o>
 
 
 " TESTING: CSS Autocomplete
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 
 " TESTING: Save and restore vim session
@@ -288,7 +294,7 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po|DS_Store" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
+    \ "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/" .
     \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -325,3 +331,26 @@ vmap <c-a> <c-y>
 
 " TESTING: NerdTree
 nmap <leader>nt ::NERDTreeToggle<cr>
+
+" TESTING: Tab completion tests
+function! Smart_TabComplete()
+    let line = getline('.')                         " current line
+
+    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+    " line to one character right
+    " of the cursor
+    let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+    if (strlen(substr)==0)                          " nothing to match on empty string
+        return "\<tab>"
+    endif
+    let has_period = match(substr, '\.') != -1      " position of period, if any
+    let has_slash = match(substr, '\/') != -1       " position of slash, if any
+    if (!has_period && !has_slash)
+        return "\<C-X>\<C-P>"                         " existing text matching
+    elseif ( has_slash )
+        return "\<C-X>\<C-F>"                         " file matching
+    else
+        return "\<C-X>\<C-O>"                         " plugin matching
+    endif
+endfunction
+inoremap <c-tab> <c-r>=Smart_TabComplete()<cr>
