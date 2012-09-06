@@ -138,6 +138,7 @@ map <C-l> <C-W>l
 
 " Powerline Settings
 set guifont=Menlo\ Regular\ for\ Powerline:h12
+set noshowmode
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_theme = "custom"
 let g:Powerline_colorscheme = "custom"
@@ -236,7 +237,7 @@ nmap <D-0> g^
 "au FileType javascript setl nocindent
 
 
-" TESTING: Encoding
+" TESTING: Encoding - Required for Powerline
 set encoding=utf-8
 set ttyfast
 
@@ -380,3 +381,7 @@ vnoremap <silent> # :<C-U>
 
 " TESTING: Make our shell interactive
 set shellcmdflag=-ic
+
+
+" TESTING: Confirm :help confirm
+set confirm
