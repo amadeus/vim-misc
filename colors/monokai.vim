@@ -49,6 +49,8 @@ hi Function							guifg=#85ff00	guibg=NONE		gui=NONE
 hi NonText							guifg=#333333	guibg=NONE		gui=NONE
 hi SpecialKey						guifg=#333333	guibg=NONE		gui=NONE
 hi Delimiter						guifg=#ff0275	guibg=NONE		gui=NONE
+hi VisualNOS    guifg=bg
+hi StatusLine   guifg=bg
 
 hi Number							guifg=#bb40f5	guibg=NONE		gui=NONE
 hi Operator							guifg=#ff0013	guibg=NONE		gui=NONE

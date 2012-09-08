@@ -367,16 +367,16 @@ let NERDTreeDirArrows = 1
 
 " TESTING: Search for selected text
 vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+\   let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+\   gvy/<C-R><C-R>=substitute(
+\   escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+\   gV:call setreg('"', old_reg, old_regtype)<CR>
 
 vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+\   let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+\   gvy?<C-R><C-R>=substitute(
+\   escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+\   gV:call setreg('"', old_reg, old_regtype)<CR>
 
 
 " TESTING: Make our shell interactive
@@ -385,3 +385,22 @@ set shellcmdflag=-ic
 
 " TESTING: Confirm :help confirm
 set confirm
+
+
+" TESTING: Distraction Free Writing
+function! DistractionFreeWriting()
+    set lines=40 columns=100           " size of the editable area
+    set nonumber
+    set nolist
+    set fuoptions=background:#001e1e1a " macvim specific setting for editor's background color
+    set guioptions-=r                  " remove right scrollbar
+    set laststatus=0                   " don't show status line
+    set shm=at
+    set wrap
+    set noruler                        " don't show ruler
+    set fullscreen                     " go to fullscreen editing mode
+    set linebreak                      " break the lines on words
+    set showbreak=
+    hi NonText    guifg=#1e1e1a
+    hi SpecialKey guifg=#1e1e1a
+endfunction
