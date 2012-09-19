@@ -14,7 +14,8 @@ set autoindent
 
 " Show invisibles
 set list
-set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+"set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set listchars=tab:›\ ,eol:¬,trail:⋅
 set showbreak=↪
 
 
@@ -261,11 +262,10 @@ autocmd BufReadPost * :DetectIndent
 
 
 " TESTING: JS Autocomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python     set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-" autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
 "imap <C-x> <C-x><C-o>
 
 
@@ -326,9 +326,7 @@ inoremap jj <Esc>
 au BufNewFile,BufRead *.conf setl filetype=yaml
 
 " TESTING: ZenCoding Tweaks
-nmap <c-a> <c-y>
-imap <c-a> <c-y>
-vmap <c-a> <c-y>
+let g:user_zen_leader_key = '<c-q>'
 
 " TESTING: NerdTree
 nmap <leader>nt ::NERDTreeToggle<cr>
@@ -404,3 +402,16 @@ function! DistractionFreeWriting()
     hi NonText    guifg=#1e1e1a
     hi SpecialKey guifg=#1e1e1a
 endfunction
+
+
+" TESTING: CtrlPBuf Delete
+let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
+
+func! MyCtrlPMappings()
+    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
+endfunc
+
+func! s:DeleteBuffer()
+    exec "bd" fnamemodify(getline('.')[2:], ':p')
+    exec "norm \<F5>"
+endfunc
