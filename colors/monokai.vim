@@ -67,9 +67,10 @@ hi Underlined 						guifg=NONE 		guibg=NONE 		gui=NONE
 hi Type								guifg=#66d9ef
 
 hi DiffAdd							guifg=NONE		guibg=#005706	gui=NONE
-hi DiffChange						guifg=NONE		guibg=#430077	gui=NONE
+hi DiffText 						guifg=NONE		guibg=#430077	gui=NONE
 hi DiffDelete						guifg=NONE		guibg=#7f0000	gui=NONE
-hi DiffText							guifg=NONE		guibg=#001962	gui=NONE
+hi DiffChange						guifg=NONE		guibg=#21003a	gui=NONE
+"2b004c
 
 hi diffAdded						guifg=NONE		guibg=#005706	gui=NONE
 hi diffRemoved						guifg=NONE		guibg=#7f0000		gui=NONE

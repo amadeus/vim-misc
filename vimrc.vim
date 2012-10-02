@@ -120,6 +120,7 @@ map  <leader>s  :setlocal spell!<cr>
 map  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 map  <leader>gg :Gdiff<cr>
 map  <leader>ct :CtrlPBufTag<cr>
+map  <leader>p  :pwd<cr>
 
 
 
@@ -138,11 +139,17 @@ map <C-l> <C-W>l
 
 
 " Powerline Settings
-set guifont=Menlo\ Regular\ for\ Powerline:h12
+"set guifont=Menlo\ Regular\ for\ Powerline:h12
+set guifont=Source\ Code\ Pro:h13
 set noshowmode
 let g:Powerline_symbols = 'fancy'
-let g:Powerline_theme = "custom"
-let g:Powerline_colorscheme = "custom"
+"let g:Powerline_theme = "custom"
+"let g:Powerline_colorscheme = "custom"
+"
+" Attempting to theme without a theme!
+let g:Powerline_stl_path_style = 'relative'
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('fileformat')
 
 
 " Set htmldjango.html on all html files
@@ -271,12 +278,6 @@ autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
 
 " TESTING: CSS Autocomplete
 " autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-
-" TESTING: Save and restore vim session
-"set sessionoptions=blank,buffers,curdir,folds,localoptions,resize,tabpages
-"map <C-Z> :mksession! ~/.vim/.session <cr>
-"map <C-X> :source ~/.vim/.session <cr>
 
 
 " TESTING: Actionscript stuff
@@ -415,3 +416,9 @@ func! s:DeleteBuffer()
     exec "bd" fnamemodify(getline('.')[2:], ':p')
     exec "norm \<F5>"
 endfunc
+
+
+" TESTING: mksession stuff - moved it over to leader key, muuuch better
+set sessionoptions=blank,buffers,curdir,folds,tabpages
+map <leader>ms :mksession! ~/.vim/.session<cr>
+map <leader>rs :source ~/.vim/.session<cr>
