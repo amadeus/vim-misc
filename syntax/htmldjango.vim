@@ -51,4 +51,8 @@ syn keyword htmlArg contained hidden role
 syn match   htmlArg "\<\(aria-[\-a-zA-Z0-9_]\+\)=" contained
 syn match   htmlArg contained "\s*data-[-a-zA-Z0-9_]\+"
 
+" SVG Shit
+syn keyword htmlTagName svg path circle
+syn keyword htmlArg fill x y xmlns xlink r cy cx d fill-rule clip-rule viewBox enable-background xml space
+
 let b:current_syntax = "htmldjango"
