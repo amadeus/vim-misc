@@ -53,9 +53,4 @@ syn keyword htmlArg contained autocorrect autocapitalize
 syn match   htmlArg "\<\(aria-[\-a-zA-Z0-9_]\+\)=" contained
 syn match   htmlArg contained "\s*data-[-a-zA-Z0-9_]\+"
 
-"
-"" SVG Shit
-"syn keyword htmlTagName
-"syn keyword htmlArg
-
 let b:current_syntax = "htmldjango"
