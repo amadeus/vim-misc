@@ -44,7 +44,7 @@ set smartcase
 
 " Tab completion when entering filenames
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.jpeg,*.png,*.gif,*.bmp
+set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.psd
 
 
 " Syntax, Colorscheme and Gui Options
@@ -207,7 +207,7 @@ map <leader>b :CtrlPBuffer<cr>
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
-let g:syntastic_javascript_jsl_conf = "-conf ~/.jslintrc"
+let g:syntastic_javascript_jsl_conf = "~/.jslintrc"
 let g:syntastic_mode_map = { 'mode': 'active',
 	\ 'active_filetypes': [],
 	\ 'passive_filetypes': ['html', 'htmldjango'] }
@@ -291,12 +291,13 @@ call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 " TESTING: CtrlP Optimizations
 let g:ctrlp_max_files = 10000
 
+"deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
 let ctrlp_filter_greps = "".
     \ "egrep -iv '\\.(" .
     \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po|DS_Store" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/" .
+    \ ".o/|.obj/|.git/|.rbc/|.hg/|.svn/|.pyc/|.vagrant/|.gitignore/|.DS_Store/|.jpg/|.jpeg/|.png/|.gif/|.bmp/|.psd" .
     \ ")'"
 
 let my_ctrlp_git_command = "" .

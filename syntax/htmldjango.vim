@@ -46,10 +46,10 @@ syn keyword htmlArg contained contenteditable contextmenu draggable hidden item
 syn keyword htmlArg contained itemprop list sandbox subject spellcheck
 syn keyword htmlArg contained novalidate seamless pattern formtarget manifest
 syn keyword htmlArg contained formaction formenctype formmethod formnovalidate
-syn keyword htmlArg contained sizes scoped async reversed sandbox srcdoc
-syn keyword htmlArg contained hidden role fill x y xmlns xlink r cy cx d fill-rule
-syn keyword htmlArg contained clip-rule viewBox enable-background xml space points opacity
+syn keyword htmlArg contained sizes scoped async reversed sandbox srcdoc hidden
 syn keyword htmlArg contained autocorrect autocapitalize
+syn keyword htmlArg contained role fill x y xmlns r cy cx d fill-rule
+syn keyword htmlArg contained clip-rule viewBox enable-background xml space points opacity
 syn match   htmlArg "\<\(aria-[\-a-zA-Z0-9_]\+\)=" contained
 syn match   htmlArg contained "\s*data-[-a-zA-Z0-9_]\+"
 
