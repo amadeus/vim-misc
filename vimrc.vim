@@ -157,8 +157,8 @@ au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
 
 
 " A simpler, more refined indent guide enabler
-au BufEnter * exe 'IndentGuidesDisable'
-au BufEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+au BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
+au BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
 
 
 " Fix Python
