@@ -86,33 +86,6 @@ hi yamlAnchor                       guifg=#ff6701   guibg=NONE      gui=NONE
 hi yamlAlias                        guifg=#ff6701   guibg=NONE      gui=NONE
 hi yamlDocumentHeader               guifg=#fff200   guibg=#2d2e21   gui=NONE
 
-hi rubyClass                        guifg=#ff0013   guibg=NONE      gui=NONE
-hi rubyFunction                     guifg=#85ff00   guibg=NONE      gui=NONE
-hi rubyInterpolationDelimiter       guifg=NONE      guibg=NONE      gui=NONE
-hi rubySymbol                       guifg=#bb40f5   guibg=NONE      gui=NONE
-hi rubyConstant                     guifg=#66d9ef   guibg=NONE      gui=italic
-hi rubyStringDelimiter              guifg=#fff200   guibg=#2d2e21   gui=NONE
-hi rubyBlockParameter               guifg=#ffb000   guibg=NONE      gui=italic
-hi rubyInstanceVariable             guifg=#ff6701   guibg=NONE      gui=NONE
-hi rubyInclude                      guifg=#ff0013   guibg=NONE      gui=NONE
-hi rubyGlobalVariable               guifg=#ff6701   guibg=NONE      gui=NONE
-hi rubyRegexp                       guifg=#fff200   guibg=#2d2e21   gui=NONE
-hi rubyRegexpDelimiter              guifg=#fff200   guibg=#2d2e21   gui=NONE
-hi rubyEscape                       guifg=#bb40f5   guibg=NONE      gui=NONE
-hi rubyControl                      guifg=#ff0013   guibg=NONE      gui=NONE
-hi rubyClassVariable                guifg=#ff6701   guibg=NONE      gui=NONE
-hi rubyOperator                     guifg=#ff0013   guibg=NONE      gui=NONE
-hi rubyException                    guifg=#ff0013   guibg=NONE      gui=NONE
-hi rubyPseudoVariable               guifg=#ff6701   guibg=NONE      gui=NONE
-hi rubyRailsUserClass               guifg=#66d9ef   guibg=NONE      gui=italic
-hi rubyRailsARAssociationMethod     guifg=#66d9ef   guibg=NONE      gui=NONE
-hi rubyRailsARMethod                guifg=#66d9ef   guibg=NONE      gui=NONE
-hi rubyRailsRenderMethod            guifg=#66d9ef   guibg=NONE      gui=NONE
-hi rubyRailsMethod                  guifg=#66d9ef   guibg=NONE      gui=NONE
-hi erubyDelimiter                   guifg=#ff027e   guibg=NONE      gui=NONE
-hi erubyComment                     guifg=#75715e   guibg=#000000   gui=italic
-hi erubyRailsMethod                 guifg=#66d9ef   guibg=NONE      gui=NONE
-
 hi htmlTag                          guifg=#ff027e   guibg=NONE      gui=NONE
 hi htmlEndTag                       guifg=#ff027e   guibg=NONE      gui=NONE
 hi htmlTagName                      guifg=#36a6ff   guibg=#003e65   gui=NONE
