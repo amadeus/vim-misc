@@ -20,7 +20,7 @@ set showbreak=↪
 
 
 " Disable matching parens - the real way
-let loaded_matchparen = 0
+"let loaded_matchparen = 0
 
 
 " Allow backspacing over everything in insert mode
