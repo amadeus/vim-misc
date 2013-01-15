@@ -6,6 +6,7 @@ set linebreak
 " Indent settings
 set tabstop=4
 set shiftwidth=4
+set shiftround
 set noexpandtab
 set smartindent
 set autoindent
@@ -20,7 +21,7 @@ set showbreak=↪
 
 
 " Disable matching parens - the real way
-"let loaded_matchparen = 0
+let loaded_matchparen = 0
 
 
 " Allow backspacing over everything in insert mode
@@ -60,6 +61,7 @@ endif
 set guioptions=aAce
 set title titlestring=%t
 set number
+set numberwidth=3
 set ruler
 set laststatus=2
 
@@ -107,35 +109,35 @@ noremap  <Right> <Nop>
 
 " Various leader shortcuts
 let mapleader=","
-nmap <leader>w  :w<cr>
-nmap <leader>q  :q<cr>
-nmap <leader>nn :nohl<cr>
-map  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-map  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
-map  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
-map  <leader>u  :GundoToggle<cr>
-map  <leader>d  :bd<cr>
-map  <leader>s  :setlocal spell!<cr>
+nnoremap <leader>w  :w<cr>
+nnoremap <leader>q  :q<cr>
+nnoremap <leader>nn :nohl<cr>
+noremap  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
+noremap  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+noremap  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
+noremap  <leader>u  :GundoToggle<cr>
+noremap  <leader>d  :bd<cr>
+noremap  <leader>s  :setlocal spell!<cr>
 " Testing some stuff
-map  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
-map  <leader>gg :Gdiff<cr>
-map  <leader>ct :CtrlPBufTag<cr>
-map  <leader>p  :pwd<cr>
+noremap  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
+noremap  <leader>gg :Gdiff<cr>
+noremap  <leader>ct :CtrlPBufTag<cr>
+noremap  <leader>p  :pwd<cr>
 
 
 
 " Vim Fugitive
-map <leader>gs :Gstatus<cr>
-map <leader>gc :Gcommit -v<cr>
-map <leader>gd :Git difftool --staged<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gc :Gcommit -v<cr>
+nnoremap <leader>gd :Git difftool --staged<cr>
 command Gdifft tabedit %|Gdiff
 
 
 " Slicker way to move around splits
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
 
 " Powerline Settings
@@ -145,11 +147,11 @@ set noshowmode
 let g:Powerline_symbols = 'fancy'
 "let g:Powerline_theme = "custom"
 "let g:Powerline_colorscheme = "custom"
-"
+
 " Attempting to theme without a theme!
-let g:Powerline_stl_path_style = 'relative'
-call Pl#Theme#RemoveSegment('fileencoding')
-call Pl#Theme#RemoveSegment('fileformat')
+"let g:Powerline_stl_path_style = 'relative'
+"call Pl#Theme#RemoveSegment('fileencoding')
+"call Pl#Theme#RemoveSegment('fileformat')
 
 
 " Set htmldjango.html on all html files
@@ -173,9 +175,14 @@ set undodir=~/.vim/undo
 set backup
 set undofile
 
-
 " Remove trailing whitespace on save
 function! Preserve(command)
+    " Allow me to preserve whitespace on certain files
+    " if necessary. Simply perform:
+    " :let b:pw=1<cr> to preserve whitespace on that buffer
+    if exists('b:pw')
+        return
+    endif
     " Save last search, and cursor position.
     let _s=@/
     let l = line(".")
@@ -201,8 +208,8 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_jump_to_buffer = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|env/*'
 let g:ctrlp_open_new_file = 'r'
-map <leader>t :CtrlP<cr>
-map <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>t :CtrlP<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 
 " Syntastic
@@ -229,16 +236,16 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 
 " TESTING: - Testing wrap movement
-vmap <D-j> gj
-vmap <D-k> gk
-vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
+vnoremap <D-j> gj
+vnoremap <D-k> gk
+vnoremap <D-4> g$
+vnoremap <D-6> g^
+vnoremap <D-0> g^
+nnoremap <D-j> gj
+nnoremap <D-k> gk
+nnoremap <D-4> g$
+nnoremap <D-6> g^
+nnoremap <D-0> g^
 
 
 " TESTING: Javascript test
@@ -285,7 +292,7 @@ au BufNewFile,BufRead,BufWrite *.as setl filetype=actionscript
 
 
 " TESTING: Trailing whitespace indicator in Powerline
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+"call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 
 " TESTING: CtrlP Optimizations
@@ -331,7 +338,7 @@ au BufNewFile,BufRead *.conf setl filetype=yaml
 let g:user_zen_leader_key = '<c-q>'
 
 " TESTING: NerdTree
-nmap <leader>nt ::NERDTreeToggle<cr>
+nnoremap <leader>nt ::NERDTreeToggle<cr>
 
 " TESTING: Tab completion tests
 function! Smart_TabComplete()
@@ -421,8 +428,8 @@ endfunc
 
 " TESTING: mksession stuff - moved it over to leader key, muuuch better
 set sessionoptions=blank,buffers,curdir,folds,tabpages
-map <leader>ms :mksession! ~/.vim/.session<cr>
-map <leader>rs :source ~/.vim/.session<cr>
+noremap <leader>ms :mksession! ~/.vim/.session<cr>
+noremap <leader>rs :source ~/.vim/.session<cr>
 
 
 " TESTING: Save as sudo
@@ -665,3 +672,12 @@ function Entities()
     silent %s/♥/\&hearts;/eg
     silent %s/♦/\&diams;/eg
 endfunc
+
+" TESTING: The new powerline...
+source ~/.vim/bundle/powerline/powerline/ext/vim/source_plugin.vim
+set guifont=Source\ Code\ Pro:h13
+
+" TESTING: Javascript in HTML indent fixes, maybe?
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"

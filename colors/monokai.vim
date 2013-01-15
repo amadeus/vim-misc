@@ -153,3 +153,9 @@ hi cssPseudoClassLang         guifg=#ff0000
 hi cssValBlock                guifg=#ff0000
 hi cssAtValBlock              guifg=#ff0000
 hi cssAttValFn                guifg=#ff0000
+
+hi todotxtPriA                guifg=#ff0000
+hi todotxtPriB                guifg=#d40000
+hi todotxtPriC                guifg=#9d0000
+hi todotxtPriD                guifg=#6f0000
+
