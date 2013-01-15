@@ -155,17 +155,26 @@ let g:Powerline_symbols = 'fancy'
 
 
 " Set htmldjango.html on all html files
-au BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
+augroup htmldjango
+    autocmd!
+    autocmd BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
+augroup END
 
 
 " A simpler, more refined indent guide enabler
-au BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
-au BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+augroup indentguides
+    autocmd!
+    autocmd BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
+    autocmd BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+augroup END
 
 
 " Fix Python
 let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
+augroup pythontweaks
+    autocmd!
+    autocmd FileType python syn keyword pythonDecorator True None False self
+augroup END
 
 
 " Swap, Undo and Backup Folder Configuration
@@ -194,7 +203,10 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 " Execute clear whitespace on save
-autocmd BufWritePre * :call Preserve("%s/\\s\\+$//e")
+augroup whitespace
+    autocmd!
+    autocmd BufWritePre * :call Preserve("%s/\\s\\+$//e")
+augroup END
 
 
 " Automatically read files when they were modified externally
@@ -272,23 +284,21 @@ let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
 let g:detectindent_max_lines_to_analyse = 100
 let g:detectindent_verbosity = 1
-autocmd BufReadPost * :DetectIndent
+augroup detectindent
+    autocmd!
+    autocmd BufReadPost * :DetectIndent
+augroup END
 
 
 " TESTING: JS Autocomplete
-autocmd FileType python     set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+augroup autocomplete
+    autocmd!
+    autocmd FileType python     set omnifunc=pythoncomplete#Complete
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+augroup END
 "imap <C-x> <C-x><C-o>
-
-
-" TESTING: CSS Autocomplete
-" autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-
-" TESTING: Actionscript stuff
-au BufNewFile,BufRead,BufWrite *.as setl filetype=actionscript
 
 
 " TESTING: Trailing whitespace indicator in Powerline
@@ -328,11 +338,15 @@ else
 endif
 
 " TESTING: New way of escaping insert mode
-inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap <esc> <nop>
 
 
 " TESTING: .conf to yaml
-au BufNewFile,BufRead *.conf setl filetype=yaml
+augroup yaml
+    autocmd!
+    autocmd BufNewFile,BufRead *.conf setl filetype=yaml
+augroup END
 
 " TESTING: ZenCoding Tweaks
 let g:user_zen_leader_key = '<c-q>'
