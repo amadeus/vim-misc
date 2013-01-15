@@ -695,3 +695,13 @@ set guifont=Source\ Code\ Pro:h13
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+
+" TESTING: CSS Specific Motions
+" Change inner/around CSS Key
+onoremap ik :<c-u>execute "normal! ^vt:"<cr>
+onoremap ak :<c-u>execute "normal! 0vf:"<cr>
+
+" Change inner/around CSS Property
+onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
+onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
