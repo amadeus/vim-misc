@@ -130,7 +130,7 @@ noremap  <leader>p  :pwd<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gc :Gcommit -v<cr>
 nnoremap <leader>gd :Git difftool --staged<cr>
-command Gdifft tabedit %|Gdiff
+"command Gdifft tabedit %|Gdiff
 
 
 " Slicker way to move around splits
@@ -451,8 +451,8 @@ ca w!! w !sudo tee "%"
 
 
 " TESTING: Entity Escaper
-command Entities :call Entities()
-function Entities()
+command! Entities :call Entities()
+function! Entities()
     silent %s/&/\&amp;/eg
     silent %s/"/\&quot;/eg
     silent %s/'/\&apos;/eg
@@ -705,3 +705,5 @@ onoremap ak :<c-u>execute "normal! 0vf:"<cr>
 " Change inner/around CSS Property
 onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
 onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
+
+onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
