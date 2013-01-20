@@ -10,6 +10,7 @@ set shiftround
 set noexpandtab
 set smartindent
 set autoindent
+set smarttab
 "set cinkeys=0{,0},:,0#,!,!^F
 
 
@@ -121,7 +122,7 @@ noremap  <leader>s  :setlocal spell!<cr>
 " Testing some stuff
 noremap  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 noremap  <leader>gg :Gdiff<cr>
-noremap  <leader>ct :CtrlPBufTag<cr>
+"noremap  <leader>ct :CtrlPBufTag<cr>
 noremap  <leader>p  :pwd<cr>
 
 
@@ -222,6 +223,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|env/*'
 let g:ctrlp_open_new_file = 'r'
 nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>l :CtrlPLine<cr>
 
 
 " Syntastic
@@ -688,7 +690,7 @@ function! Entities()
 endfunc
 
 " TESTING: The new powerline...
-source ~/.vim/bundle/powerline/powerline/ext/vim/source_plugin.vim
+source ~/.vim/bundle/powerline/powerline/bindings/vim/source_plugin.vim
 set guifont=Source\ Code\ Pro:h13
 
 " TESTING: Javascript in HTML indent fixes, maybe?
@@ -706,4 +708,14 @@ onoremap ak :<c-u>execute "normal! 0vf:"<cr>
 onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
 onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
 
+" Change function arguments
 onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
+
+" TESTING: Sync
+autocmd BufEnter * :syntax sync fromstart
+
+" TESTING: No folding
+set nofoldenable
+
+" TESTING: Create line above and insert cursor
+inoremap <c-k> <esc>O
