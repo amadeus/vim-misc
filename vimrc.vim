@@ -1,6 +1,9 @@
 " Disable wrapping by default
 set nowrap
 set linebreak
+set encoding=utf-8
+set ttyfast
+set confirm
 
 
 " Indent settings
@@ -120,20 +123,14 @@ noremap  <leader>u  :GundoToggle<cr>
 noremap  <leader>d  :bd<cr>
 noremap  <leader>ss  :setlocal spell!<cr>
 noremap  <leader>st  :SyntasticToggle<cr>
-
-" Testing some leader stuff
 noremap  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 noremap  <leader>gg :Gdiff<cr>
 noremap  <leader>p  :pwd<cr>
 noremap  <leader>a  :Ack '
-
-
-" Vim Fugitive
+nnoremap <leader>nt ::NERDTreeToggle<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gc :Gcommit -v<cr>
 nnoremap <leader>gd :Git difftool --staged<cr>
-"command Gdifft tabedit %|Gdiff
-
 
 " Slicker way to move around splits
 noremap <C-j> <C-W>j
@@ -141,19 +138,22 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
+" Create line above and insert cursor
+inoremap <c-k> <esc>O
+
+" Make and restore sessions
+set sessionoptions=blank,buffers,curdir,folds,tabpages
+noremap <leader>ms :mksession! ~/.vim/.session<cr>
+noremap <leader>rs :source ~/.vim/.session<cr>
+
+" Expand folder of current file in command mode
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
 
 " Powerline Settings
-"set guifont=Menlo\ Regular\ for\ Powerline:h12
 set guifont=Source\ Code\ Pro:h13
 set noshowmode
 let g:Powerline_symbols = 'fancy'
-"let g:Powerline_theme = "custom"
-"let g:Powerline_colorscheme = "custom"
-
-" Attempting to theme without a theme!
-"let g:Powerline_stl_path_style = 'relative'
-"call Pl#Theme#RemoveSegment('fileencoding')
-"call Pl#Theme#RemoveSegment('fileformat')
 
 
 " Set htmldjango.html on all html files
@@ -243,76 +243,8 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 
 
-" TESTING: - Get file folder
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-
-" TESTING: - Fix marks - Not sure what this does yet, don't want to change
-" something I don't use yet
-"nnoremap ' `
-"nnoremap ` '
-
-
-" TESTING: - Testing wrap movement
-vnoremap <D-j> gj
-vnoremap <D-k> gk
-vnoremap <D-4> g$
-vnoremap <D-6> g^
-vnoremap <D-0> g^
-nnoremap <D-j> gj
-nnoremap <D-k> gk
-nnoremap <D-4> g$
-nnoremap <D-6> g^
-nnoremap <D-0> g^
-
-
-" TESTING: Javascript test
-"au FileType javascript setl nocindent
-
-
-" TESTING: Encoding - Required for Powerline
-set encoding=utf-8
-set ttyfast
-
-
-" TESTING: Indent Guides
-let g:indent_guides_guide_size = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 2
-
-
-" TESTING: DetectIndent
-let g:detectindent_preferred_expandtab = 0
-let g:detectindent_preferred_indent = 4
-let g:detectindent_max_lines_to_analyse = 100
-let g:detectindent_verbosity = 1
-augroup detectindent
-    autocmd!
-    autocmd BufReadPost * :DetectIndent
-augroup END
-
-
-" TESTING: JS Autocomplete
-augroup autocomplete
-    autocmd!
-    "autocmd FileType python     set omnifunc=pythoncomplete#Complete
-    "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    "autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
-    "autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-augroup END
-"imap <C-x> <C-x><C-o>
-
-
-" TESTING: Trailing whitespace indicator in Powerline
-"call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-
-
-" TESTING: CtrlP Optimizations
-let g:ctrlp_max_files = 20000
+" CtrlP Optimizations
+let g:ctrlp_max_files = 10000
 
 "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
 let ctrlp_filter_greps = "".
@@ -344,9 +276,73 @@ else
     let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
 
+" Delete buffer from within CtrlPBuf
+let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
+
+func! MyCtrlPMappings()
+    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
+endfunc
+
+func! s:DeleteBuffer()
+    exec "bd" fnamemodify(getline('.')[2:], ':p')
+    exec "norm \<F5>"
+endfunc
+
+
+" Distraction Free Writing
+function! DistractionFreeWriting()
+    set lines=40 columns=100           " size of the editable area
+    set nonumber
+    set nolist
+    set fuoptions=background:#001e1e1a " macvim specific setting for editor's background color
+    set guioptions-=r                  " remove right scrollbar
+    set laststatus=0                   " don't show status line
+    set shm=at
+    set wrap
+    set noruler                        " don't show ruler
+    set fullscreen                     " go to fullscreen editing mode
+    set linebreak                      " break the lines on words
+    set showbreak=
+    silent exec 'NeoComplCacheDisable'
+    hi NonText    guifg=#1e1e1a
+    hi SpecialKey guifg=#1e1e1a
+endfunction
+
+
+" Indent Guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+
+
+" TESTING: - Testing wrap movement
+vnoremap <D-j> gj
+vnoremap <D-k> gk
+vnoremap <D-4> g$
+vnoremap <D-6> g^
+vnoremap <D-0> g^
+nnoremap <D-j> gj
+nnoremap <D-k> gk
+nnoremap <D-4> g$
+nnoremap <D-6> g^
+nnoremap <D-0> g^
+
+
+" TESTING: DetectIndent
+let g:detectindent_preferred_expandtab  = 0
+let g:detectindent_preferred_indent     = 4
+let g:detectindent_max_lines_to_analyse = 400
+"let g:detectindent_verbosity = 1 -- don't think I need this
+augroup detectindent
+    autocmd!
+    autocmd BufReadPost * :DetectIndent
+augroup END
+
+
 " TESTING: New way of escaping insert mode
 inoremap jk <Esc>
-inoremap <esc> <nop>
+" Re-enabling escape because I think I've successfully switched
+" inoremap <esc> <nop>
 
 
 " TESTING: .conf to yaml
@@ -358,34 +354,9 @@ augroup END
 " TESTING: ZenCoding Tweaks
 let g:user_zen_leader_key = '<c-q>'
 
-" TESTING: NerdTree
-nnoremap <leader>nt ::NERDTreeToggle<cr>
-
-" TESTING: Tab completion tests
-function! Smart_TabComplete()
-    let line = getline('.')                         " current line
-
-    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-    " line to one character right
-    " of the cursor
-    let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-    if (strlen(substr)==0)                          " nothing to match on empty string
-        return "\<tab>"
-    endif
-    let has_period = match(substr, '\.') != -1      " position of period, if any
-    let has_slash = match(substr, '\/') != -1       " position of slash, if any
-    if (!has_period && !has_slash)
-        return "\<C-X>\<C-P>"                         " existing text matching
-    elseif ( has_slash )
-        return "\<C-X>\<C-F>"                         " file matching
-    else
-        return "\<C-X>\<C-O>"                         " plugin matching
-    endif
-endfunction
-inoremap <c-tab> <c-r>=Smart_TabComplete()<cr>
 
 " TESTING: Don't clobber the unnamed register when pasting over text in visual mode.
-"          Seems like a bit of a hack, but I'll try it
+" Seems like a bit of a hack, but I'll try it
 vnoremap p pgvy
 
 " TESTING: NERDTree settings
@@ -409,48 +380,6 @@ vnoremap <silent> # :<C-U>
 
 " TESTING: Make our shell interactive
 set shellcmdflag=-ic
-
-
-" TESTING: Confirm :help confirm
-set confirm
-
-
-" TESTING: Distraction Free Writing
-function! DistractionFreeWriting()
-    set lines=40 columns=100           " size of the editable area
-    set nonumber
-    set nolist
-    set fuoptions=background:#001e1e1a " macvim specific setting for editor's background color
-    set guioptions-=r                  " remove right scrollbar
-    set laststatus=0                   " don't show status line
-    set shm=at
-    set wrap
-    set noruler                        " don't show ruler
-    set fullscreen                     " go to fullscreen editing mode
-    set linebreak                      " break the lines on words
-    set showbreak=
-    hi NonText    guifg=#1e1e1a
-    hi SpecialKey guifg=#1e1e1a
-endfunction
-
-
-" TESTING: CtrlPBuf Delete
-let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
-
-func! MyCtrlPMappings()
-    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
-endfunc
-
-func! s:DeleteBuffer()
-    exec "bd" fnamemodify(getline('.')[2:], ':p')
-    exec "norm \<F5>"
-endfunc
-
-
-" TESTING: mksession stuff - moved it over to leader key, muuuch better
-set sessionoptions=blank,buffers,curdir,folds,tabpages
-noremap <leader>ms :mksession! ~/.vim/.session<cr>
-noremap <leader>rs :source ~/.vim/.session<cr>
 
 
 " TESTING: Save as sudo
@@ -695,15 +624,10 @@ function! Entities()
 endfunc
 
 
-" TESTING: The new powerline...
-"source ~/.vim/bundle/powerline/powerline/bindings/vim/source_plugin.vim
-set guifont=Source\ Code\ Pro:h13
-
-
 " TESTING: Javascript in HTML indent fixes, maybe?
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
+let g:html_indent_style1  = "inc"
 
 
 " TESTING: CSS Specific Motions
@@ -727,23 +651,13 @@ autocmd BufEnter * :syntax sync fromstart
 set nofoldenable
 
 
-" TESTING: Create line above and insert cursor
-inoremap <c-k> <esc>O
-
-
-" TESTING: JS SmartTabs
-"augroup jssmarttabs
-"    autocmd!
-"    autocmd BufNewFile,BufRead,BufWrite * exe 'call IndentTab#Set(0, 0)'
-"    autocmd BufNewFile,BufRead,BufWrite *.js exe 'call IndentTab#Set(1, 1)'
-"augroup END
+" TESTING: NeoCompleteCache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_fuzzy_completion = 1
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
 
 
 " TESTING: Force vim to think of 2 spaces as a sentence
 set cpo+=J
-
-
-" TESTING:  CSSLint Syntax Checking
-
-" TESTING: YouCompleteMe00j
-let g:ycm_key_detailed_diagnostics = '<leader>od'
