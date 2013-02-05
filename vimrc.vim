@@ -281,10 +281,6 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 
 
-" TESTING: Enabling NeoCompleteCache
-"let g:neocomplcache_enable_at_startup = 1
-
-
 " TESTING: DetectIndent
 let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
@@ -433,7 +429,6 @@ function! DistractionFreeWriting()
     set fullscreen                     " go to fullscreen editing mode
     set linebreak                      " break the lines on words
     set showbreak=
-    "NeoComplCacheDisable<cr>
     hi NonText    guifg=#1e1e1a
     hi SpecialKey guifg=#1e1e1a
 endfunction
@@ -742,20 +737,6 @@ inoremap <c-k> <esc>O
 "    autocmd BufNewFile,BufRead,BufWrite * exe 'call IndentTab#Set(0, 0)'
 "    autocmd BufNewFile,BufRead,BufWrite *.js exe 'call IndentTab#Set(1, 1)'
 "augroup END
-
-" TESTING: NeoCompleteCache
-"let g:neocomplcache_enable_fuzzy_completion = 1
-"let g:neocomplcache_enable_at_startup = 1
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"    return neocomplcache#smart_close_popup() . "\<CR>"
-"    " For no inserting <CR> key.
-"    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-"endfunction
 
 
 " TESTING: Force vim to think of 2 spaces as a sentence
