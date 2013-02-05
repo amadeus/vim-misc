@@ -13,7 +13,6 @@ set autoindent
 set smarttab
 "set cinkeys=0{,0},:,0#,!,!^F
 
-
 " Show invisibles
 set list
 "set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
@@ -38,7 +37,7 @@ set hidden
 
 
 " Searching made less specific
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -62,7 +61,7 @@ endif
 set guioptions=aAce
 set title titlestring=%t
 set number
-set numberwidth=3
+set numberwidth=4
 set ruler
 set laststatus=2
 
@@ -110,21 +109,23 @@ noremap  <Right> <Nop>
 
 " Various leader shortcuts
 let mapleader=","
+"let maplocalleader="\\"
 nnoremap <leader>w  :w<cr>
 nnoremap <leader>q  :q<cr>
-nnoremap <leader>nn :nohl<cr>
+nnoremap <leader>nn :set hls!<cr>
 noremap  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 noremap  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 noremap  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 noremap  <leader>u  :GundoToggle<cr>
 noremap  <leader>d  :bd<cr>
-noremap  <leader>s  :setlocal spell!<cr>
-" Testing some stuff
+noremap  <leader>ss  :setlocal spell!<cr>
+noremap  <leader>st  :SyntasticToggle<cr>
+
+" Testing some leader stuff
 noremap  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 noremap  <leader>gg :Gdiff<cr>
-"noremap  <leader>ct :CtrlPBufTag<cr>
 noremap  <leader>p  :pwd<cr>
-
+noremap  <leader>a  :Ack '
 
 
 " Vim Fugitive
@@ -228,10 +229,13 @@ nnoremap <leader>l :CtrlPLine<cr>
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
-let g:syntastic_javascript_jsl_conf = "~/.jslintrc"
+"let g:syntastic_javascript_jsl_conf = "~/.jslintrc"
+let g:syntastic_javascript_syntax_checker="jshint"
+let g:syntastic_enable_highlighting = 0
+"let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
 let g:syntastic_mode_map = { 'mode': 'active',
-	\ 'active_filetypes': [],
-	\ 'passive_filetypes': ['html', 'htmldjango'] }
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': ['html', 'htmldjango'] }
 
 
 " Gist settings
@@ -278,7 +282,7 @@ let g:indent_guides_start_level = 2
 
 
 " TESTING: Enabling NeoCompleteCache
-let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_at_startup = 1
 
 
 " TESTING: DetectIndent
@@ -295,10 +299,14 @@ augroup END
 " TESTING: JS Autocomplete
 augroup autocomplete
     autocmd!
-    autocmd FileType python     set omnifunc=pythoncomplete#Complete
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+    "autocmd FileType python     set omnifunc=pythoncomplete#Complete
+    "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    "autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
+    "autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 augroup END
 "imap <C-x> <C-x><C-o>
 
@@ -308,15 +316,15 @@ augroup END
 
 
 " TESTING: CtrlP Optimizations
-let g:ctrlp_max_files = 10000
+let g:ctrlp_max_files = 20000
 
 "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
 let ctrlp_filter_greps = "".
     \ "egrep -iv '\\.(" .
-    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po|DS_Store" .
+    \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ ".o/|.obj/|.git/|.rbc/|.hg/|.svn/|.pyc/|.vagrant/|.gitignore/|.DS_Store/|.jpg/|.jpeg/|.png/|.gif/|.bmp/|.psd" .
+    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/" .
     \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -325,8 +333,9 @@ let my_ctrlp_git_command = "" .
 
 if has("unix")
     let my_ctrlp_user_command = "" .
-    \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
-    \ ctrlp_filter_greps
+    \ "find %s '(' -type f -or -type l ')' -not -path '*/\\.*/*' | " .
+    \ ctrlp_filter_greps .
+    \ " | head -" . g:ctrlp_max_files
 
     let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
 elseif has('win32')
@@ -424,6 +433,7 @@ function! DistractionFreeWriting()
     set fullscreen                     " go to fullscreen editing mode
     set linebreak                      " break the lines on words
     set showbreak=
+    "NeoComplCacheDisable<cr>
     hi NonText    guifg=#1e1e1a
     hi SpecialKey guifg=#1e1e1a
 endfunction
@@ -689,9 +699,11 @@ function! Entities()
     silent %s/♦/\&diams;/eg
 endfunc
 
+
 " TESTING: The new powerline...
-source ~/.vim/bundle/powerline/powerline/bindings/vim/source_plugin.vim
+"source ~/.vim/bundle/powerline/powerline/bindings/vim/source_plugin.vim
 set guifont=Source\ Code\ Pro:h13
+
 
 " TESTING: Javascript in HTML indent fixes, maybe?
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -711,11 +723,46 @@ onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
 " Change function arguments
 onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 
+
 " TESTING: Sync
 autocmd BufEnter * :syntax sync fromstart
+
 
 " TESTING: No folding
 set nofoldenable
 
+
 " TESTING: Create line above and insert cursor
 inoremap <c-k> <esc>O
+
+
+" TESTING: JS SmartTabs
+"augroup jssmarttabs
+"    autocmd!
+"    autocmd BufNewFile,BufRead,BufWrite * exe 'call IndentTab#Set(0, 0)'
+"    autocmd BufNewFile,BufRead,BufWrite *.js exe 'call IndentTab#Set(1, 1)'
+"augroup END
+
+" TESTING: NeoCompleteCache
+"let g:neocomplcache_enable_fuzzy_completion = 1
+"let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"    return neocomplcache#smart_close_popup() . "\<CR>"
+"    " For no inserting <CR> key.
+"    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"endfunction
+
+
+" TESTING: Force vim to think of 2 spaces as a sentence
+set cpo+=J
+
+
+" TESTING:  CSSLint Syntax Checking
+
+" TESTING: YouCompleteMe00j
+let g:ycm_key_detailed_diagnostics = '<leader>od'
