@@ -161,3 +161,6 @@ hi todotxtPriB                guifg=#d40000
 hi todotxtPriC                guifg=#9d0000
 hi todotxtPriD                guifg=#6f0000
 
+" Testing out the hiding of NonText characters
+" specifically trying to hide the ~ on blank lines.
+hi NonText guifg=bg
