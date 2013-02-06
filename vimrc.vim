@@ -111,26 +111,29 @@ noremap  <Right> <Nop>
 
 
 " Various leader shortcuts
-let mapleader=","
+"let mapleader=","
+let mapleader="q"
+nnoremap q <nop>
+nnoremap Q q
 "let maplocalleader="\\"
-nnoremap <leader>w  :w<cr>
-nnoremap <leader>q  :q<cr>
-nnoremap <leader>nn :set hls!<cr>
-noremap  <leader>e  :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-noremap  <leader>c  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
-noremap  <leader>h  :so $VIMRUNTIME/syntax/hitest.vim<cr>
-noremap  <leader>u  :GundoToggle<cr>
-noremap  <leader>d  :bd<cr>
-noremap  <leader>ss  :setlocal spell!<cr>
-noremap  <leader>st  :SyntasticToggle<cr>
-noremap  <leader>gq :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
-noremap  <leader>gg :Gdiff<cr>
-noremap  <leader>p  :pwd<cr>
-noremap  <leader>a  :Ack '
-nnoremap <leader>nt ::NERDTreeToggle<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gc :Gcommit -v<cr>
-nnoremap <leader>gd :Git difftool --staged<cr>
+nnoremap <leader>w   :w<cr>
+"nnoremap <leader>q   :q<cr>
+nnoremap <leader>nn  :set hls!<cr>
+nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
+nnoremap <leader>c   :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+nnoremap <leader>h   :so $VIMRUNTIME/syntax/hitest.vim<cr>
+nnoremap <leader>u   :GundoToggle<cr>
+nnoremap <leader>d   :bd<cr>
+nnoremap <leader>ss  :setlocal spell!<cr>
+nnoremap <leader>st  :SyntasticToggle<cr>
+nnoremap <leader>gq  :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
+nnoremap <leader>gg  :Gdiff<cr>
+nnoremap <leader>p   :pwd<cr>
+nnoremap <leader>a   :Ack '
+nnoremap <leader>nt  ::NERDTreeToggle<cr>
+nnoremap <leader>gs  :Gstatus<cr>
+nnoremap <leader>gc  :Gcommit -v<cr>
+nnoremap <leader>gd  :Git difftool --staged<cr>
 
 " Slicker way to move around splits
 noremap <C-j> <C-W>j
@@ -167,7 +170,7 @@ augroup END
 augroup indentguides
     autocmd!
     autocmd BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
-    autocmd BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile exe 'IndentGuidesEnable'
+    autocmd BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile,*.coffee exe 'IndentGuidesEnable'
 augroup END
 
 
@@ -191,7 +194,7 @@ function! Preserve(command)
     " Allow me to preserve whitespace on certain files
     " if necessary. Simply perform:
     " :let b:pw=1<cr> to preserve whitespace on that buffer
-    if exists('b:pw')
+    if exists('b:pw') || exists('b:preserve')
         return
     endif
     " Save last search, and cursor position.
@@ -340,7 +343,7 @@ augroup END
 
 
 " TESTING: New way of escaping insert mode
-inoremap jk <Esc>
+"inoremap jk <Esc>
 " Re-enabling escape because I think I've successfully switched
 " inoremap <esc> <nop>
 
@@ -350,6 +353,7 @@ augroup yaml
     autocmd!
     autocmd BufNewFile,BufRead *.conf setl filetype=yaml
 augroup END
+
 
 " TESTING: ZenCoding Tweaks
 let g:user_zen_leader_key = '<c-q>'
@@ -661,3 +665,17 @@ let g:neocomplcache_enable_underbar_completion = 1
 
 " TESTING: Force vim to think of 2 spaces as a sentence
 set cpo+=J
+
+
+" TESTING: Esc Mapped to Tab
+" First remap snipmate to use ctrl+space
+let g:snips_trigger_key='<c-space>'
+let g:snips_trigger_key_backwards='<s-c-space>'
+" Getting into the messy part
+nnoremap <tab> <esc>
+onoremap <tab> <esc>
+inoremap <tab> <esc>
+vnoremap <tab> <esc>
+inoremap <esc> <nop>
+" Giving myself real tab functionality incase I need it
+inoremap <c-tab> <tab>
