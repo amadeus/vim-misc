@@ -20,7 +20,7 @@ set smarttab
 set list
 "set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set listchars=tab:›\ ,eol:¬,trail:⋅
-set showbreak=↪
+"set showbreak=↪
 
 
 " Disable matching parens - the real way
