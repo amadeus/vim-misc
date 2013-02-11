@@ -88,7 +88,7 @@ set sidescrolloff=3
 noremap     <F1> <Esc>
 inoremap    <F1> <Esc>
 nnoremap    K    <Nop>
-nnoremap    Q    <Nop>
+"nnoremap    Q    <Nop>
 cnoreabbrev W    w
 cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
@@ -118,6 +118,7 @@ nnoremap Q q
 "let maplocalleader="\\"
 nnoremap <leader>w   :w<cr>
 "nnoremap <leader>q   :q<cr>
+" Toggle hlsearch
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>c   :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
@@ -143,6 +144,7 @@ noremap <C-l> <C-W>l
 
 " Create line above and insert cursor
 inoremap <c-k> <esc>O
+inoremap <c-l> <esc>A
 
 " Make and restore sessions
 set sessionoptions=blank,buffers,curdir,folds,tabpages
@@ -228,6 +230,7 @@ let g:ctrlp_open_new_file = 'r'
 nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>l :CtrlPLine<cr>
+let g:ctrlp_clear_cache_on_exit = 0
 
 
 " Syntastic
@@ -343,7 +346,7 @@ augroup END
 
 
 " TESTING: New way of escaping insert mode
-"inoremap jk <Esc>
+inoremap jk <Esc>
 " Re-enabling escape because I think I've successfully switched
 " inoremap <esc> <nop>
 
@@ -656,12 +659,24 @@ set nofoldenable
 
 
 " TESTING: NeoCompleteCache
-let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_caching_limit_file_size = 50000
+let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/noecompl'
+let g:neocomplcache_enable_smart_case = 1
 
+augroup omnicomplete
+    autocmd!
+	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+	autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
 
 " TESTING: Force vim to think of 2 spaces as a sentence
 set cpo+=J
@@ -669,13 +684,13 @@ set cpo+=J
 
 " TESTING: Esc Mapped to Tab
 " First remap snipmate to use ctrl+space
-let g:snips_trigger_key='<c-space>'
-let g:snips_trigger_key_backwards='<s-c-space>'
+"let g:snips_trigger_key='<c-space>'
+"let g:snips_trigger_key_backwards='<s-c-space>'
 " Getting into the messy part
-nnoremap <tab> <esc>
-onoremap <tab> <esc>
-inoremap <tab> <esc>
-vnoremap <tab> <esc>
-inoremap <esc> <nop>
+"nnoremap <tab> <esc>
+"onoremap <tab> <esc>
+"inoremap <tab> <esc>
+"vnoremap <tab> <esc>
+"inoremap <esc> <nop>
 " Giving myself real tab functionality incase I need it
-inoremap <c-tab> <tab>
+"inoremap <c-tab> <tab>
