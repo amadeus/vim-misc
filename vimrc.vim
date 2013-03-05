@@ -142,9 +142,11 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
-" Create line above and insert cursor
+" General cursor moves in insert mode
 inoremap <c-k> <esc>O
 inoremap <c-l> <esc>A
+inoremap <c-h> <esc>I
+inoremap <c-j> <esc>o
 
 " Make and restore sessions
 set sessionoptions=blank,buffers,curdir,folds,tabpages
@@ -335,9 +337,9 @@ nnoremap <D-0> g^
 
 
 " TESTING: DetectIndent
-let g:detectindent_preferred_expandtab  = 0
-let g:detectindent_preferred_indent     = 4
-let g:detectindent_max_lines_to_analyse = 400
+let g:detectindent_preferred_expandtab = 0
+let g:detectindent_preferred_indent = 4
+let g:detectindent_max_lines_to_analyse = 1024
 "let g:detectindent_verbosity = 1 -- don't think I need this
 augroup detectindent
     autocmd!
@@ -659,7 +661,7 @@ set nofoldenable
 
 
 " TESTING: NeoCompleteCache
-let g:neocomplcache_enable_fuzzy_completion = 1
+"let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -694,3 +696,6 @@ set cpo+=J
 "inoremap <esc> <nop>
 " Giving myself real tab functionality incase I need it
 "inoremap <c-tab> <tab>
+
+" TESTING: NERDCommenter Tweaks
+let g:NERDSpaceDelims = 1
