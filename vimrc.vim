@@ -699,3 +699,10 @@ set cpo+=J
 
 " TESTING: NERDCommenter Tweaks
 let g:NERDSpaceDelims = 1
+
+" TESTING: Fixing gitgutter
+let g:gitgutter_highlights = 0
+augroup gitgutter2
+  autocmd!
+  autocmd BufEnter * call GitGutter()
+augroup END

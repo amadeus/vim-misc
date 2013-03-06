@@ -164,3 +164,8 @@ hi todotxtPriD                guifg=#6f0000
 " Testing out the hiding of NonText characters
 " specifically trying to hide the ~ on blank lines.
 hi NonText guifg=bg
+
+" TESTING: Fixing gitgutter colors
+hi lineAdded    guifg=#00d245 guibg=#000000 ctermfg=2 ctermbg=NONE
+hi lineModified guifg=#fff200 guibg=#000000 ctermfg=3 ctermbg=NONE
+hi lineRemoved  guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
