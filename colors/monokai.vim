@@ -166,6 +166,7 @@ hi todotxtPriD                guifg=#6f0000
 hi NonText guifg=bg
 
 " TESTING: Fixing gitgutter colors
-hi lineAdded    guifg=#00d245 guibg=#000000 ctermfg=2 ctermbg=NONE
-hi lineModified guifg=#fff200 guibg=#000000 ctermfg=3 ctermbg=NONE
-hi lineRemoved  guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
+hi GitGutterAdd                 guifg=#00d245 guibg=#000000 ctermfg=2 ctermbg=NONE
+hi GitGutterChange              guifg=#fff200 guibg=#000000 ctermfg=3 ctermbg=NONE
+hi GitGutterDelete              guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
+hi GitGutterChangeDelete        guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE

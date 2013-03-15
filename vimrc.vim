@@ -68,10 +68,6 @@ set numberwidth=4
 set ruler
 set laststatus=2
 
-if has("gui_running")
-    set transparency=0
-endif
-
 
 " Improve splitting logic
 set splitright
@@ -88,7 +84,6 @@ set sidescrolloff=3
 noremap     <F1> <Esc>
 inoremap    <F1> <Esc>
 nnoremap    K    <Nop>
-"nnoremap    Q    <Nop>
 cnoreabbrev W    w
 cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
@@ -137,10 +132,10 @@ nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
 
 " Slicker way to move around splits
-noremap <C-j> <C-W>j
-noremap <C-k> <C-W>k
-noremap <C-h> <C-W>h
-noremap <C-l> <C-W>l
+noremap <c-j> <C-W>j
+noremap <c-k> <C-W>k
+noremap <c-h> <C-W>h
+noremap <c-l> <C-W>l
 
 " General cursor moves in insert mode
 inoremap <c-k> <esc>O
@@ -154,7 +149,7 @@ noremap <leader>ms :mksession! ~/.vim/.session<cr>
 noremap <leader>rs :source ~/.vim/.session<cr>
 
 " Expand folder of current file in command mode
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap %% <c-r>=expand('%:h').'/'<cr>
 
 
 " Powerline Settings
@@ -243,7 +238,7 @@ let g:syntastic_enable_highlighting = 0
 "let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
 let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html', 'htmldjango'] }
+    \ 'passive_filetypes': ['html', 'htmldjango', 'css'] }
 
 
 " Gist settings
@@ -324,16 +319,16 @@ let g:indent_guides_start_level = 2
 
 
 " TESTING: - Testing wrap movement
-vnoremap <D-j> gj
-vnoremap <D-k> gk
-vnoremap <D-4> g$
-vnoremap <D-6> g^
-vnoremap <D-0> g^
-nnoremap <D-j> gj
-nnoremap <D-k> gk
-nnoremap <D-4> g$
-nnoremap <D-6> g^
-nnoremap <D-0> g^
+vnoremap <d-j> gj
+vnoremap <d-k> gk
+vnoremap <d-4> g$
+vnoremap <d-6> g^
+vnoremap <d-0> g^
+nnoremap <d-j> gj
+nnoremap <d-k> gk
+nnoremap <d-4> g$
+nnoremap <d-6> g^
+nnoremap <d-0> g^
 
 
 " TESTING: DetectIndent
@@ -701,8 +696,5 @@ set cpo+=J
 let g:NERDSpaceDelims = 1
 
 " TESTING: Fixing gitgutter
-let g:gitgutter_highlights = 0
-augroup gitgutter2
-    autocmd!
-    autocmd BufEnter * call GitGutter()
-augroup END
+nnoremap <leader>j :GitGutterNextHunk<cr>
+nnoremap <leader>k :GitGutterPrevHunk<cr>
