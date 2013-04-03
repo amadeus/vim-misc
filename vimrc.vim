@@ -109,7 +109,9 @@ noremap  <Right> <Nop>
 "let mapleader=","
 let mapleader="q"
 nnoremap q <nop>
+vnoremap q <nop>
 nnoremap Q q
+vnoremap Q q
 "let maplocalleader="\\"
 nnoremap <leader>w   :w<cr>
 "nnoremap <leader>q   :q<cr>
@@ -319,16 +321,10 @@ let g:indent_guides_start_level = 2
 
 
 " TESTING: - Testing wrap movement
-vnoremap <d-j> gj
-vnoremap <d-k> gk
-vnoremap <d-4> g$
-vnoremap <d-6> g^
-vnoremap <d-0> g^
-nnoremap <d-j> gj
-nnoremap <d-k> gk
-nnoremap <d-4> g$
-nnoremap <d-6> g^
-nnoremap <d-0> g^
+vnoremap j gj
+nnoremap j gj
+vnoremap k gk
+nnoremap k gk
 
 
 " TESTING: DetectIndent
@@ -661,7 +657,6 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_caching_limit_file_size = 50000
 let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/noecompl'
 let g:neocomplcache_enable_smart_case = 1
@@ -674,6 +669,7 @@ augroup omnicomplete
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
+
 
 " TESTING: Force vim to think of 2 spaces as a sentence
 set cpo+=J
@@ -696,5 +692,41 @@ set cpo+=J
 let g:NERDSpaceDelims = 1
 
 " TESTING: Fixing gitgutter
-nnoremap <leader>j :GitGutterNextHunk<cr>
-nnoremap <leader>k :GitGutterPrevHunk<cr>
+let g:gitgutter_all_on_focusgained = 0
+nnoremap <silent> <leader>j :GitGutterNextHunk<cr>
+nnoremap <silent> <leader>k :GitGutterPrevHunk<cr>
+
+
+" TESTING: Show the stack of syntax hilighting classes affecting whatever is under the cursor.
+function! SynStack()
+  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), " > ")
+endfunc
+
+nnoremap <F7> :call SynStack()<CR>
+
+
+" TESTING: Don't try to highlight lines longer than 800 characters.
+" set synmaxcol=800
+
+" TESTING: Better completion?
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
+
+" TESTING: Fun tiems
+iabbrev ldis ಠ_ಠ
+iabbrev lsad ಥ_ಥ
+iabbrev lhap ಥ‿ಥ
+iabbrev lmis ಠ‿ಠ
+vnoremap u <nop>
+vnoremap gu u
+nnoremap <leader>ss :syntax sync fromstart<cr>:redraw!<cr>
+nnoremap <leader>se :source Session.vim<cr>
+
+" augroup turks
+"     autocmd!
+"     autocmd InsertLeave markdown :syntax sync fromstart<cr>:redraw!<cr>
+" augroup END
+
+
+" TESTING: fuck swapfiles
+set noswapfile
