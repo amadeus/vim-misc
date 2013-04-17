@@ -19,7 +19,6 @@ hi LineNr                     guifg=#666666   guibg=#000000   gui=NONE
 hi SignColumn                 guifg=#666666   guibg=#000000   gui=NONE
 hi VertSplit                  guifg=#808080   guibg=#000000   gui=bold
 hi MatchParen                 guifg=#04a0f7   guibg=#000000   gui=NONE
-" hi MatchParen                                guibg=#000000   gui=NONE
 hi StatusLine                 guifg=#ffffff   guibg=#222222   gui=bold
 hi StatusLineNC               guifg=#444444   guibg=#222222   gui=NONE
 hi Pmenu                      guifg=NONE      guibg=#373730   gui=NONE
@@ -86,19 +85,19 @@ hi htmlTagName                guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi htmlArg                    guifg=#00d9ef   guibg=NONE      gui=NONE
 hi htmlSpecialChar            guifg=#bb40f5   guibg=NONE      gui=NONE
 
-hi jsBooleanTrue      guifg=#00d245   guibg=#014216   gui=bold
-hi jsBooleanFalse     guifg=#ff221e   guibg=#761210   gui=bold
-hi jsFunctionArgs     guifg=#fb5815
-hi jsParenths         guifg=#ff027b
-hi jsFunction         guifg=#00d9ef   guibg=NONE      gui=italic
-hi jsFunctionLabel    guifg=#85ff00   guibg=NONE      gui=italic
-hi jsRailsFunction    guifg=#66d9ef   guibg=NONE      gui=NONE
-hi jsThis             guifg=#fb5815   guibg=NONE      gui=NONE
-hi jsFuncArgs         guifg=#ffffff   guibg=#ff0000   gui=italic
-hi jsArguments        guifg=#ffffff   guibg=#ff0000   gui=italic
-hi jsParenths         guifg=#ff027b
-hi jsStatics          guifg=#66d9ef
-hi jsNull             guifg=#b700ff
+hi jsBooleanTrue              guifg=#00d245   guibg=#014216   gui=bold
+hi jsBooleanFalse             guifg=#ff221e   guibg=#761210   gui=bold
+hi jsFunctionArgs             guifg=#fb5815
+hi jsParenths                 guifg=#ff027b
+hi jsFunction                 guifg=#00d9ef   guibg=NONE      gui=italic
+hi jsFunctionLabel            guifg=#85ff00   guibg=NONE      gui=italic
+hi jsRailsFunction            guifg=#66d9ef   guibg=NONE      gui=NONE
+hi jsThis                     guifg=#fb5815   guibg=NONE      gui=NONE
+hi jsFuncArgs                 guifg=#ffffff   guibg=#ff0000   gui=italic
+hi jsArguments                guifg=#ffffff   guibg=#ff0000   gui=italic
+hi jsParenths                 guifg=#ff027b
+hi jsStatics                  guifg=#66d9ef
+hi jsNull                     guifg=#b700ff
 
 hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
 hi cssFunctionName            guifg=#66d9ef   guibg=NONE      gui=NONE
@@ -153,10 +152,10 @@ hi todotxtPriC                guifg=#9d0000
 hi todotxtPriD                guifg=#6f0000
 
 " TESTING: Fixing GitGutter and Syntastic colors
-hi GitGutterAdd                 guifg=#00d245 guibg=#000000 ctermfg=2 ctermbg=NONE
-hi GitGutterChange              guifg=#fff200 guibg=#000000 ctermfg=3 ctermbg=NONE
-hi GitGutterDelete              guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
-hi GitGutterChangeDelete        guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
+hi GitGutterAdd               guifg=#00d245 guibg=#000000 ctermfg=2 ctermbg=NONE
+hi GitGutterChange            guifg=#fff200 guibg=#000000 ctermfg=3 ctermbg=NONE
+hi GitGutterDelete            guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
+hi GitGutterChangeDelete      guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
 
-hi SyntasticErrorSign           guifg=#ff221e guibg=#000000 gui=bold
-hi SyntasticWarningSign         guifg=#fff200 guibg=#000000 gui=bold
+hi SyntasticErrorSign         guifg=#ff221e guibg=#000000 gui=bold
+hi SyntasticWarningSign       guifg=#fff200 guibg=#000000 gui=bold
