@@ -719,7 +719,7 @@ iabbrev lhap ಥ‿ಥ
 iabbrev lmis ಠ‿ಠ
 vnoremap u <nop>
 vnoremap gu u
-nnoremap <leader>ss :syntax sync fromstart<cr>:redraw!<cr>
+nnoremap <leader>sx :syntax sync fromstart<cr>:redraw!<cr>
 nnoremap <leader>se :source Session.vim<cr>
 
 " augroup turks
@@ -730,3 +730,30 @@ nnoremap <leader>se :source Session.vim<cr>
 
 " TESTING: fuck swapfiles
 set noswapfile
+
+
+" TESTING: Something REALLY extreme
+nmap f <leader><leader>f
+vmap f <leader><leader>f
+nmap F <leader><leader>F
+vmap F <leader><leader>F
+
+nmap t <leader><leader>t
+vmap t <leader><leader>t
+nmap T <leader><leader>T
+vmap T <leader><leader>T
+
+" nmap w <leader><leader>w
+" vmap w <leader><leader>w
+" nmap W <leader><leader>W
+" vmap W <leader><leader>W
+
+" nmap e <leader><leader>e
+" vmap e <leader><leader>e
+" nmap E <leader><leader>E
+" vmap E <leader><leader>E
+
+" nmap b <leader><leader>b
+" vmap b <leader><leader>b
+" nmap B <leader><leader>B
+" vmap B <leader><leader>B
