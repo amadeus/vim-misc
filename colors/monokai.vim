@@ -55,7 +55,6 @@ hi StatusLine                 guifg=bg
 hi Number                     guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Operator                   guifg=#ff0013   guibg=NONE      gui=NONE
 hi PreProc                    guifg=#bb40f5   guibg=NONE      gui=NONE
-" hi Special                   guifg=#ffffff   guibg=NONE      gui=NONE
 hi Special                    guifg=#ff0275   guibg=NONE      gui=NONE
 hi Statement                  guifg=#ff0013   guibg=NONE      gui=NONE
 hi StorageClass               guifg=#00d9ef   guibg=NONE      gui=italic
@@ -67,20 +66,13 @@ hi Type                       guifg=NONE      guibg=NONE      gui=NONE
 hi Underlined                 guifg=NONE      guibg=NONE      gui=NONE
 hi Type                       guifg=#66d9ef
 
-" hi DiffAdd                    guifg=NONE      guibg=#005706   gui=NONE
 hi DiffAdd                    guifg=NONE      guibg=#1a3e1a   gui=NONE
 hi DiffText                   guifg=NONE      guibg=#430077   gui=NONE
-" hi DiffDelete                 guifg=NONE      guibg=#7f0000   gui=NONE
 hi DiffDelete                 guifg=NONE      guibg=#510202   gui=NONE
 hi DiffChange                 guifg=NONE      guibg=#21003a   gui=NONE
-" 2b004c
-
 hi diffAdded                  guifg=NONE      guibg=#005706   gui=NONE
 hi diffRemoved                guifg=NONE      guibg=#7f0000   gui=NONE
 hi diffLine                   guifg=NONE      guibg=NONE      gui=NONE
-" hi diffAdd       guifg=NONE      guibg=#005706   gui=NONE
-" hi diffRemoved   guifg=#ff0013   guibg=NONE      gui=NONE
-" hi diffLine      guifg=NONE      guibg=NONE      gui=NONE
 
 " Language Specific Stuff
 hi yamlKey                    guifg=#36a6ff   guibg=#002d53   gui=NONE
@@ -91,23 +83,22 @@ hi yamlDocumentHeader         guifg=#fff200   guibg=#2d2e21   gui=NONE
 hi htmlTag                    guifg=#ff027e   guibg=NONE      gui=NONE
 hi htmlEndTag                 guifg=#ff027e   guibg=NONE      gui=NONE
 hi htmlTagName                guifg=#36a6ff   guibg=#003e65   gui=NONE
-hi htmlArg                    guifg=#00d9ef       guibg=NONE      gui=NONE
+hi htmlArg                    guifg=#00d9ef   guibg=NONE      gui=NONE
 hi htmlSpecialChar            guifg=#bb40f5   guibg=NONE      gui=NONE
 
-hi javaScriptBooleanTrue      guifg=#00d245   guibg=#014216   gui=bold
-hi javaScriptBooleanFalse     guifg=#ff221e   guibg=#761210   gui=bold
-hi javaScriptFunctionArgs     guifg=#fb5815
-hi javaScriptParenths         guifg=#ff027b
-hi javaScriptFunction         guifg=#00d9ef   guibg=NONE      gui=italic
-hi javaScriptFunctionLabel    guifg=#85ff00   guibg=NONE      gui=italic
-hi javaScriptRailsFunction    guifg=#66d9ef   guibg=NONE      gui=NONE
-hi javaScriptThis             guifg=#fb5815   guibg=NONE      gui=NONE
-hi javaScriptFuncArgs         guifg=#ffffff   guibg=#ff0000   gui=italic
-hi javaScriptArguments        guifg=#ffffff   guibg=#ff0000   gui=italic
-
-hi jsParenths                 guifg=#ff027b
-hi jsStatics                  guifg=#66d9ef
-hi jsNull                     guifg=#b700ff
+hi jsBooleanTrue      guifg=#00d245   guibg=#014216   gui=bold
+hi jsBooleanFalse     guifg=#ff221e   guibg=#761210   gui=bold
+hi jsFunctionArgs     guifg=#fb5815
+hi jsParenths         guifg=#ff027b
+hi jsFunction         guifg=#00d9ef   guibg=NONE      gui=italic
+hi jsFunctionLabel    guifg=#85ff00   guibg=NONE      gui=italic
+hi jsRailsFunction    guifg=#66d9ef   guibg=NONE      gui=NONE
+hi jsThis             guifg=#fb5815   guibg=NONE      gui=NONE
+hi jsFuncArgs         guifg=#ffffff   guibg=#ff0000   gui=italic
+hi jsArguments        guifg=#ffffff   guibg=#ff0000   gui=italic
+hi jsParenths         guifg=#ff027b
+hi jsStatics          guifg=#66d9ef
+hi jsNull             guifg=#b700ff
 
 hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
 hi cssFunctionName            guifg=#66d9ef   guibg=NONE      gui=NONE
@@ -161,11 +152,7 @@ hi todotxtPriB                guifg=#d40000
 hi todotxtPriC                guifg=#9d0000
 hi todotxtPriD                guifg=#6f0000
 
-" Testing out the hiding of NonText characters
-" specifically trying to hide the ~ on blank lines.
-" hi NonText guifg=bg
-
-" TESTING: Fixing gitgutter colors
+" TESTING: Fixing GitGutter and Syntastic colors
 hi GitGutterAdd                 guifg=#00d245 guibg=#000000 ctermfg=2 ctermbg=NONE
 hi GitGutterChange              guifg=#fff200 guibg=#000000 ctermfg=3 ctermbg=NONE
 hi GitGutterDelete              guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
@@ -173,5 +160,3 @@ hi GitGutterChangeDelete        guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NO
 
 hi SyntasticErrorSign           guifg=#ff221e guibg=#000000 gui=bold
 hi SyntasticWarningSign         guifg=#fff200 guibg=#000000 gui=bold
-" hi SyntasticStyleErrorSign - For style errors, links to 'SyntasticErrorSign' by default
-" hi SyntasticStyleWarningSign - For style warnings, links to 'SyntasticWarningSign' by default
