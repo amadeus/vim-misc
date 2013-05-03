@@ -98,6 +98,10 @@ hi jsArguments                guifg=#ffffff   guibg=#ff0000   gui=italic
 hi jsParenths                 guifg=#ff027b
 hi jsStatics                  guifg=#66d9ef
 hi jsNull                     guifg=#b700ff
+hi jsReturn                   guifg=#7ae902
+
+" Fix JS inside HTML
+" hi javaScriptGlobal          guifg=#66d9ef
 
 hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
 hi cssFunctionName            guifg=#66d9ef   guibg=NONE      gui=NONE
