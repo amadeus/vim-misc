@@ -696,6 +696,15 @@ let g:gitgutter_all_on_focusgained = 0
 nnoremap <silent> <leader>j :GitGutterNextHunk<cr>
 nnoremap <silent> <leader>k :GitGutterPrevHunk<cr>
 
+" I do this to remove the bullshit FocusGained update all command
+" which creates an ugly lag that I dislike
+augroup gitgutter
+    autocmd!
+    autocmd BufEnter,BufWritePost,FileWritePost * call GitGutter(s:current_file())
+    autocmd TabEnter * call GitGutterAll()
+    autocmd ColorScheme * call s:define_sign_column_highlight() | call s:define_highlights()
+augroup END
+
 
 " TESTING: Show the stack of syntax hilighting classes affecting whatever is under the cursor.
 function! SynStack()
@@ -709,8 +718,8 @@ nnoremap <F7> :call SynStack()<CR>
 " set synmaxcol=800
 
 " TESTING: Better completion?
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
+" set complete=.,w,b,u,t
+" set completeopt=longest,menuone,preview
 
 " TESTING: Fun tiems
 iabbrev ldis ಠ_ಠ
@@ -730,3 +739,9 @@ nnoremap <leader>se :source Session.vim<cr>
 
 " TESTING: fuck swapfiles
 set noswapfile
+
+
+" TESTING: JS Stuff
+let g:html_indent_inctags="html,body,head,tbody"
+let g:html_indent_script1="inc"
+let g:html_indent_style1="inc"
