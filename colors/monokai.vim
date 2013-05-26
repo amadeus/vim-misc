@@ -34,7 +34,7 @@ hi Normal                     guifg=#ffffff   guibg=#1e1e1a   gui=NONE
 hi Boolean                    guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Character                  guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Comment                    guifg=#75715e   guibg=#000000   gui=italic
-hi Conditional                guifg=#ff0013   guibg=NONE      gui=NONE
+hi Conditional                guifg=#ff0013   guibg=NONE      gui=bold
 hi Constant                   guifg=NONE      guibg=NONE      gui=NONE
 hi Define                     guifg=#ff0013   guibg=NONE      gui=NONE
 hi ErrorMsg                   guifg=#f8f8f0   guibg=#f92672   gui=inverse
@@ -52,7 +52,8 @@ hi VisualNOS                  guifg=bg
 hi StatusLine                 guifg=bg
 
 hi Number                     guifg=#bb40f5   guibg=NONE      gui=NONE
-hi Operator                   guifg=#ff0013   guibg=NONE      gui=NONE
+"hi Operator                   guifg=#ff0013   guibg=NONE      gui=NONE
+hi Operator                   guifg=#ff027b   guibg=NONE      gui=NONE
 hi PreProc                    guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Special                    guifg=#ff0275   guibg=NONE      gui=NONE
 hi Statement                  guifg=#ff0013   guibg=NONE      gui=NONE
@@ -89,13 +90,16 @@ hi jsBooleanTrue              guifg=#00d245   guibg=#014216   gui=bold
 hi jsBooleanFalse             guifg=#ff221e   guibg=#761210   gui=bold
 hi jsFunctionArgs             guifg=#fb5815
 hi jsParenths                 guifg=#ff027b
+hi jsFuncParens               guifg=#ff027b
 hi jsFunction                 guifg=#00d9ef   guibg=NONE      gui=italic
+hi jsFuncKeyword              guifg=#00d9ef   guibg=NONE      gui=bold
+" hi jsFuncParens               guifg=#00d9ef
 hi jsFunctionLabel            guifg=#85ff00   guibg=NONE      gui=italic
 hi jsRailsFunction            guifg=#66d9ef   guibg=NONE      gui=NONE
 hi jsThis                     guifg=#fb5815   guibg=NONE      gui=NONE
-hi jsFuncArgs                 guifg=#ffffff   guibg=#ff0000   gui=italic
+hi jsType                     guifg=#fb5815   guibg=NONE      gui=NONE
+hi jsFuncArg                  guifg=#fb5815   guibg=NONE
 hi jsArguments                guifg=#ffffff   guibg=#ff0000   gui=italic
-hi jsParenths                 guifg=#ff027b
 hi jsStatics                  guifg=#66d9ef
 hi jsNull                     guifg=#b700ff
 hi jsReturn                   guifg=#7ae902
@@ -163,3 +167,6 @@ hi GitGutterChangeDelete      guifg=#ff221e guibg=#000000 ctermfg=1 ctermbg=NONE
 
 hi SyntasticErrorSign         guifg=#ff221e guibg=#000000 gui=bold
 hi SyntasticWarningSign       guifg=#fff200 guibg=#000000 gui=bold
+
+" TESTING: VimL specific
+hi vimCommand                 guifg=#ff027b   guibg=NONE      gui=NONE
