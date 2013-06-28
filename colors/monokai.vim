@@ -90,10 +90,14 @@ hi jsBooleanTrue              guifg=#00d245   guibg=#014216   gui=bold
 hi jsBooleanFalse             guifg=#ff221e   guibg=#761210   gui=bold
 hi jsFunctionArgs             guifg=#fb5815
 hi jsParenths                 guifg=#ff027b
-hi jsFuncParens               guifg=#ff027b
+" hi jsPeriod                   guifg=#ff027b
+hi jsSeparators               guifg=#b40056
 hi jsFunction                 guifg=#00d9ef   guibg=NONE      gui=italic
+hi jsFuncDef                  guifg=#aff8ff
 hi jsFuncKeyword              guifg=#00d9ef   guibg=NONE      gui=bold
-" hi jsFuncParens               guifg=#00d9ef
+hi jsFuncParenths             guifg=#00d9ef
+" hi jsFuncComma                guifg=#00d9ef
+hi jsFuncComma                guifg=#027985
 hi jsFunctionLabel            guifg=#85ff00   guibg=NONE      gui=italic
 hi jsRailsFunction            guifg=#66d9ef   guibg=NONE      gui=NONE
 hi jsThis                     guifg=#fb5815   guibg=NONE      gui=NONE
@@ -101,6 +105,7 @@ hi jsType                     guifg=#fb5815   guibg=NONE      gui=NONE
 hi jsFuncArg                  guifg=#fb5815   guibg=NONE
 hi jsArguments                guifg=#ffffff   guibg=#ff0000   gui=italic
 hi jsStatics                  guifg=#66d9ef
+hi jsGlobalObjects            guifg=#66d9ef
 hi jsNull                     guifg=#b700ff
 hi jsReturn                   guifg=#7ae902
 
@@ -108,7 +113,7 @@ hi jsReturn                   guifg=#7ae902
 " hi javaScriptGlobal          guifg=#66d9ef
 
 hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
-hi cssFunctionName            guifg=#66d9ef   guibg=NONE      gui=NONE
+hi cssFunctionName            guifg=#00d9ef   guibg=NONE      gui=NONE
 hi cssColor                   guifg=#bb40f5   guibg=NONE      gui=NONE
 hi cssPseudoClassId           guifg=#a6e22e   guibg=NONE      gui=NONE
 hi cssClassName               guifg=#a6e22e   guibg=NONE      gui=NONE
@@ -116,24 +121,30 @@ hi cssValueLength             guifg=#b700ff   guibg=NONE      gui=NONE
 hi cssBraket                  guifg=#ff0f51   guibg=NONE      gui=NONE
 hi cssTagName                 guifg=#36a6ff   guibg=#003e65
 hi cssAtkeyword               guifg=#ff027e
-hi cssAtType                  guifg=#f70f18
+hi cssAtType                  guifg=#ff027e
 hi cssClass                   guifg=#a6e229
 hi cssProp                    guifg=#66d9ef
+hi cssPropRegion              guifg=#66d9ef
+hi cssFuncRegion              guifg=#66d9ef
 hi cssAtkey                   guifg=#59d9ef
-hi cssUnits                   guifg=#ff0013
-hi cssAttr                    guifg=#66d9ef
+" hi cssUnits                   guifg=#ff0013
+hi cssAttr                    guifg=#bb40f5
+" hi cssAttr                    guifg=#66d9ef
 hi cssAttributeSelector       guifg=#66d9ef
-hi cssAtProps                 guifg=#ff027e
+hi cssAtProps                 guifg=#66d9ef
 hi cssPathFn                  guifg=#f8ab00   guibg=NONE      gui=italic
 hi cssValFn                   guifg=#66d9ef
 hi cssPseudo                  guifg=#a6e229   guibg=#000000
 hi cssPseudoClass             guifg=#a6e229   guibg=#000000
-hi cssPrefix                  guifg=#66d9ef   guibg=#10282c
+" hi cssPrefix                  guifg=#66d9ef   guibg=#10282c
+hi cssPrefix                  guifg=#66d9ef   guibg=#000000
 hi cssFuncBracket             guifg=#ff027e
 hi cssPunctuation             guifg=#ff027e
 hi cssFontDescriptorBlock     guifg=#ff027e
-hi cssFunction                guifg=#66d9ef
+hi cssFunction                guifg=#00d9ef
 hi cssBraces                  guifg=#ff0275
+hi cssSelector                guifg=#fff200   guibg=#2d2e21   gui=NONE
+" hi cssPropRegion
 
 hi IndentGuidesOdd            guibg=#2a2a26
 hi IndentGuidesEven           guibg=#2a2a26
@@ -141,18 +152,15 @@ hi IndentGuidesEven           guibg=#2a2a26
 " Styles that I need to figure out still...
 hi cssDefinition              guifg=#ff0000
 hi cssMediaBlock              guifg=#ff0000
-hi cssAttrBlock               guifg=#00d9ef
+hi cssAttrBlock               guifg=#b80054
 
-hi cssPropRegion              guifg=#ff0000
-hi cssFuncRegion              guifg=#ff0000
-hi cssAttrBlock               guifg=#ff0000
 hi cssMediaComma              guifg=#ff0000
 hi cssFontDescriptorFunction  guifg=#ff0000
 hi cssUnicodeRange            guifg=#ff0000
 hi cssPseudoClassLang         guifg=#ff0000
-hi cssValBlock                guifg=#ff0000
-hi cssAtValBlock              guifg=#ff0000
-hi cssAttValFn                guifg=#ff0000
+" hi cssValBlock                guifg=#ff0000
+hi cssAtValBlock              guifg=#ff027e
+hi cssAttValFn                guifg=#027985
 
 hi todotxtPriA                guifg=#ff0000
 hi todotxtPriB                guifg=#d40000
@@ -170,3 +178,7 @@ hi SyntasticWarningSign       guifg=#fff200 guibg=#000000 gui=bold
 
 " TESTING: VimL specific
 hi vimCommand                 guifg=#ff027b   guibg=NONE      gui=NONE
+
+" TESTING: Vim Fugitive stuff
+hi gitcommitSummary           guifg=#00d245   guibg=NONE      gui=bold
+hi gitcommitOverflow          guifg=#ff221e   guibg=#761210   gui=bold
