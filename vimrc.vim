@@ -47,7 +47,7 @@ set smartcase
 
 
 " Tab completion when entering filenames
-set wildmode=list:longest,list:full
+set wildmode=list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.psd
 
 
@@ -62,6 +62,7 @@ else
 endif
 
 set guioptions=aAce
+set shortmess=I
 set title titlestring=%t
 set number
 set numberwidth=4
@@ -128,7 +129,7 @@ nnoremap <leader>gq  :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 nnoremap <leader>gg  :Gdiff<cr>
 nnoremap <leader>p   :pwd<cr>
 nnoremap <leader>a   :Ack '
-nnoremap <leader>nt  ::NERDTreeToggle<cr>
+nnoremap <leader>nt  :NERDTreeToggle<cr>
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
@@ -155,23 +156,25 @@ cnoremap %% <c-r>=expand('%:h').'/'<cr>
 
 
 " Powerline Settings
-set guifont=Source\ Code\ Pro:h13
+set guifont=Source\ Code\ Pro:h12
 set noshowmode
 let g:Powerline_symbols = 'fancy'
 
 
-" Set htmldjango.html on all html files
+" Set htmldjango.html on all html files - don't need this?
 augroup htmldjango
-    autocmd!
-    autocmd BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
+	autocmd!
+	autocmd BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
 augroup END
 
 
 " A simpler, more refined indent guide enabler
 augroup indentguides
     autocmd!
-    autocmd BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
-    autocmd BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile,*.coffee exe 'IndentGuidesEnable'
+	if exists('IndentGuidesDisable')
+		autocmd BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
+		autocmd BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile,*.coffee exe 'IndentGuidesEnable'
+	endif
 augroup END
 
 
@@ -296,26 +299,41 @@ endfunc
 
 " Distraction Free Writing
 function! DistractionFreeWriting()
-    set lines=40 columns=100           " size of the editable area
+    " Size of the editable area
+    set lines=40 columns=100
+    " Hide line numbers
     set nonumber
-    set nolist
-    set fuoptions=background:#001e1e1a " macvim specific setting for editor's background color
-    set guioptions-=r                  " remove right scrollbar
-    set laststatus=0                   " don't show status line
+    " MacVim specific setting for editor's background color
+    set fuoptions=background:#001e1e1a
+    " Remove right scrollbar
+    set guioptions-=r
+    " Don't show status line
+    set laststatus=0
+    " Fuck with status messages
     set shm=at
+    " Wrap text
     set wrap
-    set noruler                        " don't show ruler
-    set fullscreen                     " go to fullscreen editing mode
-    set linebreak                      " break the lines on words
+    " Don't show ruler
+    set noruler
+    " Go to fullscreen editing mode
+    set fullscreen
+    " Hide invisible chars - required fo set linebreak
+    set nolist
+    " Break lines on words - cleaner
+    set linebreak
+    " Hide the linebreak character
     set showbreak=
+    " Disable NeoComplCache
+    let g:neocomplcache_enable_at_startup = 0
     silent exec 'NeoComplCacheDisable'
+    " Hide various other types of whitespace characters
     hi NonText    guifg=#1e1e1a
     hi SpecialKey guifg=#1e1e1a
 endfunction
 
 
 " Indent Guides
-let g:indent_guides_guide_size = 1
+let g:indent_guides_guide_size  = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 
@@ -334,7 +352,7 @@ let g:detectindent_max_lines_to_analyse = 1024
 "let g:detectindent_verbosity = 1 -- don't think I need this
 augroup detectindent
     autocmd!
-    autocmd BufReadPost * :DetectIndent
+	autocmd BufReadPost * :DetectIndent
 augroup END
 
 
@@ -675,21 +693,9 @@ augroup END
 set cpo+=J
 
 
-" TESTING: Esc Mapped to Tab
-" First remap snipmate to use ctrl+space
-"let g:snips_trigger_key='<c-space>'
-"let g:snips_trigger_key_backwards='<s-c-space>'
-" Getting into the messy part
-"nnoremap <tab> <esc>
-"onoremap <tab> <esc>
-"inoremap <tab> <esc>
-"vnoremap <tab> <esc>
-"inoremap <esc> <nop>
-" Giving myself real tab functionality incase I need it
-"inoremap <c-tab> <tab>
-
 " TESTING: NERDCommenter Tweaks
 let g:NERDSpaceDelims = 1
+
 
 " TESTING: Fixing gitgutter
 let g:gitgutter_all_on_focusgained = 0
@@ -717,9 +723,11 @@ nnoremap <F7> :call SynStack()<CR>
 " TESTING: Don't try to highlight lines longer than 800 characters.
 " set synmaxcol=800
 
+
 " TESTING: Better completion?
-" set complete=.,w,b,u,t
-" set completeopt=longest,menuone,preview
+set complete=.,w,b,u,t
+set completeopt=menuone,preview
+
 
 " TESTING: Fun tiems
 iabbrev ldis ಠ_ಠ
@@ -730,11 +738,6 @@ vnoremap u <nop>
 vnoremap gu u
 nnoremap <leader>sx :syntax sync fromstart<cr>:redraw!<cr>
 nnoremap <leader>se :source Session.vim<cr>
-
-" augroup turks
-"     autocmd!
-"     autocmd InsertLeave markdown :syntax sync fromstart<cr>:redraw!<cr>
-" augroup END
 
 
 " TESTING: fuck swapfiles
