@@ -19,7 +19,7 @@ set smarttab
 " Show invisibles
 set list
 "set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set listchars=tab:›\ ,eol:¬,trail:⋅
+set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
 "set showbreak=↪
 
 
@@ -89,6 +89,9 @@ cnoreabbrev W    w
 cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
 cnoreabbrev Q    q
+cnoreabbrev Tabe tabe
+cnoreabbrev Set  set
+cnoreabbrev Cd   cd
 
 
 " Courtney Trolling
@@ -748,3 +751,10 @@ set noswapfile
 let g:html_indent_inctags="html,body,head,tbody"
 let g:html_indent_script1="inc"
 let g:html_indent_style1="inc"
+
+" TESTING: GitV: Fix my Ctrl window navigation hotkeys
+let g:Gitv_DoNotMapCtrlKey = 1
+
+
+" TESTING: Some dude's VIMRC
+set magic
