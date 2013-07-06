@@ -122,7 +122,7 @@ nnoremap <leader>w   :w<cr>
 " Toggle hlsearch
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-nnoremap <leader>c   :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+nnoremap <leader>m   :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 nnoremap <leader>h   :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :GundoToggle<cr>
 nnoremap <leader>d   :bd<cr>
@@ -758,3 +758,9 @@ let g:Gitv_DoNotMapCtrlKey = 1
 
 " TESTING: Some dude's VIMRC
 set magic
+
+
+" TESTING: New JSBeuatify Stuff
+nnoremap <leader>fj  :call JsBeautify()<cr>
+nnoremap <leader>fh  :call HtmlBeautify()<cr>
+nnoremap <leader>fc  :call CSSBeautify()<cr>
