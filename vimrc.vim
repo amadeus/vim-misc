@@ -48,7 +48,7 @@ set smartcase
 
 " Tab completion when entering filenames
 set wildmode=list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.psd
+set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd
 
 
 " Syntax, Colorscheme and Gui Options
@@ -260,7 +260,7 @@ let g:ctrlp_max_files = 10000
 "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
 let ctrlp_filter_greps = "".
     \ "egrep -iv '\\.(" .
-    \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
+    \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
     \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/" .
