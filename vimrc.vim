@@ -764,3 +764,6 @@ set magic
 nnoremap <leader>fj  :call JsBeautify()<cr>
 nnoremap <leader>fh  :call HtmlBeautify()<cr>
 nnoremap <leader>fc  :call CSSBeautify()<cr>
+
+" TESTING: Attempting to fix NeoBundle
+let g:neobundle#types#git#default_protocol = 'https'
