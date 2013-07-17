@@ -83,6 +83,7 @@ hi yamlDocumentHeader         guifg=#fff200   guibg=#2d2e21   gui=NONE
 hi htmlTag                    guifg=#ff027e   guibg=NONE      gui=NONE
 hi htmlEndTag                 guifg=#ff027e   guibg=NONE      gui=NONE
 hi htmlTagName                guifg=#36a6ff   guibg=#003e65   gui=NONE
+hi htmlSpecialTagName         guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi htmlArg                    guifg=#00d9ef   guibg=NONE      gui=NONE
 hi htmlSpecialChar            guifg=#bb40f5   guibg=NONE      gui=NONE
 
