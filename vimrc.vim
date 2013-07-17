@@ -90,6 +90,7 @@ cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
 cnoreabbrev Q    q
 cnoreabbrev Tabe tabe
+cnoreabbrev Edit edit
 cnoreabbrev Set  set
 cnoreabbrev Cd   cd
 
@@ -752,6 +753,7 @@ let g:html_indent_inctags="html,body,head,tbody"
 let g:html_indent_script1="inc"
 let g:html_indent_style1="inc"
 
+
 " TESTING: GitV: Fix my Ctrl window navigation hotkeys
 let g:Gitv_DoNotMapCtrlKey = 1
 
@@ -764,6 +766,3 @@ set magic
 nnoremap <leader>fj  :call JsBeautify()<cr>
 nnoremap <leader>fh  :call HtmlBeautify()<cr>
 nnoremap <leader>fc  :call CSSBeautify()<cr>
-
-" TESTING: Attempting to fix NeoBundle
-let g:neobundle#types#git#default_protocol = 'https'
