@@ -165,13 +165,6 @@ set noshowmode
 let g:Powerline_symbols = 'fancy'
 
 
-" Set htmldjango.html on all html files - don't need this?
-augroup htmldjango
-	autocmd!
-	autocmd BufNewFile,BufRead,BufWrite *.html,*.htm setl filetype=htmldjango.html
-augroup END
-
-
 " A simpler, more refined indent guide enabler
 augroup indentguides
     autocmd!
