@@ -660,13 +660,17 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 autocmd BufEnter * :syntax sync fromstart
 
 
-" TESTING: No folding
-set nofoldenable
+" TESTING: Javascript folding - also force all folds open
+augroup jsfolding
+    autocmd!
+    autocmd FileType javascript setlocal foldenable | setlocal foldmethod=syntax | set foldlevel=20
+augroup END
 
 
 " TESTING: NeoCompleteCache
-"let g:neocomplcache_enable_fuzzy_completion = 1
+" let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_auto_completion_start_length = 1
