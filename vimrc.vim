@@ -234,10 +234,8 @@ let g:ctrlp_clear_cache_on_exit = 0
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
-"let g:syntastic_javascript_jsl_conf = "~/.jslintrc"
 let g:syntastic_javascript_syntax_checker="jshint"
 let g:syntastic_enable_highlighting = 0
-"let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
 let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': [],
     \ 'passive_filetypes': ['html', 'htmldjango', 'css'] }
