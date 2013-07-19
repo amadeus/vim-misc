@@ -757,3 +757,13 @@ set magic
 nnoremap <leader>fj  :call JsBeautify()<cr>
 nnoremap <leader>fh  :call HtmlBeautify()<cr>
 nnoremap <leader>fc  :call CSSBeautify()<cr>
+
+
+" TESTING: Set htmldjango.html on all html files - don't need this?
+augroup htmldjango
+	autocmd!
+    " By forcing htmldjango to htmldjango.html, I allow snipmate to work
+    autocmd FileType htmldjango setl filetype=htmldjango.html
+    " Fix htmlfiles to ALWAYS be htmldjango.html
+    autocmd FileType html setl filetype=htmldjango.html
+augroup END
