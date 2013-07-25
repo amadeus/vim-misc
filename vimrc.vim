@@ -175,14 +175,6 @@ augroup indentguides
 augroup END
 
 
-" Fix Python
-let python_highlight_all = 1
-augroup pythontweaks
-    autocmd!
-    autocmd FileType python syn keyword pythonDecorator True None False self
-augroup END
-
-
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
@@ -697,7 +689,7 @@ let g:NERDSpaceDelims = 1
 
 
 " TESTING: Fixing gitgutter
-let g:gitgutter_all_on_focusgained = 0
+let g:gitgutter_eager = 0
 nnoremap <silent> <leader>j :GitGutterNextHunk<cr>
 nnoremap <silent> <leader>k :GitGutterPrevHunk<cr>
 
