@@ -54,7 +54,7 @@ hi StatusLine                 guifg=bg
 hi Number                     guifg=#c600ff   guibg=NONE      gui=NONE
 hi Operator                   guifg=#ff027b   guibg=NONE      gui=NONE
 hi PreProc                    guifg=#bb40f5   guibg=NONE      gui=NONE
-hi Special                    guifg=NONE      guibg=NONE      gui=bold
+hi Special                    guifg=#c600ff   guibg=NONE      gui=NONE
 hi StorageClass               guifg=#00d9ef   guibg=NONE      gui=italic
 hi String                     guifg=#fff200   guibg=#2d2e21   gui=NONE
 hi Tag                        guifg=#36a6ff   guibg=#002d53   gui=NONE
@@ -95,6 +95,7 @@ hi jsFuncParenths             guifg=#00d9ef
 hi jsBooleanTrue              guifg=#00d245   guibg=#014216   gui=bold
 hi jsBooleanFalse             guifg=#ff221e   guibg=#761210   gui=bold
 hi jsFuncComma                guifg=#027985
+hi jsSpecial                  guifg=#c600ff   guibg=#2d2e21   gui=NONE
 
 " hi jsFunctionArgs             guifg=#fb5815
 " hi jsParenths                 guifg=#ff027b
