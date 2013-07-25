@@ -34,9 +34,10 @@ hi Normal                     guifg=#ffffff   guibg=#1e1e1a   gui=NONE
 hi Boolean                    guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Character                  guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Comment                    guifg=#75715e   guibg=#000000   gui=italic
-hi Conditional                guifg=#ff0013   guibg=NONE      gui=bold
+hi Conditional                guifg=#c600ff   guibg=NONE      gui=bold
+hi Statement                  guifg=#c600ff   guibg=NONE      gui=bold
 hi Constant                   guifg=NONE      guibg=NONE      gui=NONE
-hi Define                     guifg=#ff0013   guibg=NONE      gui=NONE
+hi Define                     guifg=#fb5815   guibg=NONE      gui=NONE
 hi ErrorMsg                   guifg=#f8f8f0   guibg=#f92672   gui=inverse
 hi WarningMsg                 guifg=#f8f8f0   guibg=#f92672   gui=NONE
 hi Float                      guifg=#bb40f5   guibg=NONE      gui=NONE
@@ -44,27 +45,28 @@ hi Identifier                 guifg=#00d9ef   guibg=NONE      gui=italic
 hi Keyword                    guifg=#ff0013   guibg=NONE      gui=NONE
 hi Label                      guifg=#7ae902   guibg=NONE      gui=NONE
 hi Globals                    guifg=#7ae902   guibg=NONE      gui=NONE
-hi Function                   guifg=#85ff00   guibg=NONE      gui=NONE
+hi Function                   guifg=#00d9ef   guibg=NONE      gui=bold
 hi NonText                    guifg=#333333   guibg=NONE      gui=NONE
 hi SpecialKey                 guifg=#333333   guibg=NONE      gui=NONE
 hi Delimiter                  guifg=#ff0275   guibg=NONE      gui=NONE
 hi VisualNOS                  guifg=bg
 hi StatusLine                 guifg=bg
-
-hi Number                     guifg=#bb40f5   guibg=NONE      gui=NONE
-"hi Operator                   guifg=#ff0013   guibg=NONE      gui=NONE
+hi Number                     guifg=#c600ff   guibg=NONE      gui=NONE
 hi Operator                   guifg=#ff027b   guibg=NONE      gui=NONE
 hi PreProc                    guifg=#bb40f5   guibg=NONE      gui=NONE
-hi Special                    guifg=#ff0275   guibg=NONE      gui=NONE
-hi Statement                  guifg=#ff0013   guibg=NONE      gui=NONE
+hi Special                    guifg=NONE      guibg=NONE      gui=bold
 hi StorageClass               guifg=#00d9ef   guibg=NONE      gui=italic
 hi String                     guifg=#fff200   guibg=#2d2e21   gui=NONE
 hi Tag                        guifg=#36a6ff   guibg=#002d53   gui=NONE
 hi Title                      guifg=#ffffff   guibg=NONE      gui=NONE
 hi Todo                       guifg=#75715e   guibg=#000000   gui=inverse,bold,italic
-hi Type                       guifg=NONE      guibg=NONE      gui=NONE
 hi Underlined                 guifg=NONE      guibg=NONE      gui=NONE
-hi Type                       guifg=#66d9ef
+hi Type                       guifg=#66d9ef   guibg=NONE      gui=NONE
+hi Noise                      guifg=#b40056
+hi SpecialChar                guifg=#ff6600   guibg=#3b1800
+
+
+
 
 hi DiffAdd                    guifg=NONE      guibg=#1a3e1a   gui=NONE
 hi DiffText                   guifg=NONE      guibg=#430077   gui=NONE
@@ -87,31 +89,36 @@ hi htmlSpecialTagName         guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi htmlArg                    guifg=#00d9ef   guibg=NONE      gui=NONE
 hi htmlSpecialChar            guifg=#bb40f5   guibg=NONE      gui=NONE
 
+" Javascript Specific
+hi jsFuncDef                  guifg=#aff8ff
+hi jsFuncParenths             guifg=#00d9ef
 hi jsBooleanTrue              guifg=#00d245   guibg=#014216   gui=bold
 hi jsBooleanFalse             guifg=#ff221e   guibg=#761210   gui=bold
-hi jsFunctionArgs             guifg=#fb5815
-hi jsParenths                 guifg=#ff027b
-" hi jsPeriod                   guifg=#ff027b
-hi jsSeparators               guifg=#b40056
-hi jsFunction                 guifg=#00d9ef   guibg=NONE      gui=italic
-hi jsFuncDef                  guifg=#aff8ff
-hi jsFuncKeyword              guifg=#00d9ef   guibg=NONE      gui=bold
-hi jsFuncParenths             guifg=#00d9ef
-" hi jsFuncComma                guifg=#00d9ef
 hi jsFuncComma                guifg=#027985
-hi jsFunctionLabel            guifg=#85ff00   guibg=NONE      gui=italic
-hi jsRailsFunction            guifg=#66d9ef   guibg=NONE      gui=NONE
-hi jsThis                     guifg=#fb5815   guibg=NONE      gui=NONE
-hi jsType                     guifg=#fb5815   guibg=NONE      gui=NONE
-hi jsFuncArg                  guifg=#fb5815   guibg=NONE
-hi jsArguments                guifg=#ffffff   guibg=#ff0000   gui=italic
-hi jsStatics                  guifg=#66d9ef
-hi jsGlobalObjects            guifg=#66d9ef
-hi jsNull                     guifg=#b700ff
-hi jsReturn                   guifg=#7ae902
 
-" Fix JS inside HTML
-" hi javaScriptGlobal          guifg=#66d9ef
+" hi jsFunctionArgs             guifg=#fb5815
+" hi jsParenths                 guifg=#ff027b
+" hi jsSeparators               guifg=#b40056
+" hi Noise                      guifg=#b40056
+" hi jsFunction                 guifg=#00d9ef   guibg=NONE      gui=italic
+" hi jsFuncKeyword              guifg=#00d9ef   guibg=NONE      gui=bold
+" hi jsFunctionLabel            guifg=#85ff00   guibg=NONE      gui=italic
+" hi jsRailsFunction            guifg=#66d9ef   guibg=NONE      gui=NONE
+" hi jsThis                     guifg=#fb5815   guibg=NONE      gui=NONE
+" hi jsType                     guifg=#fb5815   guibg=NONE      gui=NONE
+" hi jsFuncArg                  guifg=#fb5815   guibg=NONE
+" hi jsArguments                guifg=#ffffff   guibg=#ff0000   gui=italic
+" hi jsStatics                  guifg=#66d9ef
+" hi jsGlobalObjects            guifg=#66d9ef
+" hi jsNull                     guifg=#b700ff
+" hi jsReturn                   guifg=#7ae902
+" hi jsIdentifier               guifg=#ffffff
+
+
+" Python Specifics
+hi pythonBooleanTrue          guifg=#00d245   guibg=#014216   gui=bold
+hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210   gui=bold
+
 
 hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
 hi cssFunctionName            guifg=#00d9ef   guibg=NONE      gui=NONE
