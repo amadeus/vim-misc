@@ -279,11 +279,14 @@ endif
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
 
 func! MyCtrlPMappings()
-  nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
+    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
 endfunc
 
 func! s:DeleteBuffer()
-  exec "bd" fnamemodify(getline('.')[2:], ':p')
+  let line = getline('.')
+  let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
+        \ : fnamemodify(line[2:], ':p')
+  exec "bd" bufid
   exec "norm \<F5>"
 endfunc
 
@@ -694,19 +697,17 @@ let g:NERDSpaceDelims = 1
 
 " TESTING: Fixing gitgutter
 " let g:gitgutter_eager = 0
-if exists('GitGutter')
-  nnoremap <silent> <leader>j :GitGutterNextHunk<cr>
-  nnoremap <silent> <leader>k :GitGutterPrevHunk<cr>
-endif
+nnoremap <silent> <leader>j :GitGutterNextHunk<cr>
+nnoremap <silent> <leader>k :GitGutterPrevHunk<cr>
 
 " I do this to remove the bullshit FocusGained update all command
 " which creates an ugly lag that I dislike
-augroup gitgutter
-  autocmd!
-  autocmd BufEnter,BufWritePost,FileWritePost * call GitGutter(s:current_file())
-  autocmd TabEnter * call GitGutterAll()
-  autocmd ColorScheme * call s:define_sign_column_highlight() | call s:define_highlights()
-augroup END
+" augroup gitgutter
+"   autocmd!
+"   autocmd BufEnter,BufWritePost,FileWritePost * call GitGutter(s:current_file())
+"   autocmd TabEnter * call GitGutterAll()
+"   autocmd ColorScheme * call s:define_sign_column_highlight() | call s:define_highlights()
+" augroup END
 
 
 " TESTING: Show the stack of syntax hilighting classes affecting whatever is under the cursor.
@@ -769,3 +770,38 @@ augroup htmldjango
   " Fix htmlfiles to ALWAYS be htmldjango.html
   autocmd FileType html setl filetype=htmldjango.html
 augroup END
+
+
+" TESTING: Startify ASCII Art
+let g:startify_bookmarks = ['~/Sites/app.kiip.me', '~/Sites/kiip.me', '~/Development/ether/App']
+let g:startify_custom_header = [
+  \ '                                _________  __  __',
+  \ '            __                 /\_____   \/\ \ \ `\',
+  \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
+  \ '  /\ \ /\ \\/\ \ /` __` __`\        /   /  \ \ \_\  \__',
+  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \      /   / __ \ \___   __\',
+  \ '   \ \___/   \ \_\ \_\ \_\ \_\    /\__/ /\_\ \/___/\_\_/',
+  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_/  \/_/      \/_/',
+  \ '',
+  \ '  ======================================================',
+  \ '',
+  \ ]
+
+
+" TESTING: CSS Prefix Macro - converts a webkit prefixed property
+" into all the other vender prefixed variety
+let @z='Yplct-mozjkYpllxrorsYplxroYpdf-Vkkkk:Tabularize  /:/r0r0'
+let @x='vi{:s/:\ /:/g'
+
+
+" TESTING: Adding more fonts to CSS
+" syn keyword cssFontAttr contained
+augroup cssupdates
+  autocmd!
+  autocmd FileType css syn keyword cssFontAttr contained Inconsolata Noteworthy
+augroup END
+
+
+" TESTING: Improved search navigation
+nnoremap n nzz
+nnoremap N Nzz
