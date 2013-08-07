@@ -33,10 +33,12 @@ hi Ignore                     guifg=#000000
 hi Normal                     guifg=#ffffff   guibg=#1e1e1a   gui=NONE
 hi Boolean                    guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Character                  guifg=#bb40f5   guibg=NONE      gui=NONE
+hi Number                     guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Comment                    guifg=#75715e   guibg=#000000   gui=italic
-hi Conditional                guifg=#c600ff   guibg=NONE      gui=bold
-hi Statement                  guifg=#c600ff   guibg=NONE      gui=bold
-hi Constant                   guifg=NONE      guibg=NONE      gui=NONE
+hi Conditional                guifg=#ff1800   guibg=NONE      gui=none
+hi Statement                  guifg=#ff1800   guibg=NONE      gui=none
+hi Repeat                     guifg=#ff1800   guibg=NONE      gui=none
+hi Constant                   guifg=#b1f5fc      guibg=NONE      gui=bold
 hi Define                     guifg=#fb5815   guibg=NONE      gui=NONE
 hi ErrorMsg                   guifg=#f8f8f0   guibg=#f92672   gui=inverse
 hi WarningMsg                 guifg=#f8f8f0   guibg=#f92672   gui=NONE
@@ -51,7 +53,6 @@ hi SpecialKey                 guifg=#333333   guibg=NONE      gui=NONE
 hi Delimiter                  guifg=#ff0275   guibg=NONE      gui=NONE
 hi VisualNOS                  guifg=bg
 hi StatusLine                 guifg=bg
-hi Number                     guifg=#c600ff   guibg=NONE      gui=NONE
 hi Operator                   guifg=#ff027b   guibg=NONE      gui=NONE
 hi PreProc                    guifg=#bb40f5   guibg=NONE      gui=NONE
 hi Special                    guifg=#c600ff   guibg=NONE      gui=NONE
@@ -120,11 +121,13 @@ hi jsSpecial                  guifg=#c600ff   guibg=#2d2e21   gui=NONE
 hi pythonBooleanTrue          guifg=#00d245   guibg=#014216   gui=bold
 hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210   gui=bold
 
+" CSS Specific
+hi cssUnitDecorators          guifg=#ff027b
+hi cssMediaFeature            guifg=#b40056
 
 hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
 hi cssFunctionName            guifg=#00d9ef   guibg=NONE      gui=NONE
 hi cssColor                   guifg=#bb40f5   guibg=NONE      gui=NONE
-hi cssPseudoClassId           guifg=#a6e22e   guibg=NONE      gui=NONE
 hi cssClassName               guifg=#a6e22e   guibg=NONE      gui=NONE
 hi cssValueLength             guifg=#b700ff   guibg=NONE      gui=NONE
 hi cssBraket                  guifg=#ff0f51   guibg=NONE      gui=NONE
@@ -136,15 +139,15 @@ hi cssProp                    guifg=#66d9ef
 hi cssPropRegion              guifg=#66d9ef
 hi cssFuncRegion              guifg=#66d9ef
 hi cssAtkey                   guifg=#59d9ef
-" hi cssUnits                   guifg=#ff0013
 hi cssAttr                    guifg=#bb40f5
 " hi cssAttr                    guifg=#66d9ef
-hi cssAttributeSelector       guifg=#66d9ef
+" hi cssAttributeSelector       guifg=#66d9ef
 hi cssAtProps                 guifg=#66d9ef
 hi cssPathFn                  guifg=#f8ab00   guibg=NONE      gui=italic
 hi cssValFn                   guifg=#66d9ef
 hi cssPseudo                  guifg=#a6e229   guibg=#000000
 hi cssPseudoClass             guifg=#a6e229   guibg=#000000
+hi cssPseudoClassId           guifg=#a6e22e   guibg=#000000      gui=NONE
 " hi cssPrefix                  guifg=#66d9ef   guibg=#10282c
 hi cssPrefix                  guifg=#66d9ef   guibg=#000000
 hi cssFuncBracket             guifg=#ff027e
@@ -191,3 +194,11 @@ hi vimCommand                 guifg=#ff027b   guibg=NONE      gui=NONE
 " TESTING: Vim Fugitive stuff
 hi gitcommitSummary           guifg=#00d245   guibg=NONE      gui=bold
 hi gitcommitOverflow          guifg=#ff221e   guibg=#761210   gui=bold
+
+
+" TESTING: Fixing CtrlP
+hi CtrlPLinePre guifg=#1e1e1a
+hi CtrlPMatch   guifg=#00d245 guibg=#000000
+
+" TESTING: Startify
+hi StartifyHeader                guifg=#ff6600
