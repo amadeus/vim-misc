@@ -71,7 +71,7 @@ set laststatus=2
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
-  set guifont=Source\ Code\ Pro:h12
+  set guifont=Source\ Code\ Pro:h13
 else
   set guifont=Source\ Code\ Pro \10
 endif
@@ -790,7 +790,7 @@ let g:startify_custom_header = [
 
 " TESTING: CSS Prefix Macro - converts a webkit prefixed property
 " into all the other vender prefixed variety
-let @z='Yplct-mozjkYpllxrorsYplxroYpdf-Vkkkk:Tabularize  /:/r0r0'
+let @z='Yplct-mozjkYpllxrsYplxroYpdf-Vkkkk:Tabularize /:/r0r0'
 let @x='vi{:s/:\ /:/g'
 
 
