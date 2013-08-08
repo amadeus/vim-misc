@@ -73,8 +73,8 @@ hi StatusLineNC         guifg=#444444   guibg=#1b1b13   gui=NONE
 hi CursorLine           guifg=NONE      guibg=#000000   gui=NONE
 hi CursorColumn         guifg=NONE      guibg=#000000   gui=NONE
 hi MatchParen           guifg=#04a0f7   guibg=#000000   gui=NONE
+hi Search               guifg=#000000   guibg=#72faff   gui=NONE
 hi IncSearch            guifg=#000000   guibg=#ff027f   gui=NONE
-hi Search               guifg=#000000   guibg=#fff600   gui=NONE
 
 hi Directory            guifg=#36a6ff   guibg=NONE      gui=NONE
 hi Folded               guifg=#75715e   guibg=#000000   gui=NONE
