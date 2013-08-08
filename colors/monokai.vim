@@ -135,6 +135,7 @@ hi cssPseudoClass             guifg=#ff027f     guibg=#000000   gui=NONE
 hi cssPseudoClassId           guifg=#3cff00     guibg=#000000   gui=NONE
 hi cssFunction                guifg=#66d9ef     guibg=NONE
 hi cssFunctionName            guifg=#66d9ef     guibg=#173233
+hi cssFunctionComma           guifg=#397d80   guibg=NONE      gui=NONE
 " hi cssFunctionName            guifg=#00d9ef   guibg=NONE      gui=NONE
 " hi cssColor                   guifg=#bb40f5   guibg=NONE      gui=NONE
 " hi cssValueLength             guifg=#b700ff   guibg=NONE      gui=NONE
