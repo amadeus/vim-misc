@@ -71,7 +71,7 @@ set laststatus=2
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
-  set guifont=Source\ Code\ Pro:h13
+  set guifont=Source\ Code\ Pro:h12
 else
   set guifont=Source\ Code\ Pro \10
 endif
@@ -805,3 +805,8 @@ augroup END
 " TESTING: Improved search navigation
 nnoremap n nzz
 nnoremap N Nzz
+
+
+" TESTING: Command Mode Improvements
+cnoremap <c-k> <up>
+cnoremap <c-j> <down>
