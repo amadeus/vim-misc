@@ -32,7 +32,7 @@ hi Operator             guifg=#ff027f   guibg=NONE      gui=NONE
 hi Keyword              guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Exception            guifg=#e60000   guibg=#2e0000    gui=NONE
 
-hi PreProc              guifg=#75715e   guibg=#000000   gui=BOLD
+hi PreProc              guifg=#3cff00   guibg=NONE      gui=NONE
 hi Include              guifg=#75715e   guibg=#000000   gui=BOLD
 hi Define               guifg=#75715e   guibg=#000000   gui=BOLD
 hi Macro                guifg=#75715e   guibg=#000000   gui=BOLD
@@ -44,9 +44,9 @@ hi Structure            guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Typedef              guifg=#d7d7d7   guibg=#e60000   gui=NONE
 
 hi Special              guifg=#ff4b00   guibg=NONE      gui=NONE
-hi SpecialChar          guifg=#d7d7d7   guibg=#e60000   gui=NONE
+hi SpecialChar          guifg=#ff4b00   guibg=#571a00   gui=NONE
 hi Tag                  guifg=#d7d7d7   guibg=#e60000   gui=NONE
-hi Delimiter            guifg=#d7d7d7   guibg=#e60000   gui=NONE
+hi Delimiter            guifg=#ff027f   guibg=NONE      gui=NONE
 hi SpecialComment       guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Debug                guifg=#d7d7d7   guibg=#e60000   gui=NONE
 
@@ -76,8 +76,7 @@ hi MatchParen           guifg=#04a0f7   guibg=#000000   gui=NONE
 hi IncSearch            guifg=#000000   guibg=#ff027f   gui=NONE
 hi Search               guifg=#000000   guibg=#fff600   gui=NONE
 
-
-hi Directory            guifg=#ffffff   guibg=#d7d7d7   gui=NONE
+hi Directory            guifg=#36a6ff   guibg=NONE      gui=NONE
 hi Folded               guifg=#75715e   guibg=#000000   gui=NONE
 hi FoldColumn           guifg=#75715e   guibg=#0e0e0a   gui=NONE
 
@@ -124,19 +123,26 @@ hi pythonBooleanTrue          guifg=NONE      guibg=#0c3300   gui=bold
 hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210   gui=bold
 
 " CSS Specific
-" hi cssUnitDecorators          guifg=#ff027b
-" hi cssMediaFeature            guifg=#b40056
-" hi cssURL                     guifg=#ffb000   guibg=NONE      gui=italic
+hi cssClassName               guifg=#3cff00     guibg=NONE      gui=NONE
+hi cssProp                    guifg=#66d9ef     guibg=NONE      gui=NONE
+hi cssTagName                 guifg=#36a6ff     guibg=#003e65   gui=NONE
+hi cssUnitDecorators          guifg=#ff027f     guibg=NONE      gui=NONE
+hi cssBraces                  guifg=#8200a8     guibg=NONE      gui=NONE
+hi cssMediaFeature            guifg=#8200a8     guibg=NONE      gui=NONE
+hi cssURL                     guifg=#ff4b00     guibg=NONE      gui=italic
+hi cssMedia                   guifg=#e60000     guibg=NONE      gui=NONE
+hi cssPseudoClass             guifg=#ff027f     guibg=#000000   gui=NONE
+hi cssPseudoClassId           guifg=#3cff00     guibg=#000000   gui=NONE
+hi cssFunction                guifg=#66d9ef     guibg=NONE
+hi cssFunctionName            guifg=#66d9ef     guibg=#173233
 " hi cssFunctionName            guifg=#00d9ef   guibg=NONE      gui=NONE
 " hi cssColor                   guifg=#bb40f5   guibg=NONE      gui=NONE
-" hi cssClassName               guifg=#a6e22e   guibg=NONE      gui=NONE
 " hi cssValueLength             guifg=#b700ff   guibg=NONE      gui=NONE
 " hi cssBraket                  guifg=#ff0f51   guibg=NONE      gui=NONE
 " hi cssTagName                 guifg=#36a6ff   guibg=#003e65
 " hi cssAtkeyword               guifg=#ff027e
 " hi cssAtType                  guifg=#ff027e
 " hi cssClass                   guifg=#a6e229
-" hi cssProp                    guifg=#66d9ef
 " hi cssPropRegion              guifg=#66d9ef
 " hi cssFuncRegion              guifg=#66d9ef
 " hi cssAtkey                   guifg=#59d9ef
@@ -144,9 +150,7 @@ hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210   gui=bold
 " hi cssAtProps                 guifg=#66d9ef
 " hi cssPathFn                  guifg=#f8ab00   guibg=NONE      gui=italic
 " hi cssValFn                   guifg=#66d9ef
-" hi cssPseudo                  guifg=#a6e229   guibg=#000000
 " hi cssPseudoClass             guifg=#a6e229   guibg=#000000
-" hi cssPseudoClassId           guifg=#a6e22e   guibg=#000000      gui=NONE
 " hi cssPrefix                  guifg=#66d9ef   guibg=#000000
 " hi cssFuncBracket             guifg=#ff027e
 " hi cssPunctuation             guifg=#ff027e
@@ -159,6 +163,9 @@ hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210   gui=bold
 " hi cssAttr                    guifg=#66d9ef
 " hi cssAttributeSelector       guifg=#66d9ef
 " hi cssPrefix                  guifg=#66d9ef   guibg=#10282c
+
+" Vim Specific - causes weirdness.
+" hi vimSetEqual                  guifg=#ff027f   guibg=NONE      gui=NONE
 
 " Git Diff Styling
 hi DiffAdd                    guifg=NONE      guibg=#0c3300     gui=NONE
