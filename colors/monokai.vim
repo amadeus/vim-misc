@@ -24,24 +24,24 @@ hi Float                guifg=#c500ff   guibg=NONE      gui=NONE
 hi Identifier           guifg=#00d5dd   guibg=NONE      gui=NONE
 hi Function             guifg=#00d5dd   guibg=NONE      gui=NONE
 
-hi Statement            guifg=#e60000   guibg=NONE      gui=NONE
+hi Statement            guifg=#ff027f   guibg=NONE      gui=NONE
 hi Conditional          guifg=#e60000   guibg=NONE      gui=NONE
 hi Repeat               guifg=#e60000   guibg=NONE      gui=NONE
-hi Label                guifg=#d7d7d7   guibg=#e60000   gui=NONE
+hi Label                guifg=#ff027f   guibg=NONE      gui=NONE
 hi Operator             guifg=#ff027f   guibg=NONE      gui=NONE
 hi Keyword              guifg=#d7d7d7   guibg=#e60000   gui=NONE
-hi Exception            guifg=#e60000   guibg=#2e0000    gui=NONE
+hi Exception            guifg=#e60000   guibg=NONE      gui=NONE
 
 hi PreProc              guifg=#3cff00   guibg=NONE      gui=NONE
-hi Include              guifg=#75715e   guibg=#000000   gui=BOLD
-hi Define               guifg=#75715e   guibg=#000000   gui=BOLD
-hi Macro                guifg=#75715e   guibg=#000000   gui=BOLD
-hi PreCondit            guifg=#75715e   guibg=#000000   gui=BOLD
+hi Include              guifg=#75715e   guibg=#000000   gui=NONE
+hi Define               guifg=#75715e   guibg=#000000   gui=NONE
+hi Macro                guifg=#75715e   guibg=#000000   gui=NONE
+hi PreCondit            guifg=#75715e   guibg=#000000   gui=NONE
 
 hi Type                 guifg=#3cff00   guibg=NONE      gui=NONE
 hi StorageClass         guifg=#ff4b00   guibg=NONE      gui=NONE
-hi Structure            guifg=#d7d7d7   guibg=#e60000   gui=NONE
-hi Typedef              guifg=#d7d7d7   guibg=#e60000   gui=NONE
+hi Structure            guifg=#3cff00   guibg=NONE      gui=NONE
+hi Typedef              guifg=#3cff00   guibg=NONE      gui=NONE
 
 hi Special              guifg=#ff4b00   guibg=NONE      gui=NONE
 hi SpecialChar          guifg=#ff4b00   guibg=#571a00   gui=NONE
@@ -93,9 +93,14 @@ hi htmlSpecialTagName           guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi htmlTagName                  guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi htmlArg                      guifg=#00d9ef   guibg=NONE      gui=NONE
 hi htmlSpecialChar              guifg=#bb40f5   guibg=NONE      gui=NONE
+hi djangoVarBrackets            guifg=#8200a8   guibg=NONE      gui=NONE
+hi djangoTagBrackets            guifg=#8200a8   guibg=NONE      gui=NONE
+hi djangoTagBlock               guifg=#c500ff   guibg=NONE      gui=NONE
+hi djangoVarBlock               guifg=#c500ff   guibg=NONE      gui=NONE
+hi djangoFilter                 guifg=#c500ff   guibg=NONE      gui=NONE
 
 " Javascript Specific
-hi jsFuncCall                   guifg=NONE      guibg=NONE      gui=NONE
+hi jsFuncCall                   guifg=#cefdff   guibg=#000000   gui=NONE
 hi jsUndefined                  guifg=#c500ff   guibg=NONE      gui=NONE
 hi jsNull                       guifg=#c500ff   guibg=NONE      gui=NONE
 hi jsFunction                   guifg=#00d5dd   guibg=NONE      gui=NONE
@@ -111,6 +116,8 @@ hi jsParens                     guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsBraces                     guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsBrackets                   guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsObjectKey                  guifg=#3cff00   guibg=NONE      gui=NONE
+hi jsBooleanTrue                guifg=#3cff00   guibg=#155800     gui=NONE
+hi jsBooleanFalse               guifg=#ff221e   guibg=#761210     gui=NONE
 
 " YAML Specific
 " hi yamlKey                    guifg=#36a6ff   guibg=#002d53   gui=NONE
@@ -119,8 +126,8 @@ hi jsObjectKey                  guifg=#3cff00   guibg=NONE      gui=NONE
 " hi yamlDocumentHeader         guifg=#fff200   guibg=#2d2e21   gui=NONE
 
 " Python Specifics
-hi pythonBooleanTrue          guifg=NONE      guibg=#0c3300   gui=bold
-hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210   gui=bold
+hi pythonBooleanTrue          guifg=#3cff00   guibg=#155800     gui=NONE
+hi pythonBooleanFalse         guifg=#ff221e   guibg=#761210     gui=NONE
 
 " CSS Specific
 hi cssClassName               guifg=#3cff00     guibg=NONE      gui=NONE

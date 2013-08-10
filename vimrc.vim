@@ -130,7 +130,7 @@ nnoremap <leader>w   :w<cr>
 " Toggle hlsearch
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-nnoremap <leader>m   :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
 nnoremap <leader>h   :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :GundoToggle<cr>
 nnoremap <leader>d   :bd<cr>
@@ -810,3 +810,7 @@ nnoremap N Nzz
 " TESTING: Command Mode Improvements
 cnoremap <c-k> <up>
 cnoremap <c-j> <down>
+
+
+" TESTING:
+let g:Gitv_WipeAllOnClose = 1
