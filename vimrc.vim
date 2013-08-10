@@ -68,6 +68,8 @@ set number
 set numberwidth=4
 set ruler
 set laststatus=2
+set noruler
+
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
@@ -169,14 +171,6 @@ cnoremap %% <c-r>=expand('%:h').'/'<cr>
 " Powerline Settings
 set noshowmode
 let g:Powerline_symbols = 'fancy'
-
-
-" A simpler, more refined indent guide enabler
-augroup indentguides
-  autocmd!
-  autocmd BufEnter,TabEnter,BufWinEnter * exe 'IndentGuidesDisable'
-  autocmd BufEnter,TabEnter,BufWinEnter *.py,*.rb,Vagrantfile,*.coffee exe 'IndentGuidesEnable'
-augroup END
 
 
 " Swap, Undo and Backup Folder Configuration
@@ -772,9 +766,15 @@ augroup htmldjango
 augroup END
 
 
-" TESTING: Startify ASCII Art
-let g:startify_bookmarks = ['~/Sites/app.kiip.me', '~/Sites/kiip.me', '~/Development/ether/App']
+" TESTING: Startify Settings
+let g:startify_bookmarks = [
+  \ '~/Sites/app.kiip.me',
+  \ '~/Sites/kiip.me',
+  \ '~/Development/ether/App',
+  \ '~/.vim/bundle',
+  \ ]
 let g:startify_custom_header = [
+  \ '',
   \ '                                _________  __  __',
   \ '            __                 /\_____   \/\ \ \ `\',
   \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
@@ -786,7 +786,18 @@ let g:startify_custom_header = [
   \ '  ======================================================',
   \ '',
   \ ]
-
+let g:NERDTreeHijackNetrw = 0
+let g:startify_session_autoload = 1
+augroup startify
+  autocmd!
+  " Hacky way to disable Powerline in Startify
+  autocmd BufNew * set laststatus=2
+  autocmd FileType startify set laststatus=0
+  " Hacky way to disable indentLines in startify
+  autocmd FileType startify setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
+augroup END
+let g:startify_files_number = 10
+let g:startify_list_order = ['bookmarks', 'files']
 
 " TESTING: CSS Prefix Macro - converts a webkit prefixed property
 " into all the other vender prefixed variety
@@ -812,5 +823,19 @@ cnoremap <c-k> <up>
 cnoremap <c-j> <down>
 
 
-" TESTING:
+" TESTING: Gitv configuration
 let g:Gitv_WipeAllOnClose = 1
+
+" TESTING: IndentLine"
+let g:indentLine_char = '⋅'
+let g:indentLine_first_char = '⋅'
+let g:indentLine_color_gui = '#444444'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_fileTypeExclude = ['help', 'vim']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+
+" TESTING: Disable DelimitMate autclosing " in .vim files
+augroup delimitmate
+  autocmd!
+  autocmd FileType vim let b:delimitMate_quotes = "'"
+augroup END

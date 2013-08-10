@@ -73,7 +73,7 @@ hi StatusLineNC         guifg=#444444   guibg=#1b1b13   gui=NONE
 hi CursorLine           guifg=NONE      guibg=#000000   gui=NONE
 hi CursorColumn         guifg=NONE      guibg=#000000   gui=NONE
 hi MatchParen           guifg=#04a0f7   guibg=#000000   gui=NONE
-hi Search               guifg=#000000   guibg=#72faff   gui=NONE
+hi Search               guifg=#000000   guibg=#fff600   gui=NONE
 hi IncSearch            guifg=#000000   guibg=#ff027f   gui=NONE
 
 hi Directory            guifg=#36a6ff   guibg=NONE      gui=NONE
@@ -84,7 +84,11 @@ hi ErrorMsg             guifg=#e60000   guibg=NONE      gui=NONE
 hi WarningMsg           guifg=#fff600   guibg=NONE      gui=NONE
 
 
-" === Language Specific Stuff ===
+" === Language Specific Stuff === "
+
+" Startify
+hi StartifyBracket      guifg=#8200a8   guibg=NONE      gui=NONE
+hi StartifyNumber       guifg=#ff027f   guibg=NONE      gui=NONE
 
 " HTML Specific
 hi htmlTag                      guifg=#ff027f   guibg=NONE      gui=NONE
@@ -183,20 +187,6 @@ hi DiffChange                 guifg=NONE      guibg=#270033     gui=NONE
 hi diffAdded                  guifg=NONE      guibg=#0c3300     gui=NONE
 hi diffRemoved                guifg=NONE      guibg=#330019     gui=NONE
 hi diffLine                   guifg=NONE      guibg=#270033     gui=NONE
-
-
-" Styles that I need to figure out still...
-" hi cssDefinition              guifg=#ff0000
-" hi cssMediaBlock              guifg=#ff0000
-" hi cssAttrBlock               guifg=#b80054
-"
-" hi cssMediaComma              guifg=#ff0000
-" hi cssFontDescriptorFunction  guifg=#ff0000
-" hi cssUnicodeRange            guifg=#ff0000
-" hi cssPseudoClassLang         guifg=#ff0000
-" hi cssAtValBlock              guifg=#ff027e
-" hi cssAttValFn                guifg=#027985
-" hi cssValBlock                guifg=#ff0000
 
 
 " TESTING: Todo Plugin
