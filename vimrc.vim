@@ -791,8 +791,9 @@ augroup startify
   autocmd FileType startify set laststatus=0
   " Hacky way to disable indentLines in startify
   autocmd FileType startify setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
+  autocmd FileType nerdtree setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
 augroup END
-let g:startify_files_number = 10
+let g:startify_files_number = 6
 let g:startify_list_order = ['bookmarks', 'files']
 
 
