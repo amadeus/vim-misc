@@ -20,6 +20,10 @@ set list
 set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
 
 
+" Disable matching parens - the real way
+let loaded_matchparen = 0
+
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
