@@ -14,17 +14,10 @@ set noexpandtab
 set smartindent
 set autoindent
 set smarttab
-"set cinkeys=0{,0},:,0#,!,!^F
 
 " Show invisibles
 set list
-"set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
-"set showbreak=↪
-
-
-" Disable matching parens - the real way
-let loaded_matchparen = 0
 
 
 " Allow backspacing over everything in insert mode
@@ -120,16 +113,12 @@ noremap  <Right> <Nop>
 
 
 " Various leader shortcuts
-"let mapleader=","
 let mapleader="q"
 nnoremap q <nop>
 vnoremap q <nop>
 nnoremap Q q
 vnoremap Q q
-"let maplocalleader="\\"
 nnoremap <leader>w   :w<cr>
-"nnoremap <leader>q   :q<cr>
-" Toggle hlsearch
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
@@ -198,6 +187,7 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
+
 " Execute clear whitespace on save
 augroup whitespace
   autocmd!
@@ -364,6 +354,7 @@ let g:user_zen_leader_key = '<c-q>'
 " TESTING: Don't clobber the unnamed register when pasting over text in visual mode.
 " Seems like a bit of a hack, but I'll try it
 vnoremap p pgvy
+
 
 " TESTING: NERDTree settings
 let NERDTreeMinimalUI = 1
@@ -650,7 +641,7 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 
 
 " TESTING: Sync
-autocmd BufEnter * :syntax sync fromstart
+" autocmd BufEnter * :syntax sync fromstart
 
 
 " TESTING: Javascript folding - also force all folds open
@@ -776,7 +767,7 @@ let g:startify_bookmarks = [
 let g:startify_custom_header = [
   \ '',
   \ '                                _________  __  __',
-  \ '            __                 /\_____   \/\ \ \ `\',
+  \ '            __                 /\_____   \/\ \/\ `\',
   \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
   \ '  /\ \ /\ \\/\ \ /` __` __`\        /   /  \ \ \_\  \__',
   \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \      /   / __ \ \___   __\',
@@ -798,6 +789,7 @@ augroup startify
 augroup END
 let g:startify_files_number = 10
 let g:startify_list_order = ['bookmarks', 'files']
+
 
 " TESTING: CSS Prefix Macro - converts a webkit prefixed property
 " into all the other vender prefixed variety
@@ -826,6 +818,7 @@ cnoremap <c-j> <down>
 " TESTING: Gitv configuration
 let g:Gitv_WipeAllOnClose = 1
 
+
 " TESTING: IndentLine"
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
@@ -834,8 +827,20 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['help', 'vim']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
+
 " TESTING: Disable DelimitMate autclosing " in .vim files
 augroup delimitmate
   autocmd!
   autocmd FileType vim let b:delimitMate_quotes = "'"
 augroup END
+
+
+" TESTING: Return to last known position in file
+augroup restorecursor
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+
+" TESTING: Tweaks to split fillchars
+set fillchars+=vert:┆

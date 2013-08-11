@@ -64,7 +64,7 @@ hi LineNr               guifg=#666666   guibg=#0e0e0a   gui=NONE
 hi SignColumn           guifg=#666666   guibg=#0e0e0a   gui=NONE
 hi Visual               guifg=NONE      guibg=#800140   gui=NONE
 hi VisualNOS            guifg=#ffffff   guibg=#ff0000   gui=NONE
-hi VertSplit            guifg=#808080   guibg=#000000   gui=NONE
+hi VertSplit            guifg=#333333   guibg=#0e0e0a   gui=NONE
 hi Pmenu                guifg=NONE      guibg=#000000   gui=NONE
 hi PmenuSel             guifg=#000000   guibg=#72faff   gui=NONE
 hi SpecialKey           guifg=#333333   guibg=NONE      gui=NONE
@@ -72,7 +72,7 @@ hi StatusLine           guifg=NONE      guibg=#2a2a1c   gui=bold
 hi StatusLineNC         guifg=#444444   guibg=#1b1b13   gui=NONE
 hi CursorLine           guifg=NONE      guibg=#000000   gui=NONE
 hi CursorColumn         guifg=NONE      guibg=#000000   gui=NONE
-hi MatchParen           guifg=#04a0f7   guibg=#000000   gui=NONE
+hi MatchParen           guifg=NONE      guibg=NONE      gui=inverse
 hi Search               guifg=#000000   guibg=#fff600   gui=NONE
 hi IncSearch            guifg=#000000   guibg=#ff027f   gui=NONE
 
@@ -181,7 +181,7 @@ hi cssFunctionComma           guifg=#397d80   guibg=NONE      gui=NONE
 
 " Git Diff Styling
 hi DiffAdd                    guifg=NONE      guibg=#0c3300     gui=NONE
-hi DiffText                   guifg=#ff027f   guibg=NONE        gui=NONE
+hi DiffText                   guifg=#ff027f   guibg=#000000     gui=NONE
 hi DiffDelete                 guifg=#ff027f   guibg=#330019     gui=NONE
 hi DiffChange                 guifg=NONE      guibg=#270033     gui=NONE
 hi diffAdded                  guifg=NONE      guibg=#0c3300     gui=NONE
