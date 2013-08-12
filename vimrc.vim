@@ -53,7 +53,7 @@ syntax on
 set background=dark
 
 if has("gui_running")
-  colorscheme monokai
+  colorscheme monokai2
 else
   colorscheme molokai
 endif
@@ -767,6 +767,7 @@ let g:startify_bookmarks = [
   \ '~/Sites/app.kiip.me',
   \ '~/Sites/kiip.me',
   \ '~/Development/ether/App',
+  \ '~/Desktop/nature-of-code',
   \ '~/.vim/bundle',
   \ ]
 let g:startify_custom_header = [
@@ -793,7 +794,7 @@ augroup startify
   autocmd FileType startify setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
   autocmd FileType nerdtree setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
 augroup END
-let g:startify_files_number = 6
+let g:startify_files_number = 5
 let g:startify_list_order = ['bookmarks', 'files']
 
 
