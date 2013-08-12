@@ -118,8 +118,8 @@ hi jsGlobalObjects       guifg=#00d5dd   guibg=NONE      gui=NONE
 hi jsOpAssign            guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsSpecial             guifg=#ff4b00   guibg=#330f00   gui=NONE
 hi jsParens              guifg=#ff027f   guibg=NONE      gui=NONE
-hi jsBraces              guifg=#ff027f   guibg=NONE      gui=NONE
-hi jsBrackets            guifg=#ff027f   guibg=NONE      gui=NONE
+hi jsBraces              guifg=#8200a8   guibg=NONE      gui=NONE
+hi jsBrackets            guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsObjectKey           guifg=#3cff00   guibg=NONE      gui=NONE
 hi jsBooleanTrue         guifg=#3cff00   guibg=#155800   gui=NONE
 hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
