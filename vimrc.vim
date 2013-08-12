@@ -851,3 +851,10 @@ augroup END
 
 " TESTING: Tweaks to split fillchars
 set fillchars+=vert:┆
+
+
+ " TESTING: Sync from start
+augroup syncfromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync fromstart
+augroup END
