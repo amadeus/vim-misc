@@ -125,7 +125,7 @@ vnoremap Q q
 nnoremap <leader>w   :w<cr>
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai.vim<cr>
+nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai2.vim<cr>
 nnoremap <leader>h   :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :GundoToggle<cr>
 nnoremap <leader>d   :bd<cr>
