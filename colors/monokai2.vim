@@ -32,7 +32,7 @@ hi Conditional           guifg=#e60000   guibg=NONE      gui=NONE
 hi Repeat                guifg=#e60000   guibg=NONE      gui=NONE
 hi Label                 guifg=#ff027f   guibg=NONE      gui=NONE
 hi Operator              guifg=#ff027f   guibg=NONE      gui=NONE
-hi Keyword               guifg=#d7d7d7   guibg=#e60000   gui=NONE
+hi Keyword               guifg=#ff027f   guibg=NONE      gui=NONE
 hi Exception             guifg=#e60000   guibg=NONE      gui=NONE
 
 hi PreProc               guifg=#3cff00   guibg=NONE      gui=NONE
@@ -64,6 +64,7 @@ hi Noise                 guifg=#8200a8   guibg=NONE      gui=NONE
 hi Cursor                guifg=#000000   guibg=#04a0f7   gui=NONE
 hi NonText               guifg=#333333   guibg=NONE      gui=NONE
 hi LineNr                guifg=#666666   guibg=#0e0e0a   gui=NONE
+hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
 hi SignColumn            guifg=#666666   guibg=#0e0e0a   gui=NONE
 hi Visual                guifg=NONE      guibg=#800140   gui=NONE
 hi VisualNOS             guifg=#ffffff   guibg=#ff0000   gui=NONE
@@ -121,6 +122,8 @@ hi jsParens              guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsBraces              guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsBrackets            guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsObjectKey           guifg=#3cff00   guibg=NONE      gui=NONE
+hi jsFunctionKey         guifg=#00d5dd   guibg=NONE      gui=NONE
+hi jsFunctionVar         guifg=#00d5dd   guibg=NONE      gui=NONE
 hi jsBooleanTrue         guifg=#3cff00   guibg=#155800   gui=NONE
 hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
 
@@ -133,6 +136,7 @@ hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
 " Python Specifics
 hi pythonBooleanTrue     guifg=#3cff00   guibg=#155800   gui=NONE
 hi pythonBooleanFalse    guifg=#ff221e   guibg=#761210   gui=NONE
+" hi pythonBrackets        guifg=#8200a8   guibg=NONE      gui=NONE
 
 " CSS Specific
 hi cssClassName          guifg=#3cff00   guibg=NONE      gui=NONE
@@ -148,6 +152,7 @@ hi cssPseudoClassId      guifg=#3cff00   guibg=#000000   gui=NONE
 hi cssFunction           guifg=#66d9ef   guibg=NONE      gui=NONE
 hi cssFunctionName       guifg=#66d9ef   guibg=#173233   gui=NONE
 hi cssFunctionComma      guifg=#397d80   guibg=NONE      gui=NONE
+hi cssMediaComma         guifg=#ff4b00   guibg=NONE      gui=NONE
 
 " VimL
 hi vimCommand            guifg=#ff027b   guibg=NONE      gui=NONE
@@ -174,6 +179,10 @@ hi GitGutterAdd          guifg=#3cff00   guibg=#0e0e0a   gui=NONE
 hi GitGutterChange       guifg=#fff200   guibg=#0e0e0a   gui=NONE
 hi GitGutterDelete       guifg=#e60000   guibg=#0e0e0a   gui=NONE
 hi GitGutterChangeDelete guifg=#fff600   guibg=#0e0e0a   gui=NONE
+
+hi SignifySignAdd        guifg=#3cff00   guibg=#0e0e0a   gui=NONE
+hi SignifySignChange     guifg=#fff200   guibg=#0e0e0a   gui=NONE
+hi SignifySignDelete     guifg=#e60000   guibg=#0e0e0a   gui=NONE
 
 " Syntastic Plugin
 hi SyntasticErrorSign    guifg=#e60000   guibg=#0e0e0a   gui=bold
