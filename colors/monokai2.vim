@@ -199,3 +199,7 @@ hi StartifyHeader        guifg=#ff6600   guibg=NONE      gui=NONE
 hi StartifyPath          guifg=#75715e   guibg=NONE      gui=NONE
 hi StartifySlash         guifg=#8200a8   guibg=NONE      gui=NONE
 hi StartifySpecial       guifg=#75715e   guibg=NONE      gui=NONE
+
+" Easy Motion
+hi EasyMotionTarget      guifg=#ff027f   guibg=#1b1b13
+hi EasyMotionShade       guifg=#75715e   guibg=#1b1b13
