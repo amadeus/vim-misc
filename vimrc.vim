@@ -679,6 +679,7 @@ let g:signify_mapping_next_hunk = '<leader>j'
 let g:signify_mapping_prev_hunk = '<leader>k'
 let g:signify_update_on_focusgained = 1
 let g:signify_vcs_list = [ 'git', 'hg' ]
+let g:signify_skip_filetype = { 'help': 1 }
 
 
 " TESTING: Show the stack of syntax hilighting classes affecting whatever is under the cursor.
@@ -863,7 +864,6 @@ augroup END
 " TESTING: Long wrapped line stuff
 set display=lastline
 set more
-let g:signify_skip_filetype = { 'help': 1 }
 
 
 " TESTING: Better fugitive file support
