@@ -643,7 +643,7 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 " TESTING: Javascript and CSS folding - also force all folds open
 augroup syntaxfolding
   autocmd!
-  autocmd FileType javascript,css,html setlocal foldenable|setlocal foldmethod=syntax|set foldlevel=20
+  autocmd FileType javascript,css,html setlocal foldenable|setlocal foldmethod=syntax|setlocal foldlevel=20
 augroup END
 
 
