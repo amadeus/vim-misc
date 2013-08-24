@@ -83,8 +83,8 @@ set splitbelow
 
 " Add buffer to cursor while scrolling
 set scrolloff=3
-set sidescroll=1
-set sidescrolloff=3
+set sidescroll=0
+set sidescrolloff=10
 
 
 " Disable annoying keys and fix common errors
@@ -219,10 +219,11 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_javascript_syntax_checker="jshint"
+let g:syntastic_css_syntax_checker="prettycss"
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html', 'htmldjango', 'css'] }
+    \ 'passive_filetypes': ['html', 'htmldjango'] }
 
 
 " Gist settings
@@ -286,7 +287,7 @@ function! DistractionFreeWriting()
   " Hide line numbers
   set nonumber
   " MacVim specific setting for editor's background color
-  set fuoptions=background:#001e1e1a
+  set fuoptions=background:#001b1b13
   " Remove right scrollbar
   set guioptions-=r
   " Don't show status line
@@ -309,15 +310,9 @@ function! DistractionFreeWriting()
   let g:neocomplcache_enable_at_startup = 0
   silent exec 'NeoComplCacheDisable'
   " Hide various other types of whitespace characters
-  hi NonText    guifg=#1e1e1a
-  hi SpecialKey guifg=#1e1e1a
+  hi NonText    guifg=#1b1b13
+  hi SpecialKey guifg=#1b1b13
 endfunction
-
-
-" Indent Guides
-let g:indent_guides_guide_size  = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 2
 
 
 " TESTING: - Testing wrap movement
@@ -340,6 +335,7 @@ augroup END
 
 " TESTING: New way of escaping insert mode
 inoremap jk <Esc>
+inoremap JK <Esc>
 " Re-enabling escape because I think I've successfully switched
 " inoremap <esc> <nop>
 
@@ -644,27 +640,20 @@ onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
 onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 
 
-" TESTING: Sync
-" autocmd BufEnter * :syntax sync fromstart
-
-
-" TESTING: Javascript folding - also force all folds open
-augroup jsfolding
+" TESTING: Javascript and CSS folding - also force all folds open
+augroup syntaxfolding
   autocmd!
-  autocmd FileType javascript setlocal foldenable | setlocal foldmethod=syntax | set foldlevel=20
+  autocmd FileType javascript,css,html setlocal foldenable|setlocal foldmethod=syntax|set foldlevel=20
 augroup END
 
 
-" TESTING: NeoCompleteCache
-" let g:neocomplcache_enable_fuzzy_completion = 1
-let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_enable_insert_char_pre = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_caching_limit_file_size = 50000
-let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/noecompl'
-let g:neocomplcache_enable_smart_case = 1
+" TESTING: NeoComplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#auto_completion_start_length = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 50000
+let g:neocomplete#data_directory = $HOME.'/.vim/cache/noecompl'
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 
 augroup omnicomplete
   autocmd!
@@ -685,19 +674,11 @@ set cpo+=J
 let g:NERDSpaceDelims = 1
 
 
-" TESTING: Fixing gitgutter
-" let g:gitgutter_eager = 0
-nnoremap <silent> <leader>j :GitGutterNextHunk<cr>
-nnoremap <silent> <leader>k :GitGutterPrevHunk<cr>
-
-" I do this to remove the bullshit FocusGained update all command
-" which creates an ugly lag that I dislike
-" augroup gitgutter
-"   autocmd!
-"   autocmd BufEnter,BufWritePost,FileWritePost * call GitGutter(s:current_file())
-"   autocmd TabEnter * call GitGutterAll()
-"   autocmd ColorScheme * call s:define_sign_column_highlight() | call s:define_highlights()
-" augroup END
+" TESTING: Signify settings
+let g:signify_mapping_next_hunk = '<leader>j'
+let g:signify_mapping_prev_hunk = '<leader>k'
+let g:signify_update_on_focusgained = 1
+let g:signify_vcs_list = [ 'git', 'hg' ]
 
 
 " TESTING: Show the stack of syntax hilighting classes affecting whatever is under the cursor.
@@ -756,9 +737,9 @@ nnoremap <leader>fc  :call CSSBeautify()<cr>
 augroup htmldjango
   autocmd!
   " By forcing htmldjango to htmldjango.html, I allow snipmate to work
-  autocmd FileType htmldjango setl filetype=htmldjango.html
+  " autocmd FileType htmldjango setl filetype=htmldjango.html
   " Fix htmlfiles to ALWAYS be htmldjango.html
-  autocmd FileType html setl filetype=htmldjango.html
+  autocmd FileType html setl filetype=htmldjango
 augroup END
 
 
@@ -771,7 +752,6 @@ let g:startify_bookmarks = [
   \ '~/.vim/bundle',
   \ ]
 let g:startify_custom_header = [
-  \ '',
   \ '                                _________  __  __',
   \ '            __                 /\_____   \/\ \/\ `\',
   \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
@@ -785,17 +765,19 @@ let g:startify_custom_header = [
   \ ]
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
+let g:ctrlp_reuse_window = 'startify'
+let g:startify_files_number = 5
+let g:startify_list_order = ['bookmarks', 'files']
+
 augroup startify
   autocmd!
   " Hacky way to disable Powerline in Startify
   autocmd BufNew * set laststatus=2
-  autocmd FileType startify set laststatus=0
+  autocmd FileType startify set laststatus=0|setlocal cursorline
   " Hacky way to disable indentLines in startify
-  autocmd FileType startify setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
-  autocmd FileType nerdtree setlocal cursorline|let b:indentLine_enabled = 0|syn clear IndentLine
+  " autocmd FileType startify setlocal cursorline|let b:indentLine_set = 1|echom 'filetype'
+  " autocmd FileType nerdtree setlocal cursorline|let b:indentLine_set = 1|echom 'filetype'
 augroup END
-let g:startify_files_number = 5
-let g:startify_list_order = ['bookmarks', 'files']
 
 
 " TESTING: CSS Prefix Macro - converts a webkit prefixed property
@@ -826,13 +808,17 @@ cnoremap <c-j> <down>
 let g:Gitv_WipeAllOnClose = 1
 
 
-" TESTING: IndentLine"
+" TESTING: IndentLine Settings
+let g:indentLine_enabled = 0
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_fileType = ['python', 'py']
 let g:indentLine_fileTypeExclude = ['help', 'vim']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+let g:indentLine_noConcealCursor=1
+let g:indentLine_indentLevel = 5
 
 
 " TESTING: Disable DelimitMate autclosing " in .vim files
@@ -857,4 +843,34 @@ set fillchars+=vert:┆
 augroup syncfromstart
   autocmd!
   autocmd BufEnter * :syntax sync fromstart
+augroup END
+
+
+" TESTING: Enable Github flavored markdown
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+
+" TESTING: Enable cursorline on gitcommit
+augroup gitcommit
+  autocmd!
+  autocmd FileType gitcommit setlocal cursorline
+augroup END
+
+
+" TESTING: Long wrapped line stuff
+set display=lastline
+set more
+let g:signify_skip_filetype = { 'help': 1 }
+
+
+" TESTING: Better fugitive file support
+" I want the fugitive buffers to just delete themselves
+" if I close them; no need for them to stick around.
+" It also helps with auto closing diff views
+augroup fugitivefix
+  autocmd!
+  autocmd BufReadPost fugitive:// set bufhidden=delete
 augroup END
