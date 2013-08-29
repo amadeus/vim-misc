@@ -63,12 +63,12 @@ hi Noise                 guifg=#8200a8   guibg=NONE      gui=NONE
 " Vim UI Stuff
 hi Cursor                guifg=#000000   guibg=#04a0f7   gui=NONE
 hi NonText               guifg=#333333   guibg=NONE      gui=NONE
-hi LineNr                guifg=#666666   guibg=#0e0e0a   gui=NONE
+hi LineNr                guifg=#666666   guibg=#121212   gui=NONE
 hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
-hi SignColumn            guifg=#666666   guibg=#0e0e0a   gui=NONE
-hi Visual                guifg=NONE      guibg=#800140   gui=NONE
+hi SignColumn            guifg=#666666   guibg=#121212   gui=NONE
+hi Visual                guifg=#1b1b13   guibg=#efefef   gui=NONE
 hi VisualNOS             guifg=#ffffff   guibg=#ff0000   gui=NONE
-hi VertSplit             guifg=#333333   guibg=#0e0e0a   gui=NONE
+hi VertSplit             guifg=#333333   guibg=#121212      gui=NONE
 hi Pmenu                 guifg=NONE      guibg=#000000   gui=NONE
 hi PmenuSel              guifg=#000000   guibg=#72faff   gui=NONE
 hi SpecialKey            guifg=#333333   guibg=NONE      gui=NONE
@@ -127,6 +127,13 @@ hi jsFunctionVar         guifg=#00d5dd   guibg=NONE      gui=NONE
 hi jsBooleanTrue         guifg=#3cff00   guibg=#155800   gui=NONE
 hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
 
+" JSON Specific
+hi jsonBraces            guifg=#8200a8   guibg=NONE      gui=NONE
+hi jsonKeywordMatch      guifg=#8200a8   guibg=NONE      gui=NONE
+hi jsonFold              guifg=#8200a8   guibg=NONE      gui=NONE
+hi Quote                 guifg=#8200a8   guibg=NONE      gui=NONE
+hi jsonKeywordRegion     guifg=#3cff00   guibg=NONE      gui=NONE
+
 " YAML Specific
 " hi yamlKey             guifg=#36a6ff   guibg=#002d53   gui=NONE
 " hi yamlAnchor          guifg=#ff6701   guibg=NONE      gui=NONE
@@ -180,9 +187,9 @@ hi GitGutterChange       guifg=#fff200   guibg=#0e0e0a   gui=NONE
 hi GitGutterDelete       guifg=#e60000   guibg=#0e0e0a   gui=NONE
 hi GitGutterChangeDelete guifg=#fff600   guibg=#0e0e0a   gui=NONE
 
-hi SignifySignAdd        guifg=#3cff00   guibg=#0e0e0a   gui=NONE
-hi SignifySignChange     guifg=#fff200   guibg=#0e0e0a   gui=NONE
-hi SignifySignDelete     guifg=#e60000   guibg=#0e0e0a   gui=NONE
+hi SignifySignAdd        guifg=#3cff00   guibg=#121212   gui=NONE
+hi SignifySignChange     guifg=#fff200   guibg=#121212   gui=NONE
+hi SignifySignDelete     guifg=#e60000   guibg=#121212   gui=NONE
 
 " Syntastic Plugin
 hi SyntasticErrorSign    guifg=#e60000   guibg=#0e0e0a   gui=bold
