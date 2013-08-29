@@ -160,6 +160,9 @@ noremap <leader>rs :source ~/.vim/.session<cr>
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
 
+" Simplified commands for NeoBundle
+command! BU :NeoBundleUpdate!
+command! BL :NeoBundleUpdatesLog
 
 " Powerline Settings
 set noshowmode
@@ -205,10 +208,9 @@ set autoread
 
 " CtrlP Settings
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_max_height = 20
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
-let g:ctrlp_jump_to_buffer = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|env/*'
+let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_open_new_file = 'r'
 nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
@@ -240,7 +242,7 @@ let ctrlp_filter_greps = "".
   \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
   \ ")$' | " .
   \ "egrep -v '^(\\./)?(" .
-  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/" .
+  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|bower_components/|static_components/|env/|build/|static/compressed/" .
   \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -883,3 +885,10 @@ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \  "\<Plug>(neosnippet_expand_or_jump)"
  \: "\<TAB>"
+
+
+" TESTING: Set JSON Filetype
+augroup json
+  au!
+  au BufRead,BufNewFile .jshintrc set filetype=json
+augroup END
