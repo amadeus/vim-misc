@@ -70,7 +70,7 @@ set noruler
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
-  set guifont=Source\ Code\ Pro:h12
+  set guifont=Sauce\ Code\ Powerline:h12
 else
   set guifont=Source\ Code\ Pro \10
 endif
@@ -361,6 +361,10 @@ vnoremap p pgvy
 " TESTING: NERDTree settings
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+augroup nerdtree
+  autocmd!
+  autocmd FileType nerdtree exe 'IndentLinesToggle'
+augroup END
 
 
 " TESTING: Search for selected text
@@ -776,10 +780,7 @@ augroup startify
   autocmd!
   " Hacky way to disable Powerline in Startify
   autocmd BufNew * set laststatus=2
-  autocmd FileType startify set laststatus=0|setlocal cursorline
-  " Hacky way to disable indentLines in startify
-  " autocmd FileType startify setlocal cursorline|let b:indentLine_set = 1|echom 'filetype'
-  " autocmd FileType nerdtree setlocal cursorline|let b:indentLine_set = 1|echom 'filetype'
+  autocmd FileType startify set laststatus=0|setlocal cursorline|exe 'IndentLinesToggle'
 augroup END
 
 
@@ -817,11 +818,11 @@ let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileType = ['python', 'py']
-let g:indentLine_fileTypeExclude = ['help', 'vim']
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
-let g:indentLine_noConcealCursor=1
 let g:indentLine_indentLevel = 5
+" let g:indentLine_fileType = ['python', 'py']
+" let g:indentLine_fileTypeExclude = ['help', 'vim', 'javascript', 'startify']
+" let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
+" let g:indentLine_noConcealCursor=1
 
 
 " TESTING: Disable DelimitMate autclosing " in .vim files
@@ -859,7 +860,7 @@ augroup END
 " TESTING: Enable cursorline on gitcommit
 augroup gitcommit
   autocmd!
-  autocmd FileType gitcommit setlocal cursorline
+  autocmd FileType gitcommit setlocal cursorline|setlocal nolist
 augroup END
 
 
@@ -892,3 +893,30 @@ augroup json
   au!
   au BufRead,BufNewFile .jshintrc set filetype=json
 augroup END
+
+
+" TESTING: Disabling JSON conceal feature
+let g:vim_json_syntax_conceal = 0
+
+
+" TESTING: Python syntax shiiiiiz
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_enable_highlighting = 1
+" Ignoring line length issues, ignoring spacing around a : in a hash
+" definition since I like to use Tabularize for alignment. And I think
+" it looks better!
+let g:syntastic_python_pep8_args='--max-line-length=1000 --ignore=E203'
+
+
+" TESTING: Toggle whitespace save
+function! ToggleWhitespaceSave()
+  if exists('b:pw') && b:pw == 1
+    unlet b:pw
+    echo 'Stripping whitespace on save'
+  else
+    let b:pw = 1
+    echo 'Preserving whitespace on save'
+  endif
+endfunction
+
+nnoremap <leader>pw :call ToggleWhitespaceSave()<cr>
