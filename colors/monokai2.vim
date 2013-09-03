@@ -1,8 +1,9 @@
 " Monokai v2
 " A custom theme, based on the original monokai
 
-set background=dark
 highlight clear
+
+set background=dark
 
 if exists("syntax_on")
     syntax reset
@@ -53,7 +54,7 @@ hi Delimiter             guifg=#ff027f   guibg=NONE      gui=NONE
 hi SpecialComment        guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Debug                 guifg=#d7d7d7   guibg=#e60000   gui=NONE
 
-hi Underlined            guifg=NONE      guibg=NONE      gui=NONE
+hi Underlined            guifg=NONE      guibg=NONE      gui=Underline
 hi Ignore                guifg=NONE      guibg=NONE      gui=NONE
 hi Error                 guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Todo                  guifg=#000000   guibg=#75715e   gui=NONE
@@ -122,7 +123,7 @@ hi jsParens              guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsBraces              guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsBrackets            guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsObjectKey           guifg=#3cff00   guibg=NONE      gui=NONE
-hi jsFunctionKey         guifg=#00d5dd   guibg=NONE      gui=NONE
+hi jsFunctionKey         guifg=#3cff00   guibg=NONE      gui=bold
 hi jsFunctionVar         guifg=#00d5dd   guibg=NONE      gui=NONE
 hi jsBooleanTrue         guifg=#3cff00   guibg=#155800   gui=NONE
 hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
@@ -131,8 +132,10 @@ hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
 hi jsonBraces            guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsonKeywordMatch      guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsonFold              guifg=#8200a8   guibg=NONE      gui=NONE
-hi Quote                 guifg=#8200a8   guibg=NONE      gui=NONE
+hi jsonQuote             guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsonKeywordRegion     guifg=#3cff00   guibg=NONE      gui=NONE
+hi jsonBooleanTrue       guifg=#3cff00   guibg=#155800   gui=NONE
+hi jsonBooleanFalse      guifg=#ff221e   guibg=#761210   gui=NONE
 
 " YAML Specific
 " hi yamlKey             guifg=#36a6ff   guibg=#002d53   gui=NONE
@@ -210,3 +213,9 @@ hi StartifySpecial       guifg=#75715e   guibg=NONE      gui=NONE
 " Easy Motion
 hi EasyMotionTarget      guifg=#e60000   guibg=#1b1b13   gui=BOLD
 hi EasyMotionShade       guifg=#75715e   guibg=#1b1b13
+
+" Spell Stuff
+hi SpellBad    guisp=#FF0000 gui=undercurl
+hi SpellCap    guisp=#7070F0 gui=undercurl
+hi SpellLocal  guisp=#70F0F0 gui=undercurl
+hi SpellRare   guisp=#FFFFFF gui=undercurl
