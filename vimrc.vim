@@ -929,68 +929,6 @@ nnoremap <leader>pw :call ToggleWhitespaceSave()<cr>
 nnoremap <leader>p <nop>
 
 
-" TESTING: Tabline Stuff
-" "Rename tabs to show tab# and # of viewports
-if exists("+showtabline")
-  function! MyTabLine()
-    let s = ''
-    let wn = ''
-    let t = tabpagenr()
-    let i = 1
-    while i <= tabpagenr('$')
-      let buflist = tabpagebuflist(i)
-      let winnr = tabpagewinnr(i)
-      let s .= '%' . i . 'T'
-      let s .= (i == t ? '%1*' : '%2*')
-      let s .= ' '
-      let wn = tabpagewinnr(i,'$')
-
-      let s .= (i== t ? '%#TabNumSel#' : '%#TabNum#')
-      let s .= i
-      if tabpagewinnr(i,'$') > 1
-        let s .= '.'
-        let s .= (i== t ? '%#TabWinNumSel#' : '%#TabWinNum#')
-        let s .= (tabpagewinnr(i,'$') > 1 ? wn : '')
-      end
-
-      let s .= ' %*'
-      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-      let bufnr = buflist[winnr - 1]
-      let file = bufname(bufnr)
-      let buftype = getbufvar(bufnr, 'buftype')
-      if buftype == 'nofile'
-        if file =~ '\/.'
-          let file = substitute(file, '.*\/\ze.', '', '')
-        endif
-      else
-        let file = fnamemodify(file, ':p:t')
-      endif
-      if file == ''
-        let file = '[No Name]'
-      endif
-      let s .= file
-      let s .= (i == t ? '%m' : '')
-      let i = i + 1
-    endwhile
-    let s .= '%T%#TabLineFill#%='
-    return s
-  endfunction
-  set stal=1
-  set tabline=%!MyTabLine()
-endif
-
-
-" TESTING: Making NeoComplete Quieter
-" augroup neocomplete
-  " autocmd!
-  " autocmd InsertEnter * echom 'entering'
-  " autocmd InsertEnter * highlight WarningMsg guifg=bg | highlight ErrorMsg guifg=bg | highlight Question guifg=bg | highlight ModeMsg guifg=bg | echom 'entering'
-  " autocmd InsertLeave * execute "highlight WarningMsg guifg=#fff601 | highlight ErrorMsg guifg=#e60200 | highlight Question guifg=#00ff02 | highlight ModeMsg guifg=#efefef | echom 'leaving?'"
-  " autocmd InsertLeave * echom 'leaving'
-  " autocmd InsertLeave * highlight WarningMsg guifg=#fff601 | highlight ErrorMsg guifg=#e60200 | highlight Question guifg=#00ff02
-" augroup END
-
-
 " TESTING: Format Options Tweaks
 set formatoptions+=nj
 set formatoptions-=o
