@@ -59,7 +59,7 @@ else
 endif
 
 set guioptions=aAce
-set shortmess=I
+set shortmess=ITao
 set title titlestring=%t
 set number
 set numberwidth=4
@@ -95,6 +95,8 @@ cnoreabbrev W    w
 cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
 cnoreabbrev Q    q
+cnoreabbrev Qa   qa
+cnoreabbrev QA   qa
 cnoreabbrev Tabe tabe
 cnoreabbrev Edit edit
 cnoreabbrev Set  set
@@ -128,12 +130,12 @@ nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai2.vim<cr>
 nnoremap <leader>h   :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :GundoToggle<cr>
-nnoremap <leader>d   :bd<cr>
+nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>st  :SyntasticToggle<cr>
 nnoremap <leader>gq  :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 nnoremap <leader>gg  :Gdiff<cr>
-nnoremap <leader>p   :pwd<cr>
+nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>a   :Ack '
 nnoremap <leader>nt  :NERDTreeToggle<cr>
 nnoremap <leader>gs  :Gstatus<cr>
@@ -361,10 +363,10 @@ vnoremap p pgvy
 " TESTING: NERDTree settings
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-augroup nerdtree
-  autocmd!
-  autocmd FileType nerdtree exe 'IndentLinesToggle'
-augroup END
+" augroup nerdtree
+"   autocmd!
+"   autocmd FileType nerdtree exe 'IndentLinesToggle'
+" augroup END
 
 
 " TESTING: Search for selected text
@@ -649,7 +651,7 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 " TESTING: Javascript and CSS folding - also force all folds open
 augroup syntaxfolding
   autocmd!
-  autocmd FileType javascript,css,html setlocal foldenable|setlocal foldmethod=syntax|setlocal foldlevel=20
+  autocmd FileType javascript,json,css,html setlocal foldenable|setlocal foldmethod=syntax|setlocal foldlevel=20
 augroup END
 
 
@@ -683,7 +685,6 @@ let g:NERDSpaceDelims = 1
 " TESTING: Signify settings
 let g:signify_mapping_next_hunk = '<leader>j'
 let g:signify_mapping_prev_hunk = '<leader>k'
-let g:signify_update_on_focusgained = 1
 let g:signify_vcs_list = [ 'git', 'hg' ]
 let g:signify_skip_filetype = { 'help': 1 }
 
@@ -755,6 +756,7 @@ let g:startify_bookmarks = [
   \ '~/Sites/app.kiip.me',
   \ '~/Sites/kiip.me',
   \ '~/Development/ether/App',
+  \ '~/Sites/eightbit.me',
   \ '~/Desktop/nature-of-code',
   \ '~/.vim/bundle',
   \ ]
@@ -773,14 +775,15 @@ let g:startify_custom_header = [
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
 let g:ctrlp_reuse_window = 'startify'
-let g:startify_files_number = 5
+let g:startify_files_number = 4
 let g:startify_list_order = ['bookmarks', 'files']
 
 augroup startify
   autocmd!
   " Hacky way to disable Powerline in Startify
   autocmd BufNew * set laststatus=2
-  autocmd FileType startify set laststatus=0|setlocal cursorline|exe 'IndentLinesToggle'
+  autocmd FileType startify set laststatus=0|setlocal cursorline
+  " |exe 'IndentLinesToggle'
 augroup END
 
 
@@ -905,7 +908,7 @@ let g:syntastic_enable_highlighting = 1
 " Ignoring line length issues, ignoring spacing around a : in a hash
 " definition since I like to use Tabularize for alignment. And I think
 " it looks better!
-let g:syntastic_python_pep8_args='--max-line-length=1000 --ignore=E203'
+let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391'
 
 
 " TESTING: Toggle whitespace save
@@ -920,3 +923,74 @@ function! ToggleWhitespaceSave()
 endfunction
 
 nnoremap <leader>pw :call ToggleWhitespaceSave()<cr>
+
+
+" TEMP: This is to better train myself for the new preserve whitespace B.S.
+nnoremap <leader>p <nop>
+
+
+" TESTING: Tabline Stuff
+" "Rename tabs to show tab# and # of viewports
+if exists("+showtabline")
+  function! MyTabLine()
+    let s = ''
+    let wn = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+      let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let s .= '%' . i . 'T'
+      let s .= (i == t ? '%1*' : '%2*')
+      let s .= ' '
+      let wn = tabpagewinnr(i,'$')
+
+      let s .= (i== t ? '%#TabNumSel#' : '%#TabNum#')
+      let s .= i
+      if tabpagewinnr(i,'$') > 1
+        let s .= '.'
+        let s .= (i== t ? '%#TabWinNumSel#' : '%#TabWinNum#')
+        let s .= (tabpagewinnr(i,'$') > 1 ? wn : '')
+      end
+
+      let s .= ' %*'
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+      let bufnr = buflist[winnr - 1]
+      let file = bufname(bufnr)
+      let buftype = getbufvar(bufnr, 'buftype')
+      if buftype == 'nofile'
+        if file =~ '\/.'
+          let file = substitute(file, '.*\/\ze.', '', '')
+        endif
+      else
+        let file = fnamemodify(file, ':p:t')
+      endif
+      if file == ''
+        let file = '[No Name]'
+      endif
+      let s .= file
+      let s .= (i == t ? '%m' : '')
+      let i = i + 1
+    endwhile
+    let s .= '%T%#TabLineFill#%='
+    return s
+  endfunction
+  set stal=1
+  set tabline=%!MyTabLine()
+endif
+
+
+" TESTING: Making NeoComplete Quieter
+" augroup neocomplete
+  " autocmd!
+  " autocmd InsertEnter * echom 'entering'
+  " autocmd InsertEnter * highlight WarningMsg guifg=bg | highlight ErrorMsg guifg=bg | highlight Question guifg=bg | highlight ModeMsg guifg=bg | echom 'entering'
+  " autocmd InsertLeave * execute "highlight WarningMsg guifg=#fff601 | highlight ErrorMsg guifg=#e60200 | highlight Question guifg=#00ff02 | highlight ModeMsg guifg=#efefef | echom 'leaving?'"
+  " autocmd InsertLeave * echom 'leaving'
+  " autocmd InsertLeave * highlight WarningMsg guifg=#fff601 | highlight ErrorMsg guifg=#e60200 | highlight Question guifg=#00ff02
+" augroup END
+
+
+" TESTING: Format Options Tweaks
+set formatoptions+=nj
+set formatoptions-=o
