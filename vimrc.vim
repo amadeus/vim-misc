@@ -18,6 +18,9 @@ set smarttab
 " Show invisibles
 set list
 set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
+" set showbreak=↪
+" set showbreak=…
+set showbreak=...
 
 
 " Disable matching parens - the real way
@@ -45,7 +48,8 @@ set smartcase
 
 " Tab completion when entering filenames
 set wildmode=list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.gitignore,.DS_Store,*.jpg,*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd
+set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
+  \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd
 
 
 " Syntax, Colorscheme and Gui Options
@@ -70,7 +74,7 @@ set noruler
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
-  set guifont=Sauce\ Code\ Powerline:h12
+  set guifont=Sauce\ Code\ Powerline:h13
 else
   set guifont=Source\ Code\ Pro \10
 endif
@@ -165,6 +169,7 @@ cnoremap %% <c-r>=expand('%:h').'/'<cr>
 " Simplified commands for NeoBundle
 command! BU :NeoBundleUpdate!
 command! BL :NeoBundleUpdatesLog
+let g:neobundle#install_process_timeout = 120
 
 " Powerline Settings
 set noshowmode
@@ -223,11 +228,16 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_javascript_syntax_checker="jshint"
-let g:syntastic_css_syntax_checker="prettycss"
+let g:syntastic_css_syntax_checker="csslint"
 let g:syntastic_enable_highlighting = 0
-let g:syntastic_mode_map = { 'mode': 'active',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html', 'htmldjango'] }
+let g:syntastic_mode_map = {
+  \ 'mode': 'active',
+  \ 'active_filetypes': [],
+  \ 'passive_filetypes': [
+    \ 'html',
+    \ 'htmldjango',
+    \ 'css'
+  \ ] }
 
 
 " Gist settings
@@ -241,10 +251,12 @@ let g:ctrlp_max_files = 10000
 "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
 let ctrlp_filter_greps = "".
   \ "egrep -iv '\\.(" .
-  \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
+  \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store" .
+  \ "|a|beam|tar.gz|tar.bz2" .
   \ ")$' | " .
   \ "egrep -v '^(\\./)?(" .
-  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|bower_components/|static_components/|env/|build/|static/compressed/" .
+  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|bower_components/" .
+  \ "|static_components/|env/|build/|static/compressed/" .
   \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -257,13 +269,15 @@ if has("unix")
     \ ctrlp_filter_greps .
     \ " | head -" . g:ctrlp_max_files
 
-  let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+  let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command,
+    \ my_ctrlp_user_command]
 elseif has('win32')
   let my_ctrlp_user_command = "" .
     \ "dir %s /-n /b /s /a-d" .
     \ ctrlp_filter_greps
 
-  let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+  let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command,
+    \ my_ctrlp_user_command]
 else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
@@ -355,18 +369,20 @@ augroup END
 let g:user_zen_leader_key = '<c-q>'
 
 
-" TESTING: Don't clobber the unnamed register when pasting over text in visual mode.
-" Seems like a bit of a hack, but I'll try it
+" TESTING: Don't clobber the unnamed register when pasting over
+" text in visual mode. Seems like a bit of a hack, but I'll try it
 vnoremap p pgvy
 
 
 " TESTING: NERDTree settings
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-" augroup nerdtree
-"   autocmd!
-"   autocmd FileType nerdtree exe 'IndentLinesToggle'
-" augroup END
+augroup nerdtree
+  autocmd!
+  " autocmd FileType nerdtree exe 'IndentLinesToggle'
+  " Hiding list chars because of the cursorline in NERDTree
+  autocmd FileType nerdtree setlocal nolist
+augroup END
 
 
 " TESTING: Search for selected text
@@ -651,7 +667,8 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 " TESTING: Javascript and CSS folding - also force all folds open
 augroup syntaxfolding
   autocmd!
-  autocmd FileType javascript,json,css,html setlocal foldenable|setlocal foldmethod=syntax|setlocal foldlevel=20
+  autocmd FileType javascript,json,css,html setlocal foldenable|
+  \ setlocal foldmethod=syntax|setlocal foldlevel=20
 augroup END
 
 
@@ -662,6 +679,10 @@ let g:neocomplete#sources#buffer#cache_limit_size = 50000
 let g:neocomplete#data_directory = $HOME.'/.vim/cache/noecompl'
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 2
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 
 augroup omnicomplete
   autocmd!
@@ -689,9 +710,11 @@ let g:signify_vcs_list = [ 'git', 'hg' ]
 let g:signify_skip_filetype = { 'help': 1 }
 
 
-" TESTING: Show the stack of syntax hilighting classes affecting whatever is under the cursor.
+" TESTING: Show the stack of syntax hilighting classes affecting
+" whatever is under the cursor.
 function! SynStack()
-  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), " > ")
+  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'),
+    \ " > ")
 endfunc
 
 nnoremap <F7> :call SynStack()<CR>
@@ -781,8 +804,9 @@ let g:startify_list_order = ['bookmarks', 'files']
 augroup startify
   autocmd!
   " Hacky way to disable Powerline in Startify
-  autocmd BufNew * set laststatus=2
+  autocmd BufNew * set laststatus=2|highlight NonText guifg=#333333
   autocmd FileType startify set laststatus=0|setlocal cursorline
+    \ |highlight NonText guifg=bg
   " |exe 'IndentLinesToggle'
 augroup END
 
@@ -838,7 +862,8 @@ augroup END
 " TESTING: Return to last known position in file
 augroup restorecursor
   autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+    \ |exe "normal! g`\"" | endif
 augroup END
 
 
@@ -883,12 +908,12 @@ augroup END
 
 
 " TESTING: NeoSnippets
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)"
- \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \  "\<Plug>(neosnippet_expand_or_jump)"
- \: "\<TAB>"
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"  \ "\<Plug>(neosnippet_expand_or_jump)"
+"  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"  \  "\<Plug>(neosnippet_expand_or_jump)"
+"  \: "\<TAB>"
 
 
 " TESTING: Set JSON Filetype
@@ -932,3 +957,25 @@ nnoremap <leader>p <nop>
 " TESTING: Format Options Tweaks
 set formatoptions+=nj
 set formatoptions-=o
+
+" TESTING: ColorColumn
+set colorcolumn=80
+
+
+" TESTING: Quickfix settings
+augroup quickfix
+  autocmd!
+  autocmd FileType qf,startify,gitcommit setlocal colorcolumn=
+augroup END
+
+
+" TESTING: Breakindent
+set breakindent
+augroup fixhtml
+  autocmd!
+  autocmd FileType html,htmldjango setlocal wrap
+augroup END
+
+
+" TESTING: YouCompleteMe
+" let g:ycm_min_num_of_chars_for_completion = 1

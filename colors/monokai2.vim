@@ -59,7 +59,8 @@ hi Ignore                guifg=NONE      guibg=NONE      gui=NONE
 hi Error                 guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Todo                  guifg=#000000   guibg=#75715e   gui=NONE
 
-hi Noise                 guifg=#8200a8   guibg=NONE      gui=NONE
+hi ColorColumn           guifg=NONE      guibg=#121212    gui=NONE
+hi Noise                 guifg=#8200a8   guibg=NONE       gui=NONE
 
 " Vim UI Stuff
 hi Cursor                guifg=#000000   guibg=#04a0f7   gui=NONE
@@ -69,9 +70,11 @@ hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
 hi SignColumn            guifg=#666666   guibg=#121212   gui=NONE
 hi Visual                guifg=#1b1b13   guibg=#efefef   gui=NONE
 hi VisualNOS             guifg=#ffffff   guibg=#ff0000   gui=NONE
-hi VertSplit             guifg=#333333   guibg=#121212      gui=NONE
-hi Pmenu                 guifg=NONE      guibg=#000000   gui=NONE
+hi VertSplit             guifg=#333333   guibg=#121212   gui=NONE
+hi Pmenu                 guifg=#999999   guibg=#121212   gui=NONE
 hi PmenuSel              guifg=#000000   guibg=#72faff   gui=NONE
+hi PmenuSbar             guifg=NONE      guibg=NONE      gui=NONE
+hi PmenuThumb            guifg=#ff0000
 hi SpecialKey            guifg=#333333   guibg=NONE      gui=NONE
 hi StatusLine            guifg=NONE      guibg=#2a2a1c   gui=bold
 hi StatusLineNC          guifg=#444444   guibg=#1b1b13   gui=NONE
@@ -87,6 +90,11 @@ hi FoldColumn            guifg=#75715e   guibg=#0e0e0a   gui=NONE
 
 hi ErrorMsg              guifg=#e60000   guibg=NONE      gui=NONE
 hi WarningMsg            guifg=#fff600   guibg=NONE      gui=NONE
+
+" hi TabLine               guifg=#ff0000
+hi TabLineFill           guifg=#121212   guibg=#000000   gui=NONE
+hi TabLine               guifg=#75715e   guibg=#000000   gui=NONE
+hi TabLineSel            guifg=#ffffff   guibg=#000000   gui=BOLD
 
 
 " ==================================== "
@@ -123,7 +131,7 @@ hi jsParens              guifg=#ff027f   guibg=NONE      gui=NONE
 hi jsBraces              guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsBrackets            guifg=#8200a8   guibg=NONE      gui=NONE
 hi jsObjectKey           guifg=#3cff00   guibg=NONE      gui=NONE
-hi jsFunctionKey         guifg=#3cff00   guibg=NONE      gui=bold
+hi jsFunctionKey         guifg=#3cff00   guibg=#000000   gui=NONE
 hi jsFunctionVar         guifg=#00d5dd   guibg=NONE      gui=NONE
 hi jsBooleanTrue         guifg=#3cff00   guibg=#155800   gui=NONE
 hi jsBooleanFalse        guifg=#ff221e   guibg=#761210   gui=NONE
@@ -161,8 +169,10 @@ hi cssPseudoClass        guifg=#ff027f   guibg=#000000   gui=NONE
 hi cssPseudoClassId      guifg=#3cff00   guibg=#000000   gui=NONE
 hi cssFunction           guifg=#66d9ef   guibg=NONE      gui=NONE
 hi cssFunctionName       guifg=#66d9ef   guibg=#173233   gui=NONE
+hi cssFunctionName       guifg=#cefdff   guibg=#000000   gui=NONE
 hi cssFunctionComma      guifg=#397d80   guibg=NONE      gui=NONE
 hi cssMediaComma         guifg=#ff4b00   guibg=NONE      gui=NONE
+hi cssInclude            guifg=#8200a8   guibg=NONE      gui=NONE
 
 " VimL
 hi vimCommand            guifg=#ff027b   guibg=NONE      gui=NONE
@@ -219,3 +229,6 @@ hi SpellBad    guisp=#FF0000 gui=undercurl
 hi SpellCap    guisp=#7070F0 gui=undercurl
 hi SpellLocal  guisp=#70F0F0 gui=undercurl
 hi SpellRare   guisp=#FFFFFF gui=undercurl
+
+" Overlength?
+hi OverLength guifg=#ff0000
