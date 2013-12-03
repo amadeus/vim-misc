@@ -18,9 +18,9 @@ set smarttab
 " Show invisibles
 set list
 set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
+set showbreak=…
 " set showbreak=↪
-" set showbreak=…
-set showbreak=...
+" set showbreak=...
 
 
 " Disable matching parens - the real way
@@ -234,6 +234,7 @@ let g:syntastic_mode_map = {
   \ 'mode': 'active',
   \ 'active_filetypes': [],
   \ 'passive_filetypes': [
+    \ 'scss',
     \ 'html',
     \ 'htmldjango',
     \ 'css'
@@ -252,11 +253,11 @@ let g:ctrlp_max_files = 10000
 let ctrlp_filter_greps = "".
   \ "egrep -iv '\\.(" .
   \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store" .
-  \ "|a|beam|tar.gz|tar.bz2" .
+  \ "|a|beam|tar.gz|tar.bz2|map" .
   \ ")$' | " .
   \ "egrep -v '^(\\./)?(" .
   \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|bower_components/" .
-  \ "|static_components/|env/|build/|static/compressed/" .
+  \ "|static_components/|env/|build/|static/compressed/|.sass-cache/|Session.vim" .
   \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -325,8 +326,8 @@ function! DistractionFreeWriting()
   " Hide the linebreak character
   set showbreak=
   " Disable NeoComplCache
-  let g:neocomplcache_enable_at_startup = 0
-  silent exec 'NeoComplCacheDisable'
+  let g:neocomplete#enable_at_startup = 0
+  silent exec 'NeoCompleteDisable'
   " Hide various other types of whitespace characters
   hi NonText    guifg=#1b1b13
   hi SpecialKey guifg=#1b1b13
@@ -675,14 +676,25 @@ augroup END
 " TESTING: NeoComplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 50000
-let g:neocomplete#data_directory = $HOME.'/.vim/cache/noecompl'
+let g:neocomplete#sources#buffer#cache_limit_size = 500000
+let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
+let g:neocomplete#min_keyword_length = 3
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
+let g:neocomplete#enable_fuzzy_completion = 0 " Attempting to not get a bazillion responses...
+let g:neocomplete#enable_refresh_always = 1 " Not sure if this will be good or not
+" let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+" TESTING: Keyword Shiz: Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+" let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 
 augroup omnicomplete
   autocmd!
@@ -795,6 +807,12 @@ let g:startify_custom_header = [
   \ '  ======================================================',
   \ '',
   \ ]
+let g:startify_custom_footer = [
+  \ '',
+  \ '  ======================================================',
+  \ '',
+  \ '  Copyright The Tubez, 2013'
+  \ ]
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
 let g:ctrlp_reuse_window = 'startify'
@@ -807,7 +825,7 @@ augroup startify
   autocmd BufNew * set laststatus=2|highlight NonText guifg=#333333
   autocmd FileType startify set laststatus=0|setlocal cursorline
     \ |highlight NonText guifg=bg
-  " |exe 'IndentLinesToggle'
+    " |exe 'IndentLinesToggle'
 augroup END
 
 
@@ -846,6 +864,7 @@ let g:indentLine_first_char = '⋅'
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_indentLevel = 5
+let g:indentLine_faster = 1
 " let g:indentLine_fileType = ['python', 'py']
 " let g:indentLine_fileTypeExclude = ['help', 'vim', 'javascript', 'startify']
 " let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
@@ -908,13 +927,8 @@ augroup END
 
 
 " TESTING: NeoSnippets
-" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"  \ "\<Plug>(neosnippet_expand_or_jump)"
-"  \: pumvisible() ? "\<C-n>" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"  \  "\<Plug>(neosnippet_expand_or_jump)"
-"  \: "\<TAB>"
-
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " TESTING: Set JSON Filetype
 augroup json
@@ -933,7 +947,7 @@ let g:syntastic_enable_highlighting = 1
 " Ignoring line length issues, ignoring spacing around a : in a hash
 " definition since I like to use Tabularize for alignment. And I think
 " it looks better!
-let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391'
+let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126'
 
 
 " TESTING: Toggle whitespace save
@@ -959,23 +973,35 @@ set formatoptions+=nj
 set formatoptions-=o
 
 " TESTING: ColorColumn
-set colorcolumn=80
+" set colorcolumn=80
 
 
 " TESTING: Quickfix settings
-augroup quickfix
-  autocmd!
-  autocmd FileType qf,startify,gitcommit setlocal colorcolumn=
-augroup END
+" augroup quickfix
+"   autocmd!
+"   autocmd FileType qf,startify,gitcommit setlocal colorcolumn=
+" augroup END
 
 
 " TESTING: Breakindent
-set breakindent
-augroup fixhtml
-  autocmd!
-  autocmd FileType html,htmldjango setlocal wrap
-augroup END
+" set breakindent
+" augroup fixhtml
+"   autocmd!
+"   autocmd FileType html,htmldjango setlocal wrap
+" augroup END
+
+" TESTING: Markdown customizations
+" augroup markdowntweaks
+"   autocmd!
+"   autocmd FileType markdown setlocal nolist|setlocal wrap
+" augroup END
 
 
-" TESTING: YouCompleteMe
-" let g:ycm_min_num_of_chars_for_completion = 1
+" TESTING: Cool shit
+" highlight ColorColumn guibg=#b20000 guifg=#ffffff
+call matchadd('ColorColumn', '\%81v', 100)
+
+" Troll
+" highlight ColorColumn guibg=#000000 guifg=#444444
+" exec 'set colorcolumn=' . join(range(2,80,3), ',')
+
