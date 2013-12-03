@@ -59,7 +59,7 @@ hi Ignore                guifg=NONE      guibg=NONE      gui=NONE
 hi Error                 guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Todo                  guifg=#000000   guibg=#75715e   gui=NONE
 
-hi ColorColumn           guifg=NONE      guibg=#121212    gui=NONE
+hi ColorColumn           guifg=#ff0000   guibg=#121212    gui=NONE
 hi Noise                 guifg=#8200a8   guibg=NONE       gui=NONE
 
 " Vim UI Stuff
@@ -70,7 +70,7 @@ hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
 hi SignColumn            guifg=#666666   guibg=#121212   gui=NONE
 hi Visual                guifg=#1b1b13   guibg=#efefef   gui=NONE
 hi VisualNOS             guifg=#ffffff   guibg=#ff0000   gui=NONE
-hi VertSplit             guifg=#333333   guibg=#121212   gui=NONE
+hi VertSplit             guifg=#333333   guibg=#000000   gui=NONE
 hi Pmenu                 guifg=#999999   guibg=#121212   gui=NONE
 hi PmenuSel              guifg=#000000   guibg=#72faff   gui=NONE
 hi PmenuSbar             guifg=NONE      guibg=NONE      gui=NONE
@@ -85,8 +85,8 @@ hi Search                guifg=#000000   guibg=#fff600   gui=NONE
 hi IncSearch             guifg=#000000   guibg=#ff027f   gui=NONE
 
 hi Directory             guifg=#36a6ff   guibg=NONE      gui=NONE
-hi Folded                guifg=#75715e   guibg=#000000   gui=NONE
-hi FoldColumn            guifg=#75715e   guibg=#0e0e0a   gui=NONE
+hi Folded                guifg=#75715e   guibg=#121212   gui=NONE
+hi FoldColumn            guifg=#75715e   guibg=#121212   gui=NONE
 
 hi ErrorMsg              guifg=#e60000   guibg=NONE      gui=NONE
 hi WarningMsg            guifg=#fff600   guibg=NONE      gui=NONE
@@ -158,6 +158,8 @@ hi pythonBooleanFalse    guifg=#ff221e   guibg=#761210   gui=NONE
 
 " CSS Specific
 hi cssClassName          guifg=#3cff00   guibg=NONE      gui=NONE
+hi cssClassNameDot       guifg=#8200a8   guibg=NONE      gui=NONE
+hi sassClassChar         guifg=#8200a8   guibg=NONE      gui=NONE
 hi cssProp               guifg=#66d9ef   guibg=NONE      gui=NONE
 hi cssTagName            guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi cssUnitDecorators     guifg=#ff027f   guibg=NONE      gui=NONE
@@ -216,6 +218,7 @@ hi CtrlPMatch            guifg=#00d245   guibg=#000000   gui=NONE
 hi StartifyBracket       guifg=#8200a8   guibg=NONE      gui=NONE
 hi StartifyNumber        guifg=#ff027f   guibg=NONE      gui=NONE
 hi StartifyHeader        guifg=#ff6600   guibg=NONE      gui=NONE
+hi StartifyFooter        guifg=#ff6600   guibg=NONE      gui=NONE
 hi StartifyPath          guifg=#75715e   guibg=NONE      gui=NONE
 hi StartifySlash         guifg=#8200a8   guibg=NONE      gui=NONE
 hi StartifySpecial       guifg=#75715e   guibg=NONE      gui=NONE
