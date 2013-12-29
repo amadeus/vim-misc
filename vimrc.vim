@@ -88,7 +88,7 @@ set splitbelow
 " Add buffer to cursor while scrolling
 set scrolloff=3
 set sidescroll=0
-set sidescrolloff=10
+" set sidescrolloff=10
 
 
 " Disable annoying keys and fix common errors
@@ -103,6 +103,7 @@ cnoreabbrev Qa   qa
 cnoreabbrev QA   qa
 cnoreabbrev Tabe tabe
 cnoreabbrev Edit edit
+cnoreabbrev Vsplit vsplit
 cnoreabbrev Set  set
 cnoreabbrev Cd   cd
 
@@ -157,11 +158,6 @@ inoremap <c-k> <esc>O
 inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-j> <esc>o
-
-" Make and restore sessions
-set sessionoptions=blank,buffers,curdir,folds,tabpages
-noremap <leader>ms :mksession! ~/.vim/.session<cr>
-noremap <leader>rs :source ~/.vim/.session<cr>
 
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
@@ -302,10 +298,11 @@ endfunc
 " Distraction Free Writing
 function! DistractionFreeWriting()
   " Size of the editable area
-  set lines=40 columns=100
+  set lines=40 columns=80
   " Hide line numbers
   set nonumber
   " MacVim specific setting for editor's background color
+  " set fuoptions=background:#001b1b13
   set fuoptions=background:#001b1b13
   " Remove right scrollbar
   set guioptions-=r
@@ -319,18 +316,20 @@ function! DistractionFreeWriting()
   set noruler
   " Go to fullscreen editing mode
   set fullscreen
-  " Hide invisible chars - required fo set linebreak
+  " Hide invisible chars - required for set linebreak
   set nolist
   " Break lines on words - cleaner
   set linebreak
   " Hide the linebreak character
   set showbreak=
-  " Disable NeoComplCache
-  let g:neocomplete#enable_at_startup = 0
-  silent exec 'NeoCompleteDisable'
   " Hide various other types of whitespace characters
   hi NonText    guifg=#1b1b13
   hi SpecialKey guifg=#1b1b13
+  " Disable NeoComplCache
+  let g:neocomplete#enable_at_startup = 0
+  silent exec 'NeoCompleteDisable'
+  " Disable Signify
+  silent exec 'SignifyToggle'
 endfunction
 
 
@@ -746,6 +745,7 @@ iabbrev ldis ಠ_ಠ
 iabbrev lsad ಥ_ಥ
 iabbrev lhap ಥ‿ಥ
 iabbrev lmis ಠ‿ಠ
+iabbrev ldiz ( ͠° ͟ʖ ͡°)
 vnoremap u <nop>
 vnoremap gu u
 nnoremap <leader>sx :syntax sync fromstart<cr>:redraw!<cr>
@@ -791,6 +791,7 @@ let g:startify_bookmarks = [
   \ '~/Sites/app.kiip.me',
   \ '~/Sites/kiip.me',
   \ '~/Development/ether/App',
+  \ '~/Development/ether-design-docs',
   \ '~/Sites/eightbit.me',
   \ '~/Desktop/nature-of-code',
   \ '~/.vim/bundle',
@@ -816,7 +817,7 @@ let g:startify_custom_footer = [
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
 let g:ctrlp_reuse_window = 'startify'
-let g:startify_files_number = 4
+let g:startify_files_number = 3
 let g:startify_list_order = ['bookmarks', 'files']
 
 augroup startify
@@ -871,13 +872,6 @@ let g:indentLine_faster = 1
 " let g:indentLine_noConcealCursor=1
 
 
-" TESTING: Disable DelimitMate autclosing " in .vim files
-augroup delimitmate
-  autocmd!
-  autocmd FileType vim let b:delimitMate_quotes = "'"
-augroup END
-
-
 " TESTING: Return to last known position in file
 augroup restorecursor
   autocmd!
@@ -899,8 +893,10 @@ augroup END
 
 " TESTING: Enable Github flavored markdown
 augroup markdown
-    au!
-    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+    autocmd!
+    " autocmd BufNewFile,BufRead *.md,*.markdown setlocal textwidth=79
+    autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+          \ |setlocal textwidth=79
 augroup END
 
 
@@ -926,9 +922,14 @@ augroup fugitivefix
 augroup END
 
 
-" TESTING: NeoSnippets
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" TESTING: NeoSnippets - Attempting to move away from
+" the use of a tab character, since it triggers bugs sometimes
+imap <c-a> <Plug>(neosnippet_expand_or_jump)
+smap <c-a> <Plug>(neosnippet_expand_or_jump)
+xmap <c-a> <Plug>(neosnippet_expand_target)
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 
 " TESTING: Set JSON Filetype
 augroup json
@@ -999,9 +1000,15 @@ set formatoptions-=o
 
 " TESTING: Cool shit
 " highlight ColorColumn guibg=#b20000 guifg=#ffffff
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%81v', 1)
 
 " Troll
 " highlight ColorColumn guibg=#000000 guifg=#444444
 " exec 'set colorcolumn=' . join(range(2,80,3), ',')
 
+
+" TESTING: Fix resizing
+augroup resizefix
+  autocmd!
+  autocmd VimResized * :redraw!
+augroup END
