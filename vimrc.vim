@@ -71,6 +71,7 @@ set ruler
 set laststatus=2
 set noruler
 
+
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
@@ -147,11 +148,13 @@ nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
 
+
 " Slicker way to move around splits
 noremap <c-j> <C-W>j
 noremap <c-k> <C-W>k
 noremap <c-h> <C-W>h
 noremap <c-l> <C-W>l
+
 
 " General cursor moves in insert mode
 inoremap <c-k> <esc>O
@@ -159,13 +162,16 @@ inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-j> <esc>o
 
+
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
+
 
 " Simplified commands for NeoBundle
 command! BU :NeoBundleUpdate!
 command! BL :NeoBundleUpdatesLog
 let g:neobundle#install_process_timeout = 120
+
 
 " Powerline Settings
 set noshowmode
@@ -178,6 +184,7 @@ set backupdir=~/.vim/backup
 set undodir=~/.vim/undo
 set backup
 set undofile
+
 
 " Remove trailing whitespace on save
 function! Preserve(command)
@@ -245,7 +252,6 @@ let g:gist_open_browser_after_post = 1
 " CtrlP Optimizations
 let g:ctrlp_max_files = 10000
 
-"deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
 let ctrlp_filter_greps = "".
   \ "egrep -iv '\\.(" .
   \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store" .
@@ -329,11 +335,33 @@ function! DistractionFreeWriting()
   let g:neocomplete#enable_at_startup = 0
   silent exec 'NeoCompleteDisable'
   " Disable Signify
-  silent exec 'SignifyToggle'
+  " silent exec 'SignifyToggle'
+  silent exec 'GitGutterSignsToggle'
 endfunction
 
 
-" TESTING: - Testing wrap movement
+" NeoComplete Settings
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#auto_completion_start_length = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 500000
+let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
+let g:neocomplete#min_keyword_length = 3
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_fuzzy_completion = 1 " Attempting to not get a bazillion responses...
+let g:neocomplete#enable_refresh_always = 1 " Not sure if this will be good or not
+
+augroup omnicomplete
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
+
+
+" Better line wrap movement
 vnoremap j gj
 nnoremap j gj
 vnoremap k gk
@@ -344,7 +372,6 @@ nnoremap k gk
 let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
 let g:detectindent_max_lines_to_analyse = 1024
-"let g:detectindent_verbosity = 1 -- don't think I need this
 augroup detectindent
   autocmd!
   autocmd BufReadPost * :DetectIndent
@@ -354,8 +381,6 @@ augroup END
 " TESTING: New way of escaping insert mode
 inoremap jk <Esc>
 inoremap JK <Esc>
-" Re-enabling escape because I think I've successfully switched
-" inoremap <esc> <nop>
 
 
 " TESTING: .conf to yaml
@@ -672,38 +697,21 @@ augroup syntaxfolding
 augroup END
 
 
-" TESTING: NeoComplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 500000
-let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
-let g:neocomplete#min_keyword_length = 3
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_fuzzy_completion = 0 " Attempting to not get a bazillion responses...
-let g:neocomplete#enable_refresh_always = 1 " Not sure if this will be good or not
-" let g:neocomplete#sources#syntax#min_keyword_length = 2
-
-" TESTING: Keyword Shiz: Define keyword.
+" TESTING: NeoComplete Settings tests
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
 " if !exists('g:neocomplete#force_omni_input_patterns')
 "   let g:neocomplete#force_omni_input_patterns = {}
 " endif
 " let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 " let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 
-augroup omnicomplete
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup END
+" Attempting to fix neocomplete converter_case
+call neocomplete#custom#source('_', 'converters',
+  \ ['converter_remove_overlap', 'converter_remove_last_paren',
+  \  'converter_delimiter', 'converter_abbr'])
 
 
 " TESTING: Force vim to think of 2 spaces as a sentence
@@ -714,11 +722,16 @@ set cpo+=J
 let g:NERDSpaceDelims = 1
 
 
-" TESTING: Signify settings
-let g:signify_mapping_next_hunk = '<leader>j'
-let g:signify_mapping_prev_hunk = '<leader>k'
-let g:signify_vcs_list = [ 'git', 'hg' ]
-let g:signify_skip_filetype = { 'help': 1 }
+" TESTING: Signify/GitGutter Settings
+nmap <leader>j <Plug>GitGutterNextHunk
+nmap <leader>k <Plug>GitGutterPrevHunk
+nmap <leader>ga <Plug>GitGutterAll
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+" let g:signify_mapping_next_hunk = '<leader>j'
+" let g:signify_mapping_prev_hunk = '<leader>k'
+" let g:signify_vcs_list = [ 'git', 'hg' ]
+" let g:signify_skip_filetype = { 'help': 1 }
 
 
 " TESTING: Show the stack of syntax hilighting classes affecting
@@ -732,7 +745,7 @@ nnoremap <F7> :call SynStack()<CR>
 
 
 " TESTING: Don't try to highlight lines longer than 800 characters.
-" set synmaxcol=800
+set synmaxcol=800
 
 
 " TESTING: Better completion?
@@ -770,10 +783,10 @@ let g:Gitv_DoNotMapCtrlKey = 1
 set magic
 
 
-" TESTING: New JSBeuatify Stuff
-nnoremap <leader>fj  :call JsBeautify()<cr>
-nnoremap <leader>fh  :call HtmlBeautify()<cr>
-nnoremap <leader>fc  :call CSSBeautify()<cr>
+" TESTING: New JSBeautify Stuff
+nnoremap <leader>fj :call JsBeautify()<cr>
+nnoremap <leader>fh :call HtmlBeautify()<cr>
+nnoremap <leader>fc :call CSSBeautify()<cr>
 
 
 " TESTING: Set htmldjango.html on all html files - don't need this?
@@ -812,7 +825,7 @@ let g:startify_custom_footer = [
   \ '',
   \ '  ======================================================',
   \ '',
-  \ '  Copyright The Tubez, 2013'
+  \ '  Copyright Tubez, 2013'
   \ ]
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
@@ -930,6 +943,9 @@ xmap <c-a> <Plug>(neosnippet_expand_target)
 " imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 " smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+" Enabling my old snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-misc/snippets'
+
 
 " TESTING: Set JSON Filetype
 augroup json
@@ -973,9 +989,6 @@ nnoremap <leader>p <nop>
 set formatoptions+=nj
 set formatoptions-=o
 
-" TESTING: ColorColumn
-" set colorcolumn=80
-
 
 " TESTING: Quickfix settings
 " augroup quickfix
@@ -999,16 +1012,14 @@ set formatoptions-=o
 
 
 " TESTING: Cool shit
-" highlight ColorColumn guibg=#b20000 guifg=#ffffff
 call matchadd('ColorColumn', '\%81v', 1)
+
 
 " Troll
 " highlight ColorColumn guibg=#000000 guifg=#444444
 " exec 'set colorcolumn=' . join(range(2,80,3), ',')
 
 
-" TESTING: Fix resizing
-augroup resizefix
-  autocmd!
-  autocmd VimResized * :redraw!
-augroup END
+" TESTING: New easy-motion
+map <leader><leader><leader> <Plug>(easymotion-repeat)
+map <SPACE> <Plug>(easymotion-s)

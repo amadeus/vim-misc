@@ -59,7 +59,8 @@ hi Ignore                guifg=NONE      guibg=NONE      gui=NONE
 hi Error                 guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Todo                  guifg=#000000   guibg=#75715e   gui=NONE
 
-hi ColorColumn           guifg=#ff0000   guibg=#121212    gui=NONE
+" hi ColorColumn           guifg=#ff0000   guibg=#121212    gui=NONE
+hi ColorColumn           guifg=#ff0000   guibg=#121212    gui=inverse
 hi Noise                 guifg=#8200a8   guibg=NONE       gui=NONE
 
 " Vim UI Stuff
