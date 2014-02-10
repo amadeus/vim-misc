@@ -745,7 +745,7 @@ nnoremap <F7> :call SynStack()<CR>
 
 
 " TESTING: Don't try to highlight lines longer than 800 characters.
-set synmaxcol=800
+" set synmaxcol=200
 
 
 " TESTING: Better completion?
@@ -1023,3 +1023,7 @@ call matchadd('ColorColumn', '\%81v', 1)
 " TESTING: New easy-motion
 map <leader><leader><leader> <Plug>(easymotion-repeat)
 map <SPACE> <Plug>(easymotion-s)
+
+
+" TESTING: JS Indent Tweaks
+let g:javascript_indent_to_parens = 0
