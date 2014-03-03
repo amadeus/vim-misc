@@ -19,8 +19,6 @@ set smarttab
 set list
 set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
 set showbreak=…
-" set showbreak=↪
-" set showbreak=...
 
 
 " Disable matching parens - the real way
@@ -130,11 +128,10 @@ nnoremap q <nop>
 vnoremap q <nop>
 nnoremap Q q
 vnoremap Q q
-nnoremap <leader>w   :w<cr>
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai2.vim<cr>
-nnoremap <leader>h   :so $VIMRUNTIME/syntax/hitest.vim<cr>
+nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :GundoToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
@@ -175,7 +172,9 @@ let g:neobundle#install_process_timeout = 120
 
 " Powerline Settings
 set noshowmode
-let g:Powerline_symbols = 'fancy'
+if has("gui_running")
+  let g:Powerline_symbols = 'fancy'
+endif
 
 
 " Swap, Undo and Backup Folder Configuration
@@ -233,14 +232,15 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_javascript_syntax_checker="jshint"
 let g:syntastic_css_syntax_checker="csslint"
 let g:syntastic_enable_highlighting = 0
+let g:syntastic_sass_check_partials = 1
 let g:syntastic_mode_map = {
   \ 'mode': 'active',
   \ 'active_filetypes': [],
   \ 'passive_filetypes': [
-    \ 'scss',
-    \ 'html',
-    \ 'htmldjango',
-    \ 'css'
+  \   'html',
+  \   'xhtml',
+  \   'htmldjango',
+  \   'css'
   \ ] }
 
 
@@ -361,14 +361,14 @@ augroup omnicomplete
 augroup END
 
 
-" Better line wrap movement
+" Improved line wrap movement
 vnoremap j gj
 nnoremap j gj
 vnoremap k gk
 nnoremap k gk
 
 
-" TESTING: DetectIndent
+" DetectIndent Settings
 let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
 let g:detectindent_max_lines_to_analyse = 1024
@@ -378,7 +378,7 @@ augroup detectindent
 augroup END
 
 
-" TESTING: New way of escaping insert mode
+" Improved way of Escaping out of insert mode
 inoremap jk <Esc>
 inoremap JK <Esc>
 
@@ -671,9 +671,11 @@ endfunc
 
 
 " TESTING: Javascript in HTML indent fixes, maybe?
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1  = "inc"
+" Don't think this actually works anymore, since the
+" functionality was removed from vim-javascript plugin
+" let g:html_indent_inctags = "html,body,head,tbody"
+" let g:html_indent_script1 = "inc"
+" let g:html_indent_style1  = "inc"
 
 
 " TESTING: CSS Specific Motions
@@ -713,7 +715,6 @@ call neocomplete#custom#source('_', 'converters',
   \ ['converter_remove_overlap', 'converter_remove_last_paren',
   \  'converter_delimiter', 'converter_abbr'])
 
-
 " TESTING: Force vim to think of 2 spaces as a sentence
 set cpo+=J
 
@@ -726,8 +727,13 @@ let g:NERDSpaceDelims = 1
 nmap <leader>j <Plug>GitGutterNextHunk
 nmap <leader>k <Plug>GitGutterPrevHunk
 nmap <leader>ga <Plug>GitGutterAll
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
+" Testing realtime updating... could ruin Vim performance
+" So far it has resulted in awesome performance
+" sometimes a bit jumpy... not the end of the world tho
+set updatetime=100
+
+" let g:gitgutter_realtime = 0
+" let g:gitgutter_eager = 0
 " let g:signify_mapping_next_hunk = '<leader>j'
 " let g:signify_mapping_prev_hunk = '<leader>k'
 " let g:signify_vcs_list = [ 'git', 'hg' ]
@@ -750,7 +756,8 @@ nnoremap <F7> :call SynStack()<CR>
 
 " TESTING: Better completion?
 set complete=.,w,b,u,t
-set completeopt=menuone,preview
+" Used to have preview on this puppy - caused all sorts of probs
+set completeopt=menuone
 
 
 " TESTING: Fun tiems
@@ -809,6 +816,7 @@ let g:startify_bookmarks = [
   \ '~/Desktop/nature-of-code',
   \ '~/.vim/bundle',
   \ ]
+
 let g:startify_custom_header = [
   \ '                                _________  __  __',
   \ '            __                 /\_____   \/\ \/\ `\',
@@ -821,12 +829,14 @@ let g:startify_custom_header = [
   \ '  ======================================================',
   \ '',
   \ ]
+
 let g:startify_custom_footer = [
   \ '',
   \ '  ======================================================',
   \ '',
-  \ '  Copyright Tubez, 2013'
+  \ '  Copyright Tubez, 2014'
   \ ]
+
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
 let g:ctrlp_reuse_window = 'startify'
@@ -1011,8 +1021,24 @@ set formatoptions-=o
 " augroup END
 
 
-" TESTING: Cool shit
-call matchadd('ColorColumn', '\%81v', 1)
+" TESTING: ColorColumn Jazz
+" I only want my special ColorColumn used on the JS filetype
+" It requires that I add and remove it on a per file/window basis
+function! ToggleColorColumn()
+  " Only run matchadd if it doesn't exist in a JS file
+  if &filetype == 'javascript' && !exists('w:js_color_column')
+    let w:js_color_column = matchadd('ColorColumn', '\%82v', -1)
+  " Otherwise clear it out completely
+  elseif &filetype != 'javascript' && exists('w:js_color_column')
+    call matchdelete(w:js_color_column)
+    unlet w:js_color_column
+  end
+endfunction
+
+augroup colorColumn
+  autocmd!
+  autocmd BufEnter * :call ToggleColorColumn()
+augroup END
 
 
 " Troll
@@ -1024,6 +1050,30 @@ call matchadd('ColorColumn', '\%81v', 1)
 map <leader><leader><leader> <Plug>(easymotion-repeat)
 map <SPACE> <Plug>(easymotion-s)
 
+" Crazy easymotion searches
+map  <leader>/ <Plug>(easymotion-sn)
+omap <leader>/ <Plug>(easymotion-tn)
+map  <leader>n <Plug>(easymotion-next)
+map  <leader>N <Plug>(easymotion-prev)
+let g:EasyMotion_smartcase = 1
+
 
 " TESTING: JS Indent Tweaks
 let g:javascript_indent_to_parens = 0
+
+
+" TESTING: Dope patch
+if exists('&indentmarker')
+  " set indentmarker=⋅
+  set indentmarker=•
+
+  augroup showindent
+    autocmd!
+    autocmd FileType * setlocal showindent
+    autocmd FileType help,startify,markdown setlocal noshowindent
+  augroup END
+
+  " For some reason I have to set this after showindent or
+  " incsearch never gets set for some weird reason
+  set incsearch
+endif

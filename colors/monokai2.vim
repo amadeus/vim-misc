@@ -227,6 +227,9 @@ hi StartifySpecial       guifg=#75715e   guibg=NONE      gui=NONE
 " Easy Motion
 hi EasyMotionTarget      guifg=#e60000   guibg=#1b1b13   gui=BOLD
 hi EasyMotionShade       guifg=#75715e   guibg=#1b1b13
+hi EasyMotionIncSearch   guifg=#000000   guibg=#ff027f   gui=NONE
+hi EasyMotionIncCursor   guifg=#75715e   guibg=#1b1b13   gui=inverse
+
 
 " Spell Stuff
 hi SpellBad    guisp=#FF0000 gui=undercurl
