@@ -36,7 +36,8 @@ hi Operator              guifg=#ff027f   guibg=NONE      gui=NONE
 hi Keyword               guifg=#ff027f   guibg=NONE      gui=NONE
 hi Exception             guifg=#e60000   guibg=NONE      gui=NONE
 
-hi PreProc               guifg=#3cff00   guibg=NONE      gui=NONE
+" hi PreProc               guifg=#3cff00   guibg=NONE      gui=NONE
+hi PreProc               guifg=#75715e   guibg=#000000   gui=NONE
 hi Include               guifg=#75715e   guibg=#000000   gui=NONE
 hi Define                guifg=#75715e   guibg=#000000   gui=NONE
 hi Macro                 guifg=#75715e   guibg=#000000   gui=NONE
@@ -67,7 +68,6 @@ hi Noise                 guifg=#8200a8   guibg=NONE       gui=NONE
 hi Cursor                guifg=#000000   guibg=#04a0f7   gui=NONE
 hi NonText               guifg=#333333   guibg=NONE      gui=NONE
 hi LineNr                guifg=#666666   guibg=#121212   gui=NONE
-hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
 hi SignColumn            guifg=#666666   guibg=#121212   gui=NONE
 hi Visual                guifg=#1b1b13   guibg=#efefef   gui=NONE
 hi VisualNOS             guifg=#ffffff   guibg=#ff0000   gui=NONE
@@ -79,7 +79,11 @@ hi PmenuThumb            guifg=#ff0000
 hi SpecialKey            guifg=#333333   guibg=NONE      gui=NONE
 hi StatusLine            guifg=NONE      guibg=#2a2a1c   gui=bold
 hi StatusLineNC          guifg=#444444   guibg=#1b1b13   gui=NONE
-hi CursorLine            guifg=NONE      guibg=#000000   gui=NONE
+" hi CursorLine            guifg=NONE      guibg=#000000   gui=NONE
+hi CursorLine            guifg=NONE      guibg=NONE      gui=NONE
+" hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
+" hi CursorLineNr          guifg=#ff4b00   guibg=#121212   gui=BOLD
+hi CursorLineNr          guifg=#04a0f7   guibg=#121212   gui=BOLD
 hi CursorColumn          guifg=NONE      guibg=#000000   gui=NONE
 hi MatchParen            guifg=NONE      guibg=NONE      gui=inverse
 hi Search                guifg=#000000   guibg=#fff600   gui=NONE
