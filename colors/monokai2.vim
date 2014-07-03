@@ -49,7 +49,7 @@ hi Structure             guifg=#3cff00   guibg=NONE      gui=NONE
 hi Typedef               guifg=#3cff00   guibg=NONE      gui=NONE
 
 hi Special               guifg=#ff4b00   guibg=NONE      gui=NONE
-hi SpecialChar           guifg=#ff4b00   guibg=#571a00   gui=NONE
+hi SpecialChar           guifg=#ff4b00   guibg=#330f00   gui=NONE
 hi Tag                   guifg=#d7d7d7   guibg=#e60000   gui=NONE
 hi Delimiter             guifg=#ff027f   guibg=NONE      gui=NONE
 hi SpecialComment        guifg=#d7d7d7   guibg=#e60000   gui=NONE
@@ -165,6 +165,8 @@ hi pythonBooleanFalse    guifg=#ff221e   guibg=#761210   gui=NONE
 hi cssClassName          guifg=#3cff00   guibg=NONE      gui=NONE
 hi cssClassNameDot       guifg=#8200a8   guibg=NONE      gui=NONE
 hi sassClassChar         guifg=#8200a8   guibg=NONE      gui=NONE
+hi cssSpecialCharQ       guifg=#ff4b00   guibg=#330f00   gui=NONE
+hi cssUnicodeEscape      guifg=#ff4b00   guibg=#330f00   gui=NONE
 hi cssProp               guifg=#66d9ef   guibg=NONE      gui=NONE
 hi cssTagName            guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi cssUnitDecorators     guifg=#ff027f   guibg=NONE      gui=NONE
@@ -183,6 +185,7 @@ hi cssInclude            guifg=#8200a8   guibg=NONE      gui=NONE
 
 " VimL
 hi vimCommand            guifg=#ff027b   guibg=NONE      gui=NONE
+hi vimOption             guifg=#3cff00   guibg=NONE      gui=NONE
 
 " Git Diff and Fugitive Plugin
 hi DiffAdd               guifg=NONE      guibg=#192e00   gui=NONE
@@ -242,4 +245,12 @@ hi SpellLocal  guisp=#70F0F0 gui=undercurl
 hi SpellRare   guisp=#FFFFFF gui=undercurl
 
 " Overlength?
-hi OverLength guifg=#ff0000
+hi OverLength  guifg=#ff0000
+hi CtrlPMark   guifg=#fff600   guibg=#121212
+
+" Bash Stuff
+hi shQuote     guifg=#ff027f   guibg=#333100   gui=NONE
+
+" NERDTree
+hi NERDTreeClosable guifg=#36a6ff   guibg=NONE      gui=NONE
+hi NERDTreeOpenable guifg=#36a6ff   guibg=NONE      gui=NONE
