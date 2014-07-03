@@ -596,7 +596,7 @@ let @x='vi{:s/:\ /:/g'
 " syn keyword cssFontAttr contained
 augroup cssupdates
   autocmd!
-  autocmd FileType css syn keyword cssFontAttr contained Inconsolata Noteworthy
+  autocmd FileType css,scss syn keyword cssFontAttr contained Inconsolata Noteworthy AvenirNext Medium Avenir Next
 augroup END
 
 
