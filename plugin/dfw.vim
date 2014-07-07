@@ -22,7 +22,7 @@ function! DistractionFreeWriting()
   " Hide the linebreak character - if it exists
   set showbreak=
   " Hide various other types of whitespace characters
-  hi NonText    guifg=#1b1b13
+  " hi NonText    guifg=#1b1b13
   hi SpecialKey guifg=#1b1b13
   " Disable NeoComplCache
   let g:neocomplete#enable_at_startup = 0
