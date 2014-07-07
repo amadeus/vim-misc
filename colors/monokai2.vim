@@ -65,7 +65,7 @@ hi ColorColumn           guifg=#ff0000   guibg=#121212    gui=inverse
 hi Noise                 guifg=#8200a8   guibg=NONE       gui=NONE
 
 " Vim UI Stuff
-hi Cursor                guifg=#000000   guibg=#04a0f7   gui=NONE
+hi Cursor                guifg=#000000   guibg=#ff027f   gui=NONE
 hi NonText               guifg=#1b1b13   guibg=NONE      gui=NONE
 hi LineNr                guifg=#666666   guibg=#121212   gui=NONE
 hi SignColumn            guifg=#666666   guibg=#121212   gui=NONE
@@ -79,11 +79,8 @@ hi PmenuThumb            guifg=#ff0000
 hi SpecialKey            guifg=#333333   guibg=NONE      gui=NONE
 hi StatusLine            guifg=NONE      guibg=#2a2a1c   gui=bold
 hi StatusLineNC          guifg=#444444   guibg=#1b1b13   gui=NONE
-" hi CursorLine            guifg=NONE      guibg=#000000   gui=NONE
 hi CursorLine            guifg=NONE      guibg=NONE      gui=NONE
-" hi CursorLineNr          guifg=#ff4b00   guibg=#0e0e0a   gui=NONE
-" hi CursorLineNr          guifg=#ff4b00   guibg=#121212   gui=BOLD
-hi CursorLineNr          guifg=#04a0f7   guibg=#121212   gui=BOLD
+hi CursorLineNr          guifg=#ff027f   guibg=#121212   gui=BOLD
 hi CursorColumn          guifg=NONE      guibg=#000000   gui=NONE
 hi MatchParen            guifg=NONE      guibg=NONE      gui=inverse
 hi Search                guifg=#000000   guibg=#fff600   gui=NONE
