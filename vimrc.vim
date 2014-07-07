@@ -3,6 +3,7 @@ set linebreak
 set encoding=utf-8
 set ttyfast
 set confirm
+set hidden
 
 
 " Indent settings
@@ -16,7 +17,8 @@ set smarttab
 
 " Show invisibles
 set list
-set listchars=tab:›\ ,eol:¬,trail:⋅,nbsp:␣
+set listchars=tab:›\ ,trail:⋅,nbsp:␣
+" eol:¬,
 " set showbreak=…
 
 
@@ -30,10 +32,6 @@ set backspace=indent,eol,start
 
 " Lots of history
 set history=1000
-
-
-" Allow buffers to be changed on unsaved files
-set hidden
 
 
 " Searching made less specific
@@ -66,7 +64,7 @@ set guioptions=aAce
 set shortmess=ITaoc
 set title titlestring=%t
 set number
-set numberwidth=4
+set numberwidth=3
 set ruler
 set laststatus=2
 set noruler
@@ -128,7 +126,6 @@ noremap  <Down>  <Nop>
 noremap  <Left>  <Nop>
 noremap  <Right> <Nop>
 
-
 " Various leader shortcuts
 let mapleader="q"
 nnoremap q <nop>
@@ -152,18 +149,15 @@ nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
 
-
 " Slicker way to move around splits
 noremap <c-j> <C-W>j
 noremap <c-k> <C-W>k
 noremap <c-h> <C-W>h
 noremap <c-l> <C-W>l
 
-
 " Improved way of Escaping out of insert mode
 inoremap jk <Esc>
 inoremap JK <Esc>
-
 
 " General cursor moves in insert mode
 inoremap <c-k> <esc>O
@@ -171,10 +165,8 @@ inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-j> <esc>o
 
-
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
-
 
 " Simplified commands for NeoBundle
 command! BU :NeoBundleUpdate!
@@ -187,7 +179,6 @@ set noshowmode
 if has("gui_running")
   let g:Powerline_symbols = 'fancy'
 endif
-
 
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
@@ -309,12 +300,6 @@ else
 endif
 
 call ctrlp_bdelete#init()
-
-
-" Loading Custom methods - need to figure out
-" a smarter way to do this
-source $HOME/.vim/bundle/vim-misc/DistractionFreeWriting.vim
-source $HOME/.vim/bundle/vim-misc/Entities.vim
 
 
 " NeoComplete Settings
@@ -495,18 +480,8 @@ nnoremap <leader>se :source Session.vim<cr>
 set noswapfile
 
 
-" TESTING: JS Stuff - Not sure this is even supported
-" let g:html_indent_inctags="html,body,head,tbody"
-" let g:html_indent_script1="inc"
-" let g:html_indent_style1="inc"
-
-
 " TESTING: GitV: Fix my Ctrl window navigation hotkeys
 let g:Gitv_DoNotMapCtrlKey = 1
-
-
-" TESTING: Some dude's VIMRC
-set magic
 
 
 " TESTING: New JSBeautify Stuff
