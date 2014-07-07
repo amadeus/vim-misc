@@ -780,3 +780,9 @@ augroup fixquickfix
   autocmd!
   autocmd FileType qf setlocal nocursorline
 augroup END
+
+
+" TESTING: Custom Entity Replacements
+let g:CustomEntities = [
+  \ ['(c)',  '\&copy;'],
+\ ]
