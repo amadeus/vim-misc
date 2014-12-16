@@ -228,6 +228,7 @@ hi StartifyFooter        guifg=#ff6600   guibg=NONE      gui=NONE
 hi StartifyPath          guifg=#75715e   guibg=NONE      gui=NONE
 hi StartifySlash         guifg=#8200a8   guibg=NONE      gui=NONE
 hi StartifySpecial       guifg=#75715e   guibg=NONE      gui=NONE
+hi StartifyFile          guifg=#ffffff   guibg=NONE      gui=NONE
 
 " Easy Motion
 hi EasyMotionTarget      guifg=#e60000   guibg=#1b1b13   gui=BOLD

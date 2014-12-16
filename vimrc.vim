@@ -140,7 +140,6 @@ nnoremap <leader>u   :GundoToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>st  :SyntasticToggle<cr>
-nnoremap <leader>gq  :diffoff<cr><c-h>:q<cr>:set nowrap<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>a   :Ack '
@@ -239,13 +238,21 @@ nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>l :CtrlPLine<cr>
 let g:ctrlp_clear_cache_on_exit = 0
+" To be used when CtrlP get's updated with the new BufferExplorer
+" let g:ctrlp_prompt_mappings = {
+"   \ 'PrtDeleteEnt()':       ['<c-@>']
+" \ }
 
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
-let g:syntastic_javascript_syntax_checker="jshint"
-let g:syntastic_css_syntax_checker="csslint"
+let g:syntastic_reuse_loc_lists=0
+" let g:syntastic_javascript_syntax_checker="jshint"
+let g:syntastic_javascript_checkers=["jshint"]
+let g:syntastic_css_checker=["csslint"]
 let g:syntastic_enable_highlighting = 0
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_enable_highlighting = 1
 let g:syntastic_sass_check_partials = 1
 let g:syntastic_mode_map = {
   \ 'mode': 'active',
@@ -254,8 +261,13 @@ let g:syntastic_mode_map = {
   \   'html',
   \   'xhtml',
   \   'htmldjango',
-  \   'css'
+  \   'css',
+  \   'scss'
   \ ] }
+" Ignoring line length issues, ignoring spacing around a : in a hash
+" definition since I like to use Tabularize for alignment. And I think
+" it looks better!
+let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126'
 
 
 " Gist settings
@@ -272,7 +284,7 @@ let ctrlp_filter_greps = "".
   \ "|a|beam|tar.gz|tar.bz2|map" .
   \ ")$' | " .
   \ "egrep -v '^(\\./)?(" .
-  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|bower_components/|compressed/" .
+  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|node_modules/|bower_components/|compressed/|_site/" .
   \ "|static_components/|bin/|env/|build/|static/compressed/|.sass-cache/|Session.vim" .
   \ ")'"
 
@@ -504,7 +516,7 @@ let g:startify_bookmarks = [
   \ '~/Sites/kiip.me',
   \ '~/Development/ether/App',
   \ '~/Development/ether-design-docs',
-  \ '~/Desktop/liquid-tests',
+  \ '~/Development/Engine.js',
   \ '~/.vim/bundle',
   \ ]
 " \ '~/Sites/eightbit.me',
@@ -573,11 +585,6 @@ augroup cssupdates
   autocmd!
   autocmd FileType css,scss syn keyword cssFontAttr contained Inconsolata Noteworthy AvenirNext Medium Avenir Next
 augroup END
-
-
-" TESTING: Improved search navigation
-nnoremap n nzz
-nnoremap N Nzz
 
 
 " TESTING: Command Mode Improvements
@@ -669,21 +676,12 @@ augroup END
 let g:vim_json_syntax_conceal = 0
 
 
-" TESTING: Python syntax shiiiiiz
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-let g:syntastic_enable_highlighting = 1
-" Ignoring line length issues, ignoring spacing around a : in a hash
-" definition since I like to use Tabularize for alignment. And I think
-" it looks better!
-let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126'
-
-
 " TEMP: This is to better train myself for the new preserve whitespace B.S.
 nnoremap <leader>p <nop>
 
 
 " TESTING: Format Options Tweaks
-set formatoptions+=nj
+set formatoptions+=njt
 set formatoptions-=o
 
 
@@ -767,8 +765,8 @@ augroup fixscrolloff
 augroup END
 
 
-" TESTING: Dos Long Lines Do
-" set synmaxcol=200
+" TESTING: Dos Long Lines Doh
+set synmaxcol=3000
 
 
 " TESTING: csv.vim
@@ -786,3 +784,14 @@ augroup END
 let g:CustomEntities = [
   \ ['(c)',  '\&copy;'],
 \ ]
+
+
+" TESTING: CloseTag
+inoremap <C-_> <C-R>=GetCloseTag()<CR>
+
+
+" TESTING: GitGutter Fixes
+let g:gitgutter_max_signs = 500
+" set textwidth=80 - causes a major issue in html files - need to figure out
+
+let g:javascript_indent_to_parens=0
