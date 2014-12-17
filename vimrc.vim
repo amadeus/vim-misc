@@ -65,9 +65,8 @@ set shortmess=ITaoc
 set title titlestring=%t
 set number
 set numberwidth=3
-set ruler
-set laststatus=2
 set noruler
+set laststatus=2
 
 
 " For some reason, it seems that Mac has a different
@@ -620,13 +619,6 @@ augroup END
 
 " TESTING: Tweaks to split fillchars
 set fillchars+=vert:┆
-
-
- " TESTING: Sync from start
-augroup syncfromstart
-  autocmd!
-  autocmd BufEnter * :syntax sync fromstart
-augroup END
 
 
 " TESTING: Enable Github flavored markdown
