@@ -55,7 +55,7 @@ set background=dark
 " Basically use a fancier colortheme in
 " MacVim
 if has("gui_running")
-  colorscheme monokai2
+  colorscheme evokai
 else
   colorscheme molokai
 endif
@@ -133,7 +133,7 @@ nnoremap Q q
 vnoremap Q q
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
-nnoremap <leader>mc  :e ~/.vim/bundle/vim-misc/colors/monokai2.vim<cr>
+nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
 nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :GundoToggle<cr>
 nnoremap <leader>dd  :bd<cr>
@@ -148,10 +148,10 @@ nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
 
 " Slicker way to move around splits
-noremap <c-j> <C-W>j
-noremap <c-k> <C-W>k
-noremap <c-h> <C-W>h
-noremap <c-l> <C-W>l
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
 
 " Improved way of Escaping out of insert mode
 inoremap jk <Esc>
@@ -162,6 +162,7 @@ inoremap <c-k> <esc>O
 inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-j> <esc>o
+inoremap <c-d> <esc>v^c
 
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
@@ -318,11 +319,16 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_completion_start_length = 1
 let g:neocomplete#sources#buffer#cache_limit_size = 500000
 let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
-let g:neocomplete#min_keyword_length = 3
+let g:neocomplete#min_keyword_length = 4
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#enable_smart_case = 1
 
+" Fix bizzaro full line autocomplete
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+
 " Attempting to not get a bazillion responses...
-let g:neocomplete#enable_fuzzy_completion = 1
+let g:neocomplete#enable_fuzzy_completion = 0
 " Not sure if this will be good or not
 let g:neocomplete#enable_refresh_always = 1
 
@@ -375,7 +381,7 @@ augroup END
 
 
 " TESTING: Search for selected text
-vnoremap <silent> * :<C-U>
+vnoremap <silent> <c-s> :<C-U>
   \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \ gvy/<C-R><C-R>=substitute(
   \ escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
@@ -483,7 +489,7 @@ iabbrev lmis ಠ‿ಠ
 iabbrev ldiz ( ͠° ͟ʖ ͡°)
 vnoremap u <nop>
 vnoremap gu u
-nnoremap <leader>sx :syntax sync fromstart<cr>:redraw!<cr>
+" nnoremap <leader>sx :syntax sync fromstart<cr>:redraw!<cr>
 nnoremap <leader>se :source Session.vim<cr>
 
 
@@ -506,6 +512,8 @@ augroup htmldjango
   autocmd!
   " By forcing htmldjango to htmldjango.html, I allow snipmate to work
   autocmd FileType html setl filetype=htmldjango
+  " Fix data- attributes in html elements
+  autocmd Syntax html setlocal iskeyword+=-
 augroup END
 
 
@@ -786,4 +794,21 @@ inoremap <C-_> <C-R>=GetCloseTag()<CR>
 let g:gitgutter_max_signs = 500
 " set textwidth=80 - causes a major issue in html files - need to figure out
 
+" TESTING: Vim Javascript indent tests
 let g:javascript_indent_to_parens=0
+
+" TESTING: WindowSapper
+let g:windowswap_map_keys = 0
+nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+
+
+" TESTING: Better sessionoptions
+set sessionoptions=blank,buffers,curdir,help,tabpages
+
+
+" TESTING: NeoSnippets - hide cursor jump positions
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
