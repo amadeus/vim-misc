@@ -108,7 +108,7 @@ hi htmlTag               guifg=#ff027f   guibg=NONE      gui=NONE
 hi htmlEndTag            guifg=#ff027f   guibg=NONE      gui=NONE
 hi htmlSpecialTagName    guifg=#36a6ff   guibg=#003e65   gui=NONE
 hi htmlTagName           guifg=#36a6ff   guibg=#003e65   gui=NONE
-hi htmlArg               guifg=#00d9ef   guibg=NONE      gui=NONE
+hi htmlArg               guifg=#3cff00   guibg=NONE      gui=NONE
 hi htmlSpecialChar       guifg=#bb40f5   guibg=NONE      gui=NONE
 hi djangoVarBrackets     guifg=#8200a8   guibg=NONE      gui=NONE
 hi djangoTagBrackets     guifg=#8200a8   guibg=NONE      gui=NONE
