@@ -49,6 +49,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
 
 " Syntax, Colorscheme and Gui Options
 syntax on
+syntax sync fromstart
 set cursorline
 set background=dark
 
@@ -179,6 +180,7 @@ if has("gui_running")
   let g:Powerline_symbols = 'fancy'
 endif
 
+
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
@@ -280,12 +282,13 @@ let g:ctrlp_max_files = 10000
 
 let ctrlp_filter_greps = "".
   \ "egrep -iv '\\.(" .
-  \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|mo|po|DS_Store" .
-  \ "|a|beam|tar.gz|tar.bz2|map" .
+  \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|psd" .
+  \ "|mo|po|DS_Store|a|beam|tar.gz|tar.bz2|map" .
   \ ")$' | " .
   \ "egrep -v '^(\\./)?(" .
-  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|node_modules/|bower_components/|compressed/|_site/" .
-  \ "|static_components/|bin/|env/|build/|static/compressed/|.sass-cache/|Session.vim" .
+  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|" .
+  \ "node_modules/|bower_components/|compressed/|_site/|static_components/|" .
+  \ "bin/|env/|build/|static/compressed/|.sass-cache/|Session.vim" .
   \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -316,21 +319,15 @@ call ctrlp_bdelete#init()
 
 " NeoComplete Settings
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_fuzzy_completion = 1
 let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 500000
 let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
 let g:neocomplete#min_keyword_length = 4
-let g:neocomplete#sources#syntax#min_keyword_length = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#enable_smart_case = 1
 
 " Fix bizzaro full line autocomplete
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-
-" Attempting to not get a bazillion responses...
-let g:neocomplete#enable_fuzzy_completion = 0
-" Not sure if this will be good or not
-let g:neocomplete#enable_refresh_always = 1
 
 augroup omnicomplete
   autocmd!
@@ -478,7 +475,7 @@ nnoremap <F7> :call SynStack()<CR>
 " TESTING: Better completion?
 set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
-set completeopt=menuone
+set completeopt=menuone,preview
 
 
 " TESTING: Fun tiems
@@ -495,10 +492,6 @@ nnoremap <leader>se :source Session.vim<cr>
 
 " TESTING: fuck swapfiles
 set noswapfile
-
-
-" TESTING: GitV: Fix my Ctrl window navigation hotkeys
-let g:Gitv_DoNotMapCtrlKey = 1
 
 
 " TESTING: New JSBeautify Stuff
@@ -562,21 +555,29 @@ let g:startify_skiplist = [
   \ '\.DS_Store'
   \ ]
 
+
 " Disable startify in terminal vim
 " it just doesn't feel right
 if !has("gui_running")
   let g:startify_disable_at_vimenter = 1
 endif
 
-
-" Enabling my old snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-misc/snippets'
-
 augroup startify
   autocmd!
   " Hacky way to disable Powerline in Startify
   autocmd BufNew * set laststatus=2|highlight CursorLine guibg=NONE
   autocmd FileType startify set laststatus=0|highlight CursorLine guibg=#000000|setlocal cursorline
+augroup END
+
+
+" Enabling my old snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-misc/snippets'
+
+
+" Disable smartindent in python, because it sucks
+augroup pythonsmartindent
+  autocmd!
+  autocmd FileType python setlocal nosmartindent
 augroup END
 
 
@@ -600,7 +601,12 @@ cnoremap <c-j> <down>
 
 
 " TESTING: Gitv configuration
+let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_WipeAllOnClose = 1
+nnoremap <leader>gv :Gitv! --all<cr>
+vnoremap <leader>gv :Gitv! --all<cr>
+cabbrev git Git
+" let g:Gitv_TruncateCommitSubjects = 1
 
 
 " TESTING: IndentLine Settings
@@ -812,3 +818,21 @@ set sessionoptions=blank,buffers,curdir,help,tabpages
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+let g:startify_session_autoload = 1
+let g:startify_session_dir = '.'
+
+" TESTING: Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window. Protect against
+" screwing up folding when switching between windows.
+augroup fixfoldmethod
+  autocmd!
+  autocmd InsertEnter javascript if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+  autocmd InsertLeave,WinLeave javascript if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+augroup END
+
+
+" TESTING: Mostly due to Gitv, however seeing if it
+" might help with larger files and doin shiiiz
+set lazyredraw
+nnoremap <F5> :syntax sync fromstart<cr>

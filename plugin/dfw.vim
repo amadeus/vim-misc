@@ -31,5 +31,3 @@ function! DistractionFreeWriting()
   " silent exec 'SignifyToggle'
   silent exec 'GitGutterToggle'
 endfunction
-
-
