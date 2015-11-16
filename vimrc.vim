@@ -73,9 +73,9 @@ set laststatus=2
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('mac')
-  set guifont=Sauce\ Code\ Powerline:h13
+  set guifont=Source\ Code\ Pro:h14
 else
-  set guifont=Source\ Code\ Pro \10
+  set guifont=Source\ Code\ Pro \14
 endif
 
 
@@ -136,7 +136,7 @@ nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
 nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
-nnoremap <leader>u   :GundoToggle<cr>
+nnoremap <leader>u   :UndotreeToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>st  :SyntasticToggle<cr>
@@ -240,16 +240,20 @@ nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>l :CtrlPLine<cr>
 let g:ctrlp_clear_cache_on_exit = 0
+" I can't theme this yet... so not using it... yet
+let g:ctrlp_line_prefix = '› '
 " To be used when CtrlP get's updated with the new BufferExplorer
 " let g:ctrlp_prompt_mappings = {
 "   \ 'PrtDeleteEnt()':       ['<c-@>']
 " \ }
+call ctrlp_bdelete#init()
 
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_reuse_loc_lists=0
 " let g:syntastic_javascript_syntax_checker="jshint"
+" let g:syntastic_javascript_checkers=["jscs", "jshint"]
 let g:syntastic_javascript_checkers=["jshint"]
 let g:syntastic_css_checker=["csslint"]
 let g:syntastic_enable_highlighting = 0
@@ -262,10 +266,11 @@ let g:syntastic_mode_map = {
   \ 'passive_filetypes': [
   \   'html',
   \   'xhtml',
-  \   'htmldjango',
+  \   'jinja',
   \   'css',
   \   'scss'
   \ ] }
+" \   'htmldjango',
 " Ignoring line length issues, ignoring spacing around a : in a hash
 " definition since I like to use Tabularize for alignment. And I think
 " it looks better!
@@ -314,8 +319,6 @@ else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
 
-call ctrlp_bdelete#init()
-
 
 " NeoComplete Settings
 let g:neocomplete#enable_at_startup = 1
@@ -327,14 +330,16 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#enable_smart_case = 1
 
 " Fix bizzaro full line autocomplete
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 
 augroup omnicomplete
   autocmd!
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  " Commenting out in favor of tern#CompleteJS as a test
+  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
@@ -445,15 +450,15 @@ let g:NERDSpaceDelims = 1
 
 
 " TESTING: Signify/GitGutter Settings
-nmap <leader>j <Plug>GitGutterNextHunk
-nmap <leader>k <Plug>GitGutterPrevHunk
+nmap <leader>gj <Plug>GitGutterNextHunk
+nmap <leader>gk <Plug>GitGutterPrevHunk
 nmap <leader>sh <Plug>GitGutterStageHunk
 nmap <leader>rh <Plug>GitGutterRevertHunk
 nmap <leader>ga <Plug>GitGutterAll
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
-set updatetime=100
+set updatetime=200
 
 " Old signify mappings, in case I ever revert
 " let g:signify_mapping_next_hunk = '<leader>j'
@@ -475,7 +480,8 @@ nnoremap <F7> :call SynStack()<CR>
 " TESTING: Better completion?
 set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
-set completeopt=menuone,preview
+" set completeopt=menuone,preview
+set completeopt=menuone
 
 
 " TESTING: Fun tiems
@@ -501,12 +507,14 @@ nnoremap <leader>fc :call CSSBeautify()<cr>
 
 
 " TESTING: Set htmldjango.html on all html files - don't need this?
-augroup htmldjango
+augroup htmljinja
   autocmd!
   " By forcing htmldjango to htmldjango.html, I allow snipmate to work
-  autocmd FileType html setl filetype=htmldjango
+  " autocmd FileType html setl filetype=htmldjango
   " Fix data- attributes in html elements
   autocmd Syntax html setlocal iskeyword+=-
+  autocmd Syntax jinja setlocal iskeyword+=-
+  " autocmd Syntax htmldjango setlocal iskeyword+=-
 augroup END
 
 
@@ -515,7 +523,7 @@ let g:startify_bookmarks = [
   \ '~/Sites/app.kiip.me',
   \ '~/Sites/kiip.me',
   \ '~/Development/ether/App',
-  \ '~/Development/ether-design-docs',
+  \ '~/Dropbox/Ether/story',
   \ '~/Development/Engine.js',
   \ '~/.vim/bundle',
   \ ]
@@ -538,7 +546,7 @@ let g:startify_custom_footer = [
   \ '',
   \ '  ======================================================',
   \ '',
-  \ '  Copyright Tubez, 2014'
+  \ '  Copyright Tubez, 2015'
   \ ]
 
 let g:NERDTreeHijackNetrw = 0
@@ -605,22 +613,22 @@ let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_WipeAllOnClose = 1
 nnoremap <leader>gv :Gitv! --all<cr>
 vnoremap <leader>gv :Gitv! --all<cr>
-cabbrev git Git
+" cabbrev git Git
 " let g:Gitv_TruncateCommitSubjects = 1
 
 
 " TESTING: IndentLine Settings
-" let g:indentLine_enabled = 0
-" let g:indentLine_char = '⋅'
-" let g:indentLine_first_char = '⋅'
-" let g:indentLine_color_gui = '#444444'
-" let g:indentLine_showFirstIndentLevel = 1
-" let g:indentLine_indentLevel = 5
-" let g:indentLine_faster = 1
-" let g:indentLine_fileType = ['python', 'py']
-" let g:indentLine_fileTypeExclude = ['help', 'vim', 'javascript', 'startify']
-" let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
-" let g:indentLine_noConcealCursor=1
+let g:indentLine_enabled = 0
+let g:indentLine_char = '⋅'
+let g:indentLine_first_char = '⋅'
+let g:indentLine_color_gui = '#444444'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_indentLevel = 5
+let g:indentLine_faster = 1
+let g:indentLine_fileType = ['python', 'py']
+let g:indentLine_fileTypeExclude = ['help', 'vim', 'javascript', 'startify']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
+let g:indentLine_noConcealCursor=1
 
 
 " TESTING: Return to last known position in file
@@ -732,6 +740,9 @@ map  <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
 map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
+map  <leader>k <Plug>(easymotion-bd-jk)
+map  <leader>j <Plug>(easymotion-bd-jk)
+" map  <leader>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = 1
 
 
@@ -836,3 +847,26 @@ augroup END
 " might help with larger files and doin shiiiz
 set lazyredraw
 nnoremap <F5> :syntax sync fromstart<cr>
+
+
+" TESTING: Fu/Nofu shortcuts
+command! Fu :set fu|redraw!
+command! Nofu :set nofu|redraw!
+
+
+" TESTING: Turn off CursorLine on non active buffers and change the numberline color dependng on the mode
+augroup cursorline
+  autocmd!
+  hi CursorLine guifg=NONE guibg=NONE gui=NONE
+  autocmd BufLeave,BufWinLeave,FocusLost * setlocal nocursorline
+  autocmd BufEnter,TabEnter,WinEnter,BufWinEnter,FocusGained * setlocal cursorline
+  autocmd InsertLeave * hi CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
+  autocmd InsertEnter * hi CursorLineNr guifg=#121212 guibg=#008ffd gui=BOLD
+augroup END
+
+" TESTING: Better sourcing of vimrc
+cnoreabbrev Src source $MYVIMRC
+
+" TESTING: Goyo settings
+let g:goyo_margin_top=5
+let g:goyo_margin_bottom=5
