@@ -529,6 +529,10 @@ let g:startify_bookmarks = [
   \ ]
 " \ '~/Sites/eightbit.me',
 
+if filereadable(expand('$HOME/.vim/misc/bookmarks.vim'))
+  source $HOME/.vim/misc/bookmarks.vim
+endif
+
 let g:startify_custom_header = [
   \ '                                _________  __  __',
   \ '            __                 /\_____   \/\ \/\ `\',
@@ -552,7 +556,6 @@ let g:startify_custom_footer = [
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
 let g:ctrlp_reuse_window = 'startify'
-let g:startify_files_number = 4
 let g:startify_list_order = ['bookmarks', 'files']
 let g:startify_change_to_dir = 1
 
