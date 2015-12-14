@@ -517,18 +517,7 @@ augroup htmljinja
   " autocmd Syntax htmldjango setlocal iskeyword+=-
 augroup END
 
-
-" TESTING: Startify Settings
-let g:startify_bookmarks = [
-  \ '~/Sites/app.kiip.me',
-  \ '~/Sites/kiip.me',
-  \ '~/Development/ether/App',
-  \ '~/Dropbox/Ether/story',
-  \ '~/Development/Engine.js',
-  \ '~/.vim/bundle',
-  \ ]
-" \ '~/Sites/eightbit.me',
-
+" Startify bookmarks are now customizeable
 if filereadable(expand('$HOME/.vim/misc/bookmarks.vim'))
   source $HOME/.vim/misc/bookmarks.vim
 endif
