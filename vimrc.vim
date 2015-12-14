@@ -825,7 +825,7 @@ nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 
 
 " TESTING: Better sessionoptions
-set sessionoptions=blank,buffers,curdir,help,tabpages
+set sessionoptions=buffers,curdir,help,tabpages
 
 
 " TESTING: NeoSnippets - hide cursor jump positions
