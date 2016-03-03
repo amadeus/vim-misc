@@ -4,6 +4,7 @@ set encoding=utf-8
 set ttyfast
 set confirm
 set hidden
+set foldmethod=manual
 
 
 " Indent settings
@@ -113,18 +114,18 @@ vnoremap k gk
 nnoremap k gk
 
 " Courtney Trolling
-inoremap <Up>    <Nop>
-inoremap <Down>  <Nop>
-inoremap <Left>  <Nop>
-inoremap <Right> <Nop>
-vnoremap <Up>    <Nop>
-vnoremap <Down>  <Nop>
-vnoremap <Left>  <Nop>
-vnoremap <Right> <Nop>
-noremap  <Up>    <Nop>
-noremap  <Down>  <Nop>
-noremap  <Left>  <Nop>
-noremap  <Right> <Nop>
+" inoremap <Up>    <Nop>
+" inoremap <Down>  <Nop>
+" inoremap <Left>  <Nop>
+" inoremap <Right> <Nop>
+" vnoremap <Up>    <Nop>
+" vnoremap <Down>  <Nop>
+" vnoremap <Left>  <Nop>
+" vnoremap <Right> <Nop>
+" noremap  <Up>    <Nop>
+" noremap  <Down>  <Nop>
+" noremap  <Left>  <Nop>
+" noremap  <Right> <Nop>
 
 " Various leader shortcuts
 let mapleader="q"
@@ -250,8 +251,9 @@ call ctrlp_bdelete#init()
 
 
 " Syntastic
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_reuse_loc_lists=0
+" let g:syntastic_reuse_loc_lists=0
 " let g:syntastic_javascript_syntax_checker="jshint"
 " let g:syntastic_javascript_checkers=["jscs", "jshint"]
 let g:syntastic_javascript_checkers=["eslint"]
@@ -338,7 +340,7 @@ augroup omnicomplete
   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
   " Commenting out in favor of tern#CompleteJS as a test
-  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   " autocmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -418,11 +420,11 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 
 
 " TESTING: Javascript and CSS folding - also force all folds open
-augroup syntaxfolding
-  autocmd!
-  autocmd FileType javascript,json,css,html setlocal foldenable|
-  \ setlocal foldmethod=syntax|setlocal foldlevel=20
-augroup END
+" augroup syntaxfolding
+"   autocmd!
+"   autocmd FileType javascript,json,css,html setlocal foldenable|
+"   \ setlocal foldmethod=syntax|setlocal foldlevel=20
+" augroup END
 
 
 " TESTING: NeoComplete Settings tests
@@ -828,11 +830,11 @@ let g:startify_session_dir = '.'
 " TESTING: Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window. Protect against
 " screwing up folding when switching between windows.
-augroup fixfoldmethod
-  autocmd!
-  autocmd InsertEnter javascript if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-  autocmd InsertLeave,WinLeave javascript if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-augroup END
+" augroup fixfoldmethod
+"   autocmd!
+"   autocmd InsertEnter javascript if !exists('b:last_fdm') | let b:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+"   autocmd InsertLeave,WinLeave javascript if exists('b:last_fdm') | let &l:foldmethod=b:last_fdm | unlet b:last_fdm | endif
+" augroup END
 
 
 " TESTING: Mostly due to Gitv, however seeing if it
@@ -862,6 +864,9 @@ cnoreabbrev Src source $MYVIMRC
 " TESTING: Goyo settings
 let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
+
+" TESTING: DelimitMate Settings
+let g:delimitMate_expand_space = 1
 
 " TESTING: JSX Support
 " let g:jsx_ext_required = 0
