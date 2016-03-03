@@ -148,6 +148,7 @@ nnoremap <leader>nt  :NERDTreeToggle<cr>
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
+nnoremap <leader>rr  :syntax sync fromstart<cr>
 
 " Slicker way to move around splits
 noremap <c-j> <c-w>j
