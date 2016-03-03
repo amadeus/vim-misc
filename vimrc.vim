@@ -254,7 +254,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_reuse_loc_lists=0
 " let g:syntastic_javascript_syntax_checker="jshint"
 " let g:syntastic_javascript_checkers=["jscs", "jshint"]
-let g:syntastic_javascript_checkers=["jshint"]
+let g:syntastic_javascript_checkers=["eslint"]
 let g:syntastic_css_checker=["csslint"]
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
@@ -339,7 +339,7 @@ augroup omnicomplete
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
   " Commenting out in favor of tern#CompleteJS as a test
   " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  " autocmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
@@ -862,3 +862,6 @@ cnoreabbrev Src source $MYVIMRC
 " TESTING: Goyo settings
 let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
+
+" TESTING: JSX Support
+" let g:jsx_ext_required = 0
