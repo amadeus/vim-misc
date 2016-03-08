@@ -591,6 +591,8 @@ augroup END
 let @z='Yplct-mozjkYpllxrsYplxroYpdf-Vkkkk:Tabularize /:/r0r0'
 let @x='vi{:s/:\ /:/g'
 
+" Convert keys into key/value pair with same name/value
+let @k="^yiwA: \"ysiw'A,j"
 
 " TESTING: Adding more fonts to CSS
 " syn keyword cssFontAttr contained
