@@ -332,6 +332,7 @@ let g:neocomplete#min_keyword_length = 4
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_refresh_always = 1
+call neocomplete#custom#source('buffer', 'rank', 1000)
 
 " Fix bizzaro full line autocomplete
 " inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
