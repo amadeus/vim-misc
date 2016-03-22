@@ -351,12 +351,14 @@ augroup END
 
 
 " DetectIndent Settings
-let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
+let g:detectindent_min_indent = 2
+let g:detectindent_max_indent = 8
 let g:detectindent_max_lines_to_analyse = 1024
+let g:detectindent_preferred_when_mixed = 1
 augroup detectindent
   autocmd!
-  autocmd BufReadPost * :DetectIndent
+  autocmd BufReadPost * DetectIndent
 augroup END
 
 
@@ -593,6 +595,8 @@ let @x='vi{:s/:\ /:/g'
 
 " Convert keys into key/value pair with same name/value
 let @k="^yiwA: \"ysiw'A,j"
+" Create React.PropType scaffolding
+let @p="0f:wiReact.PropTypes.j0"
 
 " TESTING: Adding more fonts to CSS
 " syn keyword cssFontAttr contained
