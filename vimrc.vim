@@ -569,11 +569,37 @@ if !has("gui_running")
   let g:startify_disable_at_vimenter = 1
 endif
 
-augroup startify
+function SetCursorLine(mode)
+  highlight CursorLine guifg=NONE guibg=NONE gui=NONE
+  highlight CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
+  set laststatus=2
+
+  if &buftype == 'quickfix' || a:mode == 'leave'
+    setlocal nocursorline
+  else
+    setlocal cursorline
+  end
+
+  if exists('&filetype') && a:mode == 'enter' && &filetype == 'startify'
+    set laststatus=0
+    hi CursorLine guibg=#000000
+  end
+endfunction
+
+function SetCursorNumber(mode)
+  if a:mode == 'enter'
+    hi CursorLineNr guifg=#121212 guibg=#008ffd gui=BOLD
+  else
+    hi CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
+  end
+endfunction
+
+augroup cursorline
   autocmd!
-  " Hacky way to disable Powerline in Startify
-  autocmd BufNew * set laststatus=2|highlight CursorLine guibg=NONE
-  autocmd FileType startify set laststatus=0|highlight CursorLine guibg=#000000|setlocal cursorline
+  autocmd BufEnter,WinEnter,FileType * :call SetCursorLine('enter')
+  autocmd BufLeave,WinLeave * :call SetCursorLine('leave')
+  autocmd InsertLeave * :call SetCursorNumber('leave')
+  autocmd InsertEnter * :call SetCursorNumber('enter')
 augroup END
 
 
@@ -654,7 +680,7 @@ augroup markdown
 augroup END
 
 
-" TESTING: Enable cursorline on gitcommit
+" TESTING: Disable whitespace chars on git commit buffers
 augroup gitcommit
   autocmd!
   autocmd FileType gitcommit setlocal nolist
@@ -793,13 +819,6 @@ set synmaxcol=3000
 let g:csv_delim=','
 
 
-" TESTING: Fix quickfix
-augroup fixquickfix
-  autocmd!
-  autocmd FileType qf setlocal nocursorline
-augroup END
-
-
 " TESTING: Custom Entity Replacements
 let g:CustomEntities = [
   \ ['(c)',  '\&copy;'],
@@ -856,16 +875,6 @@ nnoremap <F5> :syntax sync fromstart<cr>
 command! Fu :set fu|redraw!
 command! Nofu :set nofu|redraw!
 
-
-" TESTING: Turn off CursorLine on non active buffers and change the numberline color dependng on the mode
-augroup cursorline
-  autocmd!
-  hi CursorLine guifg=NONE guibg=NONE gui=NONE
-  autocmd BufLeave,BufWinLeave,FocusLost * setlocal nocursorline
-  autocmd BufEnter,TabEnter,WinEnter,BufWinEnter,FocusGained * setlocal cursorline
-  autocmd InsertLeave * hi CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
-  autocmd InsertEnter * hi CursorLineNr guifg=#121212 guibg=#008ffd gui=BOLD
-augroup END
 
 " TESTING: Better sourcing of vimrc
 cnoreabbrev Src source $MYVIMRC
