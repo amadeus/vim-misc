@@ -647,17 +647,17 @@ vnoremap <leader>gv :Gitv! --all<cr>
 
 
 " TESTING: IndentLine Settings
-let g:indentLine_enabled = 0
+let g:indentLine_enabled = 1
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_indentLevel = 5
 let g:indentLine_faster = 1
-let g:indentLine_fileType = ['python', 'py']
-let g:indentLine_fileTypeExclude = ['help', 'vim', 'javascript', 'startify']
+let g:indentLine_fileTypeExclude = ['help', 'startify']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
 let g:indentLine_noConcealCursor=1
+let g:indentLine_maxLines = 1000
 
 
 " TESTING: Return to last known position in file
@@ -812,7 +812,7 @@ augroup END
 
 
 " TESTING: Dos Long Lines Doh
-set synmaxcol=3000
+set synmaxcol=600
 
 
 " TESTING: csv.vim
@@ -855,15 +855,6 @@ endif
 let g:startify_session_autoload = 1
 let g:startify_session_dir = '.'
 
-" TESTING: Don't screw up folds when inserting text that might affect them, until
-" leaving insert mode. Foldmethod is local to the window. Protect against
-" screwing up folding when switching between windows.
-" augroup fixfoldmethod
-"   autocmd!
-"   autocmd InsertEnter javascript if !exists('b:last_fdm') | let b:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-"   autocmd InsertLeave,WinLeave javascript if exists('b:last_fdm') | let &l:foldmethod=b:last_fdm | unlet b:last_fdm | endif
-" augroup END
-
 
 " TESTING: Mostly due to Gitv, however seeing if it
 " might help with larger files and doin shiiiz
@@ -888,3 +879,6 @@ let g:delimitMate_expand_space = 1
 
 " TESTING: JSX Support
 " let g:jsx_ext_required = 0
+
+let g:javascript_fold = 1
+let g:js_fold = 1
