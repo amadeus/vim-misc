@@ -488,7 +488,7 @@ nnoremap <F7> :call SynStack()<CR>
 set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
 " set completeopt=menuone,preview
-set completeopt=menuone
+set completeopt=menuone,preview
 
 
 " TESTING: Fun tiems
