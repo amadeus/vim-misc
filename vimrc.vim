@@ -569,7 +569,7 @@ if !has("gui_running")
   let g:startify_disable_at_vimenter = 1
 endif
 
-function SetCursorLine(mode)
+function! SetCursorLine(mode)
   highlight CursorLine guifg=NONE guibg=NONE gui=NONE
   highlight CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
   set laststatus=2
@@ -586,7 +586,7 @@ function SetCursorLine(mode)
   end
 endfunction
 
-function SetCursorNumber(mode)
+function! SetCursorNumber(mode)
   if a:mode == 'enter'
     hi CursorLineNr guifg=#121212 guibg=#008ffd gui=BOLD
   else
