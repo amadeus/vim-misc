@@ -15,6 +15,8 @@ set noexpandtab
 set smartindent
 set autoindent
 set smarttab
+set nowrap
+set display=lastline
 
 " Show invisibles
 set list
@@ -530,23 +532,23 @@ if filereadable(expand('$HOME/.vim/misc/bookmarks.vim'))
 endif
 
 let g:startify_custom_header = [
-  \ '                                _________  __  __',
-  \ '            __                 /\_____   \/\ \/\ `\',
-  \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
-  \ '  /\ \ /\ \\/\ \ /` __` __`\        /   /  \ \ \_\  \__',
-  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \      /   / __ \ \___   __\',
-  \ '   \ \___/   \ \_\ \_\ \_\ \_\    /\__/ /\_\ \/___/\_\_/',
-  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_/  \/_/      \/_/',
+  \ '                                ______',
+  \ '            __                /\  ____`\',
+  \ '   __   __ /\_\    ___ ___    \ \ \___\ \',
+  \ '  /\ \ /\ \\/\ \ /` __` __`\   \ \  ____ \',
+  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \   \ \ \___\ \',
+  \ '   \ \___/   \ \_\ \_\ \_\ \_\   \ \_______\',
+  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_______/',
   \ '',
-  \ '  ======================================================',
+  \ '  ===========================================',
   \ '',
   \ ]
 
 let g:startify_custom_footer = [
   \ '',
-  \ '  ======================================================',
+  \ '  ===========================================',
   \ '',
-  \ '  Copyright Tubez, 2015'
+  \ '  Copyright Tubez, 2016'
   \ ]
 
 let g:NERDTreeHijackNetrw = 0
@@ -687,17 +689,13 @@ augroup gitcommit
 augroup END
 
 
-" TESTING: Long wrapped line stuff
-set display=lastline
-
-
 " TESTING: Better fugitive file support
 " I want the fugitive buffers to just delete themselves
 " if I close them; no need for them to stick around.
 " It also helps with auto closing diff views
 augroup fugitivefix
   autocmd!
-  autocmd BufReadPost fugitive:// set bufhidden=delete
+  autocmd BufReadPost fugitive:// setlocal bufhidden=delete
 augroup END
 
 
@@ -879,6 +877,12 @@ let g:delimitMate_expand_space = 1
 
 " TESTING: JSX Support
 " let g:jsx_ext_required = 0
-
 let g:javascript_fold = 1
 let g:js_fold = 1
+
+" TESTING: Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
+let g:airline_section_y = ''
