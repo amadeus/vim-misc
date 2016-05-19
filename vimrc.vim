@@ -678,7 +678,7 @@ set fillchars+=vert:┆
 augroup markdown
     autocmd!
     " autocmd BufNewFile,BufRead *.md,*.markdown setlocal textwidth=79
-    autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown |setlocal textwidth=79
+    autocmd BufNewFile,BufRead *.md,*.markdown setlocal textwidth=79
 augroup END
 
 
@@ -826,11 +826,6 @@ let g:CustomEntities = [
 " TESTING: CloseTag
 inoremap <C-_> <C-R>=GetCloseTag()<CR>
 
-
-" TESTING: GitGutter Fixes
-let g:gitgutter_max_signs = 500
-" set textwidth=80 - causes a major issue in html files - need to figure out
-
 " TESTING: Vim Javascript indent tests
 let g:javascript_indent_to_parens=0
 
@@ -880,9 +875,5 @@ let g:delimitMate_expand_space = 1
 let g:javascript_fold = 1
 let g:js_fold = 1
 
-" TESTING: Airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#hunks#enabled = 0
-let g:airline_section_y = ''
+" Causes major slowdown in some files methinks
+" let g:markdown_fenced_languages = ['html', 'python', 'javascript']
