@@ -279,7 +279,7 @@ let g:syntastic_mode_map = {
 " Ignoring line length issues, ignoring spacing around a : in a hash
 " definition since I like to use Tabularize for alignment. And I think
 " it looks better!
-let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126'
+let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126,E402'
 
 
 " Gist settings
@@ -489,7 +489,6 @@ nnoremap <F7> :call SynStack()<CR>
 " TESTING: Better completion?
 set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
-" set completeopt=menuone,preview
 set completeopt=menuone,preview
 
 
@@ -553,6 +552,7 @@ let g:startify_custom_footer = [
 
 let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
+let g:startify_change_to_dir = 1
 let g:ctrlp_reuse_window = 'startify'
 let g:startify_list_order = ['bookmarks', 'files']
 let g:startify_change_to_dir = 1
@@ -810,7 +810,7 @@ augroup END
 
 
 " TESTING: Dos Long Lines Doh
-set synmaxcol=600
+" set synmaxcol=600
 
 
 " TESTING: csv.vim
@@ -841,9 +841,9 @@ set sessionoptions=buffers,curdir,help,tabpages
 
 
 " TESTING: NeoSnippets - hide cursor jump positions
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=i
+" endif
 
 let g:startify_session_autoload = 1
 let g:startify_session_dir = '.'
@@ -877,3 +877,12 @@ let g:js_fold = 1
 
 " Causes major slowdown in some files methinks
 " let g:markdown_fenced_languages = ['html', 'python', 'javascript']
+
+" TESTING: Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
+let g:airline_section_y = ''
+
+let g:ycm_min_num_of_chars_for_completion = 1
