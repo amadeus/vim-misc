@@ -151,6 +151,7 @@ nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
+nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 
 " Slicker way to move around splits
 noremap <c-j> <c-w>j
@@ -464,6 +465,7 @@ nmap <leader>gk <Plug>GitGutterPrevHunk
 nmap <leader>sh <Plug>GitGutterStageHunk
 nmap <leader>rh <Plug>GitGutterRevertHunk
 nmap <leader>ga <Plug>GitGutterAll
+let g:gitgutter_async = 0
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
@@ -620,6 +622,7 @@ augroup END
 " into all the other vender prefixed variety
 let @z='Yplct-mozjkYpllxrsYplxroYpdf-Vkkkk:Tabularize /:/r0r0'
 let @x='vi{:s/:\ /:/g'
+let @c='vi{:s/:/:\ /g'
 
 " Convert keys into key/value pair with same name/value
 let @k="^yiwA: \"ysiw'A,j"
@@ -846,7 +849,7 @@ set sessionoptions=buffers,curdir,help,tabpages
 " endif
 
 let g:startify_session_autoload = 1
-let g:startify_session_dir = '.'
+" let g:startify_session_dir = '.'
 
 
 " TESTING: Mostly due to Gitv, however seeing if it
