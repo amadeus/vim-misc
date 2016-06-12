@@ -889,3 +889,11 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline_section_y = ''
 
 let g:ycm_min_num_of_chars_for_completion = 1
+
+" TESTING: Super basic JSX test
+fu! <SID>EnableJSX()
+  if search( "import React from 'react'", 'npw')
+    set filetype=javascript.jsx
+  endif
+endfu
+autocmd BufNewFile,BufRead *.js if <SID>EnableJSX()
