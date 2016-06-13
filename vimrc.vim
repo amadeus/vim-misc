@@ -277,6 +277,7 @@ let g:syntastic_mode_map = {
   \   'scss'
   \ ] }
 " \   'htmldjango',
+" let g:syntastic_javascript_flow_exe = 'flow check-contents'
 " Ignoring line length issues, ignoring spacing around a : in a hash
 " definition since I like to use Tabularize for alignment. And I think
 " it looks better!
@@ -891,12 +892,14 @@ let g:airline_section_y = ''
 let g:ycm_min_num_of_chars_for_completion = 1
 
 " TESTING: Super basic JSX test
-fu! <SID>EnableJSX()
-  if search( "import React from 'react'", 'npw')
+function! <SID>EnableJSX()
+  if search( "import React", 'npw')
     set filetype=javascript.jsx
+  else
+    set filetype=javascript
   endif
 endfu
-autocmd BufNewFile,BufRead *.js if <SID>EnableJSX()
+autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
 
 " TESTING: Disabling netrw
 let g:loaded_netrwPlugin = 1
