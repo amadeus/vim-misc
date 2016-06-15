@@ -897,3 +897,6 @@ fu! <SID>EnableJSX()
   endif
 endfu
 autocmd BufNewFile,BufRead *.js if <SID>EnableJSX()
+
+" TESTING: Disabling netrw
+let g:loaded_netrwPlugin = 1
