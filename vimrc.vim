@@ -903,3 +903,5 @@ autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
 
 " TESTING: Disabling netrw
 let g:loaded_netrwPlugin = 1
+
+let g:javascript_plugin_flow = 1
