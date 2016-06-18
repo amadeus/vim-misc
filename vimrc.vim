@@ -905,3 +905,9 @@ autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
 let g:loaded_netrwPlugin = 1
 
 let g:javascript_plugin_flow = 1
+
+" runtime plugin/gitconflicts.vim
+augroup githighlighting
+  autocmd!
+  autocmd Syntax * runtime misc/gitconflicts.vim
+augroup END
