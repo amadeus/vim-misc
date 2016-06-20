@@ -893,7 +893,7 @@ let g:ycm_min_num_of_chars_for_completion = 1
 
 " TESTING: Super basic JSX test
 function! <SID>EnableJSX()
-  if search( "import React", 'npw')
+  if search("import React", 'npw')
     set filetype=javascript.jsx
   else
     set filetype=javascript
