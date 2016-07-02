@@ -66,7 +66,8 @@ endif
 
 set guioptions=aAce
 set shortmess=ITaoc
-set title titlestring=%t
+" Set title string to current working directory!
+set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 set number
 set numberwidth=3
 set noruler
@@ -487,6 +488,7 @@ function! SynStack()
 endfunc
 
 nnoremap <F7> :call SynStack()<CR>
+inoremap <F7> exec "call SynStack()"
 
 
 " TESTING: Better completion?
@@ -728,6 +730,7 @@ nnoremap <leader>p <nop>
 " TESTING: Format Options Tweaks
 set formatoptions+=njt
 set formatoptions-=o
+set formatoptions-=r
 
 
 " TESTING: Breakindent
@@ -911,3 +914,9 @@ augroup githighlighting
   autocmd!
   autocmd Syntax * runtime misc/gitconflicts.vim
 augroup END
+
+" TESTING: Foldlevel
+set foldlevel=99
+set foldmethod=syntax
+set viewoptions=cursor,folds,slash,unix
+
