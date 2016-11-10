@@ -116,20 +116,6 @@ nnoremap j gj
 vnoremap k gk
 nnoremap k gk
 
-" Courtney Trolling
-" inoremap <Up>    <Nop>
-" inoremap <Down>  <Nop>
-" inoremap <Left>  <Nop>
-" inoremap <Right> <Nop>
-" vnoremap <Up>    <Nop>
-" vnoremap <Down>  <Nop>
-" vnoremap <Left>  <Nop>
-" vnoremap <Right> <Nop>
-" noremap  <Up>    <Nop>
-" noremap  <Down>  <Nop>
-" noremap  <Left>  <Nop>
-" noremap  <Right> <Nop>
-
 " Various leader shortcuts
 let mapleader="q"
 nnoremap q <nop>
@@ -254,38 +240,6 @@ let g:ctrlp_line_prefix = '› '
 " \ }
 call ctrlp_bdelete#init()
 
-
-" Syntastic - Trying out a different plugin
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list=1
-" " let g:syntastic_reuse_loc_lists=0
-" " let g:syntastic_javascript_syntax_checker="jshint"
-" " let g:syntastic_javascript_checkers=["jscs", "jshint"]
-" let g:syntastic_javascript_checkers=["eslint"]
-" let g:syntastic_css_checker=["csslint"]
-" let g:syntastic_enable_highlighting = 0
-" let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-" let g:syntastic_enable_highlighting = 1
-" let g:syntastic_sass_check_partials = 1
-" let g:syntastic_mode_map = {
-  " \ 'mode': 'active',
-  " \ 'active_filetypes': [],
-  " \ 'passive_filetypes': [
-  " \   'html',
-  " \   'xhtml',
-  " \   'jinja',
-  " \   'css',
-  " \   'scss',
-  " \   'xml'
-  " \ ] }
-" " \   'htmldjango',
-" let g:syntastic_javascript_flow_exe = 'flow status'
-" " Ignoring line length issues, ignoring spacing around a : in a hash
-" " definition since I like to use Tabularize for alignment. And I think
-" " it looks better!
-" let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126,E402'
-
-
 " Gist settings
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
@@ -328,37 +282,6 @@ else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
 
-
-" NeoComplete Settings
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_fuzzy_completion = 0
-" let g:neocomplete#auto_completion_start_length = 0
-" let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
-" let g:neocomplete#min_keyword_length = 3
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#enable_refresh_always = 1
-" call neocomplete#custom#source('buffer', 'rank', 1000)
-
-
-" TESTING: NeoComplete Settings tests
-" if !exists('g:neocomplete#keyword_patterns')
-    " let g:neocomplete#keyword_patterns = {}
-" endif
-" " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" if !exists('g:neocomplete#force_omni_input_patterns')
-  " let g:neocomplete#force_omni_input_patterns = {}
-" endif
-" let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-" let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-
-" Attempting to fix neocomplete converter_case
-" call neocomplete#custom#source('_', 'converters',
-"   \ ['converter_remove_overlap', 'converter_remove_last_paren',
-"   \  'converter_delimiter', 'converter_abbr'])
-
-" Fix bizzaro full line autocomplete
-" inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 
 augroup omnicomplete
   autocmd!
@@ -674,15 +597,6 @@ let g:indentLine_noConcealCursor=1
 let g:indentLine_maxLines = 1000
 
 
-" TESTING: Return to last known position in file -I don't think I need this
-" since I think `viewoptions` takes care of it...
-" augroup restorecursor
-"   autocmd!
-"   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
-"     \ |exe "normal! g`\"" | endif
-" augroup END
-
-
 " TESTING: Tweaks to split fillchars
 set fillchars+=vert:┆
 
@@ -767,11 +681,6 @@ augroup colorColumn
 augroup END
 
 
-" Troll
-" highlight ColorColumn guibg=#000000 guifg=#444444
-" exec 'set colorcolumn=' . join(range(2,80,3), ',')
-
-
 " TESTING: New easy-motion
 map <leader><leader><leader> <Plug>(easymotion-repeat)
 map <SPACE> <Plug>(easymotion-s)
@@ -823,10 +732,6 @@ augroup fixscrolloff
 augroup END
 
 
-" TESTING: Dos Long Lines Doh
-" set synmaxcol=600
-
-
 " TESTING: csv.vim
 let g:csv_delim=','
 
@@ -853,12 +758,6 @@ nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 " TESTING: Better sessionoptions
 set sessionoptions=buffers,help,tabpages
 set viewoptions=cursor,slash
-
-
-" TESTING: NeoSnippets - hide cursor jump positions
-" if has('conceal')
-"   set conceallevel=2 concealcursor=i
-" endif
 
 
 " TESTING: Mostly due to Gitv, however seeing if it
