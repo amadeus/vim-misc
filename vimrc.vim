@@ -255,34 +255,35 @@ let g:ctrlp_line_prefix = '› '
 call ctrlp_bdelete#init()
 
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list=1
-" let g:syntastic_reuse_loc_lists=0
-" let g:syntastic_javascript_syntax_checker="jshint"
-" let g:syntastic_javascript_checkers=["jscs", "jshint"]
-let g:syntastic_javascript_checkers=["eslint"]
-let g:syntastic_css_checker=["csslint"]
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_sass_check_partials = 1
-let g:syntastic_mode_map = {
-  \ 'mode': 'active',
-  \ 'active_filetypes': [],
-  \ 'passive_filetypes': [
-  \   'html',
-  \   'xhtml',
-  \   'jinja',
-  \   'css',
-  \   'scss'
-  \ ] }
-" \   'htmldjango',
-" let g:syntastic_javascript_flow_exe = 'flow check-contents'
-" Ignoring line length issues, ignoring spacing around a : in a hash
-" definition since I like to use Tabularize for alignment. And I think
-" it looks better!
-let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126,E402'
+" Syntastic - Trying out a different plugin
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list=1
+" " let g:syntastic_reuse_loc_lists=0
+" " let g:syntastic_javascript_syntax_checker="jshint"
+" " let g:syntastic_javascript_checkers=["jscs", "jshint"]
+" let g:syntastic_javascript_checkers=["eslint"]
+" let g:syntastic_css_checker=["csslint"]
+" let g:syntastic_enable_highlighting = 0
+" let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+" let g:syntastic_enable_highlighting = 1
+" let g:syntastic_sass_check_partials = 1
+" let g:syntastic_mode_map = {
+  " \ 'mode': 'active',
+  " \ 'active_filetypes': [],
+  " \ 'passive_filetypes': [
+  " \   'html',
+  " \   'xhtml',
+  " \   'jinja',
+  " \   'css',
+  " \   'scss',
+  " \   'xml'
+  " \ ] }
+" " \   'htmldjango',
+" let g:syntastic_javascript_flow_exe = 'flow status'
+" " Ignoring line length issues, ignoring spacing around a : in a hash
+" " definition since I like to use Tabularize for alignment. And I think
+" " it looks better!
+" let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391,E126,E402'
 
 
 " Gist settings
@@ -329,15 +330,32 @@ endif
 
 
 " NeoComplete Settings
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_fuzzy_completion = 0
-let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
-let g:neocomplete#min_keyword_length = 4
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_refresh_always = 1
-call neocomplete#custom#source('buffer', 'rank', 1000)
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_fuzzy_completion = 0
+" let g:neocomplete#auto_completion_start_length = 0
+" let g:neocomplete#data_directory = $HOME.'/.vim/cache/neocompl'
+" let g:neocomplete#min_keyword_length = 3
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#enable_refresh_always = 1
+" call neocomplete#custom#source('buffer', 'rank', 1000)
+
+
+" TESTING: NeoComplete Settings tests
+" if !exists('g:neocomplete#keyword_patterns')
+    " let g:neocomplete#keyword_patterns = {}
+" endif
+" " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" if !exists('g:neocomplete#force_omni_input_patterns')
+  " let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+" let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+
+" Attempting to fix neocomplete converter_case
+" call neocomplete#custom#source('_', 'converters',
+"   \ ['converter_remove_overlap', 'converter_remove_last_paren',
+"   \  'converter_delimiter', 'converter_abbr'])
 
 " Fix bizzaro full line autocomplete
 " inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
@@ -348,8 +366,10 @@ augroup omnicomplete
   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
   " Commenting out in favor of tern#CompleteJS as a test
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   " autocmd FileType javascript setlocal omnifunc=tern#Complete
+  " flowcomplete#Complete
+  autocmd FileType javascript setl omnifunc=flowcomplete#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
@@ -397,9 +417,8 @@ augroup END
 " TESTING: Search for selected text
 vnoremap <silent> <c-s> :<C-U>
   \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \ gvy/<C-R><C-R>=substitute(
-  \ escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \ gV:call setreg('"', old_reg, old_regtype)<CR>
+  \ gvy/<C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \ :call setreg('"', old_reg, old_regtype)<CR>
 
 vnoremap <silent> # :<C-U>
   \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -437,22 +456,6 @@ onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
 " augroup END
 
 
-" TESTING: NeoComplete Settings tests
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" if !exists('g:neocomplete#force_omni_input_patterns')
-"   let g:neocomplete#force_omni_input_patterns = {}
-" endif
-" let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-" let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-
-" Attempting to fix neocomplete converter_case
-call neocomplete#custom#source('_', 'converters',
-  \ ['converter_remove_overlap', 'converter_remove_last_paren',
-  \  'converter_delimiter', 'converter_abbr'])
-
 " TESTING: Force vim to think of 2 spaces as a sentence
 set cpo+=J
 
@@ -467,11 +470,12 @@ nmap <leader>gk <Plug>GitGutterPrevHunk
 nmap <leader>sh <Plug>GitGutterStageHunk
 nmap <leader>rh <Plug>GitGutterRevertHunk
 nmap <leader>ga <Plug>GitGutterAll
-let g:gitgutter_async = 0
+let g:gitgutter_async = 1
+let g:gitgutter_eager = 0
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
-set updatetime=200
+set updatetime=10
 
 " Old signify mappings, in case I ever revert
 " let g:signify_mapping_next_hunk = '<leader>j'
@@ -494,7 +498,7 @@ inoremap <F7> exec "call SynStack()"
 " TESTING: Better completion?
 set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
-set completeopt=menuone,preview
+set completeopt=menuone
 
 
 " TESTING: Fun tiems
@@ -560,7 +564,9 @@ let g:startify_session_autoload = 1
 let g:startify_change_to_dir = 1
 let g:ctrlp_reuse_window = 'startify'
 let g:startify_list_order = ['bookmarks', 'files']
-let g:startify_change_to_dir = 1
+let g:startify_session_delete_buffers = 1
+" let g:startify_session_dir = '.'
+
 
 let g:startify_skiplist = [
   \ 'COMMIT_EDITMSG',
@@ -668,12 +674,13 @@ let g:indentLine_noConcealCursor=1
 let g:indentLine_maxLines = 1000
 
 
-" TESTING: Return to last known position in file
-augroup restorecursor
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
-    \ |exe "normal! g`\"" | endif
-augroup END
+" TESTING: Return to last known position in file -I don't think I need this
+" since I think `viewoptions` takes care of it...
+" augroup restorecursor
+"   autocmd!
+"   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+"     \ |exe "normal! g`\"" | endif
+" augroup END
 
 
 " TESTING: Tweaks to split fillchars
@@ -844,16 +851,14 @@ nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 
 
 " TESTING: Better sessionoptions
-set sessionoptions=buffers,curdir,help,tabpages
+set sessionoptions=buffers,help,tabpages
+set viewoptions=cursor,slash
 
 
 " TESTING: NeoSnippets - hide cursor jump positions
 " if has('conceal')
 "   set conceallevel=2 concealcursor=i
 " endif
-
-let g:startify_session_autoload = 1
-" let g:startify_session_dir = '.'
 
 
 " TESTING: Mostly due to Gitv, however seeing if it
@@ -875,7 +880,7 @@ let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
 
 " TESTING: DelimitMate Settings
-let g:delimitMate_expand_space = 1
+" let g:delimitMate_expand_space = 1
 
 " TESTING: JSX Support
 " let g:jsx_ext_required = 0
@@ -896,7 +901,13 @@ let g:ycm_min_num_of_chars_for_completion = 1
 
 " TESTING: Super basic JSX test
 function! <SID>EnableJSX()
-  if search("import React", 'npw')
+  setlocal nosmartindent
+  setlocal noautoindent
+  " Don't attempt this search on a large file
+  if getfsize(expand(@%)) > 100000
+    return
+  endif
+  if search("import React", 'npw') || search("require('React')", 'npw') || search('require("React")', 'npw')
     set filetype=javascript.jsx
   else
     set filetype=javascript
@@ -918,5 +929,59 @@ augroup END
 " TESTING: Foldlevel
 set foldlevel=99
 set foldmethod=syntax
-set viewoptions=cursor,folds,slash,unix
+set viewoptions=cursor,slash,unix
 
+" nnoremap <F12> :<CR>
+function! <SID>BuildMJML()
+  let job = job_start('cd /Users/amadeus/Development/discord && make build-mail-templates', {"out_cb": "HandleOutput"})
+endfu
+function! HandleOutput(channel, msg)
+  echomsg "MJML Build Complete"
+endfu
+nnoremap <leader>mm :call <SID>BuildMJML()<cr>
+
+" Flow Stuff
+" Disable flow check on save - super slow
+let g:flow#enable = 0
+let g:flow#autoclose = 1
+let g:flow#timeout = 10
+
+" TESTING: Completer - vim8 async autocomplete
+let g:completor_min_chars = 0
+let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+
+" TESTING: AsyncRun
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+" TESTING: Ale Linter
+" let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_delay = 100
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+" let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_flow_use_global = 1
+let g:ale_echo_msg_format = '[%linter%]%s'
+nmap <silent> <d-k> <Plug>(ale_previous_wrap)
+nmap <silent> <d-j> <Plug>(ale_next_wrap)
+" Flow has an issue where relative modules can't be computed :(
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_sign_column_always = 1
+
+" TESTING: Fastfold
+let g:fastfold_max_filesize = 100000
+
+" TESTING: Easy profiling
+function! s:ProfileStart()
+  profile start profile.log
+  profile func *
+  profile file *
+endfunction
+
+function! s:ProfileEnd()
+  profile pause
+  noautocmd qall!
+endfunction
+
+command! ProfileStart call s:ProfileStart()
+command! ProfileEnd call s:ProfileEnd()
