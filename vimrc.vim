@@ -394,7 +394,7 @@ nmap <leader>sh <Plug>GitGutterStageHunk
 nmap <leader>rh <Plug>GitGutterRevertHunk
 nmap <leader>ga <Plug>GitGutterAll
 let g:gitgutter_async = 1
-let g:gitgutter_eager = 0
+let g:gitgutter_eager = 1
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
@@ -853,7 +853,7 @@ let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " TESTING: Ale Linter
-" let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
