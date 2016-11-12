@@ -58,7 +58,7 @@ set background=dark
 
 " Basically use a fancier colortheme in
 " MacVim
-if has("gui_running")
+if has("gui_running") || has('nvim')
   colorscheme evokai
 else
   colorscheme molokai
