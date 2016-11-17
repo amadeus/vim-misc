@@ -589,7 +589,7 @@ let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_indentLevel = 5
+let g:indentLine_indentLevel = 10
 let g:indentLine_faster = 1
 let g:indentLine_fileTypeExclude = ['help', 'startify']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
@@ -884,3 +884,12 @@ endfunction
 
 command! ProfileStart call s:ProfileStart()
 command! ProfileEnd call s:ProfileEnd()
+
+" TESTING: Using Ag instead of Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" TESTING: Grepper
+nmap gs  <plug>(GrepperOperator)
+xmap gs  <plug>(GrepperOperator)
