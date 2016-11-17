@@ -595,6 +595,7 @@ let g:indentLine_fileTypeExclude = ['help', 'startify']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
 let g:indentLine_noConcealCursor=1
 let g:indentLine_maxLines = 1000
+let g:indentLine_conceallevel = 1
 
 
 " TESTING: Tweaks to split fillchars
