@@ -807,23 +807,36 @@ function! <SID>EnableJSX()
   if getfsize(expand(@%)) > 100000
     return
   endif
-  if search("import React", 'npw') || search("require('React')", 'npw') || search('require("React")', 'npw')
+  if search('import React', 'npw') || search("require('React')", 'npw') || search('require("React")', 'npw')
     set filetype=javascript.jsx
   else
     set filetype=javascript
   endif
 endfu
-autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
+augroup enablejsx
+  autocmd!
+  autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
+augroup END
 
 " TESTING: Disabling netrw
 let g:loaded_netrwPlugin = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-" runtime plugin/gitconflicts.vim
+" TESTING: Git conflict styles
+function! <SID>IsGitConflict()
+  " Don't attempt this search on a large file
+  if getfsize(expand(@%)) > 100000
+    return
+  endif
+  if search('<<<<<<<', 'npw') && search('>>>>>>>', 'npw')
+    runtime misc/gitconflicts.vim
+  endif
+endfu
 augroup githighlighting
   autocmd!
-  autocmd Syntax * runtime misc/gitconflicts.vim
+  autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
+  autocmd Syntax * call <SID>IsGitConflict()
 augroup END
 
 " TESTING: Foldlevel
