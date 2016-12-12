@@ -780,6 +780,7 @@ cnoreabbrev Src source $MYVIMRC
 " TESTING: Goyo settings
 let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
+let g:goyo_width = 90
 
 " TESTING: DelimitMate Settings
 " let g:delimitMate_expand_space = 1
