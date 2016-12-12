@@ -255,7 +255,7 @@ let ctrlp_filter_greps = "".
   \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|psd" .
   \ "|mo|po|DS_Store|a|beam|tar.gz|tar.bz2|map" .
   \ ")$' | " .
-  \ "egrep -v '^(\\./)?(" .
+  \ "egrep -v '(\\./)?(" .
   \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|" .
   \ "node_modules/|bower_components/|compressed/|_site/|static_components/|" .
   \ "bin/|env/|build/|static/compressed/|.sass-cache/|Session.vim" .
