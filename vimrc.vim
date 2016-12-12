@@ -48,6 +48,8 @@ set smartcase
 set wildmode=list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
   \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd
+set wildmenu
+set wildmode=longest:full,list:full
 
 
 " Syntax, Colorscheme and Gui Options
@@ -421,7 +423,7 @@ inoremap <F7> exec "call SynStack()"
 " TESTING: Better completion?
 set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
-set completeopt=menuone
+set completeopt=menuone,menu
 
 
 " TESTING: Fun tiems
