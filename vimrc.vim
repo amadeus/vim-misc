@@ -41,11 +41,10 @@ set smartcase
 
 
 " Tab completion when entering filenames
+set wildmenu
 set wildmode=list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
   \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd
-set wildmenu
-set wildmode=longest:full,list:full
 
 
 " Syntax, Colorscheme and Gui Options
