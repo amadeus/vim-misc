@@ -777,9 +777,6 @@ let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
 let g:goyo_width = 90
 
-" TESTING: DelimitMate Settings
-" let g:delimitMate_expand_space = 1
-
 " TESTING: JSX Support
 " let g:jsx_ext_required = 0
 let g:javascript_fold = 1
