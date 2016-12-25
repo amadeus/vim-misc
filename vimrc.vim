@@ -760,7 +760,7 @@ set viewoptions=cursor,slash
 
 " TESTING: Mostly due to Gitv, however seeing if it
 " might help with larger files and doin shiiiz
-set nolazyredraw
+set lazyredraw
 nnoremap <F5> :syntax sync fromstart<cr>
 
 
