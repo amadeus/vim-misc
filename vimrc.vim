@@ -857,6 +857,7 @@ let g:flow#timeout = 10
 " TESTING: Completer - vim8 async autocomplete
 let g:completor_min_chars = 0
 let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+let g:completor_disable_buffer = ['markdown']
 
 " TESTING: AsyncRun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -873,7 +874,7 @@ let g:ale_echo_msg_format = '[%linter%]%s'
 nmap <silent> <d-k> <Plug>(ale_previous_wrap)
 nmap <silent> <d-j> <Plug>(ale_next_wrap)
 " Flow has an issue where relative modules can't be computed :(
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint'], 'markdown': []} "'proselint'
 let g:ale_sign_column_always = 1
 
 " TESTING: Fastfold
