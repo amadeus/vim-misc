@@ -802,7 +802,7 @@ function! <SID>EnableJSX()
   if getfsize(expand(@%)) > 100000
     return
   endif
-  if search('import React', 'npw') || search("require('React')", 'npw') || search('require("React")', 'npw')
+  if search("from\\s\\+['\"]react['\"]", 'npw') || search("require(['\"]react['\"])", 'npw')
     set filetype=javascript.jsx
   else
     set filetype=javascript
@@ -810,7 +810,7 @@ function! <SID>EnableJSX()
 endfu
 augroup enablejsx
   autocmd!
-  autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
+  autocmd BufNewFile *.js call <SID>EnableJSX()
 augroup END
 
 " TESTING: Disabling netrw
