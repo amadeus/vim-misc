@@ -327,6 +327,8 @@ vnoremap p pgvy
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeIgnore=['\.pyc$']
+let g:NERDTreeDirArrowExpandable = '›'
+let g:NERDTreeDirArrowCollapsible = '‹'
 augroup nerdtree
   autocmd!
   " Hiding list chars because of the cursorline in NERDTree
@@ -624,13 +626,6 @@ augroup fugitivefix
 augroup END
 
 
-" TESTING: NeoSnippets - Attempting to move away from
-" the use of a tab character, since it triggers bugs sometimes
-imap <c-a> <Plug>(neosnippet_expand_or_jump)
-smap <c-a> <Plug>(neosnippet_expand_or_jump)
-xmap <c-a> <Plug>(neosnippet_expand_target)
-
-
 " TESTING: Set JSON Filetype
 augroup json
   au!
@@ -906,3 +901,10 @@ xmap gs  <plug>(GrepperOperator)
 
 " TESTING: guicursor blink rate
 set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor-blinkwait130-blinkoff130-blinkon130,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+" TESTING: Garbage autochdir hack... really don't want to do this
+augroup autocmdgarbage
+  autocmd!
+  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+augroup END
