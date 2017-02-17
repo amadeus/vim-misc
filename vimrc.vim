@@ -44,7 +44,7 @@ set smartcase
 set wildmenu
 set wildmode=list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
-  \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd
+  \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd,*.sublime-project
 
 
 " Syntax, Colorscheme and Gui Options
@@ -126,7 +126,7 @@ nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :UndotreeToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
-nnoremap <leader>st  :SyntasticToggle<cr>
+nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>a   :Ack '
@@ -486,8 +486,6 @@ let g:startify_session_autoload = 1
 let g:startify_change_to_dir = 1
 let g:ctrlp_reuse_window = 'startify'
 let g:startify_list_order = ['bookmarks', 'files']
-let g:startify_session_delete_buffers = 1
-" let g:startify_session_dir = '.'
 
 
 let g:startify_skiplist = [
@@ -531,8 +529,8 @@ endfunction
 
 augroup cursorline
   autocmd!
-  autocmd BufEnter,WinEnter,FileType * :call SetCursorLine('enter')
-  autocmd BufLeave,WinLeave * :call SetCursorLine('leave')
+  autocmd BufEnter,WinEnter,FileType,FocusGained * :call SetCursorLine('enter')
+  autocmd BufLeave,WinLeave,FocusLost,TabLeave * :call SetCursorLine('leave')
   autocmd InsertLeave * :call SetCursorNumber('leave')
   autocmd InsertEnter * :call SetCursorNumber('enter')
 augroup END
@@ -749,7 +747,7 @@ nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 
 
 " TESTING: Better sessionoptions
-set sessionoptions=buffers,help,tabpages
+set sessionoptions=buffers,help,tabpages,curdir
 set viewoptions=cursor,slash
 
 
@@ -871,6 +869,7 @@ nmap <silent> <d-j> <Plug>(ale_next_wrap)
 " Flow has an issue where relative modules can't be computed :(
 let g:ale_linters = {'javascript': ['eslint'], 'markdown': []} "'proselint'
 let g:ale_sign_column_always = 1
+" let g:ale_open_list = 1
 
 " TESTING: Fastfold
 let g:fastfold_max_filesize = 100000
@@ -901,10 +900,3 @@ xmap gs  <plug>(GrepperOperator)
 
 " TESTING: guicursor blink rate
 set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor-blinkwait130-blinkoff130-blinkon130,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-
-" TESTING: Garbage autochdir hack... really don't want to do this
-augroup autocmdgarbage
-  autocmd!
-  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
-augroup END
