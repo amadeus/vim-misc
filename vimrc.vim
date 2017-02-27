@@ -381,8 +381,8 @@ let g:NERDSpaceDelims = 1
 
 
 " TESTING: Signify/GitGutter Settings
-nmap <leader>gj <Plug>GitGutterNextHunk
-nmap <leader>gk <Plug>GitGutterPrevHunk
+nmap <d-j> <Plug>GitGutterNextHunk
+nmap <d-k> <Plug>GitGutterPrevHunk
 nmap <leader>sh <Plug>GitGutterStageHunk
 nmap <leader>rh <Plug>GitGutterRevertHunk
 nmap <leader>ga <Plug>GitGutterAll
@@ -858,8 +858,14 @@ let g:ale_lint_on_enter = 0
 " let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_flow_use_global = 1
 let g:ale_echo_msg_format = '[%linter%]%s'
-nmap <silent> <d-k> <Plug>(ale_previous_wrap)
-nmap <silent> <d-j> <Plug>(ale_next_wrap)
+if has('mac')
+  nmap <silent> ˚ <Plug>(ale_previous_wrap)
+  nmap <silent> ∆ <Plug>(ale_next_wrap)
+else
+  nmap <silent> <a-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <a-j> <Plug>(ale_next_wrap)
+endif
+
 " Flow has an issue where relative modules can't be computed :(
 let g:ale_linters = {'javascript': ['eslint'], 'markdown': []} "'proselint'
 let g:ale_sign_column_always = 1
