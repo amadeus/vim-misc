@@ -136,6 +136,7 @@ nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
+nnoremap <leader>rd  :redraw!<cr>
 
 " Slicker way to move around splits
 noremap <c-j> <c-w>j
