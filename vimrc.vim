@@ -915,6 +915,6 @@ augroup END
 " TESTING: Prettier
 let g:neoformat_javascript_prettier = {
  \ 'exe': 'prettier',
- \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line'],
+ \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'],
  \ 'stdin': 1,
  \ }
