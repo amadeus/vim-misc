@@ -904,3 +904,17 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:
 
 " TESTING: Experiment with this more
 " set path+=./node_modules,./discord_uikit
+set suffixesadd+=.js
+set path+=$PWD/node_modules
+
+" TESTING: LocalIndentGuide
+augroup localindentguide
+  autocmd FileType javascript,javascript.jsx,python LocalIndentGuide +hl
+augroup END
+
+" TESTING: Prettier
+let g:neoformat_javascript_prettier = {
+ \ 'exe': 'prettier',
+ \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line'],
+ \ 'stdin': 1,
+ \ }
