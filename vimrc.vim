@@ -908,13 +908,17 @@ set suffixesadd+=.js
 set path+=$PWD/node_modules
 
 " TESTING: LocalIndentGuide
-augroup localindentguide
-  autocmd FileType javascript,javascript.jsx,python LocalIndentGuide +hl
-augroup END
+" augroup localindentguide
+"   autocmd!
+"   autocmd FileType javascript,javascript.jsx,python LocalIndentGuide +hl
+" augroup END
 
-" TESTING: Prettier
-let g:neoformat_javascript_prettier = {
- \ 'exe': 'prettier',
- \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'],
- \ 'stdin': 1,
- \ }
+" TESTING: Prettier - this should be moved to a `.lvimrc`
+" let g:neoformat_javascript_prettier = {
+"  \ 'exe': 'prettier',
+"  \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'],
+"  \ 'stdin': 1,
+"  \ }
+
+" TESTING: LocalVimRC
+let g:localvimrc_sandbox = 0
