@@ -922,3 +922,11 @@ set path+=$PWD/node_modules
 
 " TESTING: LocalVimRC
 let g:localvimrc_sandbox = 0
+
+" Not sure why this is necessary, but at least if fixes Obsession Basically
+" Obsession doesn't appear to persist, so instead we have to pause and then
+" resume the Obsession task, which requires calling it twice
+augroup obsessionfix
+  autocmd!
+  autocmd SessionLoadPost * silent :Obsession|silent :Obsession
+augroup END
