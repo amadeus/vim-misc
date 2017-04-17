@@ -907,21 +907,9 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:
 set suffixesadd+=.js
 set path+=$PWD/node_modules
 
-" TESTING: LocalIndentGuide
-" augroup localindentguide
-"   autocmd!
-"   autocmd FileType javascript,javascript.jsx,python LocalIndentGuide +hl
-" augroup END
-
-" TESTING: Prettier - this should be moved to a `.lvimrc`
-" let g:neoformat_javascript_prettier = {
-"  \ 'exe': 'prettier',
-"  \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'],
-"  \ 'stdin': 1,
-"  \ }
-
 " TESTING: LocalVimRC
 let g:localvimrc_sandbox = 0
+let g:localvimrc_persistent = 1
 
 " Not sure why this is necessary, but at least if fixes Obsession Basically
 " Obsession doesn't appear to persist, so instead we have to pause and then
