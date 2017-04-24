@@ -176,7 +176,7 @@ set undofile
 " Remove trailing whitespace on save
 function! ClearTrailingWhitespace(command)
   " Allow me to preserve whitespace on certain files
-  if exists('b:pw') || exists('b:preserve')
+  if exists('b:preserve_whitespace')
     return
   endif
   " Save last search, and cursor position.
@@ -198,11 +198,11 @@ augroup END
 
 "  Toggle whitespace save shortcut
 function! ToggleWhitespaceSave()
-  if exists('b:pw') && b:pw == 1
-    unlet b:pw
+  if exists('b:preserve_whitespace') && b:preserve_whitespace == 1
+    unlet b:preserve_whitespace
     echo 'Stripping whitespace on save'
   else
-    let b:pw = 1
+    let b:preserve_whitespace = 1
     echo 'Preserving whitespace on save'
   endif
 endfunction
@@ -907,10 +907,37 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:
 set suffixesadd+=.js
 set path+=$PWD/node_modules
 
+" TESTING: Neoformat settings
+function! FormatFile()
+  " Also ensure that we have prettier settings
+  if exists('b:preserve_format') || !exists('g:neoformat_javascript_prettier') || !exists(':Neoformat')
+    return
+  endif
+  Neoformat
+endfunction
+
+function! ToggleFormatSave()
+  if exists('b:preserve_format') && b:preserve_format == 1
+    unlet b:preserve_format
+    echo 'Formatting file on save'
+  else
+    let b:preserve_format = 1
+    echo 'Preserving formatting on save'
+  endif
+endfunction
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre *.js :call FormatFile()
+augroup END
+
+nnoremap <leader>pf :call ToggleFormatSave()<cr>
+
 " TESTING: LocalVimRC
 let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
 
+" TESTING: Obsession Fix
 " Not sure why this is necessary, but at least if fixes Obsession Basically
 " Obsession doesn't appear to persist, so instead we have to pause and then
 " resume the Obsession task, which requires calling it twice
