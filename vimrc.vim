@@ -273,7 +273,7 @@ elseif has('win32')
 else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
-
+" let g:user_command_async = 1
 
 augroup omnicomplete
   autocmd!
@@ -775,10 +775,11 @@ let g:js_fold = 1
 
 " TESTING: Airline
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
 let g:airline_section_y = ''
+let g:airline_section_warning = ''
 
 let g:ycm_min_num_of_chars_for_completion = 1
 
@@ -945,3 +946,14 @@ augroup obsessionfix
   autocmd!
   autocmd SessionLoadPost * silent :Obsession|silent :Obsession
 augroup END
+
+" \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'],
+let g:neoformat_stylus_stylefmt = {
+ \ 'exe': 'stylefmt',
+ \ 'stdin': 1,
+ \ }
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.notexists = ''
