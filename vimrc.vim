@@ -87,7 +87,8 @@ set splitbelow
 
 " Add buffer to cursor while scrolling
 set scrolloff=3
-set sidescroll=0
+set sidescroll=1
+set sidescrolloff=5
 
 
 " Disable annoying keys and fix common errors
@@ -947,7 +948,6 @@ augroup obsessionfix
   autocmd SessionLoadPost * silent :Obsession|silent :Obsession
 augroup END
 
-" \ 'args': ['--stdin', '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'],
 let g:neoformat_stylus_stylefmt = {
  \ 'exe': 'stylefmt',
  \ 'stdin': 1,
@@ -972,3 +972,12 @@ let g:airline_mode_map = {
 \ 'S'  : 'S',
 \ '' : 'S',
 \ }
+
+" TESTING: Sidescrolling shortcuts
+if has('mac')
+  nmap <silent> ˙ zh
+  nmap <silent> ¬ zl
+else
+  nmap <silent> <a-h> zh
+  nmap <silent> <a-l> zl
+endif
