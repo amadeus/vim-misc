@@ -958,3 +958,17 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.notexists = ''
 let g:airline_theme='evokai'
+
+let g:airline_mode_map = {
+\ '__' : '-',
+\ 'n'  : 'NORMAL',
+\ 'i'  : 'INSERT',
+\ 'R'  : 'RPLACE',
+\ 'c'  : 'COMAND',
+\ 'v'  : 'VISUAL',
+\ 'V'  : 'LINE  ',
+\ '' : 'BLOCK ',
+\ 's'  : 'S',
+\ 'S'  : 'S',
+\ '' : 'S',
+\ }
