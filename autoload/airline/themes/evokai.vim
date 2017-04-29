@@ -45,5 +45,8 @@ let g:airline#themes#evokai#palette.inactive = airline#themes#generate_color_map
 " Attempting to overwrite the line number
 call airline#parts#define_accent('linenr', 'none')
 call airline#parts#define_accent('maxlinenr', 'none')
+" call airline#parts#define_accent('ale_error_count', 'error_red')
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
+" let g:airline_section_error = airline#section#create(['ale_warning_count', 'ale_error_count'])
+" let g:airline_section_warning = ''
 let g:airline#themes#evokai#palette.normal.airline_z = [ s:N1[0]   , s:N1[1] , s:N1[2] , 124 , 'none' ]
