@@ -851,8 +851,8 @@ else
   nmap <silent> <a-j> <Plug>(ale_next_wrap)
 endif
 
-" Flow has an issue where relative modules can't be computed :(
-let g:ale_linters = {'javascript': ['eslint'], 'markdown': []} "'proselint'
+" Trying flow again, I think this might actually work now
+let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
 let g:ale_sign_column_always = 1
 " let g:ale_open_list = 1
 
