@@ -441,29 +441,24 @@ augroup htmljinja
   " autocmd Syntax htmldjango setlocal iskeyword+=-
 augroup END
 
-" Startify bookmarks are now customizeable
-if filereadable(expand('$HOME/.vim/misc/bookmarks.vim'))
-  source $HOME/.vim/misc/bookmarks.vim
-endif
-
 let g:startify_custom_header = [
-  \ '                                ______',
-  \ '            __                /\  ____`\',
-  \ '   __   __ /\_\    ___ ___    \ \ \___\ \',
-  \ '  /\ \ /\ \\/\ \ /` __` __`\   \ \  ____ \',
-  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \   \ \ \___\ \',
+  \ '                                ______      ',
+  \ '            __                /\  ____`\    ',
+  \ '   __   __ /\_\    ___ ___    \ \ \___\ \   ',
+  \ '  /\ \ /\ \\/\ \ /` __` __`\   \ \  ____ \  ',
+  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \   \ \ \___\ \ ',
   \ '   \ \___/   \ \_\ \_\ \_\ \_\   \ \_______\',
   \ '    \/__/     \/_/\/_/\/_/\/_/    \/_______/',
-  \ '',
-  \ '  ===========================================',
-  \ '',
+  \ '                                            ',
+  \ '  ==========================================',
+  \ '                                            ',
   \ ]
 
 let g:startify_custom_footer = [
-  \ '',
-  \ '  ===========================================',
-  \ '',
-  \ '  Copyright Tubez, 2016'
+  \ '                                              ',
+  \ '  ============================================',
+  \ '                                              ',
+  \ '  Copyright Tubez, 2017                       '
   \ ]
 
 let g:NERDTreeHijackNetrw = 0
@@ -481,8 +476,7 @@ let g:startify_skiplist = [
   \ ]
 
 
-" Disable startify in terminal vim
-" it just doesn't feel right
+" Disable startify in terminal vim it just doesn't feel right
 if !has("gui_running")
   let g:startify_disable_at_vimenter = 1
 endif
@@ -519,11 +513,6 @@ augroup cursorline
   autocmd InsertLeave * :call SetCursorNumber('leave')
   autocmd InsertEnter * :call SetCursorNumber('enter')
 augroup END
-
-
-" Enabling my old snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-misc/snippets'
-
 
 " Disable smartindent in python, because it sucks
 augroup pythonsmartindent
