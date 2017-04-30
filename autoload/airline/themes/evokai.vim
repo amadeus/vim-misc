@@ -52,6 +52,9 @@ let g:airline#themes#evokai#palette.inactive = airline#themes#generate_color_map
 call airline#parts#define_accent('linenr', 'none')
 call airline#parts#define_accent('maxlinenr', 'none')
 
+" Remove the hideous red color on the readonly indicator
+call airline#parts#define_accent('readonly', 'none')
+
 " Remove cursor percentage position
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
 
