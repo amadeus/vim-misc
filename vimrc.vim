@@ -961,6 +961,12 @@ let g:airline_theme='evokai'
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#whitespace#enabled = 0
 
+" Ensure Airline errors show up in statusline
+augroup airlinelint
+  autocmd!
+  autocmd User ALELint AirlineRefresh
+augroup END
+
 let g:airline_mode_map = {
 \ '__' : '-',
 \ 'n'  : 'NORMAL',
