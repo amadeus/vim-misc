@@ -975,3 +975,7 @@ else
   nmap <silent> <a-h> zh
   nmap <silent> <a-l> zl
 endif
+
+" TESTING: Scratch settings
+let g:scratch_insert_autohide = 0
+let g:scratch_persistence_file = '.scratch.vim'
