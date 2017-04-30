@@ -967,15 +967,29 @@ augroup airlinelint
   autocmd User ALELint AirlineRefresh
 augroup END
 
+" let g:airline_mode_map = {
+" \ '__' : '-',
+" \ 'n'  : 'NORMAL',
+" \ 'i'  : 'INSERT',
+" \ 'R'  : 'RPLACE',
+" \ 'c'  : 'COMAND',
+" \ 'v'  : 'VISUAL',
+" \ 'V'  : 'LINE  ',
+" \ '' : 'BLOCK ',
+" \ 's'  : 'S',
+" \ 'S'  : 'S',
+" \ '' : 'S',
+" \ }
+
 let g:airline_mode_map = {
 \ '__' : '-',
-\ 'n'  : 'NORMAL',
-\ 'i'  : 'INSERT',
-\ 'R'  : 'RPLACE',
-\ 'c'  : 'COMAND',
-\ 'v'  : 'VISUAL',
-\ 'V'  : 'LINE  ',
-\ '' : 'BLOCK ',
+\ 'n'  : 'N',
+\ 'i'  : 'I',
+\ 'R'  : 'R',
+\ 'c'  : 'C',
+\ 'v'  : 'V',
+\ 'V'  : 'V',
+\ '' : 'V',
 \ 's'  : 'S',
 \ 'S'  : 'S',
 \ '' : 'S',
