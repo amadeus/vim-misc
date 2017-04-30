@@ -309,11 +309,6 @@ augroup yaml
   autocmd BufNewFile,BufRead *.conf setl filetype=yaml
 augroup END
 
-
-" TESTING: ZenCoding Tweaks
-let g:user_zen_leader_key = '<c-q>'
-
-
 " TESTING: Don't clobber the unnamed register when pasting over
 " text in visual mode. Seems like a bit of a hack, but I'll try it
 vnoremap p pgvy
@@ -394,12 +389,6 @@ let g:gitgutter_eager = 1
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
 set updatetime=10
-
-" Old signify mappings, in case I ever revert
-" let g:signify_mapping_next_hunk = '<leader>j'
-" let g:signify_mapping_prev_hunk = '<leader>k'
-" let g:signify_vcs_list = [ 'git', 'hg' ]
-" let g:signify_skip_filetype = { 'help': 1 }
 
 
 " TESTING: Show the stack of syntax hilighting classes affecting
@@ -679,7 +668,6 @@ map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
 map  <leader>k <Plug>(easymotion-bd-jk)
 map  <leader>j <Plug>(easymotion-bd-jk)
-" map  <leader>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = 1
 
 
@@ -727,10 +715,6 @@ let g:csv_delim=','
 let g:CustomEntities = [
   \ ['(c)',  '\&copy;'],
 \ ]
-
-
-" TESTING: CloseTag
-inoremap <C-_> <C-R>=GetCloseTag()<CR>
 
 " TESTING: Vim Javascript indent tests
 let g:javascript_indent_to_parens=0
@@ -853,12 +837,10 @@ let g:completor_disable_buffer = ['markdown']
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " TESTING: Ale Linter
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-" let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_flow_use_global = 1
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
