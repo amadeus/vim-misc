@@ -56,6 +56,7 @@ call airline#parts#define_accent('maxlinenr', 'none')
 call airline#parts#define_accent('readonly', 'none')
 
 " Remove cursor percentage position
+let g:airline_section_y = ''
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
 
 " Using Ale for warnings and errors
