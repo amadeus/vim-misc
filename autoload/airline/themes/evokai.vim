@@ -55,8 +55,10 @@ call airline#parts#define_accent('maxlinenr', 'none')
 " Remove the hideous red color on the readonly indicator
 call airline#parts#define_accent('readonly', 'none')
 
-" Remove cursor percentage position
+" Remove file format
 let g:airline_section_y = ''
+
+" Remove cursor percentage position
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
 
 " Using Ale for warnings and errors
