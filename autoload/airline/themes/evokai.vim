@@ -55,6 +55,9 @@ call airline#parts#define_accent('maxlinenr', 'none')
 " Remove the hideous red color on the readonly indicator
 call airline#parts#define_accent('readonly', 'none')
 
+" Prevent filetype from ever truncating
+let g:airline_section_x = '%{&filetype}'
+
 " Remove file format
 let g:airline_section_y = ''
 
