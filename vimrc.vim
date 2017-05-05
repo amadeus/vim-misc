@@ -569,7 +569,8 @@ else
 endif
 
 " Trying flow again, I think this might actually work now
-let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
+" , 'flow'
+let g:ale_linters = {'javascript': ['eslint'], 'markdown': []}
 let g:ale_sign_column_always = 1
 
 
@@ -581,10 +582,30 @@ let g:airline_symbols.notexists = ''
 let g:airline_symbols.readonly = '×'
 let g:airline_theme='evokai'
 let g:airline_skip_empty_sections = 1
-let g:airline#extensions#whitespace#enabled = 0
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#section_truncate_width = {}
+
+" TESTING: Airline performance hax
+let g:airline#extensions#bufferline#enabled = 0
+let g:airline#extensions#csv#enabled = 0
+let g:airline#extensions#disable_rtp_load = 1
+let g:airline#extensions#eclim#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#syntastic#enabled = 0
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#vimagit#enabled = 0
+let g:airline#extensions#virtualenv#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#promptline#enabled = 0
+let g:airline#extensions#capslock#enabled = 0
+let g:airline#extensions#xkblayout#enabled = 0
+let g:airline#extensions#windowswap#enabled = 0
+let g:airline#extensions#obsession#enabled = 0
+let g:airline#extensions#taboo#enabled = 0
+let g:airline#extensions#ycm#enabled = 0
+let g:airline#extensions#po#enabled = 0
 
 " Ensure Airline errors show up in statusline
 augroup airlinelint
