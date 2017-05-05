@@ -661,10 +661,10 @@ map  <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
 map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
-map  <leader>k <Plug>(easymotion-bd-jk)
-map  <leader>j <Plug>(easymotion-bd-jk)
-map <leader><leader><leader> <Plug>(easymotion-repeat)
-map <SPACE> <Plug>(easymotion-s)
+map  <leader>k <Plug>(easymotion-overwin-line)
+map  <leader>j <Plug>(easymotion-overwin-line)
+map  <leader><leader><leader> <Plug>(easymotion-repeat)
+map  <space> <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
 
 
