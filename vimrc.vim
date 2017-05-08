@@ -187,6 +187,8 @@ inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-j> <esc>o
 inoremap <c-d> <esc>v^c
+inoremap <c-e> <c-x><c-e>
+inoremap <c-y> <c-x><c-y>
 
 " Don't clobber the unnamed register when pasting over text in visual mode
 vnoremap p pgvy
