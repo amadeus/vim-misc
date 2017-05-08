@@ -82,7 +82,7 @@ set noruler
 set laststatus=2
 " set fillchars+=vert:┆
 " Testing out a new split char
-set fillchars+=vert:×
+set fillchars+=vert:¦
 
 " Force vim to think of 2 spaces as a sentence
 set cpo+=J
