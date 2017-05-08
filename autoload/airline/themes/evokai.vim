@@ -45,7 +45,7 @@ let g:airline#themes#evokai#palette.replace.airline_a = [ s:RE[0] , s:RE[1] , s:
 let g:airline#themes#evokai#palette.replace.airline_error = s:EC
 let g:airline#themes#evokai#palette.replace.airline_warning = s:WC
 
-let s:IA = [s:N2[0], s:N3[1], s:N2[2], s:N3[3], '']
+let s:IA = ['#555555', '#222222', s:N2[2], s:N3[3], '']
 let g:airline#themes#evokai#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
 
 " Remove bold text from line numbers
