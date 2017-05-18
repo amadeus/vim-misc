@@ -71,7 +71,7 @@ else
   colorscheme molokai
 endif
 
-set guioptions=aAce
+set guioptions=aAc
 set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor-blinkwait130-blinkoff130-blinkon130,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 set shortmess=ITaoc
 " Set title string to current working directory!
@@ -250,6 +250,7 @@ function! ToggleWhitespaceSave()
   endif
 endfunction
 
+" FIXME: This gets hijacked by windowswap
 nnoremap <leader>pw :call ToggleWhitespaceSave()<cr>
 
 
@@ -323,7 +324,7 @@ augroup omnicomplete
   " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   " autocmd FileType javascript setlocal omnifunc=tern#Complete
   " flowcomplete#Complete
-  autocmd FileType javascript setl omnifunc=flowcomplete#Complete
+  " autocmd FileType javascript setl omnifunc=flowcomplete#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
@@ -574,7 +575,7 @@ endif
 
 " Trying flow again, I think this might actually work now
 " , 'flow'
-let g:ale_linters = {'javascript': ['eslint'], 'markdown': []}
+let g:ale_linters = {'javascript': ['eslint'], 'markdown': [], 'cssmodules': ['stylelint']}
 let g:ale_sign_column_always = 1
 
 
@@ -610,6 +611,9 @@ let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#taboo#enabled = 0
 let g:airline#extensions#ycm#enabled = 0
 let g:airline#extensions#po#enabled = 0
+
+" TESTING: Tabline
+" let g:airline#extensions#tabline#enabled = 1
 
 " Ensure Airline errors show up in statusline
 augroup airlinelint
