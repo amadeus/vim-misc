@@ -661,15 +661,14 @@ function! <SID>EnableJSX()
   endif
   if search("from\\s\\+['\"]react['\"]", 'npw') || search("require(['\"]react['\"])", 'npw')
     set filetype=javascript.jsx
-  else
-    set filetype=javascript
   endif
 endfu
 let g:javascript_fold = 1
 let g:js_fold = 1
 augroup enablejsx
   autocmd!
-  autocmd BufNewFile *.js call <SID>EnableJSX()
+  " autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
+  autocmd Syntax javascript call <SID>EnableJSX()
 augroup END
 
 
@@ -798,7 +797,6 @@ function! <SID>IsGitConflict()
 endfu
 augroup githighlighting
   autocmd!
-  autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
   autocmd Syntax * call <SID>IsGitConflict()
 augroup END
 
