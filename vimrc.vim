@@ -176,6 +176,7 @@ noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
+nnoremap gF <c-w>vgf
 
 " Improved way of Escaping out of insert mode
 inoremap jk <Esc>
@@ -563,7 +564,6 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
-let g:ale_javascript_flow_use_global = 1
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
@@ -575,7 +575,7 @@ endif
 
 " Trying flow again, I think this might actually work now
 " , 'flow'
-let g:ale_linters = {'javascript': ['eslint'], 'markdown': [], 'cssmodules': ['stylelint']}
+let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
 let g:ale_sign_column_always = 1
 
 
@@ -678,8 +678,7 @@ let g:goyo_margin_bottom=5
 let g:goyo_width = 90
 
 
-" Disabling netrw
-let g:loaded_netrwPlugin = 1
+" JS Syntax Plugins
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
