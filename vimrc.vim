@@ -890,3 +890,10 @@ endif
 " TESTING: Scratch settings
 let g:scratch_insert_autohide = 0
 let g:scratch_persistence_file = '.scratch.vim'
+
+" TESTING: Flow autocomplete
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+  \ 'name': 'flow',
+  \ 'whitelist': ['javascript'],
+  \ 'completor': function('asyncomplete#sources#flow#completor')
+  \ }))
