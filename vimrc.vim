@@ -618,7 +618,9 @@ let g:airline#extensions#po#enabled = 0
 " Ensure Airline errors show up in statusline
 augroup airlinelint
   autocmd!
-  autocmd User ALELint AirlineRefresh
+  " NOTE: I think this makes Vim VERY slow, trying out BufWritePost instead
+  " autocmd User ALELint AirlineRefresh
+  autocmd BufWritePost * AirlineRefresh
 augroup END
 
 let g:airline_mode_map = {
