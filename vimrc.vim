@@ -168,6 +168,7 @@ nnoremap <leader>gd  :Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
+nnoremap <leader>jd  :FlowJumpToDef<cr>
 
 " Slicker way to move around splits
 noremap <c-j> <c-w>j
@@ -733,15 +734,16 @@ let @p="0f:wiReact.PropTypes.j0"
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
-let g:indentLine_color_gui = '#444444'
+" let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_indentLevel = 10
-let g:indentLine_faster = 1
-let g:indentLine_fileTypeExclude = ['help', 'startify']
+" let g:indentLine_indentLevel = 10
+" let g:indentLine_faster = 1
+let g:indentLine_fileTypeExclude = ['help', 'startify', 'markdown']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
 let g:indentLine_noConcealCursor=1
-let g:indentLine_maxLines = 1000
-let g:indentLine_conceallevel = 1
+" let g:indentLine_maxLines = 1000
+" let g:indentLine_conceallevel = 1
+nnoremap <leader>ii :IndentLinesToggle<cr>
 
 
 " TESTING: ColorColumn Jazz
@@ -913,3 +915,20 @@ augroup asyncComplete
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ }))
 augroup END
+
+" TESTING: New NERDTree plugin symbols
+let g:NERDTreeIndicatorMapCustom = {
+  \ "Modified"  : "M",
+  \ "Staged"    : "A",
+  \ "Untracked" : "U",
+  \ "Renamed"   : "R",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "×",
+  \ "Dirty"     : "±",
+  \ "Clean"     : "C",
+  \ 'Ignored'   : 'I',
+  \ "Unknown"   : "?"
+  \ }
+
+" TESTING: QuickTask Settings
+let g:quicktask_snip_path = '~/.vim/quicksnips'
