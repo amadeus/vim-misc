@@ -80,9 +80,7 @@ set number
 set numberwidth=3
 set noruler
 set laststatus=2
-" set fillchars+=vert:┆
-" Testing out a new split char
-set fillchars+=vert:¦
+set fillchars=vert:¦,fold:-
 
 " Force vim to think of 2 spaces as a sentence
 set cpo+=J
@@ -321,10 +319,7 @@ augroup omnicomplete
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-  " Commenting out in favor of tern#CompleteJS as a test
-  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  " autocmd FileType javascript setlocal omnifunc=tern#Complete
-  " flowcomplete#Complete
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   " autocmd FileType javascript setl omnifunc=flowcomplete#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -417,7 +412,7 @@ augroup END
 " Set markdown textwidth
 augroup markdowntextwidth
   autocmd!
-  autocmd BufNewFile,BufRead *.md,*.markdown setlocal textwidth=79
+  autocmd BufNewFile,BufRead *.md,*.markdown,*.wiki setlocal textwidth=79|set tabstop=2|set shiftwidth=2
 augroup END
 
 
@@ -894,8 +889,27 @@ let g:scratch_insert_autohide = 0
 let g:scratch_persistence_file = '.scratch.vim'
 
 " TESTING: Flow autocomplete
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-  \ 'name': 'flow',
-  \ 'whitelist': ['javascript'],
-  \ 'completor': function('asyncomplete#sources#flow#completor')
-  \ }))
+augroup asyncComplete
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+    \ 'name': 'flow',
+    \ 'priority': 10,
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ 'completor': function('asyncomplete#sources#flow#completor'),
+    \ 'config': { 'prefer_local': 1}
+    \ }))
+
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+    \ 'name': 'omni',
+    \ 'priority': 5,
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#omni#completor')
+    \  }))
+
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'priority': 0,
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
+augroup END
