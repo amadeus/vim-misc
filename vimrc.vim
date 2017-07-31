@@ -231,6 +231,7 @@ function! ClearTrailingWhitespace(command)
   " Clean up: restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
+  echom 'Trailing whitespace cleared'
 endfunction
 
 " Execute clear whitespace on save
@@ -240,8 +241,10 @@ augroup whitespace
 augroup END
 
 "  Toggle whitespace save shortcut
-function! ToggleWhitespaceSave()
-  if exists('b:preserve_whitespace') && b:preserve_whitespace == 1
+function! ToggleWhitespaceSave(force)
+  if a:force
+    let b:preserve_whitespace = 1
+  elseif exists('b:preserve_whitespace') && b:preserve_whitespace == 1
     unlet b:preserve_whitespace
     echo 'Stripping whitespace on save'
   else
