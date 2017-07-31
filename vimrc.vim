@@ -853,7 +853,7 @@ endfunction
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.js :call FormatFile()
+  autocmd BufWritePre *.js,*.css :silent call FormatFile()
 augroup END
 
 nnoremap <leader>pf :call ToggleFormatSave()<cr>
