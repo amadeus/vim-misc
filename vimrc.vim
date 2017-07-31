@@ -896,30 +896,30 @@ let g:scratch_insert_autohide = 0
 let g:scratch_persistence_file = '.scratch.vim'
 
 " TESTING: Flow autocomplete
-augroup asyncComplete
-  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-    \ 'name': 'flow',
-    \ 'priority': 10,
-    \ 'whitelist': ['javascript', 'javascript.jsx'],
-    \ 'completor': function('asyncomplete#sources#flow#completor'),
-    \ 'config': { 'prefer_local': 1}
-    \ }))
+" augroup asyncComplete
+"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+"     \ 'name': 'flow',
+"     \ 'priority': 10,
+"     \ 'whitelist': ['javascript', 'javascript.jsx'],
+"     \ 'completor': function('asyncomplete#sources#flow#completor'),
+"     \ 'config': { 'prefer_local': 1}
+"     \ }))
 
-  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-    \ 'name': 'omni',
-    \ 'priority': 5,
-    \ 'whitelist': ['*'],
-    \ 'completor': function('asyncomplete#sources#omni#completor')
-    \  }))
+"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+"     \ 'name': 'omni',
+"     \ 'priority': 5,
+"     \ 'whitelist': ['*'],
+"     \ 'completor': function('asyncomplete#sources#omni#completor')
+"     \  }))
 
-  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'priority': 0,
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
-augroup END
+"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+"     \ 'name': 'buffer',
+"     \ 'priority': 0,
+"     \ 'whitelist': ['*'],
+"     \ 'blacklist': ['go'],
+"     \ 'completor': function('asyncomplete#sources#buffer#completor'),
+"     \ }))
+" augroup END
 
 " TESTING: New NERDTree plugin symbols
 let g:NERDTreeIndicatorMapCustom = {
