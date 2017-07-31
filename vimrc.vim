@@ -175,7 +175,7 @@ noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
-nnoremap gF <c-w>vgf
+nnoremap gF <c-w>v0f.gf
 
 " Improved way of Escaping out of insert mode
 inoremap jk <Esc>
