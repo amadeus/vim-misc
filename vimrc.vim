@@ -563,6 +563,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
+let g:ale_open_list = 'on_save'
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
@@ -610,19 +611,30 @@ let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#taboo#enabled = 0
 let g:airline#extensions#ycm#enabled = 0
 let g:airline#extensions#po#enabled = 0
+let g:airline#extensions#nrrwrgn#enabled = 0
+let g:airline#extensions#ctrlspace#enabled = 0
+let g:airline#extensions#vimtex#enabled = 0
+let g:airline#extensions#neomake#enabled = 0
 
-" TESTING: Tabline
-" let g:airline#extensions#tabline#enabled = 1
+" TESTING: Tabline settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_close_button = 1
+let g:airline#extensions#tabline#close_symbol = '×'
+
+" TESTING: ALE
+let g:airline#extensions#ale#enabled = 0
 
 " Ensure Airline errors show up in statusline
-if exists('AirlineRefresh')
-  augroup airlinelint
-    autocmd!
-    " NOTE: I think this makes Vim VERY slow, trying out BufWritePost instead
-    " autocmd User ALELint AirlineRefresh
-    autocmd BufWritePost * AirlineRefresh
-  augroup END
-endif
+" if exists('AirlineRefresh')
+"   augroup airlinelint
+"     autocmd!
+"     " NOTE: I think this makes Vim VERY slow, trying out BufWritePost instead
+"     " autocmd User ALELint AirlineRefresh
+"     autocmd BufWritePost * AirlineRefresh
+"   augroup END
+" endif
 
 let g:airline_mode_map = {
 \ '__' : '-',
@@ -937,3 +949,9 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " TESTING: QuickTask Settings
 let g:quicktask_snip_path = '~/.vim/quicksnips'
+
+" TESTING: Profile mappings
+nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
