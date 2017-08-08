@@ -622,6 +622,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_close_button = 1
 let g:airline#extensions#tabline#close_symbol = '×'
+let g:airline#extensions#tabline#show_buffers = 0
 
 " TESTING: ALE
 let g:airline#extensions#ale#enabled = 0
