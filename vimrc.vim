@@ -620,9 +620,14 @@ let g:airline#extensions#neomake#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_close_button = 1
+let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#close_symbol = '×'
 let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#tabline#tabs_label = ''
 
 " TESTING: ALE
 let g:airline#extensions#ale#enabled = 0
