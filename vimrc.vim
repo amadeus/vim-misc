@@ -563,7 +563,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
-let g:ale_open_list = 'on_save'
+" let g:ale_open_list = 'on_save'
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
