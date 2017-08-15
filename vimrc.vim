@@ -154,7 +154,8 @@ nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
 nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
-nnoremap <leader>u   :UndotreeToggle<cr>
+" nnoremap <leader>u   :UndotreeToggle<cr>
+nnoremap <leader>u   :MundoToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>at  :ALEToggle<cr>
@@ -628,6 +629,8 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#tabs_label = ''
+" TESTING: Potential performance improvement
+let g:airline_highlighting_cache = 1
 
 " TESTING: ALE
 let g:airline#extensions#ale#enabled = 0
@@ -912,6 +915,8 @@ endif
 " TESTING: Scratch settings
 let g:scratch_insert_autohide = 0
 let g:scratch_persistence_file = '.scratch.vim'
+let g:scratch_filetype = 'markdown'
+let g:scratch_horizontal = 0
 
 " TESTING: Flow autocomplete
 " augroup asyncComplete
