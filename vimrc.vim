@@ -145,6 +145,7 @@ nnoremap k gk
 
 " Various leader shortcuts
 let mapleader="q"
+let maplocalleader="q"
 nnoremap q <nop>
 vnoremap q <nop>
 nnoremap Q q
@@ -866,22 +867,22 @@ set path+=$PWD/node_modules
 "   Neoformat
 " endfunction
 
-" function! ToggleFormatSave()
-"   if exists('b:preserve_format') && b:preserve_format == 1
-"     unlet b:preserve_format
-"     echo 'Formatting file on save'
-"   else
-"     let b:preserve_format = 1
-"     echo 'Preserving formatting on save'
-"   endif
-" endfunction
+function! ToggleFormatSave()
+  if exists('g:ale_fix_on_save') && g:ale_fix_on_save == 1
+    let g:ale_fix_on_save = 0
+    echo 'Preserving formatting on save'
+  else
+    let g:ale_fix_on_save = 1
+    echo 'Formatting file on save'
+  endif
+endfunction
 
 " augroup fmt
 "   autocmd!
 "   autocmd BufWritePre *.js,*.css :silent call FormatFile()
 " augroup END
 
-" nnoremap <leader>pf :call ToggleFormatSave()<cr>
+nnoremap <leader>pf :call ToggleFormatSave()<cr>
 
 " let g:neoformat_stylus_stylefmt = {
 "  \ 'exe': 'stylefmt',
