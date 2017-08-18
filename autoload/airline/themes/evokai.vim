@@ -65,8 +65,8 @@ let g:airline_section_y = ''
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
 
 " Using Ale for warnings and errors
-" TESTING: Wondering if ale is somehow a problem
-let g:airline_section_warning = ''
-let g:airline_section_error = ''
+" TESTING: I don't think I need this anymore
+" let g:airline_section_warning = ''
+" let g:airline_section_error = ''
 " let g:airline_section_warning = airline#section#create(['ale_warning_count'])
 " let g:airline_section_error = airline#section#create(['ale_error_count'])

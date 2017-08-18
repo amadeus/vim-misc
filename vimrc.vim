@@ -642,14 +642,10 @@ let g:airline_highlighting_cache = 1
 let g:airline#extensions#ale#enabled = 1
 
 " Ensure Airline errors show up in statusline
-" if exists('AirlineRefresh')
-"   augroup airlinelint
-"     autocmd!
-"     " NOTE: I think this makes Vim VERY slow, trying out BufWritePost instead
-"     autocmd User ALELint AirlineRefresh
-"     autocmd BufWritePost * AirlineRefresh
-"   augroup END
-" endif
+augroup airlinelint
+  autocmd!
+  autocmd User ALELint AirlineRefresh
+augroup END
 
 let g:airline_mode_map = {
 \ '__' : '-',
@@ -861,7 +857,7 @@ set suffixesadd+=.js
 set path+=$PWD/node_modules
 
 " DISABLED: Trying out ALE, it seems way faster
-" TESTING: Neoformat settings 
+" TESTING: Neoformat settings
 " function! FormatFile()
 "   " Also ensure that we have prettier settings
 "   if exists('b:preserve_format') || !exists('g:neoformat_javascript_prettier') || !exists(':Neoformat')
