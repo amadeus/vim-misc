@@ -220,7 +220,7 @@ set undofile
 " Remove trailing whitespace on save
 function! ClearTrailingWhitespace(command)
   " Allow me to preserve whitespace on certain files
-  if exists('b:preserve_whitespace')
+  if exists('b:preserve_whitespace') || exists('g:preserve_whitespace')
     return
   endif
   " Save last search, and cursor position.
@@ -560,10 +560,15 @@ nnoremap <leader>se :source Session.vim<cr>
 
 
 " Ale Linter Settings
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+let g:ale_warn_about_trailing_whitespace = 0
+let g:ale_history_enabled = 0
+let g:ale_sign_column_always = 1
 " let g:ale_open_list = 'on_save'
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
@@ -575,9 +580,7 @@ else
 endif
 
 " Trying flow again, I think this might actually work now
-" , 'flow'
 let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
-let g:ale_sign_column_always = 1
 
 
 " Airline Settings
@@ -633,14 +636,14 @@ let g:airline#extensions#tabline#tabs_label = ''
 let g:airline_highlighting_cache = 1
 
 " TESTING: ALE
-let g:airline#extensions#ale#enabled = 0
+let g:airline#extensions#ale#enabled = 1
 
 " Ensure Airline errors show up in statusline
 " if exists('AirlineRefresh')
 "   augroup airlinelint
 "     autocmd!
 "     " NOTE: I think this makes Vim VERY slow, trying out BufWritePost instead
-"     " autocmd User ALELint AirlineRefresh
+"     autocmd User ALELint AirlineRefresh
 "     autocmd BufWritePost * AirlineRefresh
 "   augroup END
 " endif
@@ -854,32 +857,37 @@ command! ProfileEnd call s:ProfileEnd()
 set suffixesadd+=.js
 set path+=$PWD/node_modules
 
+" DISABLED: Trying out ALE, it seems way faster
+" TESTING: Neoformat settings 
+" function! FormatFile()
+"   " Also ensure that we have prettier settings
+"   if exists('b:preserve_format') || !exists('g:neoformat_javascript_prettier') || !exists(':Neoformat')
+"     return
+"   endif
+"   Neoformat
+" endfunction
 
-" TESTING: Neoformat settings
-function! FormatFile()
-  " Also ensure that we have prettier settings
-  if exists('b:preserve_format') || !exists('g:neoformat_javascript_prettier') || !exists(':Neoformat')
-    return
-  endif
-  Neoformat
-endfunction
+" function! ToggleFormatSave()
+"   if exists('b:preserve_format') && b:preserve_format == 1
+"     unlet b:preserve_format
+"     echo 'Formatting file on save'
+"   else
+"     let b:preserve_format = 1
+"     echo 'Preserving formatting on save'
+"   endif
+" endfunction
 
-function! ToggleFormatSave()
-  if exists('b:preserve_format') && b:preserve_format == 1
-    unlet b:preserve_format
-    echo 'Formatting file on save'
-  else
-    let b:preserve_format = 1
-    echo 'Preserving formatting on save'
-  endif
-endfunction
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre *.js,*.css :silent call FormatFile()
+" augroup END
 
-augroup fmt
-  autocmd!
-  autocmd BufWritePre *.js,*.css :silent call FormatFile()
-augroup END
+" nnoremap <leader>pf :call ToggleFormatSave()<cr>
 
-nnoremap <leader>pf :call ToggleFormatSave()<cr>
+" let g:neoformat_stylus_stylefmt = {
+"  \ 'exe': 'stylefmt',
+"  \ 'stdin': 1,
+"  \ }
 
 
 " TESTING: LocalVimRC
@@ -896,11 +904,6 @@ augroup obsessionfix
   autocmd SessionLoadPost * silent :Obsession|silent :Obsession
 augroup END
 
-let g:neoformat_stylus_stylefmt = {
- \ 'exe': 'stylefmt',
- \ 'stdin': 1,
- \ }
-
 
 " TESTING: Sidescrolling shortcuts
 if has('mac')
@@ -916,7 +919,7 @@ endif
 let g:scratch_insert_autohide = 0
 let g:scratch_persistence_file = '.scratch.vim'
 let g:scratch_filetype = 'markdown'
-let g:scratch_horizontal = 0
+let g:scratch_horizontal = 1
 
 " TESTING: Flow autocomplete
 " augroup asyncComplete
