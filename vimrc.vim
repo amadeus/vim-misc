@@ -163,7 +163,8 @@ nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>a   :Ack '
-nnoremap <leader>nt  :NERDTreeToggle<cr>
+nnoremap <leader>vv  :Vaffle<cr>
+nnoremap <leader>vf  :Vaffle %:h<cr>
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
@@ -346,18 +347,6 @@ augroup detectindent
   autocmd BufReadPost * DetectIndent
 augroup END
 
-" NERDTree settings
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeIgnore=['\.pyc$']
-let g:NERDTreeDirArrowExpandable = '›'
-let g:NERDTreeDirArrowCollapsible = '‹'
-augroup nerdtree
-  autocmd!
-  " Hiding list chars because of the cursorline in NERDTree
-  autocmd FileType nerdtree setlocal nolist
-augroup END
-
 " Search for selected text
 vnoremap <silent> <c-s> :<C-U>
   \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -484,7 +473,6 @@ let g:startify_custom_footer = [
   \ '  Copyright Tubez, 2017                       '
   \ ]
 
-let g:NERDTreeHijackNetrw = 0
 let g:startify_session_autoload = 1
 let g:startify_change_to_dir = 1
 let g:ctrlp_reuse_window = 'startify'
@@ -946,20 +934,6 @@ let g:scratch_horizontal = 1
 "     \ 'completor': function('asyncomplete#sources#buffer#completor'),
 "     \ }))
 " augroup END
-
-" TESTING: New NERDTree plugin symbols
-let g:NERDTreeIndicatorMapCustom = {
-  \ "Modified"  : "M",
-  \ "Staged"    : "A",
-  \ "Untracked" : "U",
-  \ "Renamed"   : "R",
-  \ "Unmerged"  : "═",
-  \ "Deleted"   : "×",
-  \ "Dirty"     : "±",
-  \ "Clean"     : "C",
-  \ 'Ignored'   : 'I',
-  \ "Unknown"   : "?"
-  \ }
 
 " TESTING: QuickTask Settings
 let g:quicktask_snip_path = '~/.vim/quicksnips'
