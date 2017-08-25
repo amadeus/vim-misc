@@ -269,7 +269,7 @@ let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_by_filename = 1
 nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
-nnoremap <leader>m :CtrlPMRUFiles<cr>
+nnoremap <leader>mm :CtrlPMRUFiles<cr>
 nnoremap <leader>l :CtrlPLine<cr>
 let g:ctrlp_clear_cache_on_exit = 0
 " I can't theme this yet... so not using it... yet
