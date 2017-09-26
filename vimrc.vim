@@ -80,7 +80,9 @@ set number
 set numberwidth=3
 set noruler
 set laststatus=2
-set fillchars=vert:¦,fold:-
+" set fillchars=vert:¦,fold:-
+" set fillchars=vert:\ ,fold:-
+set fillchars=vert:⋅,fold:-
 
 " Force vim to think of 2 spaces as a sentence
 set cpo+=J
@@ -627,8 +629,8 @@ map  <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
 map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
-map  <leader>k <Plug>(easymotion-overwin-line)
-map  <leader>j <Plug>(easymotion-overwin-line)
+map  <leader>kk <Plug>(easymotion-overwin-line)
+map  <leader>jj <Plug>(easymotion-overwin-line)
 map  <leader><leader><leader> <Plug>(easymotion-repeat)
 map  <space> <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
