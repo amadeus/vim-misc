@@ -331,8 +331,8 @@ augroup omnicomplete
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  " autocmd FileType javascript setl omnifunc=flowcomplete#Complete
+  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType javascript setl omnifunc=flowcomplete#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
@@ -527,8 +527,8 @@ endfunction
 
 augroup cursorline
   autocmd!
-  autocmd BufEnter,WinEnter,FileType,FocusGained * :call SetCursorLine('enter')
-  autocmd BufLeave,WinLeave,FocusLost,TabLeave * :call SetCursorLine('leave')
+  autocmd BufEnter,WinEnter,FileType,FocusGained,TabEnter,TabNew * :call SetCursorLine('enter')
+  autocmd BufLeave,WinLeave,FocusLost,TabLeave,CmdwinLeave,TabLeave * :call SetCursorLine('leave')
   autocmd InsertLeave * :call SetCursorNumber('leave')
   autocmd InsertEnter * :call SetCursorNumber('enter')
 augroup END
@@ -593,23 +593,29 @@ endif
 
 
 " Enable JSX in files that import react
-function! <SID>EnableJSX()
-  setlocal nosmartindent
-  setlocal noautoindent
-  " Don't attempt this search on a large file
-  if getfsize(expand(@%)) > 100000
-    return
-  endif
-  if search("from\\s\\+['\"]react['\"]", 'npw') || search("require(['\"]react['\"])", 'npw')
-    set filetype=javascript.jsx
-  endif
-endfu
-let g:javascript_fold = 1
-let g:js_fold = 1
-augroup enablejsx
+" function! <SID>EnableJSX()
+"   setlocal nosmartindent
+"   setlocal noautoindent
+"   " Don't attempt this search on a large file
+"   if getfsize(expand(@%)) > 100000
+"     return
+"   endif
+"   if search("from\\s\\+['\"]react['\"]", 'npw') || search("require(['\"]react['\"])", 'npw')
+"     set filetype=javascript.jsx
+"   endif
+" endfu
+" let g:javascript_fold = 1
+" let g:js_fold = 1
+" augroup enablejsx
+"   autocmd!
+"   " autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
+"   autocmd Syntax javascript call <SID>EnableJSX()
+" augroup END
+let g:jsx_ext_required = 0
+augroup jsfixes
   autocmd!
   " autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
-  autocmd Syntax javascript call <SID>EnableJSX()
+  autocmd Syntax javascript setlocal nosmartindent|setlocal noautoindent
 augroup END
 
 
@@ -692,21 +698,21 @@ nnoremap <leader>ii :IndentLinesToggle<cr>
 " TESTING: ColorColumn Jazz
 " I only want my special ColorColumn used on the JS filetype
 " It requires that I add and remove it on a per file/window basis
-function! ToggleColorColumn()
-  " Only run matchadd if it doesn't exist in a JS file
-  if &filetype == 'javascript' && !exists('w:js_color_column')
-    let w:js_color_column = matchadd('ColorColumn', '\%121v', -1)
-  " Otherwise clear it out completely
-  elseif &filetype != 'javascript' && exists('w:js_color_column')
-    call matchdelete(w:js_color_column)
-    unlet w:js_color_column
-  end
-endfunction
+" function! ToggleColorColumn()
+"   " Only run matchadd if it doesn't exist in a JS file
+"   if &filetype == 'javascript' && !exists('w:js_color_column')
+"     let w:js_color_column = matchadd('ColorColumn', '\%121v', -1)
+"   " Otherwise clear it out completely
+"   elseif &filetype != 'javascript' && exists('w:js_color_column')
+"     call matchdelete(w:js_color_column)
+"     unlet w:js_color_column
+"   end
+" endfunction
 
-augroup colorColumn
-  autocmd!
-  autocmd BufEnter * :call ToggleColorColumn()
-augroup END
+" augroup colorColumn
+"   autocmd!
+"   autocmd BufEnter * :call ToggleColorColumn()
+" augroup END
 
 
 " TESTING: Dope patch - not integrated yet
@@ -736,10 +742,11 @@ function! <SID>IsGitConflict()
     runtime misc/gitconflicts.vim
   endif
 endfu
-augroup githighlighting
-  autocmd!
-  autocmd Syntax * call <SID>IsGitConflict()
-augroup END
+" TESTING: This may be causing issues for me when sourcing
+" augroup githighlighting
+"   autocmd!
+"   autocmd Syntax * call <SID>IsGitConflict()
+" augroup END
 
 
 " TESTING: AsyncRun
