@@ -645,7 +645,7 @@ let g:EasyMotion_smartcase = 1
 " Vim Flow Settings
 let g:flow#enable = 0
 let g:flow#autoclose = 1
-let g:flow#timeout = 10
+let g:flow#timeout = 60
 
 
 " Gitv configuration
