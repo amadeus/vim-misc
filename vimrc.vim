@@ -122,6 +122,7 @@ augroup END
 " Key remappings
 noremap     <F1> <Esc>
 inoremap    <F1> <Esc>
+inoremap    <c-x><c-x> <c-x><c-o>
 nnoremap    K    <Nop>
 cnoreabbrev W    w
 cnoreabbrev Wq   wq
@@ -146,10 +147,12 @@ vnoremap k gk
 nnoremap k gk
 
 " Various leader shortcuts
-let mapleader="q"
-let maplocalleader="q"
+let mapleader="\\"
+let maplocalleader="\\"
 nnoremap q <nop>
 vnoremap q <nop>
+nmap q \
+vmap q \
 nnoremap Q q
 vnoremap Q q
 nnoremap <F5> :syntax sync fromstart<cr>
@@ -555,7 +558,7 @@ nnoremap <leader>se :source Session.vim<cr>
 
 " Ale Linter Settings
 let g:ale_lint_on_enter = 1
-let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
@@ -581,6 +584,10 @@ let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
 " let g:completor_min_chars = 0
 " let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
 " let g:completor_disable_buffer = ['markdown']
+" let g:completor_min_chars = 0
+" let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+" Actually working - but very slow
+" let g:completor_javascript_omni_trigger = "\\w+$|[\\w\\)\\]\\}\'\"]+\\.\\w*$"
 
 
 " Grepper Maps
