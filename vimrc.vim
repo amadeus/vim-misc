@@ -331,8 +331,8 @@ augroup omnicomplete
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType javascript setl omnifunc=flowcomplete#Complete
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  " autocmd FileType javascript setl omnifunc=flowcomplete#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
@@ -578,9 +578,9 @@ let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
 
 
 " Completer - vim8 async autocomplete
-let g:completor_min_chars = 0
-let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
-let g:completor_disable_buffer = ['markdown']
+" let g:completor_min_chars = 0
+" let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+" let g:completor_disable_buffer = ['markdown']
 
 
 " Grepper Maps
@@ -879,3 +879,24 @@ nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
 " TESTING: Terminal things
 " set term=builtin_gui
+
+" TESTING: Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_completed_snippet = 1
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#auto_refresh_delay = 100
+
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
+" let g:deoplete#sources = {}
+" let g:deoplete#sources._ = ['buffer', 'ultisnips']
+" let g:deoplete#sources.javascript = ['flow', 'buffer']
+" let g:deoplete#sources#flow#flow_bin = g:flow_path
+" inoremap <silent><expr> <c-n>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ deoplete#mappings#manual_complete()
+" function! s:check_back_space() abort "{{{
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
