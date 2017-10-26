@@ -890,7 +890,7 @@ let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
 " let g:deoplete#sources = {}
 " let g:deoplete#sources._ = ['buffer', 'ultisnips']
-" let g:deoplete#sources.javascript = ['flow', 'buffer']
+" let g:deoplete#sources.javascript = ['flow', 'buffer', 'ultisnips']
 " let g:deoplete#sources#flow#flow_bin = g:flow_path
 " inoremap <silent><expr> <c-n>
 "       \ pumvisible() ? "\<C-n>" :
@@ -901,3 +901,7 @@ let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
 "   return !col || getline('.')[col - 1]  =~ '\s'
 " endfunction
 " let g:nvim_typescript#javascript_support = 1
+let g:LanguageClient_serverCommands = {
+\ 'javascript': ['flow-language-server', '--stdio'],
+\ 'javascript.jsx': ['flow-language-server', '--stdio'],
+\ }
