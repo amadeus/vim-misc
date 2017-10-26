@@ -900,3 +900,4 @@ let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
 "   let col = col('.') - 1
 "   return !col || getline('.')[col - 1]  =~ '\s'
 " endfunction
+" let g:nvim_typescript#javascript_support = 1
