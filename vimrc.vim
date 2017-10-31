@@ -250,7 +250,7 @@ augroup END
 
 "  Toggle whitespace save shortcut
 function! ToggleWhitespaceSave(force)
-  if a:force
+  if a:force == 1
     let b:preserve_whitespace = 1
   elseif exists('b:preserve_whitespace') && b:preserve_whitespace == 1
     unlet b:preserve_whitespace
@@ -262,7 +262,7 @@ function! ToggleWhitespaceSave(force)
 endfunction
 
 " FIXME: This gets hijacked by windowswap
-nnoremap <leader>pw :call ToggleWhitespaceSave()<cr>
+nnoremap <leader>pw :call ToggleWhitespaceSave(0)<cr>
 
 
 " CtrlP Settings
