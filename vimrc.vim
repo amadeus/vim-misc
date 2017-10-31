@@ -789,11 +789,11 @@ set path+=$PWD/node_modules
 " endfunction
 
 function! ToggleFormatSave()
-  if exists('g:ale_fix_on_save') && g:ale_fix_on_save == 1
-    let g:ale_fix_on_save = 0
+  if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
+    let b:ale_fix_on_save = 0
     echo 'Preserving formatting on save'
   else
-    let g:ale_fix_on_save = 1
+    let b:ale_fix_on_save = 1
     echo 'Formatting file on save'
   endif
 endfunction
