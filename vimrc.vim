@@ -891,10 +891,10 @@ nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
 let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#enable_yarp = 1
 let g:deoplete#auto_refresh_delay = 100
-
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
+let g:deoplete#file#enable_buffer_path = 1
+" let g:deoplete#complete_method = "complete"
 " let g:deoplete#sources = {}
 " let g:deoplete#sources._ = ['buffer', 'ultisnips']
 " let g:deoplete#sources.javascript = ['flow', 'buffer', 'ultisnips']
@@ -908,7 +908,7 @@ let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
 "   return !col || getline('.')[col - 1]  =~ '\s'
 " endfunction
 " let g:nvim_typescript#javascript_support = 1
-let g:LanguageClient_serverCommands = {
-\ 'javascript': ['flow-language-server', '--stdio'],
-\ 'javascript.jsx': ['flow-language-server', '--stdio'],
-\ }
+" let g:LanguageClient_serverCommands = {
+" \ 'javascript': ['flow-language-server', '--stdio'],
+" \ 'javascript.jsx': ['flow-language-server', '--stdio'],
+" \ }
