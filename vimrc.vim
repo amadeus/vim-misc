@@ -137,6 +137,7 @@ cnoreabbrev Set  set
 cnoreabbrev Cd   cd
 cnoreabbrev CD   cd
 cnoreabbrev Src source $MYVIMRC
+cnoreabbrev git Git
 command! Fu :set fu|redraw!
 command! Nofu :set nofu|redraw!
 
@@ -658,6 +659,7 @@ let g:flow#timeout = 60
 " Gitv configuration
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_WipeAllOnClose = 1
+let g:Gitv_TruncateCommitSubjects = 1
 nnoremap <leader>gv :Gitv! --all<cr>
 vnoremap <leader>gv :Gitv! --all<cr>
 
