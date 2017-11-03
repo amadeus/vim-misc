@@ -261,8 +261,6 @@ function! ToggleWhitespaceSave(force)
     echo 'Preserving whitespace on save'
   endif
 endfunction
-
-" FIXME: This gets hijacked by windowswap
 nnoremap <leader>pw :call ToggleWhitespaceSave(0)<cr>
 
 
@@ -278,13 +276,8 @@ nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>mm :CtrlPMRUFiles<cr>
 nnoremap <leader>l :CtrlPLine<cr>
 let g:ctrlp_clear_cache_on_exit = 0
-" I can't theme this yet... so not using it... yet
 let g:ctrlp_line_prefix = '› '
 let g:ctrlp_map = ''
-" To be used when CtrlP get's updated with the new BufferExplorer
-" let g:ctrlp_prompt_mappings = {
-"   \ 'PrtDeleteEnt()':       ['<c-@>']
-" \ }
 call ctrlp_bdelete#init()
 
 " Gist settings
@@ -328,7 +321,7 @@ elseif has('win32')
 else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
-" let g:user_command_async = 1
+let g:user_command_async = 1
 
 augroup omnicomplete
   autocmd!
@@ -353,6 +346,7 @@ augroup detectindent
   autocmd BufReadPost * DetectIndent
 augroup END
 
+
 " Search for selected text
 vnoremap <silent> <c-s> :<C-U>
   \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -369,7 +363,7 @@ vnoremap <silent> # :<C-U>
 " NERDCommenter Tweaks
 let g:NERDSpaceDelims = 1
 
-"
+
 " GitGutter Settings
 nmap <d-j> <Plug>GitGutterNextHunk
 nmap <d-k> <Plug>GitGutterPrevHunk
@@ -441,11 +435,11 @@ augroup END
 set shellcmdflag=-ic
 
 
-" TESTING: Save as sudo
+" Save as sudo
 ca w!! w !sudo tee "%"
 
 
-" TESTING: CSS Specific Motions
+" CSS Specific Motions
 " Change inner/around CSS Key
 onoremap ik :<c-u>execute "normal! ^vt:"<cr>
 onoremap ak :<c-u>execute "normal! 0vf:"<cr>
@@ -553,7 +547,6 @@ iabbrev lmis ಠ‿ಠ
 iabbrev ldiz ( ͠° ͟ʖ ͡°)
 vnoremap u <nop>
 vnoremap gu u
-" nnoremap <leader>sx :syntax sync fromstart<cr>:redraw!<cr>
 nnoremap <leader>se :source Session.vim<cr>
 
 
@@ -567,7 +560,6 @@ let g:ale_fix_on_save = 1
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_history_enabled = 0
 let g:ale_sign_column_always = 1
-" let g:ale_open_list = 'on_save'
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
@@ -576,19 +568,18 @@ else
   nmap <silent> <a-k> <Plug>(ale_previous_wrap)
   nmap <silent> <a-j> <Plug>(ale_next_wrap)
 endif
-
-" Trying flow again, I think this might actually work now
 let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
 
-
-" Completer - vim8 async autocomplete
-" let g:completor_min_chars = 0
-" let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
-" let g:completor_disable_buffer = ['markdown']
-" let g:completor_min_chars = 0
-" let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
-" Actually working - but very slow
-" let g:completor_javascript_omni_trigger = "\\w+$|[\\w\\)\\]\\}\'\"]+\\.\\w*$"
+function! ToggleFormatSave()
+  if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
+    let b:ale_fix_on_save = 0
+    echo 'Preserving formatting on save'
+  else
+    let b:ale_fix_on_save = 1
+    echo 'Formatting file on save'
+  endif
+endfunction
+nnoremap <leader>pf :call ToggleFormatSave()<cr>
 
 
 " Grepper Maps
@@ -692,36 +683,11 @@ let @p="0f:wiReact.PropTypes.j0"
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
-" let g:indentLine_color_gui = '#444444'
 let g:indentLine_showFirstIndentLevel = 1
-" let g:indentLine_indentLevel = 10
-" let g:indentLine_faster = 1
 let g:indentLine_fileTypeExclude = ['help', 'startify', 'markdown']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
 let g:indentLine_noConcealCursor=1
-" let g:indentLine_maxLines = 1000
-" let g:indentLine_conceallevel = 1
 nnoremap <leader>ii :IndentLinesToggle<cr>
-
-
-" TESTING: ColorColumn Jazz
-" I only want my special ColorColumn used on the JS filetype
-" It requires that I add and remove it on a per file/window basis
-" function! ToggleColorColumn()
-"   " Only run matchadd if it doesn't exist in a JS file
-"   if &filetype == 'javascript' && !exists('w:js_color_column')
-"     let w:js_color_column = matchadd('ColorColumn', '\%121v', -1)
-"   " Otherwise clear it out completely
-"   elseif &filetype != 'javascript' && exists('w:js_color_column')
-"     call matchdelete(w:js_color_column)
-"     unlet w:js_color_column
-"   end
-" endfunction
-
-" augroup colorColumn
-"   autocmd!
-"   autocmd BufEnter * :call ToggleColorColumn()
-" augroup END
 
 
 " TESTING: Dope patch - not integrated yet
@@ -751,7 +717,7 @@ function! <SID>IsGitConflict()
     runtime misc/gitconflicts.vim
   endif
 endfu
-" TESTING: This may be causing issues for me when sourcing
+" This may be causing issues for me when sourcing
 " augroup githighlighting
 "   autocmd!
 "   autocmd Syntax * call <SID>IsGitConflict()
@@ -766,7 +732,7 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 let g:fastfold_max_filesize = 100000
 
 
-" TESTING: Easy profiling
+" Easy profiling
 function! s:ProfileStart()
   profile start profile.log
   profile func *
@@ -787,40 +753,8 @@ command! ProfileEnd call s:ProfileEnd()
 set suffixesadd+=.js
 set path+=$PWD/node_modules
 
-" DISABLED: Trying out ALE, it seems way faster
-" TESTING: Neoformat settings
-" function! FormatFile()
-"   " Also ensure that we have prettier settings
-"   if exists('b:preserve_format') || !exists('g:neoformat_javascript_prettier') || !exists(':Neoformat')
-"     return
-"   endif
-"   Neoformat
-" endfunction
 
-function! ToggleFormatSave()
-  if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
-    let b:ale_fix_on_save = 0
-    echo 'Preserving formatting on save'
-  else
-    let b:ale_fix_on_save = 1
-    echo 'Formatting file on save'
-  endif
-endfunction
-
-" augroup fmt
-"   autocmd!
-"   autocmd BufWritePre *.js,*.css :silent call FormatFile()
-" augroup END
-
-nnoremap <leader>pf :call ToggleFormatSave()<cr>
-
-" let g:neoformat_stylus_stylefmt = {
-"  \ 'exe': 'stylefmt',
-"  \ 'stdin': 1,
-"  \ }
-
-
-" TESTING: LocalVimRC
+" LocalVimRC Settings
 let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
 
@@ -851,34 +785,10 @@ let g:scratch_persistence_file = '.scratch.vim'
 let g:scratch_filetype = 'markdown'
 let g:scratch_horizontal = 1
 
-" TESTING: Flow autocomplete
-" augroup asyncComplete
-"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-"     \ 'name': 'flow',
-"     \ 'priority': 10,
-"     \ 'whitelist': ['javascript', 'javascript.jsx'],
-"     \ 'completor': function('asyncomplete#sources#flow#completor'),
-"     \ 'config': { 'prefer_local': 1}
-"     \ }))
-
-"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-"     \ 'name': 'omni',
-"     \ 'priority': 5,
-"     \ 'whitelist': ['*'],
-"     \ 'completor': function('asyncomplete#sources#omni#completor')
-"     \  }))
-
-"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-"     \ 'name': 'buffer',
-"     \ 'priority': 0,
-"     \ 'whitelist': ['*'],
-"     \ 'blacklist': ['go'],
-"     \ 'completor': function('asyncomplete#sources#buffer#completor'),
-"     \ }))
-" augroup END
 
 " TESTING: QuickTask Settings
 let g:quicktask_snip_path = '~/.vim/quicksnips'
+
 
 " TESTING: Profile mappings
 nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
@@ -886,8 +796,6 @@ nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
 nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
 nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
-" TESTING: Terminal things
-" set term=builtin_gui
 
 " TESTING: Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -896,24 +804,15 @@ let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_yarp = 1
 let g:deoplete#auto_refresh_delay = 100
 let g:deoplete#file#enable_buffer_path = 1
-" let g:deoplete#complete_method = "complete"
-" let g:deoplete#sources = {}
-" let g:deoplete#sources._ = ['buffer', 'ultisnips']
-" let g:deoplete#sources.javascript = ['flow', 'buffer', 'ultisnips']
-" let g:deoplete#sources#flow#flow_bin = g:flow_path
-" inoremap <silent><expr> <c-n>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction
+
+
+" TESTING: LanguageClient 
 " let g:nvim_typescript#javascript_support = 1
 " let g:LanguageClient_serverCommands = {
 " \ 'javascript': ['flow-language-server', '--stdio'],
 " \ 'javascript.jsx': ['flow-language-server', '--stdio'],
 " \ }
+
 
 " TESTING: Always enable hlsearch when searching, but only keep it on if it
 " was already set on previously
