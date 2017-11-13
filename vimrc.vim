@@ -296,7 +296,7 @@ let ctrlp_filter_greps = "".
   \ "egrep -v '(\\./)?(" .
   \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|" .
   \ "node_modules/|bower_components/|compressed/|_site/|static_components/|" .
-  \ "bin/|env/|build/|static/compressed/|.sass-cache/|Session.vim" .
+  \ "bin/|env/|build/|static/compressed/|.sass-cache/|webrtc/|Session.vim" .
   \ ")'"
 
 let my_ctrlp_git_command = "" .
@@ -836,3 +836,6 @@ augroup searching
   autocmd CmdlineEnter * :call ToggleHLSearch(1)
   autocmd CmdlineLeave * :call ToggleHLSearch(0)
 augroup END
+
+" TESTING: Vim Jedi - disable completions (we get these through deoplete)
+let g:jedi#completions_enabled = 0
