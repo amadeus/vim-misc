@@ -503,7 +503,7 @@ function! SetCursorLine(mode)
   highlight CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
   set laststatus=2
 
-  if &buftype == 'quickfix' || a:mode == 'leave'
+  if &buftype == 'quickfix' || a:mode == 'leave' || (exists('&filetype') && (&filetype == 'fugitiveblame' || &filetype == 'gitv'))
     setlocal nocursorline
   else
     setlocal cursorline
@@ -552,13 +552,13 @@ nnoremap <leader>se :source Session.vim<cr>
 
 " Ale Linter Settings
 let g:ale_lint_on_enter = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = 100
+let g:ale_lint_on_text_changed = 'always'
+" let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 1000
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 let g:ale_warn_about_trailing_whitespace = 0
-let g:ale_history_enabled = 0
+let g:ale_history_enabled = 20
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '[%linter%]%s'
 if has('mac')
@@ -568,7 +568,7 @@ else
   nmap <silent> <a-k> <Plug>(ale_previous_wrap)
   nmap <silent> <a-j> <Plug>(ale_next_wrap)
 endif
-let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': []}
+let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': [], 'python': ['flake8']}
 
 function! ToggleFormatSave()
   if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
@@ -839,3 +839,6 @@ augroup END
 
 " TESTING: Vim Jedi - disable completions (we get these through deoplete)
 let g:jedi#completions_enabled = 0
+
+" TESTING: Timeouts
+set timeoutlen=500
