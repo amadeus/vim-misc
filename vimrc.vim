@@ -432,7 +432,9 @@ augroup END
 
 
 " TESTING: Make our shell interactive
-set shellcmdflag=-ic
+if has("gui_running")
+  set shellcmdflag=-ic
+endif
 
 
 " Save as sudo
