@@ -89,10 +89,8 @@ set cpo+=J
 
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
-if has('mac')
+if has('gui_running')
   set guifont=Source\ Code\ Pro:h14
-else
-  set guifont=Source\ Code\ Pro \14
 endif
 
 " Improve splitting logic
@@ -808,7 +806,7 @@ let g:deoplete#auto_refresh_delay = 100
 let g:deoplete#file#enable_buffer_path = 1
 
 
-" TESTING: LanguageClient 
+" TESTING: LanguageClient
 " let g:nvim_typescript#javascript_support = 1
 " let g:LanguageClient_serverCommands = {
 " \ 'javascript': ['flow-language-server', '--stdio'],
