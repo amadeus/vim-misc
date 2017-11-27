@@ -429,10 +429,11 @@ augroup yaml
 augroup END
 
 
+" HOLY SHIT THIS SLOWS DOWN MACVIM...
 " TESTING: Make our shell interactive
-if has("gui_running")
-  set shellcmdflag=-ic
-endif
+" if has("gui_running")
+"   set shellcmdflag=-ic
+" endif
 
 
 " Save as sudo
