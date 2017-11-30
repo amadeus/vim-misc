@@ -22,8 +22,7 @@ set lazyredraw
 " Show invisibles
 set list
 set listchars=tab:›\ ,trail:⋅,nbsp:␣
-" eol:¬,
-" set showbreak=…
+set showbreak=…
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -52,8 +51,8 @@ set background=dark
 " Fold Settings
 set foldlevel=99
 set foldmethod=syntax
-set sessionoptions=buffers,help,tabpages,curdir
-set viewoptions=cursor,slash
+set sessionoptions=buffers,tabpages,curdir,slash
+set viewoptions=cursor,slash,curdir
 
 " Format Options
 set formatoptions+=njt
@@ -61,8 +60,8 @@ set formatoptions-=o
 set formatoptions-=r
 if exists('&breakindent')
   set breakindent
+  set breakindentopt=sbr
 endif
-" set breakindentopt=sbr
 
 " Basically use a fancier colortheme in MacVim
 if has("gui_running") || has('nvim')
@@ -80,8 +79,6 @@ set number
 set numberwidth=3
 set noruler
 set laststatus=2
-" set fillchars=vert:¦,fold:-
-" set fillchars=vert:\ ,fold:-
 set fillchars=vert:⋅,fold:-
 
 " Force vim to think of 2 spaces as a sentence
@@ -135,7 +132,6 @@ cnoreabbrev Set  set
 cnoreabbrev Cd   cd
 cnoreabbrev CD   cd
 cnoreabbrev Src source $MYVIMRC
-cnoreabbrev git Git
 command! Fu :set fu|redraw!
 command! Nofu :set nofu|redraw!
 
@@ -303,7 +299,7 @@ let my_ctrlp_git_command = "" .
 
 if has("unix")
   let my_ctrlp_user_command = "" .
-    \ "find %s '(' -type f -or -type l ')' -not -path '*/\\.*/*' | " .
+    \ "rg %s --files --color=never --glob '(' -type f -or -type l ')' -not -path '*/\\.*/*' | " .
     \ ctrlp_filter_greps .
     \ " | head -" . g:ctrlp_max_files
 
@@ -370,6 +366,7 @@ nmap <leader>rh <Plug>GitGutterRevertHunk
 nmap <leader>ga <Plug>GitGutterAll
 let g:gitgutter_async = 1
 let g:gitgutter_eager = 1
+let g:gitgutter_realtime = 1
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
