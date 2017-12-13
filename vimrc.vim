@@ -280,8 +280,6 @@ let g:gist_open_browser_after_post = 1
 
 
 " CtrlP Optimizations
-let g:ctrlp_max_files = 10000
-
 let ctrlp_filter_greps = "".
   \ "egrep -iv '\\.(" .
   \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|eps|png|gif|psd" .
@@ -315,6 +313,7 @@ elseif has('win32')
 else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:user_command_async = 1
 
 augroup omnicomplete
