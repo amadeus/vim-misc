@@ -258,6 +258,11 @@ endfunction
 nnoremap <leader>pw :call ToggleWhitespaceSave(0)<cr>
 
 
+" Gist settings
+let g:gist_clip_command = 'pbcopy'
+let g:gist_open_browser_after_post = 1
+
+
 " CtrlP Settings
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
@@ -265,6 +270,7 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
 let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_by_filename = 1
+let g:ctrlp_max_files = 0
 nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>mm :CtrlPMRUFiles<cr>
@@ -273,11 +279,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_line_prefix = '› '
 let g:ctrlp_map = ''
 call ctrlp_bdelete#init()
-
-" Gist settings
-let g:gist_clip_command = 'pbcopy'
-let g:gist_open_browser_after_post = 1
-
 
 " CtrlP Optimizations
 let ctrlp_filter_greps = "".
