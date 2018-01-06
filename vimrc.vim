@@ -370,7 +370,7 @@ let g:gitgutter_realtime = 1
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
-set updatetime=10
+set updatetime=1000
 
 
 " Show the stack of syntax hilighting classes affecting
