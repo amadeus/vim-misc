@@ -155,14 +155,12 @@ nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
 nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
-" nnoremap <leader>u   :UndotreeToggle<cr>
 nnoremap <leader>u   :MundoToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
-nnoremap <leader>a   :Ack '
 nnoremap <leader>vv  :Vaffle<cr>
 nnoremap <leader>vf  :Vaffle %:h<cr>
 nnoremap <leader>gs  :Gstatus<cr>
@@ -583,10 +581,6 @@ nnoremap <leader>pf :call ToggleFormatSave()<cr>
 " Grepper Maps
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
-" Using Ag instead of Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 
 " Enable JSX in files that import react
@@ -800,7 +794,6 @@ let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_yarp = 1
-let g:deoplete#auto_refresh_delay = 100
 let g:deoplete#file#enable_buffer_path = 1
 
 
