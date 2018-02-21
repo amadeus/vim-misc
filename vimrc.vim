@@ -368,7 +368,7 @@ let g:gitgutter_realtime = 1
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
-set updatetime=1000
+set updatetime=100
 
 
 " Show the stack of syntax hilighting classes affecting
@@ -790,11 +790,11 @@ nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
 
 " TESTING: Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:neosnippet#enable_completed_snippet = 1
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#enable_yarp = 1
-let g:deoplete#file#enable_buffer_path = 1
+" let g:deoplete#enable_at_startup = 1
+" let g:neosnippet#enable_completed_snippet = 1
+" let g:deoplete#auto_complete_start_length = 1
+" let g:deoplete#enable_yarp = 1
+" let g:deoplete#file#enable_buffer_path = 1
 
 
 " TESTING: LanguageClient
@@ -833,3 +833,8 @@ let g:jedi#completions_enabled = 0
 
 " TESTING: Timeouts
 set timeoutlen=500
+
+" Completer settings
+let g:completor_min_chars = 0
+let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+let g:completor_disable_buffer = ['markdown']
