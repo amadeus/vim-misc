@@ -479,6 +479,7 @@ let g:startify_skiplist = [
   \ 'bundle/.*/doc',
   \ '\.DS_Store'
   \ ]
+let g:startify_fortune_use_unicode = 1
 
 
 " Disable startify in terminal vim it just doesn't feel right
