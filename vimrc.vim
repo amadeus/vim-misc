@@ -170,6 +170,7 @@ nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
 nnoremap <leader>jd  :FlowJumpToDef<cr>
+nmap <d-cr> :set fu!<cr>
 
 " Slicker way to move around splits
 noremap <c-j> <c-w>j
@@ -461,20 +462,17 @@ let g:startify_custom_header = [
   \ '  ==========================================',
   \ '                                            ',
   \ ]
-
-let g:startify_custom_footer = [
-  \ '                                              ',
-  \ '  ============================================',
-  \ '                                              ',
-  \ '  Copyright Tubez, 2017                       '
+let g:ascii = [
+  \ '                                            ',
+  \ '============================================',
+  \ '                                            ',
+  \ 'Copyright Tubez, 2017                       '
   \ ]
-
+let g:startify_custom_footer = 'map(startify#fortune#boxed() + g:ascii, "\"   \".v:val")'
 let g:startify_session_autoload = 1
 let g:startify_change_to_dir = 1
 let g:ctrlp_reuse_window = 'startify'
 let g:startify_list_order = ['bookmarks', 'files']
-
-
 let g:startify_skiplist = [
   \ 'COMMIT_EDITMSG',
   \ $VIMRUNTIME .'/doc',
@@ -552,7 +550,7 @@ let g:ale_lint_on_text_changed = 'always'
 " let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 1000
 let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_history_enabled = 20
 let g:ale_sign_column_always = 1
@@ -824,8 +822,10 @@ endfunction
 
 augroup searching
   autocmd!
-  autocmd CmdlineEnter * :call ToggleHLSearch(1)
-  autocmd CmdlineLeave * :call ToggleHLSearch(0)
+  if has('CmdlineEnter')
+    autocmd CmdlineEnter * :call ToggleHLSearch(1)
+    autocmd CmdlineLeave * :call ToggleHLSearch(0)
+  endif
 augroup END
 
 " TESTING: Vim Jedi - disable completions (we get these through deoplete)
@@ -838,3 +838,9 @@ set timeoutlen=500
 let g:completor_min_chars = 0
 let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
 let g:completor_disable_buffer = ['markdown']
+
+" Adds a couple CSS Module plugins that we have to highlight properly
+function! CSSModuleTweaks()
+  syntax match cssProp contained /\%(fixed\|absolute\|relative\|size\)/
+endfunction
+nnoremap  <leader>css :call CSSModuleTweaks()<cr>
