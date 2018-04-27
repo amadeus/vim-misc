@@ -159,6 +159,7 @@ nnoremap <leader>u   :MundoToggle<cr>
 nnoremap <leader>dd  :bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>at  :ALEToggle<cr>
+nnoremap <leader>af  :ALEFix<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>vv  :Vaffle<cr>
@@ -575,6 +576,23 @@ function! ToggleFormatSave()
   endif
 endfunction
 nnoremap <leader>pf :call ToggleFormatSave()<cr>
+
+let g:ale_javascript_prettier_use_global = 1
+let g:ale_javascript_prettier_options = join([
+  \ '--single-quote',
+  \ '--jsx-bracket-same-line',
+  \ '--print-width 120',
+  \ '--trailing-comma es5',
+  \ '--no-bracket-spacing',
+  \ '--fix'],
+  \ ' ')
+
+let g:ale_css_prettier_use_global = 1
+let g:ale_css_prettier_options = join(['--parser postcss', '--print-width 120'], ' ')
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['prettier']
+let g:ale_fixers.css = ['prettier']
 
 
 " Grepper Maps
