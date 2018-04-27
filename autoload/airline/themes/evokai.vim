@@ -45,6 +45,20 @@ let g:airline#themes#evokai#palette.replace.airline_a = [ s:RE[0] , s:RE[1] , s:
 let g:airline#themes#evokai#palette.replace.airline_error = s:EC
 let g:airline#themes#evokai#palette.replace.airline_warning = s:WC
 
+" Tabline Theme colors
+let s:TLDefault = ['#444444', '#121212', 231, 160, 'bold']
+let s:TLSelected = ['#fc1780', '#121212', 231, 160, 'bold']
+let s:TLModified = ['#121212', '#fc1780', 231, 160, 'bold']
+let g:airline#themes#evokai#palette.tabline = {}
+let g:airline#themes#evokai#palette.tabline.airline_tab = s:TLDefault
+let g:airline#themes#evokai#palette.tabline.airline_tabsel = s:TLSelected
+let g:airline#themes#evokai#palette.tabline.airline_tabmod = s:TLModified
+let g:airline#themes#evokai#palette.tabline.airline_tablabel = s:TLDefault
+let g:airline#themes#evokai#palette.tabline.airline_tabtype = s:TLDefault
+let g:airline#themes#evokai#palette.tabline.airline_tabfill = s:TLDefault
+let g:airline#themes#evokai#palette.tabline.airline_tabmod_unsel = s:TLDefault
+let g:airline#themes#evokai#palette.tabline.airline_tabhid = s:TLDefault
+
 let s:IA = ['#555555', '#222222', s:N2[2], s:N3[3], '']
 let g:airline#themes#evokai#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
 
