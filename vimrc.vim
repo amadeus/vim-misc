@@ -162,8 +162,6 @@ nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>af  :ALEFix<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
-nnoremap <leader>vv  :Vaffle<cr>
-nnoremap <leader>vf  :Vaffle %:h<cr>
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :Git difftool --staged<cr>
@@ -202,6 +200,11 @@ cnoremap <c-j> <down>
 
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
+
+" Vaffle configs
+nnoremap <leader>vv  :Vaffle<cr>
+nnoremap <leader>vf  :Vaffle %:h<cr>
+nmap <Tab> <Plug>(vaffle-toggle-current)
 
 " Powerline Settings
 set noshowmode
