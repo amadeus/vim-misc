@@ -729,9 +729,9 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#default#section_truncate_width = {}
 
 " Airline performance hax
+let g:airline#extensions#disable_rtp_load = 1
 let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#csv#enabled = 0
-let g:airline#extensions#disable_rtp_load = 1
 let g:airline#extensions#eclim#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#syntastic#enabled = 0
@@ -802,7 +802,7 @@ let g:airline_mode_map = {
 "         \ 'whitelist': ['javascript', 'javascript.jsx'],
 "         \ })
 " endif
-" 
+
 " au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
 "     \ 'name': 'flow',
 "     \ 'whitelist': ['javascript', 'javascript.jsx'],
@@ -813,12 +813,12 @@ let g:airline_mode_map = {
 "     \    'show_typeinfo': 1
 "     \  },
 "     \ }))
-" 
+
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 " let g:asyncomplete_auto_popup = 1
-" 
+
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
