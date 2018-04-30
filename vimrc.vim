@@ -77,6 +77,7 @@ set shortmess=ITaoc
 set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 set number
 set numberwidth=3
+set signcolumn=yes
 set noruler
 set laststatus=2
 set fillchars=vert:⋅,fold:-
