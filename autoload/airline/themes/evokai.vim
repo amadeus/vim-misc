@@ -70,17 +70,18 @@ call airline#parts#define_accent('maxlinenr', 'none')
 call airline#parts#define_accent('readonly', 'none')
 
 " Prevent filetype from ever truncating
-let g:airline_section_x = '%{&filetype}'
+let g:airline_section_x = ''
 
 " Remove file format
-let g:airline_section_y = ''
+let g:airline_section_y = '%{&filetype}'
 
 " Remove cursor percentage position
-let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
+" let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
+let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr'])
 
 " Using Ale for warnings and errors
 " TESTING: I don't think I need this anymore
 " let g:airline_section_warning = ''
 " let g:airline_section_error = ''
-" let g:airline_section_warning = airline#section#create(['ale_warning_count'])
-" let g:airline_section_error = airline#section#create(['ale_error_count'])
+let g:airline_section_warning = airline#section#create(['ale_warning_count'])
+let g:airline_section_error = airline#section#create(['ale_error_count'])

@@ -728,6 +728,7 @@ let g:airline_theme='evokai'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#ctrlp#color_template = 'replace'
 
 " Airline performance hax
 let g:airline#extensions#disable_rtp_load = 1
@@ -769,6 +770,9 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#tab_min_count = 1
+let g:airline#extensions#tabline#buffer_min_count = 1
 
 " TESTING: Potential performance improvement
 let g:airline_highlighting_cache = 1
