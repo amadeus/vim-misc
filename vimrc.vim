@@ -77,10 +77,24 @@ set shortmess=ITaoc
 set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 set number
 set numberwidth=3
-set signcolumn=yes
 set noruler
-set laststatus=2
 set fillchars=vert:⋅,fold:-
+
+set signcolumn=yes
+augroup hidesigns
+  autocmd!
+  autocmd BufNew * setlocal signcolumn=yes
+  autocmd FileType qf,help,startify,markdown,nerdtree,git setlocal signcolumn=no
+augroup END
+
+set laststatus=2
+augroup laststatus
+  autocmd!
+  autocmd BufNew * set laststatus=2
+  autocmd FileType startify set laststatus=0
+augroup END
+
+
 
 " Force vim to think of 2 spaces as a sentence
 set cpo+=J
