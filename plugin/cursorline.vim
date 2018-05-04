@@ -4,9 +4,8 @@
 " Change highlight based on mode
 " Startify should have full cursorline
 function! SetCursorLine(mode)
-  highlight CursorLine guifg=NONE guibg=NONE gui=NONE
-  highlight CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
-  set laststatus=2
+  hi CursorLine   guifg=NONE    guibg=NONE    gui=NONE
+  hi CursorLineNr guifg=#ff027f guibg=#1b1b13 gui=BOLD
 
   if &buftype == 'quickfix' || a:mode == 'leave' || (exists('&filetype') && (&filetype == 'fugitiveblame' || &filetype == 'gitv'))
     setlocal nocursorline
@@ -15,16 +14,17 @@ function! SetCursorLine(mode)
   end
 
   if exists('&filetype') && a:mode == 'enter' && &filetype == 'startify'
-    set laststatus=0
     hi CursorLine guibg=#000000
   end
 endfunction
 
 function! SetCursorNumber(mode)
   if a:mode == 'enter'
+    hi Cursor       guifg=#008ffd guibg=#008ffd gui=NONE
     hi CursorLineNr guifg=#121212 guibg=#008ffd gui=BOLD
   else
-    hi CursorLineNr guifg=#121212 guibg=#3cff00 gui=BOLD
+    hi Cursor       guifg=#000000 guibg=#ff027f gui=NONE
+    hi CursorLineNr guifg=#ff027f guibg=#1b1b13 gui=BOLD
   end
 endfunction
 
