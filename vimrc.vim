@@ -426,12 +426,7 @@ let g:startify_custom_header = [
   \ '  ==========================================',
   \ '                                            ',
   \ ]
-let g:ascii = [
-  \ '                                            ',
-  \ '============================================',
-  \ '                                            ',
-  \ 'Copyright Tubez, 2017                       '
-  \ ]
+let g:ascii = []
 let g:startify_custom_footer = 'map(startify#fortune#boxed() + g:ascii, "\"   \".v:val")'
 let g:startify_session_autoload = 1
 let g:startify_change_to_dir = 1
