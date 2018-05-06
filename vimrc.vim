@@ -225,7 +225,10 @@ cnoremap %% <c-r>=expand('%:h').'/'<cr>
 " Vaffle configs
 nnoremap <leader>vv  :Vaffle<cr>
 nnoremap <leader>vf  :Vaffle %:h<cr>
-nmap <Tab> <Plug>(vaffle-toggle-current)
+augroup vaffletab
+  autocmd!
+  autocmd FileType vaffle nmap <buffer> <Tab> <Plug>(vaffle-toggle-current)
+augroup END
 
 " Powerline Settings
 set noshowmode
