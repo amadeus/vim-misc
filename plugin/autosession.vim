@@ -1,7 +1,8 @@
 let s:timer = 0
 
 function! s:DetectSessionFile() abort
-  " Only trigger detection if empty buffer or startify
+  " Only trigger detection if empty buffer or startify, it might be worth also
+  " checking that there is no more than 1 open buffer
   if s:timer != 0 || (exists('&filetype') && &filetype != 'startify' && &filetype != '')
     return
   endif
