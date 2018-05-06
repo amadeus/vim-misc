@@ -580,14 +580,6 @@ let g:flow#autoclose = 1
 let g:flow#timeout = 60
 
 
-" Gitv configuration
-let g:Gitv_DoNotMapCtrlKey = 1
-let g:Gitv_WipeAllOnClose = 1
-let g:Gitv_TruncateCommitSubjects = 1
-nnoremap <leader>gv :Gitv! --all<cr>
-vnoremap <leader>gv :Gitv! --all<cr>
-
-
 " TESTING: Set htmldjango.html on all html files - don't need this?
 augroup htmljinja
   autocmd!
