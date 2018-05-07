@@ -84,7 +84,7 @@ set signcolumn=yes
 augroup hidesigns
   autocmd!
   autocmd BufNew * setlocal signcolumn=yes
-  autocmd FileType qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
+  autocmd FileType vaffle,qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
 augroup END
 
 set laststatus=2
