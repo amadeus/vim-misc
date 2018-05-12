@@ -75,15 +75,21 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:
 set shortmess=ITaoc
 " Set title string to current working directory!
 set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
-set number
-set numberwidth=3
 set noruler
 set fillchars=vert:⋅,fold:-
+set number
+set numberwidth=3
+
+augroup hidenumber
+  autocmd!
+  autocmd TerminalOpen * setlocal nonumber
+augroup END
 
 set signcolumn=yes
 augroup hidesigns
   autocmd!
   autocmd BufNew * setlocal signcolumn=yes
+  autocmd TerminalOpen * setlocal signcolumn=no
   autocmd FileType vaffle,qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
 augroup END
 
@@ -93,7 +99,6 @@ augroup laststatus
   autocmd BufNew * set laststatus=2
   autocmd FileType startify set laststatus=0
 augroup END
-
 
 
 " Force vim to think of 2 spaces as a sentence
