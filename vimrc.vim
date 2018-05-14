@@ -661,8 +661,8 @@ command! ProfileEnd call s:ProfileEnd()
 
 " TESTING: Experiment with this more
 " set path+=./node_modules,./discord_uikit
-set suffixesadd+=.js
-set path+=$PWD/node_modules
+" set suffixesadd+=.js
+" set path+=$PWD/node_modules
 
 
 " LocalVimRC Settings
