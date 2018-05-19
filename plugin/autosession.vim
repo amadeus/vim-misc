@@ -3,7 +3,7 @@ let s:timer = 0
 function! s:DetectSessionFile() abort
   " Only trigger detection if empty buffer or startify, it might be worth also
   " checking that there is no more than 1 open buffer
-  if s:timer != 0 || (exists('&filetype') && &filetype != 'startify' && &filetype != '')
+  if s:timer != 0 || (exists('g:this_obsession_status') && g:this_obsession_status == 2)
     return
   endif
   let l:session_file = getcwd().'/Session.vim'
