@@ -1,4 +1,5 @@
 let s:timer = 0
+let s:called_once = 0
 
 function! s:FileNamesToChoices(key, val)
   let l:filename = matchstr(a:val, 'Session.*\.vim')
@@ -10,9 +11,9 @@ function! s:Source(session_file, _) abort
   let s:timer = 0
 endfunction
 
-function! s:DetectSessionFile() abort
+function! s:DetectSessionFile(from_autocmd) abort
   " Cancel detection if a source is in progress or we are already running a session
-  if s:timer != 0 || (exists('g:this_obsession_status') && g:this_obsession_status == 2)
+  if s:timer != 0
     return
   endif
 
@@ -28,15 +29,22 @@ function! s:DetectSessionFile() abort
 
   " `:help confirm()` for more details
   let l:choice = confirm('Would you like to source a Session?', l:choice_string, 1)
+  let s:called_once = 1
   if l:choice == 0 || l:choice == l:cancel_index
     return
   endif
 
-  " We have to use a timer or a bizarro race condition from the DirChanged autocommand
-  let s:timer = timer_start(300, function('s:Source', [l:session_files[l:choice - 1]]))
+  " We have to use a timer on DirChanged autocmd
+  if a:from_autocmd == 1
+    let s:timer = timer_start(300, function('s:Source', [l:session_files[l:choice - 1]]))
+  else
+    call s:Source(l:session_files[l:choice - 1], '')
+  endif
 endfunction
 
 augroup autosource
   autocmd!
-  autocmd DirChanged * exec <SID>DetectSessionFile()
+  autocmd DirChanged * if s:called_once == 0|exec <SID>DetectSessionFile(1)|endif
 augroup END
+
+command! DetectSessions call s:DetectSessionFile(0)
