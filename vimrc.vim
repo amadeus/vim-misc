@@ -484,6 +484,8 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_history_enabled = 20
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '[%linter%]%s'
+" If continued performance issues, test this
+" let g:ale_echo_delay = 1000
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
   nmap <silent> ∆ <Plug>(ale_next_wrap)
