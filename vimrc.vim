@@ -90,6 +90,7 @@ augroup hidesigns
   autocmd!
   autocmd BufNew * setlocal signcolumn=yes
   autocmd BufNew __Scratch__ setlocal signcolumn=no
+  autocmd BufNew .scratch.md setlocal signcolumn=no
   autocmd TerminalOpen * setlocal signcolumn=no
   autocmd FileType vim-plug,vaffle,qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
 augroup END
@@ -694,9 +695,9 @@ endif
 
 
 " TESTING: Scratch settings
-let g:scratch_autohide = 0
+let g:scratch_autohide = 1
 let g:scratch_insert_autohide = 0
-let g:scratch_persistence_file = '.scratch.vim'
+let g:scratch_persistence_file = $HOME.'/.scratch.md'
 let g:scratch_filetype = 'markdown'
 let g:scratch_horizontal = 1
 
