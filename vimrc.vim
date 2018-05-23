@@ -89,6 +89,7 @@ set signcolumn=yes
 augroup hidesigns
   autocmd!
   autocmd BufNew * setlocal signcolumn=yes
+  autocmd BufNew __Scratch__ setlocal signcolumn=no
   autocmd TerminalOpen * setlocal signcolumn=no
   autocmd FileType vim-plug,vaffle,qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
 augroup END
