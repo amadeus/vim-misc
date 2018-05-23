@@ -281,7 +281,7 @@ let ctrlp_filter_greps = "".
   \ "|mo|po|DS_Store|a|beam|tar.gz|tar.bz2|map" .
   \ ")$' | " .
   \ "egrep -v '(\\./)?(" .
-  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|" .
+  \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|.google-cloud-sdk/|" .
   \ "node_modules/|bower_components/|compressed/|_site/|static_components/|" .
   \ "bin/|env/|build/|static/compressed/|.sass-cache/|webrtc/|Session.vim" .
   \ ")'"
