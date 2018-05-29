@@ -873,3 +873,7 @@ function! LightlineFugitive()
   endif
   return ''
 endfunction
+
+
+" TESTING:
+command! MiniTerm term ++rows=10
