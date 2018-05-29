@@ -529,6 +529,8 @@ let g:ale_fixers.css = ['prettier']
 " Grepper Maps
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
+let g:grepper = {}
+let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift', 'git']
 
 
 " Enable JSX in files that import react
