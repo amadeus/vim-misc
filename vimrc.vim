@@ -878,3 +878,10 @@ endfunction
 
 " TESTING:
 command! MiniTerm term ++rows=10
+
+
+" TESTING: WindowSwap
+let g:windowswap_map_keys = 0 "prevent default bindings
+nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>ws :call WindowSwap#EasyWindowSwap()<CR>
