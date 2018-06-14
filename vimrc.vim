@@ -262,7 +262,6 @@ let g:gist_open_browser_after_post = 1
 nnoremap <leader>t :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>mm :CtrlPMRUFiles<cr>
-nnoremap <leader>l :CtrlPLine<cr>
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
