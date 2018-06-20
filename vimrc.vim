@@ -886,3 +886,11 @@ let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
 nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
 nnoremap <silent> <leader>ws :call WindowSwap#EasyWindowSwap()<CR>
+
+" TESTING: LanguageClient
+" let g:LanguageClient_serverCommands = {
+"     \ 'javascript': ['flow-language-server', '--stdio'],
+"     \ 'javascript.jsx': ['flow-language-server', '--stdio'],
+"     \ }
+" set completefunc=LanguageClient#complete
+" let g:deoplete#enable_at_startup = 1
