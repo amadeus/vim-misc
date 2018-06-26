@@ -184,7 +184,7 @@ nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
 nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :MundoToggle<cr>
-nnoremap <leader>dd  :bd<cr>
+nnoremap <leader>dd  <c-w>h:bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
 nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>af  :ALEFix<cr>
@@ -308,8 +308,8 @@ elseif has('win32')
 else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:user_command_async = 1
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+" let g:user_command_async = 1
 
 
 " Omnicomplete settings
