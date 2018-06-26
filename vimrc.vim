@@ -82,6 +82,7 @@ set numberwidth=3
 
 augroup hidenumber
   autocmd!
+  autocmd FileType vaffle setlocal nonumber
   autocmd TerminalOpen * setlocal nonumber
 augroup END
 
