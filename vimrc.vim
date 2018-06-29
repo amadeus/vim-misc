@@ -310,7 +310,6 @@ elseif has('win32')
 else
   let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
 endif
-" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 
 " Omnicomplete settings
