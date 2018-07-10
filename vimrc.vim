@@ -236,6 +236,7 @@ nnoremap <leader>vf  :Vaffle %:h<cr>
 augroup vaffletab
   autocmd!
   autocmd FileType vaffle nmap <buffer> <Tab> <Plug>(vaffle-toggle-current)
+  autocmd FileType vaffle nmap <buffer> s <Plug>(vaffle-open-selected-vsplit)
 augroup END
 
 " Powerline Settings
