@@ -486,6 +486,7 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_history_enabled = 20
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '[%linter%]%s'
+" let g:ale_completion_enabled = 1
 " If continued performance issues, test this
 " let g:ale_echo_delay = 1000
 if has('mac')
@@ -495,7 +496,7 @@ else
   nmap <silent> <a-k> <Plug>(ale_previous_wrap)
   nmap <silent> <a-j> <Plug>(ale_next_wrap)
 endif
-let g:ale_linters = {'javascript': ['eslint', 'flow'], 'markdown': [], 'python': ['flake8']}
+let g:ale_linters = {'javascript': ['eslint', 'flow-language-server'], 'markdown': [], 'python': ['flake8']}
 
 function! ToggleFormatSave()
   if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
