@@ -103,6 +103,11 @@ augroup laststatus
   autocmd FileType startify set laststatus=0
 augroup END
 
+augroup terminaltweaks
+  autocmd!
+  autocmd TerminalOpen * setlocal nolist
+augroup END
+
 
 " Force vim to think of 2 spaces as a sentence
 set cpo+=J
