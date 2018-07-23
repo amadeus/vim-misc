@@ -202,7 +202,7 @@ nnoremap <leader>gd  :Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
-nnoremap <leader>jd  :FlowJumpToDef<cr>
+nnoremap <leader>jd  :ALEGoToDefinition<cr>
 nmap <d-cr> :set fu!<cr>
 
 " Slicker way to move around splits
