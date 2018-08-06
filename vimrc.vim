@@ -266,8 +266,8 @@ let g:gist_open_browser_after_post = 1
 
 
 " CtrlP Settings
-nnoremap <leader>t :CtrlP<cr>
-nnoremap <leader>b :CtrlPBuffer<cr>
+" nnoremap <leader>t :CtrlP<cr>
+" nnoremap <leader>b :CtrlPBuffer<cr>
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:50'
 let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
@@ -900,3 +900,21 @@ nnoremap <silent> <leader>ws :call WindowSwap#EasyWindowSwap()<CR>
 "     \ }
 " set completefunc=LanguageClient#complete
 " let g:deoplete#enable_at_startup = 1
+
+" TESTING: FZF
+nnoremap <leader>t :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'Normal'],
+  \ 'bg+':     ['bg', 'Normal'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
