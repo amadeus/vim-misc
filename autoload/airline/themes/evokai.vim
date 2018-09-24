@@ -80,8 +80,8 @@ let g:airline_section_y = '%{&filetype}'
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr'])
 
 " Using Ale for warnings and errors
-" TESTING: I don't think I need this anymore
-" let g:airline_section_warning = ''
-" let g:airline_section_error = ''
-let g:airline_section_warning = airline#section#create(['ale_warning_count'])
-let g:airline_section_error = airline#section#create(['ale_error_count'])
+" TESTING: I think airline + ale has a memory leak
+let g:airline_section_warning = ''
+let g:airline_section_error = ''
+" let g:airline_section_warning = airline#section#create(['ale_warning_count'])
+" let g:airline_section_error = airline#section#create(['ale_error_count'])
