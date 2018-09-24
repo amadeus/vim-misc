@@ -806,8 +806,13 @@ let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline_mode_map = {
 \ '__' : '-',
 \ 'n'  : 'N',
+\ 'no' : 'N',
+\ 'ni' : 'N',
 \ 'i'  : 'I',
+\ 'ix' : 'I',
+\ 'ic' : 'I',
 \ 'R'  : 'R',
+\ 'Rv' : 'R',
 \ 'c'  : 'C',
 \ 'v'  : 'V',
 \ 'V'  : 'V',
