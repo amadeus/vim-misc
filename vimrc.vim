@@ -480,7 +480,7 @@ vnoremap gu u
 nnoremap <leader>se :source Session.vim<cr>
 
 
-" Ale Linter Settings
+" ALE Linter Settings
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'always'
 " let g:ale_lint_on_insert_leave = 1
