@@ -64,7 +64,8 @@ if exists('&breakindent')
 endif
 
 " Basically use a fancier colortheme in MacVim
-if has("gui_running") || has('nvim')
+if has("termguicolors")
+  set termguicolors
   colorscheme evokai
 else
   colorscheme molokai
