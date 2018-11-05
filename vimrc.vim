@@ -740,18 +740,11 @@ let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
 let g:completor_disable_buffer = ['markdown']
 
 
-" Airline Settings
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.notexists = ''
-let g:airline_symbols.readonly = '×'
-let g:airline_theme='evokai'
-let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#default#section_truncate_width = {}
-let g:airline#extensions#ctrlp#color_template = 'replace'
-let g:airline_highlighting_cache = 1
+" targets.vim
+autocmd User targets#mappings#user call targets#mappings#extend({
+  \ 'a': {'argument': [{'o': '[{([]', 'c': '[])}]', 's': ','}]},
+  \ })
+
 
 " Airline performance hax
 let g:airline#extensions#disable_rtp_load = 1
