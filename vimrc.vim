@@ -711,24 +711,9 @@ let g:scratch_filetype = 'markdown'
 let g:scratch_horizontal = 1
 
 
-" TESTING: Deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:neosnippet#enable_completed_snippet = 1
-" let g:deoplete#auto_complete_start_length = 1
-" let g:deoplete#enable_yarp = 1
-" let g:deoplete#file#enable_buffer_path = 1
-
-
-" TESTING: LanguageClient
-" let g:nvim_typescript#javascript_support = 1
-" let g:LanguageClient_serverCommands = {
-" \ 'javascript': ['flow-language-server', '--stdio'],
-" \ 'javascript.jsx': ['flow-language-server', '--stdio'],
-" \ }
-
-
 " TESTING: Vim Jedi - disable completions (we get these through deoplete)
 let g:jedi#completions_enabled = 0
+
 
 " TESTING: Timeouts
 set timeoutlen=2000
@@ -746,143 +731,6 @@ autocmd User targets#mappings#user call targets#mappings#extend({
   \ })
 
 
-" Airline performance hax
-let g:airline#extensions#disable_rtp_load = 1
-let g:airline#extensions#bufferline#enabled = 0
-let g:airline#extensions#csv#enabled = 0
-let g:airline#extensions#eclim#enabled = 0
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#syntastic#enabled = 0
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#vimagit#enabled = 0
-let g:airline#extensions#virtualenv#enabled = 0
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#promptline#enabled = 0
-let g:airline#extensions#capslock#enabled = 0
-let g:airline#extensions#xkblayout#enabled = 0
-let g:airline#extensions#windowswap#enabled = 0
-let g:airline#extensions#obsession#enabled = 0
-let g:airline#extensions#taboo#enabled = 0
-let g:airline#extensions#ycm#enabled = 0
-let g:airline#extensions#po#enabled = 0
-let g:airline#extensions#nrrwrgn#enabled = 0
-let g:airline#extensions#ctrlspace#enabled = 0
-let g:airline#extensions#vimtex#enabled = 0
-let g:airline#extensions#neomake#enabled = 0
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-
-" Tabline settings
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#close_symbol = '×'
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#tabline#tabs_label = ''
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#tab_min_count = 2
-
-" Ensure Airline errors show up in statusline
-" should only be enabled when airline is enabled
-" Worried this could also be lagging things...
-" augroup airlinelint
-"   autocmd!
-"   autocmd User ALELint AirlineRefresh
-" augroup END
-
-let g:airline_mode_map = {
-\ '__' : '-',
-\ 'n'  : 'N',
-\ 'no' : 'N',
-\ 'ni' : 'N',
-\ 'i'  : 'I',
-\ 'ix' : 'I',
-\ 'ic' : 'I',
-\ 'R'  : 'R',
-\ 'Rv' : 'R',
-\ 'c'  : 'C',
-\ 'v'  : 'V',
-\ 'V'  : 'V',
-\ '' : 'V',
-\ 's'  : 'S',
-\ 'S'  : 'S',
-\ '' : 'S',
-\ }
-
-
-" TESTING: vim-lsp settings
-" if executable('flow-language-server')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'flow-language-server',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flow-language-server --stdio']},
-"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-"         \ 'whitelist': ['javascript', 'javascript.jsx'],
-"         \ })
-" endif
-
-" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-"     \ 'name': 'flow',
-"     \ 'whitelist': ['javascript', 'javascript.jsx'],
-"     \ 'completor': function('asyncomplete#sources#flow#completor'),
-"     \ 'config': {
-"     \    'prefer_local': 1,
-"     \    'flowbin_path': expand('/usr/local/bin/flow'),
-"     \    'show_typeinfo': 1
-"     \  },
-"     \ }))
-
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
-" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
-" let g:asyncomplete_auto_popup = 1
-
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-
-" TESTING: LightLine
-" let g:lightline = {
-"   \ 'active': {
-"   \   'left': [ [ 'mode', 'paste' ],
-"   \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
-"   \   'right': [ [ 'lineinfo' ],
-"   \            [ 'percent' ],
-"   \            [ 'filetype' ] ]
-"   \ },
-"   \ 'inactive': {
-"   \ 'left': [ [ 'relativepath', 'filename' ] ],
-"   \ 'right': [ [ 'filetype' ]]
-"   \ },
-"   \ 'separator': { 'left': '', 'right': '' },
-"   \ 'subseparator': { 'left': '', 'right': '' },
-"   \ 'component_function': {
-"   \   'gitbranch': 'fugitive#head'
-"   \ },
-"   \ }
-
-
-" function! LightlineReadonly()
-"   return &readonly ? '' : ''
-" endfunction
-
-" function! LightlineFugitive()
-"   if exists('*fugitive#head')
-"     let branch = fugitive#head()
-"     return branch !=# '' ? ''.branch : ''
-"   endif
-"   return ''
-" endfunction
-
-
 " TESTING:
 command! MiniTerm term ++rows=10
 
@@ -893,15 +741,8 @@ nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
 nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
 nnoremap <silent> <leader>ws :call WindowSwap#EasyWindowSwap()<CR>
 
-" TESTING: LanguageClient
-" let g:LanguageClient_serverCommands = {
-"     \ 'javascript': ['flow-language-server', '--stdio'],
-"     \ 'javascript.jsx': ['flow-language-server', '--stdio'],
-"     \ }
-" set completefunc=LanguageClient#complete
-" let g:deoplete#enable_at_startup = 1
 
-" TESTING: FZF
+" FZF
 nnoremap <leader>t :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 let g:fzf_colors =
@@ -918,3 +759,20 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+
+" Config Playgrounds
+" Airline Settings
+if 0
+  exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
+endif
+
+" LanguageServer Playground Settings
+if 0
+  exec 'source '.expand('<sfile>:p:h').'/misc/lsp-playground.vim'
+endif
+
+" Lightline Playground Settings
+if 0
+  exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
+endif
