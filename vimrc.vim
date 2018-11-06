@@ -629,7 +629,8 @@ let g:indentLine_first_char = '⋅'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['help', 'startify', 'markdown']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
-let g:indentLine_noConcealCursor=1
+let g:indentLine_noConcealCursor = 1
+let g:indentLine_faster = 1
 nnoremap <leader>ii :IndentLinesToggle<cr>
 
 " Dope patch - not integrated yet, probably would make indentLine not needed?
