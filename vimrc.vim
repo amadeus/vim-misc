@@ -761,8 +761,8 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 
-" Config Playgrounds
-" Airline Settings
+" Playgrounds
+" Airline Playground Settings
 if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
 endif
