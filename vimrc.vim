@@ -6,6 +6,7 @@ set confirm
 set hidden
 set foldmethod=manual
 set autoread
+set timeoutlen=2000
 
 " Indent settings
 set tabstop=4
@@ -236,6 +237,19 @@ cnoremap <c-j> <down>
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
 
+" Sidescrolling shortcuts
+if has('mac')
+  " <opt-h>
+  nmap <silent> ˙ zh
+  " <opt-l>
+  nmap <silent> ¬ zl
+else
+  " <alt-h>
+  nmap <silent> <a-h> zh
+  " <alt-l>
+  nmap <silent> <a-l> zl
+endif
+
 " Vaffle configs
 nnoremap <leader>vv  :Vaffle<cr>
 nnoremap <leader>vf  :Vaffle %:h<cr>
@@ -405,7 +419,7 @@ let g:CustomEntities = [
 let g:vim_json_syntax_conceal = 0
 
 
-" TESTING: .conf to yaml
+" .conf to yaml
 augroup yaml
   autocmd!
   autocmd BufNewFile,BufRead *.conf setl filetype=yaml
@@ -596,19 +610,7 @@ let g:flow#autoclose = 1
 let g:flow#timeout = 60
 
 
-" TESTING: Set htmldjango.html on all html files - don't need this?
-augroup htmljinja
-  autocmd!
-  " By forcing htmldjango to htmldjango.html, I allow snipmate to work
-  " autocmd FileType html setl filetype=htmldjango
-  " Fix data- attributes in html elements
-  autocmd Syntax html setlocal iskeyword+=-
-  autocmd Syntax jinja setlocal iskeyword+=-
-  " autocmd Syntax htmldjango setlocal iskeyword+=-
-augroup END
-
-
-" TESTING: CSS Prefix Macro - converts a webkit prefixed property
+" CSS Prefix Macro - converts a webkit prefixed property
 " into all the other vender prefixed variety
 let @z='Yplct-mozjkYpllxrsYplxroYpdf-Vkkkk:Tabularize /:/r0r0'
 let @x='vi{:s/:\ /:/g'
@@ -620,7 +622,7 @@ let @k="^yiwA: \"ysiw'A,j"
 let @p="0f:wiReact.PropTypes.j0"
 
 
-" TESTING: IndentLine Settings
+" IndentLine Settings
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
@@ -630,11 +632,10 @@ let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
 let g:indentLine_noConcealCursor=1
 nnoremap <leader>ii :IndentLinesToggle<cr>
 
-
-" TESTING: Dope patch - not integrated yet
+" Dope patch - not integrated yet, probably would make indentLine not needed?
 if exists('&indentmarker')
   " set indentmarker=⋅
-  set indentmarker=•
+  set indentmarker=⋅
 
   augroup showindent
     autocmd!
@@ -648,11 +649,7 @@ if exists('&indentmarker')
 endif
 
 
-" TESTING: AsyncRun
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-
-
-" TESTING: Fastfold
+" Fastfold
 let g:fastfold_max_filesize = 100000
 
 
@@ -672,51 +669,9 @@ command! ProfileStart call s:ProfileStart()
 command! ProfileEnd call s:ProfileEnd()
 
 
-" TESTING: Experiment with this more
-" set path+=./node_modules,./discord_uikit
-" set suffixesadd+=.js
-" set path+=$PWD/node_modules
-
-
 " LocalVimRC Settings
 let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
-
-
-" TESTING: Obsession Fix
-" Not sure why this is necessary, but at least if fixes Obsession Basically
-" Obsession doesn't appear to persist, so instead we have to pause and then
-" resume the Obsession task, which requires calling it twice
-augroup obsessionfix
-  autocmd!
-  autocmd SessionLoadPost * silent :Obsession|silent :Obsession
-augroup END
-
-
-" TESTING: Sidescrolling shortcuts
-if has('mac')
-  nmap <silent> ˙ zh
-  nmap <silent> ¬ zl
-else
-  nmap <silent> <a-h> zh
-  nmap <silent> <a-l> zl
-endif
-
-
-" TESTING: Scratch settings
-let g:scratch_autohide = 1
-let g:scratch_insert_autohide = 0
-let g:scratch_persistence_file = $HOME.'/.scratch.md'
-let g:scratch_filetype = 'markdown'
-let g:scratch_horizontal = 1
-
-
-" TESTING: Vim Jedi - disable completions (we get these through deoplete)
-let g:jedi#completions_enabled = 0
-
-
-" TESTING: Timeouts
-set timeoutlen=2000
 
 
 " Completer settings
@@ -761,7 +716,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 
-" Playgrounds
+" TESTING: Playgrounds
 " Airline Playground Settings
 if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
@@ -776,3 +731,44 @@ endif
 if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
 endif
+
+
+" TESTING: AsyncRun
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+
+" TESTING: Experiment with this more
+" set path+=./node_modules,./discord_uikit
+" set suffixesadd+=.js
+" set path+=$PWD/node_modules
+
+
+" TESTING: Obsession Fix
+" Not sure why this is necessary, but at least if fixes Obsession
+" Obsession doesn't appear to persist, so instead we have to pause and then
+" resume the Obsession task, which requires calling it twice
+augroup obsessionfix
+  autocmd!
+  autocmd SessionLoadPost * silent :Obsession|silent :Obsession
+augroup END
+
+
+" TESTING: Scratch settings
+let g:scratch_autohide = 1
+let g:scratch_insert_autohide = 0
+let g:scratch_persistence_file = $HOME.'/.scratch.md'
+let g:scratch_filetype = 'markdown'
+let g:scratch_horizontal = 1
+
+
+" TESTING: I don't think I actually need this anymore, lol
+" Set htmldjango.html on all html files - don't need this?
+" augroup htmljinja
+"   autocmd!
+"   " By forcing htmldjango to htmldjango.html, I allow snipmate to work
+"   " autocmd FileType html setl filetype=htmldjango
+"   " Fix data- attributes in html elements
+"   autocmd Syntax html setlocal iskeyword+=-
+"   autocmd Syntax jinja setlocal iskeyword+=-
+"   " autocmd Syntax htmldjango setlocal iskeyword+=-
+" augroup END

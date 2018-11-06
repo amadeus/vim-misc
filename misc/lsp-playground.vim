@@ -52,3 +52,7 @@ let g:LanguageClient_serverCommands = {
 \ 'javascript': ['flow-language-server', '--stdio'],
 \ 'javascript.jsx': ['flow-language-server', '--stdio'],
 \ }
+
+
+" TESTING: Vim Jedi - disable completions (we get these through deoplete)
+let g:jedi#completions_enabled = 0
