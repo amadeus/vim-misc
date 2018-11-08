@@ -700,6 +700,7 @@ nnoremap <silent> <leader>ws :call WindowSwap#EasyWindowSwap()<CR>
 
 " FZF
 nnoremap <leader>t :Files<cr>
+nnoremap <leader>gf :GFiles<cr>
 nnoremap <leader>b :Buffers<cr>
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
