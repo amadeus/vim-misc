@@ -387,7 +387,7 @@ let g:gitgutter_realtime = 1
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
-set updatetime=100
+set updatetime=1000
 
 
 " Fugitive Settings - delete fugitive buffers on hide
@@ -623,7 +623,7 @@ let @p="0f:wiReact.PropTypes.j0"
 
 
 " IndentLine Settings
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
 let g:indentLine_char = '⋅'
 let g:indentLine_first_char = '⋅'
 let g:indentLine_showFirstIndentLevel = 1
