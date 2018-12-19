@@ -135,6 +135,9 @@ set complete=.,w,b,u,t
 " Used to have preview on this puppy - caused all sorts of probs
 set completeopt=menuone,menu
 
+" Diff settings
+set diffopt+=iwhite,algorithm:patience,vertical,indent-heuristic
+
 " Disable scrolloff in quickfix
 function! SetScrolloff()
   if &buftype=='quickfix'
