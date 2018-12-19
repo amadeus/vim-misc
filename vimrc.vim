@@ -519,7 +519,20 @@ else
   nmap <silent> <a-k> <Plug>(ale_previous_wrap)
   nmap <silent> <a-j> <Plug>(ale_next_wrap)
 endif
-let g:ale_linters = {'javascript': ['eslint', 'flow-language-server'], 'markdown': [], 'python': ['flake8']}
+
+let g:ale_linters = {}
+let g:ale_linters.javascript = ['eslint', 'flow-language-server']
+let g:ale_linters.markdown = []
+let g:ale_linters.python = ['flake8']
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['prettier']
+let g:ale_fixers.css = ['prettier']
+let g:ale_fixers.stylus = ['prettier']
+
+let g:ale_javascript_prettier_use_global = 0
+let g:ale_css_prettier_use_global = 0
+let g:ale_stylus_prettier_use_global = 0
 
 function! ToggleFormatSave()
   if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
