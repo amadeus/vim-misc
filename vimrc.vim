@@ -775,3 +775,34 @@ let g:scratch_horizontal = 1
 "   autocmd Syntax jinja setlocal iskeyword+=-
 "   " autocmd Syntax htmldjango setlocal iskeyword+=-
 " augroup END
+
+" TESTING: CoC
+set cmdheight=2
+set updatetime=1000
+" nnoremap <silent> <leader>ck :call <SID>show_documentation()<CR>
+nmap <leader>cjd <Plug>(coc-definition)
+nmap <leader>cdy <Plug>(coc-type-definition)
+nmap <leader>ci <Plug>(coc-implementation)
+nmap <leader>cr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+augroup fixcoc
+  autocmd!
+  autocmd BufNew,BufRead coc-settings.json set filetype=jsonc
+augroup END
+
+
+" TESTING: eleline.vim
+" let g:eleline_slim = 1
+" let g:airline_powerline_fonts = 1
+let g:eleline_powerline_fonts = 1
