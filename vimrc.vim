@@ -197,8 +197,6 @@ nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>u   :MundoToggle<cr>
 nnoremap <leader>dd  <c-w>h:bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
-nnoremap <leader>at  :ALEToggle<cr>
-nnoremap <leader>af  :ALEFix<cr>
 nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>gs  :Gstatus<cr>
@@ -207,7 +205,6 @@ nnoremap <leader>gd  :Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
-nnoremap <leader>jd  :ALEGoToDefinition<cr>
 nmap <d-cr> :set fu!<cr>
 
 " Slicker way to move around splits
@@ -533,6 +530,10 @@ let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
+
+nnoremap <leader>at  :ALEToggle<cr>
+nnoremap <leader>af  :ALEFix<cr>
+nnoremap <leader>jd  :ALEGoToDefinition<cr>
 
 function! ToggleFormatSave()
   if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
