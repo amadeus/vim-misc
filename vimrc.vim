@@ -133,7 +133,7 @@ set sidescrolloff=5
 set complete=.,w,b,u,t
 
 " Used to have preview on this puppy - caused all sorts of probs
-set completeopt=menuone,menu
+set completeopt=menuone,menu,noselect,noinsert
 
 " Diff settings
 set diffopt+=iwhite,algorithm:patience,vertical,indent-heuristic
@@ -597,8 +597,8 @@ map  <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
 map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
-map  <leader>kk <Plug>(easymotion-overwin-line)
-map  <leader>jj <Plug>(easymotion-overwin-line)
+map  <leader>kk <Plug>(easymotion-bd-jk)
+map  <leader>jj <Plug>(easymotion-bd-jk)
 map  <leader><leader><leader> <Plug>(easymotion-repeat)
 map  <space> <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
@@ -806,3 +806,7 @@ let g:scratch_horizontal = 1
 " let g:eleline_slim = 1
 " let g:airline_powerline_fonts = 1
 let g:eleline_powerline_fonts = 1
+
+" TESTING: Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:autocomplete_flow#insert_paren_after_function = 0
