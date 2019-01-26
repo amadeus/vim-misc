@@ -809,5 +809,14 @@ let g:scratch_horizontal = 1
 let g:eleline_powerline_fonts = 1
 
 " TESTING: Deoplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 let g:autocomplete_flow#insert_paren_after_function = 0
+call deoplete#custom#option('max_list', 100)
+call deoplete#custom#set('_', 'sorters', ['sorter_word'])
+call deoplete#custom#source('_', 'matchers', ['matcher_head', 'matcher_length'])
+let g:python3_host_prog = '/usr/local/bin/python3'
+" Only enable deoplete on InsertEnter - improves Vim startup time
+augroup improve_deoplete
+  autocmd!
+  autocmd InsertEnter * call deoplete#enable()
+augroup END
