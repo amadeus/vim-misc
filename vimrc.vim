@@ -136,7 +136,7 @@ set complete=.,w,b,u,t
 set completeopt=menuone,menu,noselect,noinsert
 
 " Diff settings
-set diffopt+=iwhite,algorithm:patience,vertical,indent-heuristic
+set diffopt+=algorithm:patience,vertical,indent-heuristic
 
 " Disable scrolloff in quickfix
 function! SetScrolloff()
