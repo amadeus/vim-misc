@@ -73,7 +73,7 @@ else
 endif
 
 set guioptions=aAc
-set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff130-blinkon130,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor-blinkwait130-blinkoff130-blinkon130,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff300-blinkon300,ve:ver35-Cursor,o:hor15-Cursor,i-ci-c:ver25-Cursor/lCursor-blinkwait300-blinkoff300-blinkon300,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait300-blinkoff300-blinkon300
 set shortmess=ITaoc
 " Set title string to current working directory!
 set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
