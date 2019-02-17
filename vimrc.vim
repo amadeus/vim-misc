@@ -765,16 +765,3 @@ let g:scratch_insert_autohide = 0
 let g:scratch_persistence_file = $HOME.'/.scratch.md'
 let g:scratch_filetype = 'markdown'
 let g:scratch_horizontal = 1
-
-
-" TESTING: I don't think I actually need this anymore, lol
-" Set htmldjango.html on all html files - don't need this?
-" augroup htmljinja
-"   autocmd!
-"   " By forcing htmldjango to htmldjango.html, I allow snipmate to work
-"   " autocmd FileType html setl filetype=htmldjango
-"   " Fix data- attributes in html elements
-"   autocmd Syntax html setlocal iskeyword+=-
-"   autocmd Syntax jinja setlocal iskeyword+=-
-"   " autocmd Syntax htmldjango setlocal iskeyword+=-
-" augroup END
