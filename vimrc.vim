@@ -742,8 +742,7 @@ augroup END
 
 
 " TESTING: Scratch settings
-let g:scratch_autohide = 1
+let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
-let g:scratch_persistence_file = $HOME.'/.scratch.md'
 let g:scratch_filetype = 'markdown'
 let g:scratch_horizontal = 1
