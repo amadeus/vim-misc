@@ -557,29 +557,12 @@ let g:grepper = {}
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift', 'git']
 
 
-" Enable JSX in files that import react
-" function! <SID>EnableJSX()
-"   setlocal nosmartindent
-"   setlocal noautoindent
-"   " Don't attempt this search on a large file
-"   if getfsize(expand(@%)) > 100000
-"     return
-"   endif
-"   if search("from\\s\\+['\"]react['\"]", 'npw') || search("require(['\"]react['\"])", 'npw')
-"     set filetype=javascript.jsx
-"   endif
-" endfu
-" let g:javascript_fold = 1
-" let g:js_fold = 1
-" augroup enablejsx
-"   autocmd!
-"   " autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
-"   autocmd Syntax javascript call <SID>EnableJSX()
-" augroup END
+" JS file settings
+" Always enable JSX in JS files... who am I kidding...
 let g:jsx_ext_required = 0
+" I generally use prettier now... so ignore all this stuff
 augroup jsfixes
   autocmd!
-  " autocmd BufNewFile,BufRead *.js call <SID>EnableJSX()
   autocmd Syntax javascript setlocal nosmartindent|setlocal noautoindent
 augroup END
 
