@@ -523,7 +523,7 @@ let g:ale_css_prettier_use_global = 0
 let g:ale_stylus_prettier_use_global = 0
 
 let g:ale_linters = {}
-let g:ale_linters.javascript = ['eslint', 'flow-language-server']
+" let g:ale_linters.javascript = ['eslint', 'flow', flow-language-server']
 let g:ale_linters.markdown = []
 let g:ale_linters.python = ['flake8']
 
