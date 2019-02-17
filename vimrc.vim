@@ -803,9 +803,3 @@ let g:scratch_horizontal = 1
 "   autocmd!
 "   autocmd BufNew,BufRead coc-settings.json set filetype=jsonc
 " augroup END
-
-
-" TESTING: eleline.vim
-" let g:eleline_slim = 1
-" let g:airline_powerline_fonts = 1
-let g:eleline_powerline_fonts = 1
