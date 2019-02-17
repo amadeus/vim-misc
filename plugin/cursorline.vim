@@ -13,7 +13,7 @@ function! SetCursorLine(mode)
     setlocal cursorline
   end
 
-  if exists('&filetype') && a:mode == 'enter' && (&filetype == 'startify' || &filetype == 'vaffle' || &filetype == 'GV')
+  if exists('&filetype') && a:mode == 'enter' && (&filetype == 'startify' || &filetype == 'vaffle' || &filetype == 'GV' || &filetype == 'fugitive')
     hi CursorLine guibg=#000000
   end
 endfunction
