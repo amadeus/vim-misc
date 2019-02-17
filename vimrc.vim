@@ -305,7 +305,7 @@ let ctrlp_filter_greps = "".
   \ ")$' | " .
   \ "egrep -v '(\\./)?(" .
   \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|ignore_me/|website/source/|.google-cloud-sdk/|" .
-  \ "node_modules/|bower_components/|compressed/|_site/|static_components/|" .
+  \ "node_modules/|.yarn_cache/|bower_components/|compressed/|_site/|static_components/|" .
   \ "bin/|env/|build/|static/compressed/|.sass-cache/|webrtc/|Session.vim" .
   \ ")'"
 
