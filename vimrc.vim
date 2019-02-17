@@ -388,7 +388,7 @@ let g:gitgutter_realtime = 1
 " Testing realtime updating... could ruin Vim performance
 " So far it has resulted in awesome performance
 " sometimes a bit jumpy... not the end of the world tho
-set updatetime=1000
+set updatetime=100
 
 
 " Fugitive Settings - delete fugitive buffers on hide
