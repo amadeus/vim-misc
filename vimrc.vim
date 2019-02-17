@@ -6,7 +6,6 @@ set confirm
 set hidden
 set foldmethod=manual
 set autoread
-set timeoutlen=2000
 
 " Indent settings
 set tabstop=4
@@ -498,8 +497,8 @@ nnoremap <leader>se :source Session.vim<cr>
 
 " ALE Linter Settings
 let g:ale_lint_on_enter = 1
-let g:ale_lint_on_text_changed = 'always'
-" let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 1000
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 0
