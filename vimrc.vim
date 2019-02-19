@@ -6,6 +6,7 @@ set confirm
 set hidden
 set foldmethod=manual
 set autoread
+set nomodeline
 
 " Indent settings
 set tabstop=4
