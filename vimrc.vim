@@ -116,7 +116,7 @@ set cpo+=J
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('gui_running')
-  set guifont=Source\ Code\ Pro:h14
+  set guifont=SourceCodePro-Semibold:h14
 endif
 
 " Improve splitting logic
