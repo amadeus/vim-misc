@@ -352,7 +352,7 @@ endif
 " let g:detectindent_min_indent = 2
 " let g:detectindent_max_indent = 8
 " let g:detectindent_preferred_when_mixed = 1
-let g:detectindent_max_lines_to_analyse = 1024
+let g:detectindent_max_lines_to_analyse = 40
 augroup detectindent
   autocmd!
   autocmd BufReadPost * DetectIndent
@@ -637,7 +637,8 @@ endif
 
 
 " Fastfold
-let g:fastfold_max_filesize = 100000
+" CURRENTLY DISABLED BECAUSE IT SLOW OPENING OF BUFFERS
+" let g:fastfold_max_filesize = 100000
 
 
 " Easy profiling
