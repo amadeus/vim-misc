@@ -42,6 +42,11 @@ set wildmenu
 set wildmode=longest:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
   \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd,*.sublime-project
+" TESTING: May want to experiment more with this at some point
+" However, I need to figure out what that path change does first
+" set path+=**
+" set wildignore+=**/node_modules/**
+" set wildignore+=**/.git/**
 
 " Syntax, Colorscheme and Gui Options
 syntax on
