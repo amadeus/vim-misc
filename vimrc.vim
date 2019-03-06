@@ -761,3 +761,8 @@ augroup quickfixfix
   autocmd!
   autocmd FileType qf silent setlocal buftype=quickfix
 augroup END
+
+" TESTING: WipeoutBuffers
+function! WipeoutBuffers()
+  exec '%bwipeout'
+endfunction
