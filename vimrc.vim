@@ -766,3 +766,5 @@ augroup END
 function! WipeoutBuffers()
   exec '%bwipeout'
 endfunction
+
+command! -nargs=0 Wipeout call WipeoutBuffers()
