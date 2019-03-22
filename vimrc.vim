@@ -755,13 +755,6 @@ let g:scratch_insert_autohide = 0
 let g:scratch_filetype = 'markdown'
 let g:scratch_horizontal = 1
 
-" TESTING: QuickFix Fix - Until I have type to debug why quickfix eventually
-" doesn't set the proper buftype, this fixes it for now.
-augroup quickfixfix
-  autocmd!
-  autocmd FileType qf silent setlocal buftype=quickfix
-augroup END
-
 " TESTING: WipeoutBuffers
 function! WipeoutBuffers()
   exec '%bwipeout'
