@@ -753,7 +753,7 @@ augroup END
 let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
 let g:scratch_filetype = 'markdown'
-let g:scratch_horizontal = 1
+let g:scratch_top = 0
 
 " TESTING: WipeoutBuffers
 function! WipeoutBuffers()
@@ -761,3 +761,6 @@ function! WipeoutBuffers()
 endfunction
 
 command! -nargs=0 Wipeout call WipeoutBuffers()
+
+" TESTING: vim-hexokinase
+let g:Hexokinase_highlighters = ['sign_column']
