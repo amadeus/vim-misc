@@ -764,3 +764,4 @@ command! -nargs=0 Wipeout call WipeoutBuffers()
 
 " TESTING: vim-hexokinase
 let g:Hexokinase_highlighters = ['sign_column']
+exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
