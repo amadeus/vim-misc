@@ -169,6 +169,7 @@ cnoreabbrev WQ   wq
 cnoreabbrev Q    q
 cnoreabbrev Qa   qa
 cnoreabbrev QA   qa
+cnoreabbrev db   bd
 cnoreabbrev Tabe tabe
 cnoreabbrev Edit edit
 cnoreabbrev Vsplit vsplit
