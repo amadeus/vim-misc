@@ -4,6 +4,8 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.notexists = ''
 let g:airline_symbols.readonly = '×'
+" Dirty symbol seems broken anyways
+let g:airline_symbols.dirty = ''
 let g:airline_theme='evokai'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
@@ -42,6 +44,7 @@ let g:airline#extensions#ale#enabled = 1
 " Tabline settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#fnamemod = 'unique_tail_improved'
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#close_symbol = '×'
@@ -53,14 +56,11 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#show_tab_count = 0
 
-" Ensure Airline errors show up in statusline
-" should only be enabled when airline is enabled
-" Worried this could also be lagging things...
-" augroup airlinelint
-"   autocmd!
-"   autocmd User ALELint AirlineRefresh
-" augroup END
+" Misc Settings
+let airline#extensions#ale#show_line_numbers = 0
+let g:airline#extensions#branch#format = 2
 
 let g:airline_mode_map = {
 \ '__' : '-',
@@ -80,5 +80,3 @@ let g:airline_mode_map = {
 \ 'S'  : 'S',
 \ '' : 'S',
 \ }
-
-echom 'we liiive'

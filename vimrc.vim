@@ -715,7 +715,7 @@ let g:fzf_colors =
 
 " TESTING: Playgrounds
 " Airline Playground Settings
-if 0
+if 1
   exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
 endif
 

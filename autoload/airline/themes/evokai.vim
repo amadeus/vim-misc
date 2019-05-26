@@ -80,8 +80,9 @@ let g:airline_section_y = '%{&filetype}'
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr'])
 
 " Using Ale for warnings and errors
-" TESTING: I think airline + ale has a memory leak
-let g:airline_section_warning = ''
-let g:airline_section_error = ''
-" let g:airline_section_warning = airline#section#create(['ale_warning_count'])
-" let g:airline_section_error = airline#section#create(['ale_error_count'])
+let g:airline_section_warning = airline#section#create(['ale_warning_count'])
+let g:airline_section_error = airline#section#create(['ale_error_count'])
+
+" let g:airline#extensions#tabline#fnamemod = ''
+" Can I figure out how to truncate this into single letter directory names
+" let g:airline_section_c = '%t'
