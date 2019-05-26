@@ -772,3 +772,35 @@ exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
 " let g:pear_tree_smart_openers = 1
 " let g:pear_tree_smart_closers = 1
 " let g:pear_tree_smart_backspace = 1
+
+" TESTING: vim-lsp - again
+let g:lsp_highlight_references_enabled = 0
+let g:lsp_highlights_enabled = 0
+let g:lsp_textprop_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 0
+let g:lsp_signs_enabled = 0
+let g:lsp_virtual_text_enabled = 0
+
+function! s:get_flowbin(server_info)
+    let l:nodemodules_dir = lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'node_modules')
+    if !empty(nodemodules_dir)
+        " you might also want to verify if flow binary actually exists
+        return [&shell, &shellcmdflag, l:nodemodules_dir . '/.bin/flow lsp']
+    endif
+    " instead of returning empty you could also return ['flow', 'lsp] to tell it to use global flow.
+    return []
+endfunction
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'flow',
+    \ 'cmd': function('s:get_flowbin'),
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ })
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
