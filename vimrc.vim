@@ -767,3 +767,8 @@ command! -nargs=0 Wipeout call WipeoutBuffers()
 let g:Hexokinase_highlighters = ['sign_column']
 let g:Hexokinase_ftAutoload = ['css']
 exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
+
+" TESTING: Pear Tree
+" let g:pear_tree_smart_openers = 1
+" let g:pear_tree_smart_closers = 1
+" let g:pear_tree_smart_backspace = 1
