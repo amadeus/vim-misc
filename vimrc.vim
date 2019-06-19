@@ -398,6 +398,7 @@ set updatetime=100
 
 
 " Fugitive Settings - delete fugitive buffers on hide
+let g:fugitive_autoreload_status = 0
 augroup fugitivefix
   autocmd!
   autocmd BufReadPost fugitive:// setlocal bufhidden=delete
@@ -476,7 +477,6 @@ let g:startify_skiplist = [
   \ '\.DS_Store'
   \ ]
 let g:startify_fortune_use_unicode = 1
-
 
 " Disable startify in terminal vim it just doesn't feel right
 if !has("gui_running")
@@ -715,7 +715,7 @@ let g:fzf_colors =
 
 " TESTING: Playgrounds
 " Airline Playground Settings
-if 1
+if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
 endif
 
@@ -781,6 +781,13 @@ let g:lsp_diagnostics_echo_cursor = 0
 let g:lsp_signs_enabled = 0
 let g:lsp_virtual_text_enabled = 0
 
+let g:asyncomplete_preprocessor =
+  \ [function('asyncomplete#preprocessor#ezfilter#filter')]
+
+let g:asyncomplete#preprocessor#ezfilter#config = {}
+let g:asyncomplete#preprocessor#ezfilter#config['*'] =
+  \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
+
 function! s:get_flowbin(server_info)
     let l:nodemodules_dir = lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'node_modules')
     if !empty(nodemodules_dir)
@@ -791,16 +798,25 @@ function! s:get_flowbin(server_info)
     return []
 endfunction
 
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'flow',
-    \ 'cmd': function('s:get_flowbin'),
-    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-    \ 'whitelist': ['javascript', 'javascript.jsx'],
-    \ })
-
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'whitelist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
+augroup lsp
+  autocmd!
+  autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'flow',
+      \ 'cmd': function('s:get_flowbin'),
+      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+      \ 'whitelist': ['javascript', 'javascript.jsx'],
+      \ })
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+      \ 'name': 'file',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#file#completor')
+      \ }))
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ 'config': {
+      \    'max_buffer_size': 5000000,
+      \  },
+      \ }))
+augroup END

@@ -39,7 +39,7 @@ let g:airline#extensions#ctrlspace#enabled = 0
 let g:airline#extensions#vimtex#enabled = 0
 let g:airline#extensions#neomake#enabled = 0
 let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 
 " Tabline settings
 let g:airline#extensions#tabline#enabled = 1
