@@ -4,7 +4,6 @@ set encoding=utf-8
 set ttyfast
 set confirm
 set hidden
-set foldmethod=manual
 set autoread
 set nomodeline
 
@@ -56,7 +55,10 @@ set background=dark
 
 " Fold Settings
 set foldlevel=99
-set foldmethod=syntax
+" foldmethod=syntax is REALLY slow, so is FastFold, indent is
+" close enough and is very performant
+set foldmethod=indent
+" set foldmethod=syntax
 set sessionoptions=buffers,tabpages,curdir,slash
 set viewoptions=cursor,slash,curdir
 
