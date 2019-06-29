@@ -353,7 +353,7 @@ set updatetime=100
 
 
 " Fugitive Settings - delete fugitive buffers on hide
-let g:fugitive_autoreload_status = 0
+let g:fugitive_autoreload_status = 1
 augroup fugitivefix
   autocmd!
   autocmd BufReadPost fugitive:// setlocal bufhidden=delete
@@ -483,10 +483,9 @@ let g:ale_javascript_prettier_use_global = 0
 let g:ale_css_prettier_use_global = 0
 let g:ale_stylus_prettier_use_global = 0
 
-let g:ale_linters = {}
+" let g:ale_linters = {}
 " let g:ale_linters.javascript = ['eslint', 'flow', flow-language-server']
-let g:ale_linters.markdown = []
-let g:ale_linters.python = ['flake8']
+" let g:ale_linters.python = ['flake8']
 
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['prettier']
