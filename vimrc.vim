@@ -460,14 +460,13 @@ nnoremap <leader>se :source Session.vim<cr>
 " ALE Linter Settings
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = 1000
+" let g:ale_lint_delay = 1000
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 0
 let g:ale_warn_about_trailing_whitespace = 0
-let g:ale_history_enabled = 20
+" let g:ale_history_enabled = 1
 let g:ale_sign_column_always = 1
-let g:ale_echo_msg_format = '[%linter%]%s'
+let g:ale_echo_msg_format = '[%linter%]% (code)% %s'
 " let g:ale_completion_enabled = 1
 " If continued performance issues, test this
 " let g:ale_echo_delay = 1000
@@ -484,7 +483,7 @@ let g:ale_css_prettier_use_global = 0
 let g:ale_stylus_prettier_use_global = 0
 
 " let g:ale_linters = {}
-" let g:ale_linters.javascript = ['eslint', 'flow', flow-language-server']
+" let g:ale_linters.javascript = ['eslint', 'flow']
 " let g:ale_linters.python = ['flake8']
 
 let g:ale_fixers = {}
