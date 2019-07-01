@@ -623,9 +623,6 @@ augroup asyncomplete_custom_sources
     \ 'name': 'buffer',
     \ 'whitelist': ['*'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ 'config': {
-    \    'max_buffer_size': 5000000,
-    \  },
     \ }))
 augroup END
 
