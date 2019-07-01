@@ -333,10 +333,6 @@ vnoremap <silent> # :<C-U>
   \ gV:call setreg('"', old_reg, old_regtype)<CR>
 
 
-" NERDCommenter Tweaks
-let g:NERDSpaceDelims = 1
-
-
 " GitGutter Settings
 nmap <d-j> <Plug>GitGutterNextHunk
 nmap <d-k> <Plug>GitGutterPrevHunk
