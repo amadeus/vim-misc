@@ -18,11 +18,17 @@ set smarttab
 set nowrap
 set display=lastline
 set lazyredraw
+set updatetime=100
 
 " Show invisibles
 set list
 set listchars=tab:›\ ,trail:⋅,nbsp:␣
 set showbreak=…
+augroup terminal_list_tweaks
+  autocmd!
+  autocmd TerminalOpen * setlocal nolist
+augroup END
+
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -41,11 +47,6 @@ set wildmenu
 set wildmode=longest:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
   \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd,*.sublime-project
-" TESTING: May want to experiment more with this at some point
-" However, I need to figure out what that path change does first
-" set path+=**
-" set wildignore+=**/node_modules/**
-" set wildignore+=**/.git/**
 
 " Syntax, Colorscheme and Gui Options
 syntax on
@@ -86,9 +87,9 @@ set shortmess=ITaoc
 set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 set noruler
 set fillchars=vert:⋅,fold:-
+
 set number
 set numberwidth=3
-
 augroup hidenumber
   autocmd!
   autocmd FileType vaffle setlocal nonumber
@@ -108,15 +109,9 @@ augroup END
 set laststatus=2
 augroup laststatus
   autocmd!
-  autocmd BufNew * set laststatus=2
-  autocmd FileType startify set laststatus=0
+  autocmd BufNew * setlocal laststatus=2
+  autocmd FileType startify setlocal laststatus=0
 augroup END
-
-augroup terminaltweaks
-  autocmd!
-  autocmd TerminalOpen * setlocal nolist
-augroup END
-
 
 " Force vim to think of 2 spaces as a sentence
 set cpo+=J
@@ -189,12 +184,10 @@ vnoremap k gk
 nnoremap k gk
 
 " Various leader shortcuts
-let mapleader="\\"
-let maplocalleader="\\"
 nnoremap q <nop>
 vnoremap q <nop>
-nmap q \
-vmap q \
+let mapleader="q"
+let maplocalleader="q"
 nnoremap Q q
 vnoremap Q q
 nnoremap <F5> :syntax sync fromstart<cr>
@@ -220,7 +213,7 @@ noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
-nnoremap gF <c-w>v0f.gf
+nnoremap gF <c-w>vg_hhgf
 
 " Improved way of Escaping out of insert mode
 inoremap jk <Esc>
@@ -273,7 +266,6 @@ if has("gui_running")
   let g:Powerline_symbols = 'fancy'
 endif
 
-
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
@@ -281,44 +273,6 @@ set undodir=~/.vim/undo
 set nobackup
 set noswapfile
 set undofile
-
-
-" Gist settings
-let g:gist_clip_command = 'pbcopy'
-let g:gist_open_browser_after_post = 1
-
-
-" CtrlP Settings
-if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/ctrlp-settings.vim'
-endif
-
-
-" TESTING: Tryign to disable this to see if helps random performance things
-" Omnicomplete settings
-" augroup omnicomplete
-"   autocmd!
-"   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"   autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-"   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"   " autocmd FileType javascript setl omnifunc=flowcomplete#Complete
-"   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" augroup END
-
-
-" DetectIndent Settings
-" let g:detectindent_preferred_indent = 4
-" let g:detectindent_min_indent = 2
-" let g:detectindent_max_indent = 8
-" let g:detectindent_preferred_when_mixed = 1
-let g:detectindent_max_lines_to_analyse = 40
-augroup detectindent
-  autocmd!
-  autocmd BufReadPost * DetectIndent
-augroup END
-
 
 " Search for selected text
 vnoremap <silent> <c-s> :<C-U>
@@ -332,6 +286,79 @@ vnoremap <silent> # :<C-U>
   \ escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \ gV:call setreg('"', old_reg, old_regtype)<CR>
 
+" Set markdown textwidth
+augroup markdowntextwidth
+  autocmd!
+  autocmd BufNewFile,BufRead *.md,*.markdown,*.wiki setlocal textwidth=79|set tabstop=2|set shiftwidth=2
+augroup END
+
+" .conf to yaml
+augroup yaml
+  autocmd!
+  autocmd BufNewFile,BufRead *.conf setl filetype=yaml
+augroup END
+
+" CSS Specific Motions
+" Change inner/around CSS Key
+onoremap ik :<c-u>execute "normal! ^vt:"<cr>
+onoremap ak :<c-u>execute "normal! 0vf:"<cr>
+
+" Change inner/around CSS Property
+onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
+onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
+
+" Disable smartindent in python, because it sucks
+augroup pythonsmartindent
+  autocmd!
+  autocmd FileType python setlocal nosmartindent
+augroup END
+
+" Fun tiems
+iabbrev ldis ಠ_ಠ
+iabbrev lsad ಥ_ಥ
+iabbrev lhap ಥ‿ಥ
+iabbrev lmis ಠ‿ಠ
+iabbrev ldiz ( ͠° ͟ʖ ͡°)
+vnoremap u <nop>
+vnoremap gu u
+nnoremap <leader>se :source Session.vim<cr>
+
+" Easy profiling
+function! s:ProfileStart()
+  profile start profile.log
+  profile func *
+  profile file *
+endfunction
+
+function! s:ProfileEnd()
+  profile pause
+  noautocmd qall!
+endfunction
+
+command! ProfileStart call s:ProfileStart()
+command! ProfileEnd call s:ProfileEnd()
+command! MiniTerm term ++rows=10
+
+function! WipeoutBuffers()
+  exec '%bwipeout'
+endfunction
+command! -nargs=0 Wipeout call WipeoutBuffers()
+
+
+" ==== PLUGIN SETTING ===
+
+" Gist settings
+let g:gist_clip_command = 'pbcopy'
+let g:gist_open_browser_after_post = 1
+
+
+" DetectIndent Settings
+let g:detectindent_max_lines_to_analyse = 40
+augroup detectindent
+  autocmd!
+  autocmd BufReadPost * DetectIndent
+augroup END
+
 
 " GitGutter Settings
 nmap <d-j> <Plug>GitGutterNextHunk
@@ -342,10 +369,6 @@ nmap <leader>ga <Plug>GitGutterAll
 let g:gitgutter_async = 1
 let g:gitgutter_eager = 1
 let g:gitgutter_realtime = 1
-" Testing realtime updating... could ruin Vim performance
-" So far it has resulted in awesome performance
-" sometimes a bit jumpy... not the end of the world tho
-set updatetime=100
 
 
 " Fugitive Settings - delete fugitive buffers on hide
@@ -361,45 +384,8 @@ augroup gitcommit
 augroup END
 
 
-" Set markdown textwidth
-augroup markdowntextwidth
-  autocmd!
-  autocmd BufNewFile,BufRead *.md,*.markdown,*.wiki setlocal textwidth=79|set tabstop=2|set shiftwidth=2
-augroup END
-
-
-" Custom Entity Replacements for vim-escaper
-let g:CustomEntities = [
-  \ ['(c)',  '\&copy;'],
-\ ]
-
-
-" Disabling JSON conceal feature
-let g:vim_json_syntax_conceal = 0
-
-
-" .conf to yaml
-augroup yaml
-  autocmd!
-  autocmd BufNewFile,BufRead *.conf setl filetype=yaml
-augroup END
-
-
-" Save as sudo
-ca w!! w !sudo tee "%"
-
-
-" CSS Specific Motions
-" Change inner/around CSS Key
-onoremap ik :<c-u>execute "normal! ^vt:"<cr>
-onoremap ak :<c-u>execute "normal! 0vf:"<cr>
-
-" Change inner/around CSS Property
-onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
-onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
-
-" Change function arguments
-onoremap ia :<c-u>execute "normal! ^f(vi("<cr>
+" vim-escaper Custom Entity Replacements
+let g:CustomEntities = [['(c)',  '\&copy;']]
 
 
 " Startify Settings
@@ -435,37 +421,26 @@ if !has("gui_running")
 endif
 
 
-" Disable smartindent in python, because it sucks
-augroup pythonsmartindent
-  autocmd!
-  autocmd FileType python setlocal nosmartindent
-augroup END
-
-
-" Fun tiems
-iabbrev ldis ಠ_ಠ
-iabbrev lsad ಥ_ಥ
-iabbrev lhap ಥ‿ಥ
-iabbrev lmis ಠ‿ಠ
-iabbrev ldiz ( ͠° ͟ʖ ͡°)
-vnoremap u <nop>
-vnoremap gu u
-nnoremap <leader>se :source Session.vim<cr>
-
-
 " ALE Linter Settings
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_delay = 1000
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 0
 let g:ale_warn_about_trailing_whitespace = 0
-" let g:ale_history_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '[%linter%]% (code)% %s'
-" let g:ale_completion_enabled = 1
-" If continued performance issues, test this
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['prettier']
+let g:ale_fixers.json = ['prettier']
+let g:ale_fixers.typescript = ['prettier']
+let g:ale_fixers.css = ['prettier']
+let g:ale_fixers.stylus = ['prettier']
+" Probably don't need this guy anymore
 " let g:ale_echo_delay = 1000
+
+nnoremap <leader>at  :ALEToggle<cr>
+nnoremap <leader>af  :ALEFix<cr>
+nnoremap <leader>jd  :ALEGoToDefinition<cr>
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
   nmap <silent> ∆ <Plug>(ale_next_wrap)
@@ -474,47 +449,35 @@ else
   nmap <silent> <a-j> <Plug>(ale_next_wrap)
 endif
 
-let g:ale_javascript_prettier_use_global = 0
-let g:ale_css_prettier_use_global = 0
-let g:ale_stylus_prettier_use_global = 0
-
-" let g:ale_linters = {}
-" let g:ale_linters.javascript = ['eslint', 'flow']
-" let g:ale_linters.python = ['flake8']
-
-let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['prettier']
-let g:ale_fixers.json = ['prettier']
-let g:ale_fixers.typescript = ['prettier']
-let g:ale_fixers.css = ['prettier']
-let g:ale_fixers.stylus = ['prettier']
-
-nnoremap <leader>at  :ALEToggle<cr>
-nnoremap <leader>af  :ALEFix<cr>
-nnoremap <leader>jd  :ALEGoToDefinition<cr>
-
 function! ToggleFormatSave()
-  if exists('b:ale_fix_on_save') && b:ale_fix_on_save == 1
-    let b:ale_fix_on_save = 0
-    echo 'Preserving formatting on save'
+  if exists('b:ale_fix_on_save')
+    let b:ale_fix_on_save = !b:ale_fix_on_save
+  elseif exists('g:ale_fix_on_save')
+    let b:ale_fix_on_save = !g:ale_fix_on_save
   else
     let b:ale_fix_on_save = 1
+  endif
+  if b:ale_fix_on_save
     echo 'Formatting file on save'
+  else
+    echo 'Preserving formatting on save'
   endif
 endfunction
 nnoremap <leader>pf :call ToggleFormatSave()<cr>
 
 
-" Grepper Maps
-nmap gs  <plug>(GrepperOperator)
-xmap gs  <plug>(GrepperOperator)
+" Grepper
 let g:grepper = {}
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift', 'git']
+nmap gs  <plug>(GrepperOperator)
+xmap gs  <plug>(GrepperOperator)
 
 
-" JS file settings
+" JS and JSX Config
 " Always enable JSX in JS files... who am I kidding...
 let g:jsx_ext_required = 0
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 " I generally use prettier now... so ignore all this stuff
 augroup jsfixes
   autocmd!
@@ -526,11 +489,6 @@ augroup END
 let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
 let g:goyo_width = 90
-
-
-" JS Syntax Plugins
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
 
 
 " Easymotion mappings
@@ -545,40 +503,10 @@ map  <space> <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
 
 
-" Vim Flow Settings
-let g:flow#enable = 0
-let g:flow#autoclose = 1
-let g:flow#timeout = 60
-
-
-" CSS Prefix Macro - converts a webkit prefixed property
-" into all the other vender prefixed variety
-let @z='Yplct-mozjkYpllxrsYplxroYpdf-Vkkkk:Tabularize /:/r0r0'
-let @x='vi{:s/:\ /:/g'
-let @c='vi{:s/:/:\ /g'
-
-" Convert keys into key/value pair with same name/value
-let @k="^yiwA: \"ysiw'A,j"
-" Create React.PropType scaffolding
-let @p="0f:wiReact.PropTypes.j0"
-
-
-" IndentLine Settings
-let g:indentLine_enabled = 0
-let g:indentLine_char = '⋅'
-let g:indentLine_first_char = '⋅'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileTypeExclude = ['help', 'startify', 'markdown']
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'startify']
-let g:indentLine_noConcealCursor = 1
-let g:indentLine_faster = 1
-nnoremap <leader>ii :IndentLinesToggle<cr>
-
 " Dope patch - not integrated yet, probably would make indentLine not needed?
 if exists('&indentmarker')
   " set indentmarker=⋅
   set indentmarker=⋅
-
   augroup showindent
     autocmd!
     autocmd FileType * setlocal showindent
@@ -591,55 +519,15 @@ if exists('&indentmarker')
 endif
 
 
-" Fastfold
-" CURRENTLY DISABLED BECAUSE IT SLOW OPENING OF BUFFERS
-" let g:fastfold_max_filesize = 100000
-
-
-" Easy profiling
-function! s:ProfileStart()
-  profile start profile.log
-  profile func *
-  profile file *
-endfunction
-
-function! s:ProfileEnd()
-  profile pause
-  noautocmd qall!
-endfunction
-
-command! ProfileStart call s:ProfileStart()
-command! ProfileEnd call s:ProfileEnd()
-
-
 " LocalVimRC Settings
 let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
-
-
-" Completer settings
-let g:completor_min_chars = 0
-let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
-let g:completor_disable_buffer = ['markdown']
-let g:completor_auto_close_doc = 0
-let g:completor_complete_options='menuone,noselect'
 
 
 " targets.vim
 autocmd User targets#mappings#user call targets#mappings#extend({
   \ 'a': {'argument': [{'o': '[{([]', 'c': '[])}]', 's': ','}]},
   \ })
-
-
-" TESTING:
-command! MiniTerm term ++rows=10
-
-
-" TESTING: WindowSwap
-let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
-nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
-nnoremap <silent> <leader>ws :call WindowSwap#EasyWindowSwap()<CR>
 
 
 " FZF
@@ -661,8 +549,84 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" Obsession
+" Not sure why this is necessary, but at least if fixes Obsession
+" Obsession doesn't appear to persist, so instead we have to pause and then
+" resume the Obsession task, which requires calling it twice
+augroup obsessionfix
+  autocmd!
+  autocmd SessionLoadPost * silent :Obsession|silent :Obsession
+augroup END
 
-" TESTING: Playgrounds
+
+" Scratch settings
+let g:scratch_autohide = 0
+let g:scratch_insert_autohide = 0
+let g:scratch_filetype = 'markdown'
+let g:scratch_top = 0
+
+
+" vim-hexokinase
+let g:Hexokinase_highlighters = ['sign_column']
+let g:Hexokinase_ftAutoload = ['css']
+exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
+
+
+" AsyncComplete
+" let g:lsp_highlight_references_enabled = 0
+" let g:lsp_highlights_enabled = 0
+" let g:lsp_textprop_enabled = 0
+" let g:lsp_diagnostics_echo_cursor = 0
+" let g:lsp_signs_enabled = 0
+" let g:lsp_virtual_text_enabled = 0
+" function! s:get_flowbin(server_info)
+"     let l:nodemodules_dir = lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'node_modules')
+"     if !empty(nodemodules_dir)
+"         " you might also want to verify if flow binary actually exists
+"         return [&shell, &shellcmdflag, l:nodemodules_dir . '/.bin/flow lsp']
+"     endif
+"     " instead of returning empty you could also return ['flow', 'lsp] to tell it to use global flow.
+"     return []
+" endfunction
+
+let g:asyncomplete_preprocessor =
+  \ [function('asyncomplete#preprocessor#ezfilter#filter')]
+
+let g:asyncomplete#preprocessor#ezfilter#config = {}
+let g:asyncomplete#preprocessor#ezfilter#config['*'] =
+  \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
+
+augroup lsp
+  autocmd!
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({}))
+  " vim-lsp is disabled for now - while I use ALE instead
+  " autocmd User lsp_setup call lsp#register_server({
+  "     \ 'name': 'flow',
+  "     \ 'cmd': function('s:get_flowbin'),
+  "     \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+  "     \ 'whitelist': ['javascript', 'javascript.jsx'],
+  "     \ })
+  au User asyncomplete_setup  call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+    \ 'name': 'omni',
+    \ 'whitelist': ['css', 'css.module'],
+    \ 'completor': function('asyncomplete#sources#omni#completor')
+    \  }))
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+      \ 'name': 'file',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#file#completor')
+      \ }))
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ 'config': {
+      \    'max_buffer_size': 5000000,
+      \  },
+      \ }))
+augroup END
+
+" Playgrounds and old unused settings
 " Airline Playground Settings
 if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
@@ -678,94 +642,17 @@ if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
 endif
 
+" CtrlP Settings
+if 0
+  exec 'source '.expand('<sfile>:p:h').'/misc/ctrlp-settings.vim'
+endif
 
-" TESTING: AsyncRun
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+" Omnicomplete settings
+if 0
+  exec 'source '.expand('<sfile>:p:h').'/misc/omni-complete.vim'
+endif
 
-
-" TESTING: Experiment with this more
-" set path+=./node_modules,./discord_uikit
-" set suffixesadd+=.js
-" set path+=$PWD/node_modules
-
-
-" TESTING: Obsession Fix
-" Not sure why this is necessary, but at least if fixes Obsession
-" Obsession doesn't appear to persist, so instead we have to pause and then
-" resume the Obsession task, which requires calling it twice
-augroup obsessionfix
-  autocmd!
-  autocmd SessionLoadPost * silent :Obsession|silent :Obsession
-augroup END
-
-
-" TESTING: Scratch settings
-let g:scratch_autohide = 0
-let g:scratch_insert_autohide = 0
-let g:scratch_filetype = 'markdown'
-let g:scratch_top = 0
-
-" TESTING: WipeoutBuffers
-function! WipeoutBuffers()
-  exec '%bwipeout'
-endfunction
-
-command! -nargs=0 Wipeout call WipeoutBuffers()
-
-" TESTING: vim-hexokinase
-let g:Hexokinase_highlighters = ['sign_column']
-let g:Hexokinase_ftAutoload = ['css']
-exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
-
-" TESTING: Pear Tree
-" let g:pear_tree_smart_openers = 1
-" let g:pear_tree_smart_closers = 1
-" let g:pear_tree_smart_backspace = 1
-
-" TESTING: vim-lsp - again
-let g:lsp_highlight_references_enabled = 0
-let g:lsp_highlights_enabled = 0
-let g:lsp_textprop_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 0
-let g:lsp_signs_enabled = 0
-let g:lsp_virtual_text_enabled = 0
-
-let g:asyncomplete_preprocessor =
-  \ [function('asyncomplete#preprocessor#ezfilter#filter')]
-
-let g:asyncomplete#preprocessor#ezfilter#config = {}
-let g:asyncomplete#preprocessor#ezfilter#config['*'] =
-  \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
-
-function! s:get_flowbin(server_info)
-    let l:nodemodules_dir = lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'node_modules')
-    if !empty(nodemodules_dir)
-        " you might also want to verify if flow binary actually exists
-        return [&shell, &shellcmdflag, l:nodemodules_dir . '/.bin/flow lsp']
-    endif
-    " instead of returning empty you could also return ['flow', 'lsp] to tell it to use global flow.
-    return []
-endfunction
-
-augroup lsp
-  autocmd!
-  autocmd User lsp_setup call lsp#register_server({
-      \ 'name': 'flow',
-      \ 'cmd': function('s:get_flowbin'),
-      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-      \ 'whitelist': ['javascript', 'javascript.jsx'],
-      \ })
-  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-      \ 'name': 'file',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#file#completor')
-      \ }))
-  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-      \ 'name': 'buffer',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#buffer#completor'),
-      \ 'config': {
-      \    'max_buffer_size': 5000000,
-      \  },
-      \ }))
-augroup END
+" Completer settings
+if 0
+  exec 'source '.expand('<sfile>:p:h').'/misc/completor-config.vim'
+endif
