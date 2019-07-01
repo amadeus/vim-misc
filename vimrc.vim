@@ -1,6 +1,7 @@
 " Misc app settings
-set linebreak
 set encoding=utf-8
+scriptencoding utf-8
+set linebreak
 set ttyfast
 set confirm
 set hidden
@@ -28,7 +29,6 @@ augroup terminal_list_tweaks
   autocmd!
   autocmd TerminalOpen * setlocal nolist
 augroup END
-
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -73,7 +73,7 @@ if exists('&breakindent')
 endif
 
 " Basically use a fancier colortheme in MacVim
-if has("termguicolors")
+if has('termguicolors')
   set termguicolors
   colorscheme evokai
 else
@@ -114,7 +114,7 @@ augroup laststatus
 augroup END
 
 " Force vim to think of 2 spaces as a sentence
-set cpo+=J
+set cpoptions+=J
 
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
@@ -142,7 +142,7 @@ set diffopt+=algorithm:patience,vertical,indent-heuristic
 
 " Disable scrolloff in quickfix
 function! SetScrolloff()
-  if &buftype=='quickfix'
+  if &buftype ==? 'quickfix'
     setlocal scrolloff=0
   else
     setlocal scrolloff=3
@@ -186,8 +186,8 @@ nnoremap k gk
 " Various leader shortcuts
 nnoremap q <nop>
 vnoremap q <nop>
-let mapleader="q"
-let maplocalleader="q"
+let g:mapleader='q'
+let g:maplocalleader='q'
 nnoremap Q q
 vnoremap Q q
 nnoremap <F5> :syntax sync fromstart<cr>
@@ -262,7 +262,7 @@ augroup END
 
 " Powerline Settings
 set noshowmode
-if has("gui_running")
+if has('gui_running')
   let g:Powerline_symbols = 'fancy'
 endif
 
@@ -416,7 +416,7 @@ let g:startify_skiplist = [
 let g:startify_fortune_use_unicode = 1
 
 " Disable startify in terminal vim it just doesn't feel right
-if !has("gui_running")
+if !has('gui_running')
   let g:startify_disable_at_vimenter = 1
 endif
 
@@ -525,9 +525,12 @@ let g:localvimrc_persistent = 1
 
 
 " targets.vim
-autocmd User targets#mappings#user call targets#mappings#extend({
-  \ 'a': {'argument': [{'o': '[{([]', 'c': '[])}]', 's': ','}]},
-  \ })
+augroup targets_tweaks
+  autocmd!
+  autocmd User targets#mappings#user call targets#mappings#extend({
+    \ 'a': {'argument': [{'o': '[{([]', 'c': '[])}]', 's': ','}]},
+    \ })
+augroup END
 
 
 " FZF
@@ -596,34 +599,34 @@ let g:asyncomplete#preprocessor#ezfilter#config = {}
 let g:asyncomplete#preprocessor#ezfilter#config['*'] =
   \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
 
-augroup lsp
+augroup asyncomplete_custom_sources
   autocmd!
-  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({}))
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({}))
   " vim-lsp is disabled for now - while I use ALE instead
   " autocmd User lsp_setup call lsp#register_server({
-  "     \ 'name': 'flow',
-  "     \ 'cmd': function('s:get_flowbin'),
-  "     \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-  "     \ 'whitelist': ['javascript', 'javascript.jsx'],
-  "     \ })
-  au User asyncomplete_setup  call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+  "   \ 'name': 'flow',
+  "   \ 'cmd': function('s:get_flowbin'),
+  "   \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+  "   \ 'whitelist': ['javascript', 'javascript.jsx'],
+  "   \ })
+  autocmd User asyncomplete_setup  call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
     \ 'name': 'omni',
     \ 'whitelist': ['css', 'css.module'],
     \ 'completor': function('asyncomplete#sources#omni#completor')
     \  }))
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-      \ 'name': 'file',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#file#completor')
-      \ }))
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-      \ 'name': 'buffer',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#buffer#completor'),
-      \ 'config': {
-      \    'max_buffer_size': 5000000,
-      \  },
-      \ }))
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
 augroup END
 
 " Playgrounds and old unused settings
