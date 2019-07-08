@@ -372,7 +372,7 @@ let g:gitgutter_realtime = 1
 
 
 " Fugitive Settings - delete fugitive buffers on hide
-let g:fugitive_autoreload_status = 1
+" let g:fugitive_autoreload_status = 1
 augroup fugitivefix
   autocmd!
   autocmd BufReadPost fugitive:// setlocal bufhidden=delete
