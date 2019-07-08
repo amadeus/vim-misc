@@ -592,12 +592,12 @@ exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
 "     return []
 " endfunction
 
-let g:asyncomplete_preprocessor =
-  \ [function('asyncomplete#preprocessor#ezfilter#filter')]
-
-let g:asyncomplete#preprocessor#ezfilter#config = {}
-let g:asyncomplete#preprocessor#ezfilter#config['*'] =
-  \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
+" let g:asyncomplete_preprocessor =
+"   \ [function('asyncomplete#preprocessor#ezfilter#filter')]
+"
+" let g:asyncomplete#preprocessor#ezfilter#config = {}
+" let g:asyncomplete#preprocessor#ezfilter#config['*'] =
+"   \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
 
 augroup asyncomplete_custom_sources
   autocmd!
