@@ -439,8 +439,9 @@ let g:ale_fixers.stylus = ['prettier']
 " let g:ale_echo_delay = 1000
 
 nnoremap <leader>at  :ALEToggle<cr>
-nnoremap <leader>af  :ALEFix<cr>
+nnoremap <leader>ff  :ALEFix<cr>
 nnoremap <leader>jd  :ALEGoToDefinition<cr>
+nnoremap <leader>ah  :ALEHover<cr>
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
   nmap <silent> ∆ <Plug>(ale_next_wrap)
