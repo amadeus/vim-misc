@@ -605,16 +605,16 @@ if 0
 endif
 
 " GitGutter settings
-if 0
+if 1
   exec 'source '.expand('<sfile>:p:h').'/misc/gitgutter.vim'
 endif
 
 " ALE settings
-if 0
+if 1
   exec 'source '.expand('<sfile>:p:h').'/misc/ale.vim'
 endif
 
 " CoC settings
-if 1
+if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/coc.vim'
 endif
