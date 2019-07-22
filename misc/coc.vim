@@ -18,17 +18,19 @@ nmap <d-k> <Plug>(coc-git-prevchunk)
 nnoremap <leader>sh  :CocCommand git.chunkStage<cr>
 nnoremap <leader>rh  :CocCommand git.chunkUndo<cr>
 
+let s:extensions = [
+  \ 'coc-css',
+  \ 'coc-dictionary',
+  \ 'coc-emoji',
+  \ 'coc-eslint',
+  \ 'coc-git',
+  \ 'coc-json',
+  \ 'coc-prettier',
+  \ 'coc-python',
+  \ 'coc-stylelint',
+  \ 'coc-vimlsp',
+\ ]
+
 function! SetupCoCExtensions()
-  call coc#add_extension(
-    \ 'coc-css',
-    \ 'coc-dictionary',
-    \ 'coc-emoji',
-    \ 'coc-eslint',
-    \ 'coc-git',
-    \ 'coc-json',
-    \ 'coc-prettier',
-    \ 'coc-python',
-    \ 'coc-stylelint',
-    \ 'coc-vimlsp',
-  \ )
+  call coc#util#install_extension(s:extensions)
 endfunction
