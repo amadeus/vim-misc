@@ -19,7 +19,7 @@ nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>ff  :ALEFix<cr>
 nnoremap <leader>jd  :ALEGoToDefinition<cr>
 nmap <leader>jt  <Plug>(coc-implementation)
-nnoremap <leader>ah  :ALEHover<cr>
+nnoremap <leader>aa  :ALEHover<cr>
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
   nmap <silent> ∆ <Plug>(ale_next_wrap)
