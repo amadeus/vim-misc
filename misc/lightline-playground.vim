@@ -40,12 +40,12 @@ endfunction
 " Theme
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 let s:p.normal.left = [['#085e0b', '#49fd2f', 'bold'], ['#efefef', '#444444']]
-let s:p.normal.right = [ ['#9e9e9e', '#444444'], ['#ff027f', 'gray2'], ['#ff4b00', 'gray2'] ]
-let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
+let s:p.normal.right = [ ['#9e9e9e', '#444444'], ['#ff027f', '#303030'], ['#ff4b00', '#303030'] ]
+let s:p.normal.middle = [ [ 'gray7', '#303030' ] ]
 let s:p.normal.error = [ [ 'white', '#ff027f' ] ]
 let s:p.normal.warning = [ [ 'gray1', 'yellow' ] ]
 
-let s:p.inactive.right = [ ['#444444', '#121212'] ]
+let s:p.inactive.right = [ [ '#888888', '#303030' ] ]
 let s:p.inactive.middle = s:p.inactive.right
 let s:p.inactive.left = s:p.inactive.right
 
@@ -59,10 +59,10 @@ let s:p.replace.left = [ ['#ff027f', 'white' , 'bold'], ['white', '#ff027f'] ]
 let s:p.replace.right = s:p.normal.right
 let s:p.replace.middle = s:p.normal.middle
 
-let s:p.tabline.left = [ ['#444444', '#1b1b13'] ]
+let s:p.tabline.left = [ ['#888888', '#303030'] ]
 let s:p.tabline.tabsel = [ [ 'white', '#C500FF' ] ]
-let s:p.tabline.middle = [ ['#444444', '#1b1b13'] ]
-let s:p.tabline.right = [ ['#444444', '#1b1b13'] ]
+let s:p.tabline.middle = [ ['#888888', '#303030'] ]
+let s:p.tabline.right = [ ['#888888', '#303030'] ]
 let g:lightline#colorscheme#evokai#palette = lightline#colorscheme#fill(s:p)
 
 " Config
@@ -81,7 +81,7 @@ let g:lightline = {
 \ },
 \ 'inactive': {
 \   'left': [
-\    ['filename']
+\    ['myrelativepath']
 \   ],
 \   'right': []
 \ },
