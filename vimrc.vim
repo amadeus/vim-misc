@@ -522,6 +522,11 @@ exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 let g:EditorConfig_disable_rules = ['trim_trailing_whitespace']
 
+" VIM Open Url
+let g:open_url_default_mappings = 0
+nmap gx <Plug>(open-url-browser)
+xmap gx <Plug>(open-url-browser)
+
 " Playgrounds and old unused settings
 " Asyncomplete Settings
 if 1
