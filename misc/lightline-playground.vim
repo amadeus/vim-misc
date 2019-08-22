@@ -39,7 +39,7 @@ endfunction
 
 " Theme
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-let s:p.normal.left = [['#085e0b', '#49fd2f', 'bold'], ['#9e9e9e', '#444444']]
+let s:p.normal.left = [['#085e0b', '#49fd2f', 'bold'], ['#efefef', '#444444']]
 let s:p.normal.right = [ ['#9e9e9e', '#444444'], ['#ff027f', 'gray2'], ['#ff4b00', 'gray2'] ]
 let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
 let s:p.normal.error = [ [ 'white', '#ff027f' ] ]
