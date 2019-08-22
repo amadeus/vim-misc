@@ -539,7 +539,7 @@ if 0
 endif
 
 " Lightline Playground Settings
-if 0
+if 1
   exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
 endif
 
