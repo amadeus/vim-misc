@@ -60,7 +60,7 @@ let s:p.replace.right = s:p.normal.right
 let s:p.replace.middle = s:p.normal.middle
 
 let s:p.tabline.left = [ ['#888888', '#303030'] ]
-let s:p.tabline.tabsel = [ [ 'white', '#C500FF' ] ]
+let s:p.tabline.tabsel = [ [ '#000000', '#99F6FA' ] ]
 let s:p.tabline.middle = [ ['#888888', '#303030'] ]
 let s:p.tabline.right = [ ['#888888', '#303030'] ]
 let g:lightline#colorscheme#evokai#palette = lightline#colorscheme#fill(s:p)
