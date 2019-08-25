@@ -480,12 +480,18 @@ augroup END
 nnoremap <leader>t :Files<cr>
 nnoremap <leader>gf :GFiles<cr>
 nnoremap <leader>b :Buffers<cr>
+
+augroup fzf
+  autocmd!
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
+
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'Normal'],
-  \ 'bg+':     ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'IncSearch'],
+  \ 'fg+':     ['fg', 'IncSearch'],
+  \ 'bg+':     ['bg', 'IncSearch'],
   \ 'hl+':     ['fg', 'Statement'],
   \ 'info':    ['fg', 'PreProc'],
   \ 'border':  ['fg', 'Ignore'],
