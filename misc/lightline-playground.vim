@@ -49,7 +49,7 @@ function! MyRelativePath() abort
   let filename = expand('%f')
   if &diff && match(filename, '^fugitive:') == 0
     " May want to make this fancier to detect merge conflicts...
-    return split(filename, '/')[-1]
+    return 'diff://'.split(filename, '/')[-1]
   endif
   if &buftype ==# 'terminal' || &buftype ==# 'help' || &filetype ==# 'gitcommit'
     return split(filename, '/')[-1]
@@ -73,14 +73,14 @@ function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:all_non_errors == 0 ? '' : printf('%d', l:all_non_errors)
+  return l:all_non_errors == 0 ? '' : printf('○ %d', l:all_non_errors)
 endfunction
 
 function! LightlineLinterErrors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:all_errors == 0 ? '' : printf('%d', l:all_errors)
+  return l:all_errors == 0 ? '' : printf('● %d', l:all_errors)
 endfunction
 
 function! MyModified() abort
