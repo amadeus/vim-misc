@@ -539,6 +539,16 @@ if 1
   exec 'source '.expand('<sfile>:p:h').'/misc/asyncomplete.vim'
 endif
 
+" ALE settings
+if 1
+  exec 'source '.expand('<sfile>:p:h').'/misc/ale.vim'
+endif
+
+" Lightline Playground Settings
+if 1
+  exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
+endif
+
 " Airline Playground Settings
 if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
@@ -547,11 +557,6 @@ endif
 " LanguageServer Playground Settings
 if 0
   exec 'source '.expand('<sfile>:p:h').'/misc/lsp-playground.vim'
-endif
-
-" Lightline Playground Settings
-if 1
-  exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
 endif
 
 " CtrlP Settings
@@ -572,11 +577,6 @@ endif
 " GitGutter settings
 if 1
   exec 'source '.expand('<sfile>:p:h').'/misc/gitgutter.vim'
-endif
-
-" ALE settings
-if 1
-  exec 'source '.expand('<sfile>:p:h').'/misc/ale.vim'
 endif
 
 " CoC settings
