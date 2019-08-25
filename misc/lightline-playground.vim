@@ -233,8 +233,10 @@ let g:lightline = {
 \ 'colorscheme': 'evokai',
 \}
 
-augroup LightLineOnALE
+augroup LightLineEvents
   autocmd!
   autocmd User ALEFixPost  call lightline#update()
   autocmd User ALELintPost call lightline#update()
+  " This is used to ensure that the modified component updates appropriately
+  autocmd TextChanged * call lightline#update()
 augroup end
