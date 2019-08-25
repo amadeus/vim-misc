@@ -1,21 +1,18 @@
 scriptencoding utf-8
 
-" Plugins
+" Component Functions
 function! MyReadonly() abort
-  if &buftype ==# 'help' || &filetype ==# 'fugitive'
+  if &buftype ==# 'help' || &filetype ==# 'fugitive' || &filetype ==# 'git'
     return ''
   endif
   return &readonly ? '×' : ''
 endfunction
 
 function! MyFugitive() abort
-  " Do not show branchname on short windows
   if winwidth(0) < 75
-    return ''
-  endif
-
-  " Never display in help or fugitive buffers
-  if &buftype ==# 'help' || &filetype ==# 'fugitive' || &buftype ==# 'quickfix'
+    \ || &diff
+    \ || &buftype ==# 'help' || &buftype ==# 'quickfix'
+    \ || &filetype ==# 'fugitive' || &filetype ==# 'GV'
     return ''
   endif
 
@@ -50,13 +47,23 @@ endfunction
 
 function! MyRelativePath() abort
   let filename = expand('%f')
+  if &diff && match(filename, '^fugitive:') == 0
+    " May want to make this fancier to detect merge conflicts...
+    return split(filename, '/')[-1]
+  endif
   if &buftype ==# 'terminal' || &buftype ==# 'help' || &filetype ==# 'gitcommit'
     return split(filename, '/')[-1]
   endif
   if &filetype ==# 'vaffle'
     return s:TruncateVafflePath(filename)
   endif
-  if exists('*fugitive#head') && &filetype ==# 'fugitive'
+  " Show commit sha for git files that use fugitive
+  if &filetype ==# 'git' && match(filename, '^fugitive://.\+\.git/\+') == 0
+    return substitute(filename, '^fugitive:.\+\.git\/\+', '', '')
+  endif
+  " Otherwise fallback to the branch
+  if exists('*fugitive#head')
+    \ && (&filetype ==# 'fugitive' || &filetype ==# 'GV' || &filetype ==# 'git')
     return ' '.fugitive#head()
   endif
   return filename
@@ -76,7 +83,7 @@ function! LightlineLinterErrors() abort
   return l:all_errors == 0 ? '' : printf('%d', l:all_errors)
 endfunction
 
-function! MyModified()
+function! MyModified() abort
   if &buftype ==# 'terminal'
     return ''
   endif
@@ -90,8 +97,11 @@ function! MyMode() abort
   if &buftype ==# 'quickfix'
     return 'QF'
   endif
-  if &filetype ==# 'fugitive'
+  if &filetype ==# 'fugitive' || &filetype ==# 'git'
     return 'GIT'
+  endif
+  if &filetype ==# 'GV'
+    return 'GV'
   endif
   if &buftype ==# 'help'
     return 'HELP'
@@ -103,8 +113,9 @@ function! MyMode() abort
 endfunction
 
 function! MyFiletype() abort
-  if &buftype ==# 'terminal' || &buftype ==# 'quickfix' || &filetype ==# 'fugitive'
-        \ || &buftype ==# 'help' || &filetype ==# 'vaffle'
+  if &buftype ==# 'terminal' || &buftype ==# 'quickfix' || &buftype ==# 'help'
+    \ || &filetype ==# 'fugitive' || &filetype ==# 'git' || &filetype ==# 'vaffle' || &filetype ==# 'GV'
+    \ || &diff
     return ''
   endif
   return &filetype
