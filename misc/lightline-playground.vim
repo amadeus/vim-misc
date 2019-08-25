@@ -136,7 +136,7 @@ let s:p.inactive.right = [ [ '#5f5f5f', '#262622' ] ]
 let s:p.inactive.middle = s:p.inactive.right
 let s:p.inactive.left = s:p.inactive.right
 
-let s:p.insert.left = [ ['#00d5dd', '#ffffff', 'bold'], ['#ffffff', '#00d5dd'] ]
+let s:p.insert.left = [ ['#0087dd', '#ffffff', 'bold'], ['#ffffff', '#0087dd'] ]
 let s:p.insert.middle = s:p.normal.middle
 let s:p.insert.right = s:p.normal.right
 
