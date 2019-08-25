@@ -69,7 +69,7 @@ function! MyRelativePath() abort
   return filename
 endfunction
 
-function! MyAleCounts() abort
+function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
@@ -125,14 +125,14 @@ endfunction
 " Theme
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 let s:p.normal.left = [['#085e0b', '#49fd2f', 'bold'], ['#efefef', '#444444']]
-let s:p.normal.right = [[ 'gray7', '#303030' ]]
+let s:p.normal.right = [[ '#9e9e9e', '#303030' ]]
 let s:p.normal.filetype = [ ['#9e9e9e', '#444444'] ]
-let s:p.normal.middle = [ [ 'gray7', '#303030' ] ]
+let s:p.normal.middle = [ [ '#9e9e9e', '#303030' ] ]
 let s:p.normal.error = [ ['#ffffff', '#E60000'] ]
-let s:p.normal.warning = [ ['#ffffff', '#FF4B00'] ]
-let s:p.normal.modified = [ [ '#000000', '#FFFF00', 'bold'] ]
+let s:p.normal.warning = [ ['#ffffff', '#ff4b00'] ]
+let s:p.normal.modified = [ [ '#000000', '#ffff00', 'bold'] ]
 
-let s:p.inactive.right = [ [ '#888888', '#303030' ] ]
+let s:p.inactive.right = [ [ '#5f5f5f', '#262622' ] ]
 let s:p.inactive.middle = s:p.inactive.right
 let s:p.inactive.left = s:p.inactive.right
 
@@ -140,14 +140,14 @@ let s:p.insert.left = [ ['#00d5dd', '#ffffff', 'bold'], ['#ffffff', '#00d5dd'] ]
 let s:p.insert.middle = s:p.normal.middle
 let s:p.insert.right = s:p.normal.right
 
-let s:p.visual.left = [ ['#ff4b00', 'white', 'bold'], ['white', '#ff4b00'] ]
+let s:p.visual.left = [ ['#ff4b00', '#ffffff', 'bold'], ['#ffffff', '#ff4b00'] ]
 
-let s:p.replace.left = [ ['#ff027f', 'white' , 'bold'], ['white', '#ff027f'] ]
+let s:p.replace.left = [ ['#ff027f', '#ffffff' , 'bold'], ['#ffffff', '#ff027f'] ]
 let s:p.replace.right = s:p.normal.right
 let s:p.replace.middle = s:p.normal.middle
 
 let s:p.tabline.left = [ ['#888888', '#303030'] ]
-let s:p.tabline.tabsel = [ [ '#481a28', '#FC167C' ] ]
+let s:p.tabline.tabsel = [ [ '#481a28', '#fc167c' ] ]
 let s:p.tabline.middle = [ ['#888888', '#303030'] ]
 let s:p.tabline.right = [ ['#888888', '#303030'] ]
 let g:lightline#colorscheme#evokai#palette = lightline#colorscheme#fill(s:p)
