@@ -125,7 +125,7 @@ endfunction
 " Theme
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 let s:p.normal.left = [['#085e0b', '#49fd2f', 'bold'], ['#efefef', '#444444']]
-let s:p.normal.right = [ ['#9e9e9e', '#444444'], ['#ff027f', '#303030'], ['#ff4b00', '#303030'] ]
+let s:p.normal.right = [ ['#ffffff', '#E60000'], ['#ffffff', '#FF4B00'], ['#9e9e9e', '#444444'] ]
 let s:p.normal.middle = [ [ 'gray7', '#303030' ] ]
 let s:p.normal.error = [ [ 'white', '#ff027f' ] ]
 let s:p.normal.warning = [ [ 'gray1', 'yellow' ] ]
@@ -159,9 +159,9 @@ let g:lightline = {
 \     ['mygitbranch', 'myreadonly'],
 \   ],
 \   'right': [
-\     ['myfiletype'],
 \     ['aleerror'],
 \     ['alewarning'],
+\     ['myfiletype'],
 \   ]
 \ },
 \ 'inactive': {
@@ -225,8 +225,6 @@ let g:lightline = {
 
 augroup LightLineOnALE
   autocmd!
-  autocmd User ALEFixPre   call lightline#update()
   autocmd User ALEFixPost  call lightline#update()
-  autocmd User ALELintPre  call lightline#update()
   autocmd User ALELintPost call lightline#update()
 augroup end
