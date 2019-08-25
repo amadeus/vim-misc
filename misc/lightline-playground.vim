@@ -27,9 +27,11 @@ function! s:TruncateVafflePath(filename) abort
     let cleaned = substitute(a:filename, '^vaffle://[0-9]/', '', '')
     let cwd = getcwd()
     let is_root = 1
-    if cleaned[:len(cwd) - 1] is# cwd
+    if cwd !=# '/' && cleaned[:len(cwd) - 1] is# cwd
       let cleaned = substitute(cleaned, '^'.getcwd().'/\=', '', '')
       let is_root = 0
+    else
+      let cleaned = substitute(cleaned, '^'.$HOME, '~', '')
     endif
     let remaining = len(cleaned) - (winwidth(0) - 15)
     if remaining > 0
@@ -66,6 +68,7 @@ function! MyRelativePath() abort
     \ && (&filetype ==# 'fugitive' || &filetype ==# 'GV' || &filetype ==# 'git')
     return ' '.fugitive#head()
   endif
+  let filename = substitute(filename, '^'.$HOME, '~', '')
   return filename
 endfunction
 
