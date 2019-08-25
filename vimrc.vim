@@ -202,7 +202,7 @@ nnoremap <leader>gg  :Gvdiff<cr>
 nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
-nnoremap <leader>gd  :Git difftool --staged<cr>
+nnoremap <leader>gd  :silent Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
