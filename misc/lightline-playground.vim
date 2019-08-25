@@ -69,7 +69,7 @@ function! MyRelativePath() abort
   return filename
 endfunction
 
-function! LightlineLinterWarnings() abort
+function! MyAleCounts() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
@@ -125,10 +125,12 @@ endfunction
 " Theme
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 let s:p.normal.left = [['#085e0b', '#49fd2f', 'bold'], ['#efefef', '#444444']]
-let s:p.normal.right = [ ['#ffffff', '#E60000'], ['#ffffff', '#FF4B00'], ['#9e9e9e', '#444444'] ]
+let s:p.normal.right = [[ 'gray7', '#303030' ]]
+let s:p.normal.filetype = [ ['#9e9e9e', '#444444'] ]
 let s:p.normal.middle = [ [ 'gray7', '#303030' ] ]
-let s:p.normal.error = [ [ 'white', '#ff027f' ] ]
-let s:p.normal.warning = [ [ 'gray1', 'yellow' ] ]
+let s:p.normal.error = [ ['#ffffff', '#E60000'] ]
+let s:p.normal.warning = [ ['#ffffff', '#FF4B00'] ]
+let s:p.normal.modified = [ [ '#000000', '#FFFF00', 'bold'] ]
 
 let s:p.inactive.right = [ [ '#888888', '#303030' ] ]
 let s:p.inactive.middle = s:p.inactive.right
@@ -212,10 +214,18 @@ let g:lightline = {
 \   'mygitbranch': 'MyFugitive',
 \   'myreadonly': 'MyReadonly',
 \   'myrelativepath': 'MyRelativePath',
-\   'alewarning': 'LightlineLinterWarnings',
-\   'aleerror': 'LightlineLinterErrors',
+\ },
+\ 'component_expand': {
 \   'mymodified': 'MyModified',
 \   'myfiletype': 'MyFiletype',
+\   'alewarning': 'LightlineLinterWarnings',
+\   'aleerror': 'LightlineLinterErrors',
+\ },
+\ 'component_type': {
+\   'mymodified': 'modified',
+\   'myfiletype': 'filetype',
+\   'alewarning': 'warning',
+\   'aleerror': 'error',
 \ },
 \ 'component': {
 \   'mylineinfo': '%2v',
