@@ -23,16 +23,31 @@ function! MyFugitive() abort
   return ''
 endfunction
 
-function! s:TruncateVafflePath(filename) abort
-    let cleaned = substitute(a:filename, '^vaffle://[0-9]/', '', '')
-    let cwd = getcwd()
+" NOTE: Revisit this a bit - it's getting better, but not perfect yet
+function! s:TruncatePath(filename) abort
+  let cleaned = substitute(a:filename, '^vaffle://[0-9]/', '', '')
+
+  " If it's an empty path, return early
+  if cleaned ==# ''
+    return ''
+  endif
+
+  " Sometimes the filename comes through as an absolute path, sometimes it
+  " comes through as a relative path, attempt to clean it up
+  let is_root = 0
+  let cwd = getcwd()
+  if cleaned[:0] !=# '/'
+    let cleaned = './'.cleaned
+  elseif cwd !=# '/' && cleaned[:len(cwd) - 1] ==# cwd
+    let cleaned = substitute(cleaned, '^'.getcwd().'/\=', '', '')
+  else
+    let cleaned = substitute(cleaned, '^'.$HOME, '~', '')
     let is_root = 1
-    if cwd !=# '/' && cleaned[:len(cwd) - 1] is# cwd
-      let cleaned = substitute(cleaned, '^'.getcwd().'/\=', '', '')
-      let is_root = 0
-    else
-      let cleaned = substitute(cleaned, '^'.$HOME, '~', '')
-    endif
+  endif
+
+  " We have special shrinking logic for vaffle, that we can't currently apply
+  " anywhere else
+  if &filetype ==# 'vaffle'
     let remaining = len(cleaned) - (winwidth(0) - 15)
     if remaining > 0
       let items = split(cleaned, '/')
@@ -44,32 +59,36 @@ function! s:TruncateVafflePath(filename) abort
       endwhile
       let cleaned = join(items, '/')
     endif
-    return (is_root ? '' : './').cleaned
+  endif
+  return (is_root ? '' : './').cleaned
 endfunction
 
 function! MyRelativePath() abort
-  let filename = expand('%f')
+  let filename = substitute(expand('%:p'), '/\./', '/', 'g')
+
+  " Handle fugitive buffers specially
   if &diff && match(filename, '^fugitive:') == 0
     " May want to make this fancier to detect merge conflicts...
     return 'diff://'.split(filename, '/')[-1]
   endif
+
+  " Handle Terminal buffers specially
   if &buftype ==# 'terminal' || &buftype ==# 'help' || &filetype ==# 'gitcommit'
     return split(filename, '/')[-1]
   endif
-  if &filetype ==# 'vaffle'
-    return s:TruncateVafflePath(filename)
-  endif
+
   " Show commit sha for git files that use fugitive
   if &filetype ==# 'git' && match(filename, '^fugitive://.\+\.git/\+') == 0
     return substitute(filename, '^fugitive:.\+\.git\/\+', '', '')
   endif
+
   " Otherwise fallback to the branch
   if exists('*fugitive#head')
     \ && (&filetype ==# 'fugitive' || &filetype ==# 'GV' || &filetype ==# 'git')
     return ' '.fugitive#head()
   endif
-  let filename = substitute(filename, '^'.$HOME, '~', '')
-  return filename
+
+  return s:TruncatePath(filename)
 endfunction
 
 function! LightlineLinterWarnings() abort
