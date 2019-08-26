@@ -483,7 +483,7 @@ nnoremap <leader>b :Buffers<cr>
 
 augroup fzf
   autocmd!
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  autocmd  FileType fzf set laststatus=0  noruler | autocmd BufLeave <buffer> set laststatus=2 ruler
 augroup END
 
 let g:fzf_colors =
