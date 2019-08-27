@@ -477,9 +477,10 @@ augroup END
 
 
 " FZF
-nnoremap <leader>t :Files<cr>
-nnoremap <leader>gf :GFiles<cr>
+nnoremap <leader>t :GFiles<cr>
+" nnoremap <leader>gf :Files<cr>
 nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Rg<cr>
 
 augroup fzf
   autocmd!
