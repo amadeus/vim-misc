@@ -190,7 +190,7 @@ let g:lightline = {
 \ },
 \ 'inactive': {
 \   'left': [
-\    ['myrelativepath', 'mymodified']
+\    ['myrelativepath']
 \   ],
 \   'right': []
 \ },
