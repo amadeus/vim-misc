@@ -106,7 +106,7 @@ function! LightlineLinterErrors() abort
 endfunction
 
 function! MyModified() abort
-  if &buftype ==# 'terminal'
+  if &buftype ==# 'terminal' || &buftype ==# 'nowrite' || &filetype ==# 'fugitive'
     return ''
   endif
   return &modified ? '+' : ''
@@ -228,8 +228,8 @@ let g:lightline = {
 \   'right': [],
 \ },
 \ 'tab': {
-\   'active': ['filename', 'mymodified'],
-\   'inactive': ['filename', 'mymodified']
+\   'active': ['filename'],
+\   'inactive': ['filename']
 \ },
 \ 'component_function': {
 \   'mymode': 'MyMode',
