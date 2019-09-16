@@ -169,7 +169,7 @@ let s:p.replace.right = s:p.normal.right
 let s:p.replace.middle = s:p.normal.middle
 
 let s:p.tabline.left = [ ['#888888', '#303030'] ]
-let s:p.tabline.tabsel = [ [ '#481a28', '#fc167c' ] ]
+let s:p.tabline.tabsel = [ [ '#fc167c', '#222222' ] ]
 let s:p.tabline.middle = [ ['#888888', '#303030'] ]
 let s:p.tabline.right = [ ['#888888', '#303030'] ]
 let g:lightline#colorscheme#evokai#palette = lightline#colorscheme#fill(s:p)
@@ -190,7 +190,7 @@ let g:lightline = {
 \ },
 \ 'inactive': {
 \   'left': [
-\    ['myrelativepath']
+\    ['myrelativepath', 'modified']
 \   ],
 \   'right': []
 \ },
