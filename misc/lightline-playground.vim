@@ -1,5 +1,16 @@
 scriptencoding utf-8
 
+function! IsGitBuffer() abort
+  let filename = substitute(expand('%:p'), '/\./', '/', 'g')
+  if  &filetype ==# 'GV'
+    \ || &filetype ==# 'fugitive'
+    \ || &filetype ==# 'git'
+    \ || match(filename, '^fugitive://') == 0
+    return 1
+  endif
+  return 0
+endfunction
+
 " Component Functions
 function! MyReadonly() abort
   if &buftype ==# 'help' || &filetype ==# 'fugitive' || &filetype ==# 'git'
@@ -9,10 +20,7 @@ function! MyReadonly() abort
 endfunction
 
 function! MyFugitive() abort
-  if winwidth(0) < 75
-    \ || &diff
-    \ || &buftype ==# 'help' || &buftype ==# 'quickfix'
-    \ || &filetype ==# 'fugitive' || &filetype ==# 'GV'
+  if winwidth(0) < 75 || IsGitBuffer()
     return ''
   endif
 
@@ -66,26 +74,26 @@ endfunction
 function! MyRelativePath() abort
   let filename = substitute(expand('%:p'), '/\./', '/', 'g')
 
-  " Handle fugitive buffers specially
-  if &diff && match(filename, '^fugitive:') == 0
-    " May want to make this fancier to detect merge conflicts...
-    return 'diff://'.split(filename, '/')[-1]
+  if IsGitBuffer()
+    if &diff
+      return 'diff://'.split(filename, '/')[-1]
+    endif
+
+    if match(filename, '^fugitive://.\+\.git//') == 0
+      let filename = substitute(filename, '^fugitive:.\+\.git\/\+', '', '')
+      let items = split(filename, '/')
+      return items[0].':'.items[-1]
+    endif
+
+    if exists('*fugitive#head')
+      \ && (&filetype ==# 'fugitive' || &filetype ==# 'GV' || &filetype ==# 'git')
+      return ' '.fugitive#head()
+    endif
   endif
 
   " Handle Terminal buffers specially
   if &buftype ==# 'terminal' || &buftype ==# 'help' || &filetype ==# 'gitcommit'
     return split(filename, '/')[-1]
-  endif
-
-  " Show commit sha for git files that use fugitive
-  if &filetype ==# 'git' && match(filename, '^fugitive://.\+\.git/\+') == 0
-    return substitute(filename, '^fugitive:.\+\.git\/\+', '', '')
-  endif
-
-  " Otherwise fallback to the branch
-  if exists('*fugitive#head')
-    \ && (&filetype ==# 'fugitive' || &filetype ==# 'GV' || &filetype ==# 'git')
-    return ' '.fugitive#head()
   endif
 
   return s:TruncatePath(filename)
@@ -119,11 +127,8 @@ function! MyMode() abort
   if &buftype ==# 'quickfix'
     return 'QF'
   endif
-  if &filetype ==# 'fugitive' || &filetype ==# 'git'
+  if IsGitBuffer()
     return 'GIT'
-  endif
-  if &filetype ==# 'GV'
-    return 'GV'
   endif
   if &buftype ==# 'help'
     return 'HELP'
