@@ -161,7 +161,7 @@ let s:p.normal.modified = [ [ '#000000', '#ffff00', 'bold'] ]
 
 let s:p.inactive.right = [ [ '#5f5f5f', '#262622' ] ]
 let s:p.inactive.middle = s:p.inactive.right
-let s:p.inactive.left = s:p.inactive.right
+let s:p.inactive.left = [ [ '#5f5f5f', '#262622' ], [ '#ffff00', '#262622'] ]
 
 let s:p.insert.left = [ ['#0087dd', '#ffffff', 'bold'], ['#ffffff', '#0087dd'] ]
 let s:p.insert.middle = s:p.normal.middle
@@ -195,7 +195,8 @@ let g:lightline = {
 \ },
 \ 'inactive': {
 \   'left': [
-\    ['myrelativepath', 'modified']
+\    ['myrelativepath'],
+\    ['modified']
 \   ],
 \   'right': []
 \ },
