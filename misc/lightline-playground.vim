@@ -159,9 +159,9 @@ let s:p.normal.error = [ ['#ffffff', '#E60000'] ]
 let s:p.normal.warning = [ ['#ffffff', '#ff4b00'] ]
 let s:p.normal.modified = [ [ '#000000', '#ffff00', 'bold'] ]
 
-let s:p.inactive.right = [ [ '#5f5f5f', '#262622' ] ]
-let s:p.inactive.middle = s:p.inactive.right
-let s:p.inactive.left = [ [ '#5f5f5f', '#262622' ], [ '#ffff00', '#262622'] ]
+let s:p.inactive.left = [ [ '#5f5f5f', '#262622' ] ]
+let s:p.inactive.middle = s:p.inactive.left
+let s:p.inactive.right = s:p.inactive.left
 
 let s:p.insert.left = [ ['#0087dd', '#ffffff', 'bold'], ['#ffffff', '#0087dd'] ]
 let s:p.insert.middle = s:p.normal.middle
@@ -195,8 +195,7 @@ let g:lightline = {
 \ },
 \ 'inactive': {
 \   'left': [
-\    ['myrelativepath'],
-\    ['modified']
+\    ['myrelativepath', 'mymodifiedinactive'],
 \   ],
 \   'right': []
 \ },
@@ -255,8 +254,12 @@ let g:lightline = {
 \   'alewarning': 'warning',
 \   'aleerror': 'error',
 \ },
+\ 'component_raw': {
+\   'mymodifiedinactive': 1
+\ },
 \ 'component': {
 \   'mylineinfo': '%2v',
+\   'mymodifiedinactive': '%#lightlineModInactive#%{MyModified()}',
 \ },
 \ 'colorscheme': 'evokai',
 \}
@@ -267,4 +270,5 @@ augroup LightLineEvents
   autocmd User ALELintPost call lightline#update()
   " This is used to ensure that the modified component updates appropriately
   autocmd TextChanged * call lightline#update()
+  autocmd TextChangedI * call lightline#update()
 augroup end
