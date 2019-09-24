@@ -1,0 +1,28 @@
+{
+  "colour_table": {
+    "--header-primary": "#ffffff",
+    "--header-secondary": "#b9bbbe",
+    "--text-normal": "#dcddde",
+    "--text-muted": "#72767d",
+    "--text-link": "#00b0f4",
+    "--channels-default": "#8e9297",
+    "--interactive-normal": "#b9bbbe",
+    "--interactive-hover": "#dcddde",
+    "--interactive-active": "#ffffff",
+    "--interactive-muted": "#4f545c",
+    "--background-primary": "#36393f",
+    "--background-secondary": "#2f3136",
+    "--background-tertiary": "#202225",
+    "--background-accent": "#4f545c",
+    "--background-floating": "#18191c",
+    "--logo-primary": "#ffffff",
+    "--channeltextarea-background": "#40444b",
+    "--activity-card-background": "#202225",
+    "--deprecated-panel-background": "#292b2f",
+    "--deprecated-store-bg": "#36393f",
+    "--deprecated-quickswitcher-input-background": "#72767d",
+    "--deprecated-text-input-border-hover": "#040405",
+    "--deprecated-text-input-border-disabled": "#202225",
+    "--deprecated-text-input-prefix": "#dcddde"
+  }
+}
