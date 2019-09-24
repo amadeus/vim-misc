@@ -119,7 +119,11 @@ set cpoptions+=J
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('gui_running')
-  set guifont=SourceCodePro-Medium:h14
+  " Keeing this for reference - but trying out a new font
+  " set guifont=SourceCodePro-Medium:h14
+  set guifont=InputMono-Regular:h15
+  " Slight spacing tweak to make font not look so spread out
+  set columnspace=-1
 endif
 
 " Improve splitting logic
