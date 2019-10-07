@@ -91,9 +91,16 @@ function! MyRelativePath() abort
     endif
   endif
 
+  let parts = split(filename, '/')
+
   " Handle Terminal buffers specially
   if &buftype ==# 'terminal' || &buftype ==# 'help' || &filetype ==# 'gitcommit'
-    return split(filename, '/')[-1]
+    return parts[-1]
+  endif
+
+  " Handle special Scratch buffer
+  if len(parts) > 0 && parts[-1] ==# '__Scratch__'
+    return 'Scratch'
   endif
 
   return s:TruncatePath(filename)
