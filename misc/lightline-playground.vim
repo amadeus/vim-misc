@@ -98,9 +98,19 @@ function! MyRelativePath() abort
     return parts[-1]
   endif
 
+  if len(parts) > 0
   " Handle special Scratch buffer
-  if len(parts) > 0 && parts[-1] ==# '__Scratch__'
-    return 'Scratch'
+    if parts[-1] ==# '__Scratch__'
+      return 'Scratch'
+    endif
+
+    " Mundo support
+    if parts[-1] ==# '__Mundo__'
+      return 'History'
+    endif
+    if parts[-1] ==# '__Mundo_Preview__'
+      return 'Preview'
+    endif
   endif
 
   return s:TruncatePath(filename)
@@ -143,12 +153,16 @@ function! MyMode() abort
   if &filetype ==# 'vaffle'
     return 'VAFFLE'
   endif
+  if &filetype ==# 'Mundo' || &filetype ==# 'MundoDiff'
+    return 'UNDO'
+  endif
   return lightline#mode()
 endfunction
 
 function! MyFiletype() abort
   if &buftype ==# 'terminal' || &buftype ==# 'quickfix' || &buftype ==# 'help'
     \ || &filetype ==# 'fugitive' || &filetype ==# 'git' || &filetype ==# 'vaffle' || &filetype ==# 'GV'
+    \ || &filetype ==# 'Mundo' || &filetype ==# 'MundoDiff'
     \ || &diff
     return ''
   endif
