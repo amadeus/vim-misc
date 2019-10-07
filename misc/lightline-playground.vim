@@ -111,6 +111,9 @@ function! MyRelativePath() abort
     if parts[-1] ==# '__Mundo_Preview__'
       return 'Preview'
     endif
+    if parts[-1] ==# '[Plugins]'
+      return ''
+    endif
   endif
 
   return s:TruncatePath(filename)
@@ -155,6 +158,9 @@ function! MyMode() abort
   endif
   if &filetype ==# 'Mundo' || &filetype ==# 'MundoDiff'
     return 'UNDO'
+  endif
+  if &filetype ==# 'vim-plug'
+    return 'PLUG'
   endif
   return lightline#mode()
 endfunction
