@@ -1,5 +1,8 @@
+if exists('g:did_run_autosession')
+ finish
+endif
+
 let s:timer = 0
-let s:called_once = 0
 
 function! s:FileNamesToChoices(key, val)
   let l:filename = matchstr(a:val, 'Session.*\.vim')
@@ -27,9 +30,13 @@ function! s:DetectSessionFile(from_autocmd) abort
   let l:choice_string = join(map(copy(l:session_files), function('s:FileNamesToChoices')), "\n")."\n&Cancel"
   let l:cancel_index = len(l:session_files) + 1
 
+  if a:from_autocmd == 1
+    " Clear the autocmd - so we never inadvertently see it again
+    autocmd! autosource DirChanged global
+  endif
+
   " `:help confirm()` for more details
   let l:choice = confirm('Would you like to source a Session?', l:choice_string, 1)
-  let s:called_once = 1
   if l:choice == 0 || l:choice == l:cancel_index
     return
   endif
@@ -44,7 +51,8 @@ endfunction
 
 augroup autosource
   autocmd!
-  autocmd DirChanged * if s:called_once == 0|exec <SID>DetectSessionFile(1)|endif
+  autocmd DirChanged global exec <SID>DetectSessionFile(1)
 augroup END
 
 command! DetectSessions call s:DetectSessionFile(0)
+let g:did_run_autosession = 1
