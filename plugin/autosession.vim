@@ -32,7 +32,7 @@ function! s:DetectSessionFile(from_autocmd) abort
 
   if a:from_autocmd == 1
     " Clear the autocmd - so we never inadvertently see it again
-    autocmd! autosource DirChanged global
+    autocmd! autosource DirChanged *
   endif
 
   " `:help confirm()` for more details
@@ -51,7 +51,7 @@ endfunction
 
 augroup autosource
   autocmd!
-  autocmd DirChanged global exec <SID>DetectSessionFile(1)
+  autocmd DirChanged * exec <SID>DetectSessionFile(1)
 augroup END
 
 command! DetectSessions call s:DetectSessionFile(0)
