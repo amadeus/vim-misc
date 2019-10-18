@@ -525,7 +525,6 @@ let g:scratch_top = 0
 
 " vim-hexokinase
 let g:Hexokinase_highlighters = ['sign_column']
-let g:Hexokinase_ftAutoload = ['css']
 exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
 
 
