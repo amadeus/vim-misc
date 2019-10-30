@@ -122,6 +122,8 @@ if has('gui_running')
   " Keeing this for reference - but trying out a new font
   " set guifont=SourceCodePro-Medium:h14
   set guifont=InputMono-Regular:h15
+  " Kinda don't like this - but it works
+  set linespace=4
   " Slight spacing tweak to make font not look so spread out
   set columnspace=-1
 endif
