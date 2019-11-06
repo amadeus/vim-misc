@@ -508,15 +508,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" Obsession
-" Not sure why this is necessary, but at least if fixes Obsession
-" Obsession doesn't appear to persist, so instead we have to pause and then
-" resume the Obsession task, which requires calling it twice
-augroup obsessionfix
-  autocmd!
-  autocmd SessionLoadPost * silent :Obsession|silent :Obsession
-augroup END
-
 
 " Scratch settings
 let g:scratch_autohide = 0
