@@ -313,6 +313,10 @@ onoremap ak :<c-u>execute "normal! 0vf:"<cr>
 onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
 onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
 
+" Paste whatever is in the default register as a react prop
+nnoremap <leader>po :<c-u>execute 'normal a <c-r>"={<c-r>"'<cr>
+nnoremap <leader>Po :<c-u>execute 'normal i <c-r>"={<c-r>"'<cr>
+
 " Disable smartindent in python, because it sucks
 augroup pythonsmartindent
   autocmd!
