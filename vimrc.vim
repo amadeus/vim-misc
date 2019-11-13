@@ -522,7 +522,7 @@ let g:scratch_top = 0
 
 " vim-hexokinase
 let g:Hexokinase_highlighters = ['sign_column']
-exec 'source '.expand('<sfile>:p:h').'/misc/discord-color-variables.vim'
+runtime! /misc/discord-color-variables.vim
 
 
 " EditorConfig
@@ -537,50 +537,50 @@ xmap gx <Plug>(open-url-browser)
 " Playgrounds and old unused settings
 " Asyncomplete Settings
 if 1
-  exec 'source '.expand('<sfile>:p:h').'/misc/asyncomplete.vim'
+  runtime /misc/asn
 endif
 
 " ALE settings
 if 1
-  exec 'source '.expand('<sfile>:p:h').'/misc/ale.vim'
+  runtime! /misc/ale.vim
 endif
 
 " Lightline Playground Settings
 if 1
-  exec 'source '.expand('<sfile>:p:h').'/misc/lightline-playground.vim'
+  runtime! /misc/lightline-playground.vim
 endif
 
 " Airline Playground Settings
 if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/airline-config.vim'
+  runtime! /misc/airline-config.vim
 endif
 
 " LanguageServer Playground Settings
 if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/lsp-playground.vim'
+  runtime! /misc/lsp-playground.vim
 endif
 
 " CtrlP Settings
 if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/ctrlp-settings.vim'
+  runtime! /misc/ctrlp-settings.vim
 endif
 
 " Omnicomplete settings
 if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/omni-complete.vim'
+  runtime! /misc/omni-complete.vim
 endif
 
 " Completer settings
 if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/completor-config.vim'
+  runtime! /misc/completor-config.vim
 endif
 
 " GitGutter settings
 if 1
-  exec 'source '.expand('<sfile>:p:h').'/misc/gitgutter.vim'
+  runtime! /misc/gitgutter.vim
 endif
 
 " CoC settings
 if 0
-  exec 'source '.expand('<sfile>:p:h').'/misc/coc.vim'
+  runtime! /misc/coc.vim
 endif
