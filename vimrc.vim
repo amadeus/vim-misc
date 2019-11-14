@@ -363,7 +363,7 @@ let g:gist_open_browser_after_post = 1
 
 
 " DetectIndent Settings
-let g:detectindent_max_lines_to_analyse = 40
+let g:detectindent_max_lines_to_analyse = 1024
 augroup detectindent
   autocmd!
   autocmd BufReadPost * DetectIndent
