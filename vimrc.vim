@@ -200,7 +200,7 @@ nnoremap <F5> :syntax sync fromstart<cr>
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
-nnoremap <leader>hh  :so $VIMRUNTIME/syntax/hitest.vim<cr>
+nnoremap <leader>hh  :runtime! /syntax/hitest.vim<cr>
 nnoremap <leader>u   :MundoToggle<cr>
 nnoremap <leader>dd  <c-w>h:bd<cr>
 nnoremap <leader>ss  :setlocal spell!<cr>
