@@ -537,7 +537,7 @@ xmap gx <Plug>(open-url-browser)
 " Playgrounds and old unused settings
 " Asyncomplete Settings
 if 1
-  runtime /misc/asn
+  runtime! /misc/asyncomplete.vim
 endif
 
 " ALE settings
