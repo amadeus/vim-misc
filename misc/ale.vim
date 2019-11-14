@@ -23,6 +23,7 @@ nnoremap <leader>jd  :ALEGoToDefinition<cr>
 nmap <leader>jt  <Plug>(coc-implementation)
 nnoremap <leader>aa  :ALEHover<cr>
 nnoremap <leader>ad  :ALEDetail<cr>
+nnoremap <leader>fe :ALEFix eslint<cr>
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
   nmap <silent> ∆ <Plug>(ale_next_wrap)
