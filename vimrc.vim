@@ -25,6 +25,8 @@ set updatetime=100
 set list
 set listchars=tab:›\ ,trail:⋅,nbsp:␣
 set showbreak=…
+" Have the showbreak appear in the number column
+set cpoptions+=n
 augroup terminal_list_tweaks
   autocmd!
   autocmd TerminalOpen * setlocal nolist
@@ -49,10 +51,11 @@ set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
   \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd,*.sublime-project
 
 " Syntax, Colorscheme and Gui Options
+" This should be before syntax on
+set background=dark
 syntax on
 syntax sync fromstart
 set cursorline
-set background=dark
 
 " Fold Settings
 set foldlevel=99
@@ -134,7 +137,8 @@ set splitbelow
 
 " Add buffer to cursor while scrolling
 set scrolloff=3
-set sidescroll=1
+" Trying the default value here... might be fun... might be annoying
+set sidescroll=0
 set sidescrolloff=5
 
 " Better completion
