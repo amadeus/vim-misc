@@ -39,7 +39,7 @@ set backspace=indent,eol,start
 set history=1000
 
 " Search settings
-set nohlsearch
+set hlsearch
 set incsearch
 set ignorecase
 set smartcase
