@@ -126,7 +126,7 @@ if has('gui_running')
   " set guifont=SourceCodePro-Medium:h14
   set guifont=InputMono-Regular:h15
   " Kinda don't like this - but it works
-  set linespace=4
+  " set linespace=4
   " Slight spacing tweak to make font not look so spread out
   set columnspace=-1
 endif
@@ -601,4 +601,9 @@ endif
 " CoC settings
 if 0
   runtime! /misc/coc.vim
+endif
+
+" FZF settings
+if 1
+  runtime! /misc/fzf.vim
 endif
