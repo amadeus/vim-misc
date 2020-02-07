@@ -298,4 +298,5 @@ augroup LightLineEvents
   " This is used to ensure that the modified component updates appropriately
   autocmd TextChanged * call lightline#update()
   autocmd TextChangedI * call lightline#update()
+  autocmd BufWritePost * call lightline#update()
 augroup end
