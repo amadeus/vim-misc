@@ -14,6 +14,8 @@ let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.typescript = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
+let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_max_suggestions = 1000
 " Probably don't need this guy anymore
 " let g:ale_echo_delay = 1000
 
