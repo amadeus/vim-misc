@@ -96,7 +96,6 @@ set numberwidth=3
 augroup hidenumber
   autocmd!
   autocmd FileType vaffle setlocal nonumber
-  autocmd TerminalOpen * setlocal nonumber
 augroup END
 
 set signcolumn=yes
@@ -105,7 +104,6 @@ augroup hidesigns
   autocmd BufNew * setlocal signcolumn=yes
   autocmd BufNew __Scratch__ setlocal signcolumn=no
   autocmd BufNew .scratch.md setlocal signcolumn=no
-  autocmd TerminalOpen * setlocal signcolumn=no
   autocmd FileType vim-plug,vaffle,qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
 augroup END
 
@@ -502,34 +500,6 @@ augroup targets_tweaks
     \ 'a': {'argument': [{'o': '[{([]', 'c': '[])}]', 's': ','}]},
     \ })
 augroup END
-
-
-" FZF
-nnoremap <leader>t :GFiles<cr>
-" nnoremap <leader>gf :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Rg<cr>
-
-augroup fzf
-  autocmd!
-  autocmd  FileType fzf set laststatus=0  noruler | autocmd BufLeave <buffer> set laststatus=2 ruler
-augroup END
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'IncSearch'],
-  \ 'fg+':     ['fg', 'WildMenu'],
-  \ 'bg+':     ['bg', 'WildMenu'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
 
 " Scratch settings
 let g:scratch_autohide = 0
