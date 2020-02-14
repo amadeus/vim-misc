@@ -10,6 +10,7 @@ let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '[%linter%]% (code)% %s'
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['prettier']
+let g:ale_fixers.python = ['black', 'isort']
 let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.typescript = ['prettier']
 let g:ale_fixers.css = ['prettier']
