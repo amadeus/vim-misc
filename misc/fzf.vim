@@ -1,7 +1,7 @@
 " FZF Configuration
 
 " NOTE: passing a dict to window enables the popup window functionality
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp'} }
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
