@@ -20,6 +20,7 @@ set nowrap
 set display=lastline
 set lazyredraw
 set updatetime=100
+set belloff=esc
 
 " Show invisibles
 set list
