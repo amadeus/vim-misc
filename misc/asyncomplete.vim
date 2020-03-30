@@ -39,11 +39,11 @@ augroup asyncomplete_custom_sources
     \ 'whitelist': ['css', 'css.module'],
     \ 'completor': function('asyncomplete#sources#omni#completor')
     \  }))
-  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'whitelist': ['*'],
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
+  " autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+  "   \ 'name': 'file',
+  "   \ 'whitelist': ['*'],
+  "   \ 'completor': function('asyncomplete#sources#file#completor')
+  "   \ }))
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'whitelist': ['*'],
