@@ -17,6 +17,17 @@ let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
 let g:ale_completion_tsserver_autoimport = 1
 let g:ale_completion_max_suggestions = 1000
+
+if !exists('g:ale_linters')
+  let g:ale_linters = {}
+endif
+
+" Disablign flow stuff for now - since it gets in the way
+let g:ale_linters = {
+\   'javascript': ['eslint', 'fecs', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
+\}
+
+
 " Probably don't need this guy anymore
 " let g:ale_echo_delay = 1000
 
