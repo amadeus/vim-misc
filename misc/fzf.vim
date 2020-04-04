@@ -20,20 +20,22 @@ let g:fzf_colors =
 
 " https://github.com/junegunn/fzf.vim/pull/733#issuecomment-559720813
 " https://github.com/junegunn/fzf/blob/master/README-VIM.md
-function! Bufs()
+function! s:list_buffers()
   redir => list
   silent ls
   redir END
   return split(list, "\n")
 endfunction
 
-let s:config = {
-  \ 'source': Bufs(),
-  \ 'sink*': { lines -> execute('bwipeout '.join(map(lines, {_, line -> split(line)[0]}))) },
-  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
-\ }
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
 
-command! BD call fzf#run(fzf#wrap(s:config))
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+\ }))
 
 nnoremap <leader>t :GFiles<cr>
 " nnoremap <leader>gf :Files<cr>

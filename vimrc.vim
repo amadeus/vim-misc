@@ -22,6 +22,7 @@ set lazyredraw
 set updatetime=100
 set belloff=esc
 set clipboard=unnamed
+set backupcopy=yes
 
 " Show invisibles
 set list
