@@ -21,7 +21,6 @@ set display=lastline
 set lazyredraw
 set updatetime=100
 set belloff=esc
-set shell=/bin/bash
 
 " Show invisibles
 set list
