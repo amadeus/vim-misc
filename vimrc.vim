@@ -297,16 +297,16 @@ set noswapfile
 set undofile
 
 " Search for selected text
-vnoremap <silent> <c-s> :<C-U>
-  \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \ gvy/<C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \ :call setreg('"', old_reg, old_regtype)<CR>
+function! GetSelection()
+    let old_reg = getreg('v')
+    normal! gv"vy
+    let raw_search = getreg('v')
+    call setreg('v', old_reg)
+    return substitute(escape(raw_search, '\/.*$^~[]'), "\n", '\\n', 'g')
+endfunction
 
-vnoremap <silent> # :<C-U>
-  \ let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \ gvy?<C-R><C-R>=substitute(
-  \ escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \ gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <c-s> <C-c>/<C-r>=GetSelection()<CR><CR>
+vnoremap # <C-c>?<C-r>=GetSelection()<CR><CR>
 
 " Set markdown textwidth
 augroup markdowntextwidth
