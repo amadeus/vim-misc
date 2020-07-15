@@ -94,6 +94,9 @@ set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 set noruler
 set fillchars=vert:⋅,fold:-
 
+" Don't clobber the unnamed register when pasting over text in visual mode
+vnoremap p pgvy
+
 set number
 set numberwidth=3
 augroup hidenumber
