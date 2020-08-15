@@ -15,8 +15,10 @@ let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.typescript = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
-let g:ale_completion_tsserver_autoimport = 1
-let g:ale_completion_max_suggestions = 1000
+let g:ale_hover_cursor = 1
+" let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_autoimport = 1
+" let g:ale_completion_max_suggestions = 1000
 
 if !exists('g:ale_linters')
   let g:ale_linters = {}
@@ -34,7 +36,6 @@ let g:ale_linters = {
 nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>ff  :ALEFix<cr>
 nnoremap <leader>jd  :ALEGoToDefinition<cr>
-nmap <leader>jt  <Plug>(coc-implementation)
 nnoremap <leader>aa  :ALEHover<cr>
 nnoremap <leader>ad  :ALEDetail<cr>
 nnoremap <leader>fe :ALEFix eslint<cr>
@@ -63,3 +64,4 @@ function! ToggleFormatSave()
 endfunction
 nnoremap <leader>pf :call ToggleFormatSave()<cr>
 
+" call ale#fix#registry#Add('lua_format', 'lua_format#Fix', ['lua'], 'Fix Lua files with lua-format')

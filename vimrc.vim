@@ -374,7 +374,7 @@ endfunction
 command! -nargs=0 Wipeout call WipeoutBuffers()
 
 
-" ==== PLUGIN SETTING ===
+" ==== PLUGIN SETTINGS ===
 
 " Gist settings
 let g:gist_clip_command = 'pbcopy'
@@ -524,6 +524,10 @@ let g:EditorConfig_disable_rules = ['trim_trailing_whitespace']
 let g:open_url_default_mappings = 0
 nmap gx <Plug>(open-url-browser)
 xmap gx <Plug>(open-url-browser)
+
+" Vim Matchup Settings
+" Auto changes closing tag when editing opening tag
+let g:matchup_transmute_enabled = 1
 
 " Playgrounds and old unused settings
 " Asyncomplete Settings
