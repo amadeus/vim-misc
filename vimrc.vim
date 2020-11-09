@@ -535,6 +535,11 @@ if 1
   runtime! /misc/asyncomplete.vim
 endif
 
+" LSC Settings (it kinda sucked...)
+if 0
+  runtime! /misc/lsc.vim
+endif
+
 " ALE settings
 if 1
   runtime! /misc/ale.vim
