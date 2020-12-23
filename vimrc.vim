@@ -28,6 +28,7 @@ set backupcopy=yes
 set list
 set listchars=tab:›\ ,trail:⋅,nbsp:␣
 set showbreak=…
+set noshowmode
 " Have the showbreak appear in the number column
 set cpoptions+=n
 augroup terminal_list_tweaks
@@ -284,12 +285,6 @@ augroup vaffletab
   autocmd FileType vaffle nmap <buffer> <Tab> <Plug>(vaffle-toggle-current)
   autocmd FileType vaffle nmap <buffer> s <Plug>(vaffle-open-selected-vsplit)
 augroup END
-
-" Powerline Settings
-set noshowmode
-if has('gui_running')
-  let g:Powerline_symbols = 'fancy'
-endif
 
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
