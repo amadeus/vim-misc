@@ -38,8 +38,8 @@ nnoremap <leader>ff  :ALEFix<cr>
 nnoremap <leader>jd  :ALEGoToDefinition<cr>
 nnoremap <leader>aa  :ALEHover<cr>
 nnoremap <leader>ad  :ALEDetail<cr>
-nnoremap <leader>fe :ALEFix eslint<cr>
-nnoremap <leader>fr :ALEFindReferences<cr>
+nnoremap <leader>fe  :ALEFix eslint<cr>
+nnoremap <leader>fr  :ALEFindReferences<cr>
 if has('mac')
   nmap <silent> ˚ <Plug>(ale_previous_wrap)
   nmap <silent> ∆ <Plug>(ale_next_wrap)
