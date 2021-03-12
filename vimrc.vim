@@ -130,8 +130,10 @@ if has('gui_running')
   " Keeing this for reference - but trying out a new font
   " set guifont=SourceCodePro-Medium:h14
   set guifont=InputMono-Regular:h15
-  " Kinda don't like this - but it works
-  " set linespace=4
+  " Using linespace=4 and disabling the old fontsize stuff will enable me to
+  " resize the font better and have it stay visually centered, since it has a
+  " built in 1.2 line-height which really messes with things
+  set linespace=4
   " Slight spacing tweak to make font not look so spread out
   set columnspace=-1
 endif
