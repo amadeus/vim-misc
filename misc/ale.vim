@@ -35,6 +35,7 @@ let g:ale_linters = {
 
 nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>ff  :ALEFix<cr>
+nnoremap <leader>fw  :ALEFix trim_whitespace<cr>
 nnoremap <leader>jd  :ALEGoToDefinition<cr>
 nnoremap <leader>aa  :ALEHover<cr>
 nnoremap <leader>ad  :ALEDetail<cr>
