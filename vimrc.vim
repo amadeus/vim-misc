@@ -191,8 +191,9 @@ cnoreabbrev Set  set
 cnoreabbrev Cd   cd
 cnoreabbrev CD   cd
 cnoreabbrev Src source $MYVIMRC
-command! Fu :set fu|redraw!
-command! Nofu :set nofu|redraw!
+command! Fu :set fu!|redraw!
+" Make closing buffers easier
+nnoremap    <c-w>q :bd<cr>
 
 " Improved line wrap movement
 vnoremap j gj
@@ -223,6 +224,7 @@ nnoremap <leader>gd  :silent Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
+nnoremap <leader>w   :w<cr>
 nmap <d-cr> :set fu!<cr>
 
 " Slicker way to move around splits
@@ -525,6 +527,8 @@ xmap gx <Plug>(open-url-browser)
 " Vim Matchup Settings
 " Auto changes closing tag when editing opening tag
 let g:matchup_transmute_enabled = 1
+" Disable the statusline takeover, I think it looks pretty bad
+let g:matchup_matchparen_offscreen = {}
 
 " Playgrounds and old unused settings
 " Asyncomplete Settings
