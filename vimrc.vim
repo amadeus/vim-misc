@@ -224,7 +224,8 @@ nnoremap <leader>gd  :silent Git difftool --staged<cr>
 nnoremap <leader>rr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
-nnoremap <leader>w   :w<cr>
+nnoremap <leader>ww   :w<cr>
+nnoremap <leader>wf   :Fu<cr>
 nmap <d-cr> :set fu!<cr>
 
 " Slicker way to move around splits
