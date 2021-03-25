@@ -310,12 +310,6 @@ endfunction
 vnoremap <c-s> <C-c>/<C-r>=GetSelection()<CR><CR>
 vnoremap # <C-c>?<C-r>=GetSelection()<CR><CR>
 
-" Set markdown textwidth
-augroup markdowntextwidth
-  autocmd!
-  autocmd BufNewFile,BufRead *.md,*.markdown,*.wiki setlocal textwidth=79|set tabstop=2|set shiftwidth=2
-augroup END
-
 " .conf to yaml
 augroup yaml
   autocmd!
