@@ -23,6 +23,7 @@
 "   \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
 
 inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<CR>" : "\<CR>"
+inoremap <c-space> <Plug>(asyncomplete_force_refresh)
 
 augroup asyncomplete_custom_sources
   autocmd!
@@ -36,7 +37,7 @@ augroup asyncomplete_custom_sources
   "   \ })
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
     \ 'name': 'omni',
-    \ 'whitelist': ['css', 'css.module'],
+    \ 'allowlist': ['css', 'css.module'],
     \ 'completor': function('asyncomplete#sources#omni#completor')
     \  }))
   " autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
@@ -46,7 +47,7 @@ augroup asyncomplete_custom_sources
   "   \ }))
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
+    \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ }))
 augroup END
