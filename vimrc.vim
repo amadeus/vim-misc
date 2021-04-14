@@ -20,6 +20,7 @@ set nowrap
 set display=lastline
 set lazyredraw
 set updatetime=100
+set ttimeoutlen=0
 set belloff=esc
 set clipboard=unnamed
 set backupcopy=yes

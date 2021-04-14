@@ -23,7 +23,6 @@
 "   \ {ctx, items -> filter(items, 'stridx(v:val.word, ctx.base) == 0')}
 
 inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<CR>" : "\<CR>"
-inoremap <c-space> <Plug>(asyncomplete_force_refresh)
 
 augroup asyncomplete_custom_sources
   autocmd!
