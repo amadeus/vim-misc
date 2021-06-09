@@ -9,6 +9,11 @@ let g:lsp_diagnostics_echo_cursor = 0
 let g:lsp_highlights_enabled = 0
 let g:lsp_textprop_enabled = 0
 let g:lsp_highlight_references_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_highlights_insert_mode_enabled = 0
+let g:lsp_diagnostics_signs_enabled = 0
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_document_highlight_enabled = 0
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
