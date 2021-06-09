@@ -285,7 +285,7 @@ endif
 
 " Vaffle configs
 nnoremap <leader>vv  :Vaffle<cr>
-nnoremap <leader>vf  :Vaffle %:h<cr>
+nnoremap <leader>vf  :Vaffle %<cr>
 augroup vaffletab
   autocmd!
   autocmd FileType vaffle nmap <buffer> <Tab> <Plug>(vaffle-toggle-current)
