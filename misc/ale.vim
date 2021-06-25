@@ -16,9 +16,12 @@ let g:ale_fixers.typescript = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
 let g:ale_hover_cursor = 1
+let g:asyncomplete_matchfuzzy = 0
 " let g:ale_completion_tsserver_autoimport = 1
-let g:ale_completion_autoimport = 1
+let g:ale_completion_autoimport = 0
 " let g:ale_completion_max_suggestions = 1000
+let g:ale_completion_delay = 0
+" let g:ale_completion_enabled = 0
 
 if !exists('g:ale_linters')
   let g:ale_linters = {}

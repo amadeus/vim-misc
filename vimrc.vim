@@ -128,14 +128,10 @@ set cpoptions+=J
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
 if has('gui_running')
-  " Keeing this for reference - but trying out a new font
-  " set guifont=SourceCodePro-Medium:h14
+  " InputMono Settings
   set guifont=InputMono-Regular:h15
-  " Using linespace=4 and disabling the old fontsize stuff will enable me to
-  " resize the font better and have it stay visually centered, since it has a
-  " built in 1.2 line-height which really messes with things
-  set linespace=4
-  " Slight spacing tweak to make font not look so spread out
+  " Make sure preserve font line spacing is checked
+  " set linespace=4
   set columnspace=-1
 endif
 
