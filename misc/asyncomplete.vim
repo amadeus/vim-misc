@@ -26,7 +26,7 @@ inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<CR>" : "\<CR
 
 augroup asyncomplete_custom_sources
   autocmd!
-  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({}))
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({'priority': 10}))
   " vim-lsp is disabled for now - while I use ALE instead
   " autocmd User lsp_setup call lsp#register_server({
   "   \ 'name': 'flow',
@@ -37,16 +37,18 @@ augroup asyncomplete_custom_sources
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
     \ 'name': 'omni',
     \ 'allowlist': ['css', 'css.module'],
-    \ 'completor': function('asyncomplete#sources#omni#completor')
-    \  }))
-  " autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-  "   \ 'name': 'file',
-  "   \ 'whitelist': ['*'],
-  "   \ 'completor': function('asyncomplete#sources#file#completor')
-  "   \ }))
+    \ 'completor': function('asyncomplete#sources#omni#completor'),
+    \ 'priority': 2
+  \  }))
+  autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
+    \ 'priority': 1
+  \ }))
 augroup END
