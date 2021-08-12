@@ -15,8 +15,14 @@ let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.typescript = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
+let g:ale_fixers.c = ['clang-format']
 let g:ale_hover_cursor = 1
 let g:asyncomplete_matchfuzzy = 0
+" Kinda looks gross - since I can't make the popup borders more minimal
+" I don't want them at all
+" let g:ale_floating_preview = 1
+" let g:ale_hover_to_floating_preview = 1
+" let g:ale_floating_window_border = ['', '', '', '', '', '']
 " let g:ale_completion_tsserver_autoimport = 1
 let g:ale_completion_autoimport = 0
 " let g:ale_completion_max_suggestions = 1000
