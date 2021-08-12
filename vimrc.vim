@@ -32,10 +32,12 @@ set showbreak=…
 set noshowmode
 " Have the showbreak appear in the number column
 set cpoptions+=n
-augroup terminal_list_tweaks
-  autocmd!
-  autocmd TerminalOpen * setlocal nolist
-augroup END
+if has('nvim') == 0
+  augroup terminal_list_tweaks
+    autocmd!
+    autocmd TerminalOpen * setlocal nolist
+  augroup END
+endif
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -127,7 +129,9 @@ set cpoptions+=J
 
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
-if has('gui_running')
+if has('nvim') == 1
+  set guifont=InputMono:h15
+elseif has('gui_running')
   " InputMono Settings
   set guifont=InputMono-Regular:h15
   " Make sure preserve font line spacing is checked
@@ -291,7 +295,11 @@ augroup END
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
-set undodir=~/.vim/undo
+if has('nvim')
+  set undodir=~/.config/nvim/undo
+else
+  set undodir=~/.vim/undo
+endif
 set nobackup
 set noswapfile
 set undofile
