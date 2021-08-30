@@ -388,7 +388,8 @@ augroup detectindent
 augroup END
 
 
-" Fugitive Settings - delete fugitive buffers on hide
+" Fugitive Settings
+" delete fugitive buffers on hide
 augroup fugitivefix
   autocmd!
   autocmd BufReadPost fugitive:// setlocal bufhidden=delete
@@ -404,40 +405,10 @@ augroup END
 let g:CustomEntities = [['(c)',  '\&copy;']]
 
 
-" Startify Settings
-let g:startify_custom_header = [
-  \ '                                ______      ',
-  \ '            __                /\  ____`\    ',
-  \ '   __   __ /\_\    ___ ___    \ \ \___\ \   ',
-  \ '  /\ \ /\ \\/\ \ /` __` __`\   \ \  ____ \  ',
-  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \   \ \ \___\ \ ',
-  \ '   \ \___/   \ \_\ \_\ \_\ \_\   \ \_______\',
-  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_______/',
-  \ '                                            ',
-  \ '  ==========================================',
-  \ '                                            ',
-  \ ]
-let g:ascii = []
-let g:startify_custom_footer = 'map(startify#fortune#boxed() + g:ascii, "\"   \".v:val")'
-let g:startify_session_autoload = 0 " Testing out my new session sourcing code
-let g:startify_change_to_dir = 1
-let g:ctrlp_reuse_window = 'startify'
-let g:startify_list_order = ['bookmarks', 'files']
-let g:startify_skiplist = [
-  \ 'COMMIT_EDITMSG',
-  \ $VIMRUNTIME .'/doc',
-  \ 'bundle/.*/doc',
-  \ '\.DS_Store'
-  \ ]
-let g:startify_fortune_use_unicode = 1
-
-" Disable startify in terminal vim it just doesn't feel right
-if !has('gui_running')
-  let g:startify_disable_at_vimenter = 1
-endif
-
 " Grepper
 let g:grepper = {}
+let g:grepper.highlight = 1
+let g:grepper.searchreg = 1
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift', 'git']
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
@@ -502,6 +473,7 @@ augroup targets_tweaks
     \ })
 augroup END
 
+
 " Scratch settings
 let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
@@ -529,21 +501,17 @@ let g:matchup_transmute_enabled = 1
 " Disable the statusline takeover, I think it looks pretty bad
 let g:matchup_matchparen_offscreen = {}
 
-" Playgrounds and old unused settings
-" Asyncomplete Settings (ddc may be the new bay...)
-if 0
-  runtime! /misc/asyncomplete.vim
+""" Major Plugin settings
+
+" Startify
+if 1
+  runtime! /misc/startify.vim
 endif
 
-" ddc.vim - really digging it, but the lack of file autocomplete is a bit of a
-" pain...
+" ddc.vim
+" really digging it, but the lack of file autocomplete is a bit of a pain...
 if 1
   runtime! /misc/ddc.vim
-endif
-
-" LSC Settings (it kinda sucked...)
-if 0
-  runtime! /misc/lsc.vim
 endif
 
 " ALE settings
@@ -556,24 +524,23 @@ if 1
   runtime! /misc/lightline-playground.vim
 endif
 
-" Airline Playground Settings
-if 0
-  runtime! /misc/airline-config.vim
+" GitGutter settings
+if 1
+  runtime! /misc/gitgutter.vim
 endif
 
-" LanguageServer Playground Settings
-if 0
-  runtime! /misc/lsp-playground.vim
+" FZF settings
+if 1
+  runtime! /misc/fzf.vim
 endif
 
-" CtrlP Settings
-if 0
-  runtime! /misc/ctrlp-settings.vim
-endif
+""" Deprecated Plugins
+" I keep this around because sometimes I like to experiment, and it's nice to
+" just have the code easily available
 
-" Omnicomplete settings
+" CoC settings
 if 0
-  runtime! /misc/omni-complete.vim
+  runtime! /misc/coc.vim
 endif
 
 " Completer settings
@@ -581,17 +548,32 @@ if 0
   runtime! /misc/completor-config.vim
 endif
 
-" GitGutter settings
-if 1
-  runtime! /misc/gitgutter.vim
-endif
-
-" CoC settings
+" Omnicomplete settings
 if 0
-  runtime! /misc/coc.vim
+  runtime! /misc/omni-complete.vim
 endif
 
-" FZF settings
-if 1
-  runtime! /misc/fzf.vim
+" CtrlP Settings
+if 0
+  runtime! /misc/ctrlp-settings.vim
+endif
+
+" LanguageServer Playground Settings
+if 0
+  runtime! /misc/lsp-playground.vim
+endif
+
+" Airline Playground Settings
+if 0
+  runtime! /misc/airline-config.vim
+endif
+
+" LSC Settings (it kinda sucked...)
+if 0
+  runtime! /misc/lsc.vim
+endif
+
+" Asyncomplete Settings (ddc may be the new bay...)
+if 0
+  runtime! /misc/asyncomplete.vim
 endif

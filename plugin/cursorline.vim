@@ -2,7 +2,7 @@
 " Only set cursorline on the active buffer
 " Only highlight the number column
 " Change highlight based on mode
-" Startify should have full cursorline
+" Certain buftypes should have a full cursorline
 function! SetCursorLine(mode)
   hi CursorLine   guifg=NONE    guibg=NONE    gui=NONE
   hi CursorLineNr guifg=#ff027f guibg=#1b1b13 gui=BOLD
