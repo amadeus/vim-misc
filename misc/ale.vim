@@ -24,18 +24,24 @@ let g:asyncomplete_matchfuzzy = 0
 " let g:ale_hover_to_floating_preview = 1
 " let g:ale_floating_window_border = ['', '', '', '', '', '']
 " let g:ale_completion_tsserver_autoimport = 1
-let g:ale_completion_autoimport = 0
-" let g:ale_completion_max_suggestions = 1000
-let g:ale_completion_delay = 0
+
+let g:ale_completion_autoimport = 1
+" It should be noticed, in certain projects, increasing this value too much
+" will actually completely break the results I get back from tsserver... not
+" sure why yet...
+let g:ale_completion_max_suggestions = 50
+let g:ale_completion_delay = 100
 " let g:ale_completion_enabled = 0
 
 if !exists('g:ale_linters')
   let g:ale_linters = {}
 endif
 
-" Disablign flow stuff for now - since it gets in the way
+" Disabling flow stuff for now - since it gets in the way
+" Also disabling deno in typescript as it completely breaks dds.vim
 let g:ale_linters = {
-\   'javascript': ['eslint', 'fecs', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
+\   'javascript': ['eslint', 'fecs', 'jscs', 'jshint', 'standard', 'tsserver', 'xo'],
+\   'typescript': ['eslint', 'tslint', 'tsserver', 'typecheck', 'xo'],
 \}
 
 

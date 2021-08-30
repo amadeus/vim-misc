@@ -530,9 +530,15 @@ let g:matchup_transmute_enabled = 1
 let g:matchup_matchparen_offscreen = {}
 
 " Playgrounds and old unused settings
-" Asyncomplete Settings
-if 1
+" Asyncomplete Settings (ddc may be the new bay...)
+if 0
   runtime! /misc/asyncomplete.vim
+endif
+
+" ddc.vim - really digging it, but the lack of file autocomplete is a bit of a
+" pain...
+if 1
+  runtime! /misc/ddc.vim
 endif
 
 " LSC Settings (it kinda sucked...)
