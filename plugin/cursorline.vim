@@ -30,8 +30,8 @@ endfunction
 
 augroup cursorline
   autocmd!
-  autocmd BufEnter,WinEnter,FileType,TabEnter,TabNew,CmdlineLeave,CmdwinLeave * :call SetCursorLine('enter')
-  autocmd BufLeave,WinLeave,TabLeave,CmdwinLeave,TabLeave,CmdlineEnter,CmdwinEnter * :call SetCursorLine('leave')
+  autocmd BufEnter,WinEnter,FileType,FocusGained,TabEnter,TabNew,CmdlineLeave,CmdwinLeave * :call SetCursorLine('enter')
+  autocmd BufLeave,WinLeave,FocusLost,TabLeave,CmdwinLeave,TabLeave,CmdlineEnter,CmdwinEnter * :call SetCursorLine('leave')
   autocmd InsertLeave * :call SetCursorNumber('leave')
   autocmd InsertEnter * :call SetCursorNumber('enter')
 augroup END
