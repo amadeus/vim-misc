@@ -114,7 +114,7 @@ augroup hidesigns
   autocmd BufNew * setlocal signcolumn=yes
   autocmd BufNew __Scratch__ setlocal signcolumn=no
   autocmd BufNew .scratch.md setlocal signcolumn=no
-  autocmd FileType vim-plug,vaffle,qf,help,startify,markdown,nerdtree,git,gitcommit setlocal signcolumn=no
+  autocmd FileType vim-plug,vaffle,qf,help,startify,nerdtree,git,gitcommit setlocal signcolumn=no
 augroup END
 
 set laststatus=2
