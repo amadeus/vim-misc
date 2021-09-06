@@ -29,7 +29,8 @@ let g:ale_completion_autoimport = 1
 " It should be noticed, in certain projects, increasing this value too much
 " will actually completely break the results I get back from tsserver... not
 " sure why yet...
-let g:ale_completion_max_suggestions = 50
+" let g:ale_completion_max_suggestions = 50
+let g:ale_completion_max_suggestions = 100
 let g:ale_completion_delay = 100
 " let g:ale_completion_enabled = 0
 

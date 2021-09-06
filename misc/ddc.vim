@@ -1,4 +1,5 @@
 call ddc#custom#patch_global('sources', ['ale', 'buffer'])
+" call ddc#custom#patch_global('sources', ['ale', 'file'])
 
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
@@ -6,18 +7,23 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'converters': ['converter_remove_overlap'],
     \ 'sorters': ['sorter_rank'],
     \ 'minAutoCompleteLength': 1,
-    \ 'isVolatile': v:true,
   \ },
   \ 'ale': {
     \ 'mark': 'lsp',
-    \ 'forceCompletionPattern': '\.|:|->'
+    \ 'forceCompletionPattern': '\.|:|->|\./',
   \ },
-  \ 'buffer': { 'mark': 'buf' },
+  \ 'buffer': {
+    \ 'mark': 'buf',
+  \ },
+  \ 'file': {
+    \ 'mark': 'file',
+  \ },
 \ })
 
-call ddc#custom#patch_global('sourceParams', {
-  \ 'buffer': {'requireSameFiletype': v:false},
-\ })
+" \ 'isVolatile': v:true,
+" call ddc#custom#patch_global('sourceParams', {
+"   \ 'buffer': {'requireSameFiletype': v:false},
+" \ })
 
 " Stuff I may want to experiment with, at some point?
 " <TAB>: completion.
@@ -29,7 +35,10 @@ call ddc#custom#patch_global('sourceParams', {
 " " <S-TAB>: completion back.
 " inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
 
-" let g:denops#debug = 1
 call ddc#enable()
 
 let g:echodoc#enable_at_startup = 1
+" kinda neat to use popup, but I think I prefer echo
+" let g:echodoc#type = 'popup'
+" let g:denops#debug = 1
+" let g:denops#trace = 1
