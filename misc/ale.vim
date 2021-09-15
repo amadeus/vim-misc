@@ -18,6 +18,7 @@ let g:ale_fixers.stylus = ['prettier']
 let g:ale_fixers.c = ['clang-format']
 let g:ale_hover_cursor = 1
 let g:asyncomplete_matchfuzzy = 0
+let g:ale_set_balloons = 0
 " Kinda looks gross - since I can't make the popup borders more minimal
 " I don't want them at all
 " let g:ale_floating_preview = 1
