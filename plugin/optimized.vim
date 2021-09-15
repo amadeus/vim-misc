@@ -10,6 +10,12 @@ function! Optimize()
     echom 'ALE is not installed'
   endtry
 
+  try
+    call ddc#disable()
+  catch /.*/
+    echom 'ddc failed to disable'
+  endtry
+
   echom 'Vim is now optimized...'
 endfunction
 
