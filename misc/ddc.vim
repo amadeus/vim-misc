@@ -20,6 +20,9 @@ call ddc#custom#patch_global('sourceOptions', {
   \ 'file': {
     \ 'mark': 'file',
   \ },
+  \ 'omni': {
+    \ 'mark': 'omni',
+  \ },
   \ 'tabnine': {
     \ 'mark': 'TN',
     \ 'isVolatile': v:true,
