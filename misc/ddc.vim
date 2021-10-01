@@ -1,3 +1,4 @@
+" call ddc#custom#patch_global('sources', ['tabnine', 'ale', 'buffer'])
 call ddc#custom#patch_global('sources', ['ale', 'buffer'])
 " Enable this for testing my file source
 " call ddc#custom#patch_global('sources', ['ale', 'buffer', 'file'])
@@ -19,6 +20,11 @@ call ddc#custom#patch_global('sourceOptions', {
   \ 'file': {
     \ 'mark': 'file',
   \ },
+  \ 'tabnine': {
+    \ 'mark': 'TN',
+    \ 'isVolatile': v:true,
+    \ 'maxSize': 200,
+  \ }
 \ })
 
 call ddc#enable()
