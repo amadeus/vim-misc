@@ -30,6 +30,13 @@ call ddc#custom#patch_global('sourceOptions', {
   \ }
 \ })
 
+" Try enabling this after the wrapping issue gets fixed?
+" call ddc#custom#patch_global('completionMenu', 'pum.vim')
+" inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+" inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+" inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+" inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+
 call ddc#enable()
 
 let g:echodoc#enable_at_startup = 1
