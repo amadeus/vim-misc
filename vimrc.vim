@@ -504,6 +504,7 @@ xmap gx <Plug>(open-url-browser)
 let g:matchup_transmute_enabled = 1
 " Disable the statusline takeover, I think it looks pretty bad
 let g:matchup_matchparen_offscreen = {}
+let g:matchup_surround_enabled = 1
 
 """ Major Plugin settings
 
