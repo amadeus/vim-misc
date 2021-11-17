@@ -222,7 +222,7 @@ nnoremap <leader>pp  :pwd<cr>
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>gc  :Gcommit -v<cr>
 nnoremap <leader>gd  :silent Git difftool --staged<cr>
-nnoremap <leader>rr  :syntax sync fromstart<cr>
+nnoremap <leader>sr  :syntax sync fromstart<cr>
 nnoremap <leader>sf  :set filetype=javascript.jsx<cr>
 nnoremap <leader>rd  :redraw!<cr>
 nnoremap <leader>ww  :w<cr>
@@ -248,6 +248,10 @@ inoremap <c-j> <esc>o
 inoremap <c-d> <esc>v^c
 inoremap <c-e> <c-x><c-e>
 inoremap <c-y> <c-x><c-y>
+
+" Fix accidental insert mode memes
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
 
 " Command Mode Improvements
 cnoremap <c-k> <up>
