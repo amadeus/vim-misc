@@ -30,12 +30,20 @@ call ddc#custom#patch_global('sourceOptions', {
   \ }
 \ })
 
-" Try enabling this after the wrapping issue gets fixed?
+" pum.vim has fixed the wrapping issue since someone else found a good repro,
+" now I just need to test it a bit more to find out if it's actually right for me!
 " call ddc#custom#patch_global('completionMenu', 'pum.vim')
 " inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 " inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
 " inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
 " inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+
+" This autocommand hack allows the auto import functionality to work after a
+" completion is implemented
+" augroup DDCCompletions
+"   autocmd!
+"   autocmd User PumCompleteDone call ale#completion#HandleUserData(g:pum#completed_item)
+" augroup END
 
 call ddc#enable()
 
