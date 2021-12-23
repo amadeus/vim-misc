@@ -153,7 +153,7 @@ set sidescrolloff=5
 set complete=.,w,b,u,t
 
 " Used to have preview on this puppy - caused all sorts of probs
-set completeopt=menuone,menu,noselect,noinsert
+set completeopt=menuone,menu,noselect
 
 " Diff settings
 set diffopt+=algorithm:patience,vertical,indent-heuristic
