@@ -3,6 +3,7 @@ function! Optimize()
   filetype plugin off
   filetype indent off
   filetype off
+  set eventignore=all
 
   try
     :ALEDisable
@@ -24,6 +25,7 @@ function! Deoptimize()
   filetype plugin on
   filetype indent on
   filetype on
+  set eventignore=''
 
   try
     :ALEEnable
