@@ -21,11 +21,11 @@ function! Optimize()
 endfunction
 
 function! Deoptimize()
+  set eventignore=
   syntax on
   filetype plugin on
   filetype indent on
   filetype on
-  set eventignore=''
 
   try
     :ALEEnable
