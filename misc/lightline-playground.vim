@@ -87,7 +87,7 @@ function! MyRelativePath() abort
 
     if exists('*fugitive#head')
       \ && (&filetype ==# 'fugitive' || &filetype ==# 'GV' || &filetype ==# 'git')
-      return ' '.fugitive#head()
+      return ' '.FugitiveHead()
     endif
   endif
 
