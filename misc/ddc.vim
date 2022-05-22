@@ -8,11 +8,12 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'matchers': ['matcher_head'],
     \ 'sorters': ['sorter_rank'],
     \ 'converters': ['converter_remove_overlap'],
-    \ 'minAutoCompleteLength': 1,
+    \ 'timeout': 30000,
   \ },
   \ 'ale': {
     \ 'mark': 'lsp',
     \ 'forceCompletionPattern': '\.|:|->|\./',
+    \ 'timeout': 30000,
   \ },
   \ 'buffer': {
     \ 'mark': 'buf',
