@@ -2,6 +2,8 @@
 call ddc#custom#patch_global('sources', ['ale', 'buffer'])
 " Enable this for testing my file source
 " call ddc#custom#patch_global('sources', ['ale', 'buffer', 'file'])
+call ddc#custom#patch_global('backspaceCompletion', v:true)
+call ddc#custom#patch_global('autoCompleteEvents', ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged'])
 
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
