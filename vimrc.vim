@@ -506,6 +506,9 @@ let g:matchup_transmute_enabled = 1
 let g:matchup_matchparen_offscreen = {}
 let g:matchup_surround_enabled = 1
 
+" Vim Plug Settings
+let g:plug_threads = 200
+
 """ Major Plugin settings
 
 " Startify
