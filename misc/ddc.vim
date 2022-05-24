@@ -10,12 +10,10 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'matchers': ['matcher_head'],
     \ 'sorters': ['sorter_rank'],
     \ 'converters': ['converter_remove_overlap'],
-    \ 'timeout': 30000,
   \ },
   \ 'ale': {
     \ 'mark': 'lsp',
-    \ 'forceCompletionPattern': '\.|:|->|\./',
-    \ 'timeout': 30000,
+    \ 'forceCompletionPattern': '\.|: |->|\./',
   \ },
   \ 'buffer': {
     \ 'mark': 'buf',
