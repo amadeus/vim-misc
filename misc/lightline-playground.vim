@@ -82,6 +82,9 @@ function! MyRelativePath() abort
     if match(filename, '^fugitive://.\+\.git//') == 0
       let filename = substitute(filename, '^fugitive:.\+\.git\/\+', '', '')
       let items = split(filename, '/')
+      if len(items) == 0
+        return ''
+      endif
       return items[0].':'.items[-1]
     endif
 

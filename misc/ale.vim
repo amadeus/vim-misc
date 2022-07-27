@@ -31,8 +31,8 @@ let g:ale_completion_autoimport = 1
 " will actually completely break the results I get back from tsserver... not
 " sure why yet...
 " let g:ale_completion_max_suggestions = 50
-let g:ale_completion_max_suggestions = 100
-let g:ale_completion_delay = 100
+" This should be 0 when using external language servers...
+let g:ale_completion_delay = 0
 " let g:ale_completion_enabled = 0
 
 if !exists('g:ale_linters')
