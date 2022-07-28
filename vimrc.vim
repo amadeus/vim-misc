@@ -53,6 +53,7 @@ set smartcase
 
 " Tab completion when entering filenames
 set wildmenu
+set wildoptions=pum
 set wildmode=longest:full
 set wildignore+=*.o,*.obj,.git,*.rbc,.hg,.svn,*.pyc,.vagrant,.DS_Store,*.jpg,
   \*.eps,*.jpeg,*.png,*.gif,*.bmp,*.psd,*.sublime-project
