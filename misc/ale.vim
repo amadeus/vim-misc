@@ -70,3 +70,8 @@ endfunction
 nnoremap <leader>pf :call ToggleFormatSave()<cr>
 
 " call ale#fix#registry#Add('lua_format', 'lua_format#Fix', ['lua'], 'Fix Lua files with lua-format')
+
+let g:ale_cpp_clangd_options="-I /Users/amadeus/Developer/PlaydateSDK/C_API"
+let g:ale_c_clangd_options="-I /Users/amadeus/Developer/PlaydateSDK/C_API"
+let g:ale_c_cc_options="-I /Users/amadeus/Developer/PlaydateSDK/C_API"
+let g:ale_cpp_cc_options="-I /Users/amadeus/Developer/PlaydateSDK/C_API"
