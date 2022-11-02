@@ -510,6 +510,9 @@ let g:matchup_surround_enabled = 1
 " Vim Plug Settings
 let g:plug_threads = 200
 
+" Zig Settings
+let g:zig_fmt_autosave = 0
+
 """ Major Plugin settings
 
 " Startify
