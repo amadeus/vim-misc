@@ -15,6 +15,8 @@ let g:ale_completion_max_suggestions = 200
 " This should be 0 when using external completion tools
 let g:ale_completion_delay = 0
 let g:ale_echo_delay = 200
+let g:ale_virtualtext_cursor = 1
+let g:ale_echo_cursor = 0
 
 if !exists('g:ale_linters')
   let g:ale_linters = {}
