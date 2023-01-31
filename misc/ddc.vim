@@ -42,7 +42,6 @@ else
     \ 'tabnine': {
       \ 'mark': 'TN',
       \ 'isVolatile': v:true,
-      \ 'maxSize': 200,
     \ }
   \ })
 
