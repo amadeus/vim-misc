@@ -503,9 +503,9 @@ xmap gx <Plug>(open-url-browser)
 " Vim Matchup Settings
 " Auto changes closing tag when editing opening tag
 let g:matchup_transmute_enabled = 1
-" Disable the statusline takeover, I think it looks pretty bad
-let g:matchup_matchparen_offscreen = {}
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
 let g:matchup_surround_enabled = 1
+let g:matchup_matchparen_deferred = 1
 
 " Vim Plug Settings
 let g:plug_threads = 200
