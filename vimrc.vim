@@ -513,6 +513,12 @@ let g:plug_threads = 200
 " Zig Settings
 let g:zig_fmt_autosave = 0
 
+" Terminal Vim Cursor Settings
+" let &t_SH = "\e[1 q"
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[0 q"
+
+
 """ Major Plugin settings
 
 " Startify
