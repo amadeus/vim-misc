@@ -488,6 +488,7 @@ let g:scratch_top = 0
 
 " vim-hexokinase
 let g:Hexokinase_highlighters = ['sign_column']
+let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx']
 runtime! /misc/discord-color-variables.vim
 
 
