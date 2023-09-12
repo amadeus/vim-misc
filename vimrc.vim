@@ -72,7 +72,7 @@ set foldlevel=99
 set foldmethod=indent
 " set foldmethod=syntax
 set sessionoptions=buffers,tabpages,curdir,slash
-set viewoptions=cursor,slash,curdir
+set viewoptions=slash,curdir
 
 " Format Options
 set formatoptions+=njt
