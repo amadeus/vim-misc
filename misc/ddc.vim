@@ -1,16 +1,20 @@
 if has('nvim') == 1
-  call ddc#custom#patch_global('sources', ['nvim-lsp'])
+  call ddc#custom#patch_global('sources', ['nvim-lsp', 'buffer'])
   call ddc#custom#patch_global('sourceOptions', {
-    \ '_': { 'matchers': ['matcher_head'], 'minAutoCompleteLength': 1, },
-    \ 'nvim-lsp': {
-    \   'mark': 'lsp',
-    \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
-    \ })
+  \   '_': { 'matchers': ['matcher_head'], 'minAutoCompleteLength': 1, },
+  \   'nvim-lsp': {
+  \     'mark': 'lsp',
+  \     'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+  \   },
+  \ })
 
   " Use Customized labels
   call ddc#custom#patch_global('sourceParams', {
-    \ 'nvim-lsp': { 'kindLabels': { 'Class': 'c' } },
-    \ })
+  \   'nvim-lsp': { 'kindLabels': { 'Class': 'c' } },
+  \ })
+
+  let g:denops#debug = 1
+  let g:denops#trace = 1
 else
   " call ddc#custom#patch_global('sources', ['tabnine', 'ale', 'buffer'])
   call ddc#custom#patch_global('sources', ['ale', 'buffer'])

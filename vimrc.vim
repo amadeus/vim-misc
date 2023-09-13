@@ -30,6 +30,7 @@ set list
 set listchars=tab:›\ ,trail:⋅,nbsp:␣
 set showbreak=…
 set noshowmode
+set isfname+=[,]
 " Have the showbreak appear in the number column
 set cpoptions+=n
 if has('nvim') == 0
@@ -595,4 +596,9 @@ endif
 " Asyncomplete Settings (ddc may be the new bay...)
 if 0
   runtime! /misc/asyncomplete.vim
+endif
+
+" Neural.vim settings
+if 0
+  runtime! /misc/neural.vim
 endif

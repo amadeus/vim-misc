@@ -34,6 +34,7 @@ let g:ale_fixers.typescript = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.stylus = ['prettier']
 let g:ale_fixers.c = ['clang-format']
+let g:ale_save_hidden = 1
 
 nnoremap <leader>at  :ALEToggle<cr>
 nnoremap <leader>ff  :ALEFix<cr>
