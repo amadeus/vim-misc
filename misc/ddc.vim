@@ -23,6 +23,16 @@ else
   call ddc#custom#patch_global('backspaceCompletion', v:true)
   call ddc#custom#patch_global('autoCompleteEvents', ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged'])
 
+  " \ 'file': {
+  "   \ 'mark': 'file',
+  " \ },
+  "  \ 'tabnine': {
+  "    \ 'mark': 'TN',
+  "    \ 'isVolatile': v:true,
+  "  \ }
+  "  \ 'omni': {
+  "    \ 'mark': 'omni',
+  "  \ }
   call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
       \ 'matchers': ['matcher_head'],
@@ -36,16 +46,6 @@ else
     \ },
     \ 'buffer': {
       \ 'mark': 'buf',
-    \ },
-    \ 'file': {
-      \ 'mark': 'file',
-    \ },
-    \ 'omni': {
-      \ 'mark': 'omni',
-    \ },
-    \ 'tabnine': {
-      \ 'mark': 'TN',
-      \ 'isVolatile': v:true,
     \ }
   \ })
 
