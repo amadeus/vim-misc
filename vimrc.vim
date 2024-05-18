@@ -256,8 +256,10 @@ inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
 " Command Mode Improvements
-cnoremap <c-k> <up>
-cnoremap <c-j> <down>
+if has('gui_running')
+  cnoremap <c-k> <up>
+  cnoremap <c-j> <down>
+endif
 
 " Expand folder of current file in command mode
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
