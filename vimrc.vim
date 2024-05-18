@@ -30,7 +30,7 @@ set list
 set listchars=tab:›\ ,trail:⋅,nbsp:␣
 set showbreak=…
 set noshowmode
-set isfname+=[,]
+set isfname+=[,],40,41
 " Have the showbreak appear in the number column
 set cpoptions+=n
 if has('nvim') == 0
