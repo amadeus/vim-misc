@@ -12,9 +12,6 @@ if has('nvim') == 1
   call ddc#custom#patch_global('sourceParams', {
   \   'nvim-lsp': { 'kindLabels': { 'Class': 'c' } },
   \ })
-
-  let g:denops#debug = 1
-  let g:denops#trace = 1
 else
   " call ddc#custom#patch_global('sources', ['tabnine', 'ale', 'buffer'])
   call ddc#custom#patch_global('sources', ['ale', 'buffer'])
