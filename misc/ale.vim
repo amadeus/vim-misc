@@ -21,8 +21,8 @@ let g:ale_echo_cursor = 0
 if !exists('g:ale_linters')
   let g:ale_linters = {}
 endif
-let g:ale_linters.javascript = ['eslint', 'fecs', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
-let g:ale_linters.typescript = ['eslint', 'tslint', 'tsserver', 'typecheck', 'xo']
+let g:ale_linters.javascript = ['biome', 'eslint', 'fecs', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
+let g:ale_linters.typescript = ['biome', 'eslint', 'tslint', 'tsserver', 'typecheck', 'xo']
 
 if !exists('g:ale_fixers')
   let g:ale_fixers = {}
