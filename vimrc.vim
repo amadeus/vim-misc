@@ -71,9 +71,9 @@ set foldlevel=99
 " foldmethod=syntax is REALLY slow, so is FastFold, indent is
 " close enough and is very performant
 set foldmethod=indent
-" set foldmethod=syntax
 set sessionoptions=buffers,tabpages,curdir,slash
-set viewoptions=slash,curdir
+set viewoptions=slash
+" set viewoptions=slash,curdir
 
 " Format Options
 set formatoptions+=njt
