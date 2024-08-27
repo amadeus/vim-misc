@@ -491,9 +491,13 @@ let g:scratch_top = 0
 
 
 " vim-hexokinase
-let g:Hexokinase_highlighters = ['sign_column']
-let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx']
-runtime! /misc/discord-color-variables.vim
+if has('nvim') == 1
+  let g:Hexokinase_highlighters = ['virtual']
+else
+  let g:Hexokinase_highlighters = ['sign_column']
+endif
+" let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx']
+" runtime! /misc/discord-color-variables.vim
 
 
 " EditorConfig
@@ -538,8 +542,10 @@ if 1
 endif
 
 " ALE settings
-if 1
+if has('nvim') == 0
   runtime! /misc/ale.vim
+else
+  let g:neoformat_try_node_exe = 1
 endif
 
 " Lightline Playground Settings
