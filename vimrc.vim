@@ -72,7 +72,7 @@ set foldlevel=99
 " close enough and is very performant
 set foldmethod=indent
 set sessionoptions=buffers,tabpages,curdir,slash
-set viewoptions=slash
+set viewoptions=slash,cursor
 " set viewoptions=slash,curdir
 
 " Format Options
