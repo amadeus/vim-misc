@@ -5,5 +5,10 @@ function! SynStack()
     \ " > ")
 endfunc
 
-nnoremap <F7> :call SynStack()<CR>
-inoremap <F7> exec "call SynStack()"
+if has('nvim') == 1
+  nnoremap <F7> :Inspect<CR>
+  inoremap <F7> exec "Inspect"
+else
+  nnoremap <F7> :call SynStack()<CR>
+  inoremap <F7> exec "call SynStack()"
+end

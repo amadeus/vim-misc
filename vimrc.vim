@@ -9,8 +9,8 @@ set autoread
 set nomodeline
 
 " Indent settings
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set shiftround
 set noexpandtab
 set smartindent
@@ -165,7 +165,7 @@ function! SetScrolloff()
   if &buftype ==? 'quickfix'
     setlocal scrolloff=0
   else
-    setlocal scrolloff=3
+    setlocal scrolloff=5
   endif
 endfunction
 
@@ -180,6 +180,7 @@ noremap     <F1> <Esc>
 inoremap    <F1> <Esc>
 inoremap    <c-x><c-x> <c-x><c-o>
 nnoremap    K    <Nop>
+nnoremap    Y    yy
 cnoreabbrev W    w
 cnoreabbrev Wq   wq
 cnoreabbrev WQ   wq
@@ -560,44 +561,9 @@ endif
 " I keep this around because sometimes I like to experiment, and it's nice to
 " just have the code easily available
 
-" CoC settings
-if 0
-  runtime! /misc/coc.vim
-endif
-
-" Completer settings
-if 0
-  runtime! /misc/completor-config.vim
-endif
-
-" Omnicomplete settings
-if 0
-  runtime! /misc/omni-complete.vim
-endif
-
-" CtrlP Settings
-if 0
-  runtime! /misc/ctrlp-settings.vim
-endif
-
-" LanguageServer Playground Settings
-if 0
-  runtime! /misc/lsp-playground.vim
-endif
-
 " Airline Playground Settings
 if 0
   runtime! /misc/airline-config.vim
-endif
-
-" LSC Settings (it kinda sucked...)
-if 0
-  runtime! /misc/lsc.vim
-endif
-
-" Asyncomplete Settings (ddc may be the new bay...)
-if 0
-  runtime! /misc/asyncomplete.vim
 endif
 
 " Neural.vim settings
