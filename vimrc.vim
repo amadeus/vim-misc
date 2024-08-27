@@ -496,7 +496,7 @@ if has('nvim') == 1
 else
   let g:Hexokinase_highlighters = ['sign_column']
 endif
-" let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx']
+let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx']
 " runtime! /misc/discord-color-variables.vim
 
 
