@@ -135,10 +135,10 @@ if has('nvim') == 1
   set guifont=InputMono:h15
 elseif has('gui_running')
   " InputMono Settings
-  set guifont=InputMono-Regular:h15
+  set guifont=BerkeleyMono-Regular:h16
   " Make sure preserve font line spacing is checked
   " set linespace=4
-  set columnspace=-1
+  " set columnspace=-1
 endif
 
 " Improve splitting logic
