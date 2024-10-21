@@ -136,6 +136,7 @@ if has('nvim') == 1
 elseif has('gui_running')
   " InputMono Settings
   set guifont=BerkeleyMono-Regular:h16
+  set macligatures
   " Make sure preserve font line spacing is checked
   " set linespace=4
   " set columnspace=-1
