@@ -542,6 +542,10 @@ if 1
   runtime! /misc/ddc.vim
 endif
 
+if 0
+  runtime! /misc/vimcomplete.vim
+endif
+
 " ALE settings
 if has('nvim') == 0
   runtime! /misc/ale.vim
