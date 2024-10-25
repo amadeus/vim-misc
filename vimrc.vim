@@ -528,6 +528,9 @@ let g:zig_fmt_autosave = 0
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[0 q"
 
+" direnv config
+let g:direnv_silent_load = 1
+
 
 """ Major Plugin settings
 
