@@ -512,6 +512,7 @@ xmap gx <Plug>(open-url-browser)
 
 " Vim Matchup Settings
 " Auto changes closing tag when editing opening tag
+let g:loaded_matchit = 1 " Disable matchit because we are using matchup
 let g:matchup_transmute_enabled = 1
 let g:matchup_matchparen_offscreen = {'method': 'popup'}
 let g:matchup_surround_enabled = 1
