@@ -1,19 +1,41 @@
 lua <<EOF
--- local capabilities = require("ddc_source_lsp").make_client_capabilities()
+
+require("mason").setup()
+
 local capabilities = require("ddc_source_lsp").make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-require("mason").setup()
-require("mason-lspconfig").setup()
+
+local lspconfig = require("mason-lspconfig")
+lspconfig.setup({capabilities})
+
+-- lspconfig.lua_ls.setup({
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         -- Set Lua runtime version
+--         version = "LuaJIT",
+--       },
+--       diagnostics = {
+--         -- Recognize 'vim' as a global
+--         globals = { "vim" },
+--       },
+--       workspace = {
+--         -- Include Neovim runtime files
+--         library = vim.api.nvim_get_runtime_file("", true),
+--       },
+--       telemetry = {
+--         -- Disable telemetry
+--         enable = false,
+--       },
+--     },
+--   },
+-- })
+
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup({capabilities = capabilities})
   end,
 }
-
--- Do I still neven need these?
--- local lspconfig = require('lspconfig').setup()
--- local capabilities = require("ddc_source_lsp").make_client_capabilities()
--- require("lspconfig").denols.setup({capabilities = capabilities})
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = {"typescript", "javascript", "vimdoc", "vim", "lua", "json", "css", "html", "yaml", "css", "vimdoc"},
@@ -83,25 +105,6 @@ none_ls.setup({
   end,
 })
 
-
--- lspconfig.lua_ls.setup({
---   settings = {
---     Lua = {
---       runtime = {
---         version = "LuaJIT", -- Set Lua runtime version
---       },
---       diagnostics = {
---         globals = { "vim" }, -- Recognize 'vim' as a global
---       },
---       workspace = {
---         library = vim.api.nvim_get_runtime_file("", true), -- Include Neovim runtime files
---       },
---       telemetry = {
---         enable = false, -- Disable telemetry
---       },
---     },
---   },
--- })
 
 -- local function remove_underline()
 --   local groups_to_update = {
