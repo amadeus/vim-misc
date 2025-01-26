@@ -73,15 +73,15 @@ local none_ls = require('null-ls')
 -- Helper function to find the local Prettier binary
 local function find_local_prettier()
   -- Start at the directory of the current buffer
-  local cwd = vim.fn.expand("%:p:h") 
+  local cwd = vim.fn.expand("%:p:h")
   -- Crawl upwards until reaching the root directory
-  while cwd ~= "/" do 
+  while cwd ~= "/" do
     local prettier_bin = cwd .. "/node_modules/.bin/prettier"
     if vim.fn.filereadable(prettier_bin) == 1 then
       return prettier_bin
     end
     -- Move one directory up
-    cwd = vim.fn.fnamemodify(cwd, ":h") 
+    cwd = vim.fn.fnamemodify(cwd, ":h")
   end
   return "prettier"
 end
