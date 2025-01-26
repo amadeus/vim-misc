@@ -1,3 +1,6 @@
+if has('nvim') == 1
+  finish
+endif
 " Fancy cursorline settings
 " Only set cursorline on the active buffer
 " Only highlight the number column

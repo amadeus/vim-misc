@@ -3,22 +3,24 @@
 " NOTE: passing a dict to window enables the popup window functionality
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.2, 'border': 'none', 'yoffset': 1.0} }
 
-let g:fzf_colors = {
-  \ 'fg':      ['fg', 'fzfRegion'],
-  \ 'bg':      ['bg', 'fzfRegion'],
-  \ 'hl':      ['fg', 'IncSearch'],
-  \ 'fg+':     ['fg', 'WildMenu'],
-  \ 'bg+':     ['bg', 'WildMenu'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'LineNr'],
-  \ 'prompt':  ['fg', 'IncSearch'],
-  \ 'pointer': ['bg', 'WildMenu'],
-  \ 'marker':  ['fg', 'Statement'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'],
-  \ 'gutter':  ['bg', 'fzfRegion']
-\ }
+if has('nvim') == 0
+  let g:fzf_colors = {
+    \ 'fg':      ['fg', 'fzfRegion'],
+    \ 'bg':      ['bg', 'fzfRegion'],
+    \ 'hl':      ['fg', 'IncSearch'],
+    \ 'fg+':     ['fg', 'WildMenu'],
+    \ 'bg+':     ['bg', 'WildMenu'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'LineNr'],
+    \ 'prompt':  ['fg', 'IncSearch'],
+    \ 'pointer': ['bg', 'WildMenu'],
+    \ 'marker':  ['fg', 'Statement'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'],
+    \ 'gutter':  ['bg', 'fzfRegion']
+  \ }
+endif
 
 " https://github.com/junegunn/fzf.vim/pull/733#issuecomment-559720813
 " https://github.com/junegunn/fzf/blob/master/README-VIM.md

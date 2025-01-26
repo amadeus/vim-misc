@@ -1,3 +1,198 @@
+lua <<EOF
+-- local capabilities = require("ddc_source_lsp").make_client_capabilities()
+local capabilities = require("ddc_source_lsp").make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+  function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup({capabilities = capabilities})
+  end,
+}
+
+-- Do I still neven need these?
+-- local lspconfig = require('lspconfig').setup()
+-- local capabilities = require("ddc_source_lsp").make_client_capabilities()
+-- require("lspconfig").denols.setup({capabilities = capabilities})
+
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {"typescript", "javascript", "vimdoc", "vim", "lua", "json", "css", "html", "yaml", "css", "vimdoc"},
+  -- ignore_install = { "javascript", "tsx" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    -- custom_captures = {
+    --   ["function_declaration.identifier"] = "TSCFuncName"
+    -- },
+  },
+  indent = {
+    enable = true,
+    disable = {}
+  },
+  -- incremental_selection = {enable = true},
+  textobjects = {enable = true},
+  -- autotag = {
+  --   enable = true
+  -- }
+}
+
+require('ayu').setup({
+  mirage = true,
+  overrides = {
+    Normal = { bg = "None" },
+    -- CursorColumn = { bg = "None" },
+    -- CursorLine = { style = '' },
+    SignColumn = { bg = "None" },
+    EndOfBuffer = { fg = "#0f1419" },
+  }
+})
+
+local none_ls = require('null-ls')
+-- Helper function to find the local Prettier binary
+local function find_local_prettier()
+  -- Start at the directory of the current buffer
+  local cwd = vim.fn.expand("%:p:h") 
+  -- Crawl upwards until reaching the root directory
+  while cwd ~= "/" do 
+    local prettier_bin = cwd .. "/node_modules/.bin/prettier"
+    if vim.fn.filereadable(prettier_bin) == 1 then
+      return prettier_bin
+    end
+    -- Move one directory up
+    cwd = vim.fn.fnamemodify(cwd, ":h") 
+  end
+  return "prettier"
+end
+
+none_ls.setup({
+  sources = {
+    none_ls.builtins.formatting.prettier.with({
+      command = find_local_prettier(), -- Dynamically find the local Prettier
+      extra_filetypes = { "json", "css", "typescript", "javascript", "html" },
+    }),
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
+    end
+  end,
+})
+
+
+-- lspconfig.lua_ls.setup({
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         version = "LuaJIT", -- Set Lua runtime version
+--       },
+--       diagnostics = {
+--         globals = { "vim" }, -- Recognize 'vim' as a global
+--       },
+--       workspace = {
+--         library = vim.api.nvim_get_runtime_file("", true), -- Include Neovim runtime files
+--       },
+--       telemetry = {
+--         enable = false, -- Disable telemetry
+--       },
+--     },
+--   },
+-- })
+
+-- local function remove_underline()
+--   local groups_to_update = {
+--     'DiffAdd',
+--     'DiffChange',
+--     'DiffDelete',
+--     'DiffText',
+--   }
+--   for _, group in ipairs(groups_to_update) do
+--     vim.api.nvim_set_hl(0, group, { underline = false })
+--   end
+-- end
+-- remove_underline();
+
+require('lualine').setup({
+  options = {
+    theme = 'ayu_mirage',
+    icons_enabled = false,
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' },
+  },
+  sections = {
+    lualine_a = {
+      {
+        'mode',
+        padding = 0,
+        -- Print 3 letter shorthands for all modes
+        fmt = function(name)
+          local firstChar = string.sub(name, 1, 1)
+          local secondChar = string.sub(name, 2, 2)
+          -- If the first character is not "V", return it with spaces around
+          if firstChar ~= "V" or secondChar ~= '-' then
+            return " " .. string.sub(name, 1, 3) .. " "
+          end
+
+          local afterDash = string.sub(name, 3, 3)
+          return " V:" .. afterDash .. " "
+        end
+      }
+    },
+    lualine_b = {
+      { 'branch', separator = '', padding = {left = 1, right = 0} },
+      { 'diff' },
+    },
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+        symbols = {
+          modified = '+',
+          readonly = '-',
+          unnamed = '----',
+          newfile = 'New'
+        }
+      }
+    },
+    lualine_x = { 'filetype' },
+    lualine_y = {
+    },
+    lualine_z = {
+      {
+        'diagnostics',
+        color = { fg = '#bfbdb6', bg = '#d85757' }
+      }
+    }
+  }
+})
+
+if vim.g.neovide then
+  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_cursor_animation_length = 0.1
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_cursor_trail_size = 0.1
+  vim.g.neovide_cursor_animate_command_line = false
+  vim.opt.linespace = 3
+  -- vim.o.guifont="Berkeley Mono:h16"
+end
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+EOF
+
 " Misc app settings
 set encoding=utf-8
 scriptencoding utf-8
@@ -33,10 +228,12 @@ set noshowmode
 set isfname+=[,],40,41
 " Have the showbreak appear in the number column
 set cpoptions+=n
-augroup terminal_list_tweaks
-  autocmd!
-  autocmd TerminalOpen * setlocal nolist
-augroup END
+if has('nvim') == 0
+  augroup terminal_list_tweaks
+    autocmd!
+    autocmd TerminalOpen * setlocal nolist
+  augroup END
+endif
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -85,7 +282,11 @@ endif
 " Basically use a fancier colortheme in MacVim
 if has('termguicolors')
   set termguicolors
-  colorscheme evokai
+  if has('nvim') == 1
+    colorscheme ayu
+  else
+    colorscheme evokai
+  endif
 else
   colorscheme molokai
 endif
@@ -129,7 +330,9 @@ set cpoptions+=J
 
 " For some reason, it seems that Mac has a different
 " font API for declaring the font
-if has('gui_running')
+if has('nvim') == 1
+  set guifont=Berkeley\ Mono:h16
+elseif has('gui_running')
   " InputMono Settings
   set guifont=BerkeleyMono-Regular:h16
   set macligatures
@@ -156,21 +359,6 @@ set completeopt=menuone,menu,noselect
 
 " Diff settings
 set diffopt+=algorithm:patience,vertical,indent-heuristic
-
-" Disable scrolloff in quickfix
-function! SetScrolloff()
-  if &buftype ==? 'quickfix'
-    setlocal scrolloff=0
-  else
-    setlocal scrolloff=5
-  endif
-endfunction
-
-augroup fixscrolloff
-  autocmd!
-  autocmd Filetype,BufEnter,BufCreate,BufAdd * :call SetScrolloff()
-augroup END
-
 
 " Key Mappings
 noremap     <F1> <Esc>
@@ -211,7 +399,7 @@ nnoremap Q q
 vnoremap Q q
 nnoremap <F5> :syntax sync fromstart<cr>
 nnoremap <leader>nn  :set hls!<cr>
-nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/vimrc.vim<cr>
+nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/nvimrc.vim<cr>
 nnoremap <leader>mc  :e ~/.vim/bundle/vim-evokai/colors/evokai.vim<cr>
 nnoremap <leader>hh  :runtime! /syntax/hitest.vim<cr>
 nnoremap <leader>u   :MundoToggle<cr>
@@ -301,7 +489,11 @@ augroup END
 " Swap, Undo and Backup Folder Configuration
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
-set undodir=~/.vim/undo
+if has('nvim')
+  set undodir=~/.config/nvim/undo
+else
+  set undodir=~/.vim/undo
+endif
 set nobackup
 set noswapfile
 set undofile
@@ -328,20 +520,6 @@ augroup END
 " Change inner/around CSS Key
 onoremap ik :<c-u>execute "normal! ^vt:"<cr>
 onoremap ak :<c-u>execute "normal! 0vf:"<cr>
-
-" Change inner/around CSS Property
-onoremap ir :<c-u>execute "normal! 0f:lvt;"<cr>
-onoremap ar :<c-u>execute "normal! 0f:lvf;"<cr>
-
-" Paste whatever is in the default register as a react prop
-nnoremap <leader>po :<c-u>execute 'normal a <c-r>"={<c-r>"'<cr>
-nnoremap <leader>Po :<c-u>execute 'normal i <c-r>"={<c-r>"'<cr>
-
-" Disable smartindent in python, because it sucks
-augroup pythonsmartindent
-  autocmd!
-  autocmd FileType python setlocal nosmartindent
-augroup END
 
 " Fun tiems
 iabbrev ldis ಠ_ಠ
@@ -376,7 +554,6 @@ command! -nargs=0 Wipeout call WipeoutBuffers()
 
 
 " ==== PLUGIN SETTINGS ===
-
 " Gist settings
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
@@ -388,7 +565,6 @@ augroup detectindent
   autocmd!
   autocmd BufReadPost * DetectIndent
 augroup END
-
 
 " Fugitive Settings
 " delete fugitive buffers on hide
@@ -402,10 +578,8 @@ augroup gitcommit
   autocmd FileType gitcommit setlocal nolist
 augroup END
 
-
 " vim-escaper Custom Entity Replacements
 let g:CustomEntities = [['(c)',  '\&copy;']]
-
 
 " Grepper
 let g:grepper = {}
@@ -415,24 +589,10 @@ let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', '
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
-
-" JS and JSX Config
-" Always enable JSX in JS files... who am I kidding...
-let g:jsx_ext_required = 0
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-" I generally use prettier now... so ignore all this stuff
-augroup jsfixes
-  autocmd!
-  autocmd Syntax javascript setlocal nosmartindent|setlocal noautoindent
-augroup END
-
-
 " Goyo settings
 let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
 let g:goyo_width = 90
-
 
 " Easymotion mappings
 map  <leader>/ <Plug>(easymotion-sn)
@@ -445,27 +605,9 @@ map  <leader><leader><leader> <Plug>(easymotion-repeat)
 map  <space> <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
 
-
-" Dope patch - not integrated yet, probably would make indentLine not needed?
-if exists('&indentmarker')
-  " set indentmarker=⋅
-  set indentmarker=⋅
-  augroup showindent
-    autocmd!
-    autocmd FileType * setlocal showindent
-    autocmd FileType help,startify,markdown,nerdtree,git setlocal noshowindent
-  augroup END
-
-  " For some reason I have to set this after showindent or
-  " incsearch never gets set for some weird reason
-  set incsearch
-endif
-
-
 " LocalVimRC Settings
 let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
-
 
 " targets.vim
 augroup targets_tweaks
@@ -484,10 +626,8 @@ let g:scratch_top = 0
 
 
 " vim-hexokinase
-let g:Hexokinase_highlighters = ['sign_column']
+let g:Hexokinase_highlighters = ['virtual']
 let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx']
-" runtime! /misc/discord-color-variables.vim
-
 
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
@@ -534,18 +674,9 @@ if 1
   runtime! /misc/ddc.vim
 endif
 
-if 0
-  runtime! /misc/vimcomplete.vim
-endif
-
 " ALE settings
 if 1
-  runtime! /misc/ale.vim
-endif
-
-" Lightline Playground Settings
-if 1
-  runtime! /misc/lightline-playground.vim
+  runtime! /misc/ale-nvim.vim
 endif
 
 " GitGutter settings
@@ -558,16 +689,8 @@ if 1
   runtime! /misc/fzf.vim
 endif
 
-""" Deprecated Plugins
-" I keep this around because sometimes I like to experiment, and it's nice to
-" just have the code easily available
-
-" Airline Playground Settings
-if 0
-  runtime! /misc/airline-config.vim
-endif
-
 " Neural.vim settings
 if 0
   runtime! /misc/neural.vim
 endif
+
