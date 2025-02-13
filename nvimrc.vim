@@ -299,7 +299,7 @@ endif
 
 set guioptions=c
 set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff150-blinkon150,ve:ver35-Cursor,o:hor15-Cursor,i-ci-c:ver25-Cursor/lCursor-blinkwait300-blinkoff150-blinkon150,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait300-blinkoff150-blinkon150
-set shortmess=ITaoc
+set shortmess=ITFaocC
 " Set title string to current working directory!
 set titlestring=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 set noruler
