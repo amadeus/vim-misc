@@ -2,9 +2,6 @@ lua <<EOF
 
 require("mason").setup()
 
-local capabilities = require("ddc_source_lsp").make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 local lspconfig = require("mason-lspconfig")
 lspconfig.setup({capabilities})
 
@@ -30,6 +27,65 @@ lspconfig.setup({capabilities})
 --     },
 --   },
 -- })
+
+local blink_cmp = require('blink.cmp')
+-- Configure blink.cmp
+blink_cmp.setup({
+  keymap = {
+    preset = 'default',
+    ['<C-n>'] = { 'show', 'select_next', 'fallback' }
+  },
+  appearance = {
+    use_nvim_cmp_as_default = true,
+    -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+    -- Adjusts spacing to ensure icons are aligned
+    nerd_font_variant = 'mono'
+  },
+
+  -- Default list of enabled providers
+  completion = {
+    list = {
+      selection = {
+        preselect = false
+      }
+    },
+    trigger = {
+      show_on_blocked_trigger_characters = {},
+      -- show_on_blocked_trigger_characters = { ' ', '\n', '\t' },
+    },
+    documentation = {
+      auto_show = true,
+    },
+
+  },
+
+  sources = {
+    default = { 'lsp', 'path', 'buffer' },
+    providers = {
+      lsp = {
+        override = {
+          -- Appears to be broken at the moment, see: https://github.com/Saghen/blink.cmp/issues/836
+          get_trigger_characters = function(self)
+            local trigger_characters = self:get_trigger_characters()
+            vim.list_extend(trigger_characters, { '\n', '\t', ' ' })
+            return trigger_characters
+          end
+        },
+      },
+    },
+  },
+
+  -- Experimental signature help support
+  signature = {
+    enabled = true,
+    window = {
+      border = 'none',
+    },
+  },
+
+  fuzzy = { implementation = "prefer_rust_with_warning" }
+})
+
 
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
@@ -189,6 +245,7 @@ if vim.g.neovide then
   vim.opt.linespace = 3
   -- vim.o.guifont="Berkeley Mono:h16"
 end
+
 -- Allow clipboard copy paste in neovim
 vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
@@ -672,12 +729,6 @@ let g:direnv_silent_load = 1
 " Startify
 if 1
   runtime! /misc/startify.vim
-endif
-
-" ddc.vim
-" really digging it, but the lack of file autocomplete is a bit of a pain...
-if 1
-  runtime! /misc/ddc.vim
 endif
 
 " ALE settings
