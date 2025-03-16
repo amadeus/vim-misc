@@ -46,7 +46,7 @@ blink_cmp.setup({
   completion = {
     list = {
       selection = {
-        preselect = false
+        preselect = false,
       }
     },
     trigger = {
@@ -57,6 +57,19 @@ blink_cmp.setup({
       auto_show = true,
     },
 
+  },
+
+  cmdline = {
+    completion = {
+      list = {
+        selection = {
+          preselect = false,
+        },
+      },
+      menu = {
+        auto_show = true,
+      },
+    },
   },
 
   sources = {
