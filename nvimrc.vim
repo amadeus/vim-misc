@@ -726,6 +726,11 @@ let g:direnv_silent_load = 1
 
 """ Major Plugin settings
 
+" Claude Chat
+if 1
+  runtime! /misc/claude_chat.vim
+endif
+
 " Startify
 if 1
   runtime! /misc/startify.vim
