@@ -1,8 +1,6 @@
 " GitGutter Settings
 nmap <d-j> <Plug>(GitGutterNextHunk)
 nmap <d-k> <Plug>(GitGutterPrevHunk)
-nmap <a-j> <Plug>(GitGutterNextHunk)
-nmap <a-k> <Plug>(GitGutterPrevHunk)
 nmap <leader>sh <Plug>(GitGutterStageHunk)
 nmap <leader>rh <Plug>(GitGutterRevertHunk)
 nmap <leader>ga <Plug>(GitGutterAll)

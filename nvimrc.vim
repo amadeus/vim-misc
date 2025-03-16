@@ -4,6 +4,11 @@ require("mason").setup()
 
 local lspconfig = require("mason-lspconfig")
 lspconfig.setup({capabilities})
+lspconfig.setup_handlers {
+  function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup({capabilities = capabilities})
+  end,
+}
 
 -- lspconfig.lua_ls.setup({
 --   settings = {
@@ -100,11 +105,6 @@ blink_cmp.setup({
 })
 
 
-require("mason-lspconfig").setup_handlers {
-  function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup({capabilities = capabilities})
-  end,
-}
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = {"typescript", "javascript", "vimdoc", "vim", "lua", "json", "css", "html", "yaml", "css", "vimdoc"},
@@ -137,43 +137,6 @@ require('ayu').setup({
     EndOfBuffer = { fg = "#0f1419" },
   }
 })
-
-local none_ls = require('null-ls')
--- Helper function to find the local Prettier binary
-local function find_local_prettier()
-  -- Start at the directory of the current buffer
-  local cwd = vim.fn.expand("%:p:h")
-  -- Crawl upwards until reaching the root directory
-  while cwd ~= "/" do
-    local prettier_bin = cwd .. "/node_modules/.bin/prettier"
-    if vim.fn.filereadable(prettier_bin) == 1 then
-      return prettier_bin
-    end
-    -- Move one directory up
-    cwd = vim.fn.fnamemodify(cwd, ":h")
-  end
-  return "prettier"
-end
-
-none_ls.setup({
-  sources = {
-    none_ls.builtins.formatting.prettier.with({
-      command = find_local_prettier(), -- Dynamically find the local Prettier
-      extra_filetypes = { "json", "css", "typescript", "javascript", "html" },
-    }),
-  },
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ async = false })
-        end,
-      })
-    end
-  end,
-})
-
 
 -- local function remove_underline()
 --   local groups_to_update = {
@@ -752,6 +715,11 @@ endif
 " ALE settings
 if 1
   runtime! /misc/ale-nvim.vim
+endif
+
+" none-ls settings - prefer ale at the moment
+if 0
+  runtime! /misc/none_ls.vim
 endif
 
 " GitGutter settings
