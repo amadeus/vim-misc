@@ -28,4 +28,3 @@ let g:startify_fortune_use_unicode = 1
 if !has('gui_running')
   let g:startify_disable_at_vimenter = 1
 endif
-
