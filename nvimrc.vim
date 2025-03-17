@@ -220,6 +220,8 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animate_command_line = false
   vim.opt.linespace = 3
   -- vim.o.guifont="Berkeley Mono:h16"
+  local default_path = vim.fn.expand("~")
+  vim.api.nvim_set_current_dir(default_path)
 end
 
 -- Allow clipboard copy paste in neovim
@@ -322,7 +324,8 @@ endif
 if has('termguicolors')
   set termguicolors
   if has('nvim') == 1
-    colorscheme ayu
+    colorscheme evokai
+    "colorscheme ayu
   else
     colorscheme evokai
   endif
