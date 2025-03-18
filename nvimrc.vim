@@ -58,6 +58,10 @@ blink_cmp.setup({
       show_on_blocked_trigger_characters = {},
       -- show_on_blocked_trigger_characters = { ' ', '\n', '\t' },
     },
+    accept = {
+      -- A way to fix neovide cursor animations
+      dot_repeat = false,
+    },
     documentation = {
       auto_show = true,
     },
