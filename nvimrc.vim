@@ -233,6 +233,11 @@ if vim.g.neovide then
   -- vim.o.guifont="Berkeley Mono:h16"
   local default_path = vim.fn.expand("~")
   vim.api.nvim_set_current_dir(default_path)
+  -- Doesn't seem to work...
+  -- local alpha = function()
+  --   return string.format("%x", 255)
+  -- end
+  -- vim.g.neovide_background_color = '#1b1b13' .. alpha()
 end
 
 -- Allow clipboard copy paste in neovim
