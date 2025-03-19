@@ -45,7 +45,8 @@ local blink_cmp = require('blink.cmp')
 blink_cmp.setup({
   keymap = {
     preset = 'default',
-    ['<C-n>'] = { 'show', 'select_next', 'fallback' }
+    ['<C-n>'] = { 'show', 'select_next', 'fallback' },
+    ['<C-k>'] = { 'fallback' },
   },
   appearance = {
     use_nvim_cmp_as_default = true,
