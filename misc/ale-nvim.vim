@@ -15,6 +15,8 @@ let g:ale_echo_delay = 200
 let g:ale_virtualtext_cursor = 1
 let g:ale_echo_cursor = 0
 
+let g:ale_linter_aliases = {'typescript.tsx': ['typescript', 'tsx']}
+
 if !exists('g:ale_linters')
   let g:ale_linters = {}
 endif
