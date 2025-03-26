@@ -118,7 +118,7 @@ blink_cmp.setup({
 
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {"typescript", "javascript", "vimdoc", "vim", "lua", "json", "css", "html", "yaml", "css", "vimdoc"},
+  ensure_installed = {"typescript", "javascript", "vimdoc", "vim", "lua", "json", "css", "html", "yaml", "css", "vimdoc", "query"},
   -- ignore_install = { "javascript", "tsx" }, -- List of parsers to ignore installing
   highlight = {
     enable = true
