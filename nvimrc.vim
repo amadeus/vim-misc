@@ -345,6 +345,9 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
+-- Navigate through the diagnostics in the file
+vim.keymap.set('n', '<A-j>', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
+vim.keymap.set('n', '<A-k>', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
 
 
 if vim.g.neovide then

@@ -49,9 +49,10 @@ nnoremap <leader>fe  :ALEFix eslint<cr>
 nnoremap <leader>fr  :ALEFindReferences<cr>
 nnoremap <leader>rr  :ALERename<cr>
 nnoremap <leader>ca  :ALECodeAction<cr>
+let g:ale_use_neovim_diagnostics_api = 0
 
-nmap <silent> <a-k> <Plug>(ale_previous_wrap)
-nmap <silent> <a-j> <Plug>(ale_next_wrap)
+"nmap <silent> <a-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <a-j> <Plug>(ale_next_wrap)
 
 function! ToggleFormatSave()
   if exists('b:ale_fix_on_save')
@@ -75,3 +76,12 @@ let g:ale_cpp_clangd_options='-I /Users/amadeus/Developer/PlaydateSDK/C_API'
 let g:ale_c_clangd_options='-I /Users/amadeus/Developer/PlaydateSDK/C_API'
 let g:ale_c_cc_options='-I /Users/amadeus/Developer/PlaydateSDK/C_API'
 let g:ale_cpp_cc_options='-I /Users/amadeus/Developer/PlaydateSDK/C_API'
+
+let g:ale_disable_lsp = 1
+let g:ale_set_highlights = 0
+let g:ale_set_signs = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_filetype_changed = 0
