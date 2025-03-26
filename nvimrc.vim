@@ -13,7 +13,16 @@ local lspconfig = require("mason-lspconfig")
 lspconfig.setup({capabilities})
 lspconfig.setup_handlers {
   function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup({capabilities = capabilities})
+    require("lspconfig")[server_name].setup({
+      capabilities = capabilities,
+      -- Disable semantic tokens/highlighting from LSP
+      semanticTokensProvider = false,
+      -- Alternatively, you can use this setting which is more commonly supported
+      on_attach = function(client, bufnr)
+        -- Disable document highlighting
+        client.server_capabilities.semanticTokensProvider = nil
+      end
+    })
   end,
 }
 
@@ -118,8 +127,22 @@ blink_cmp.setup({
 
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {"typescript", "javascript", "vimdoc", "vim", "lua", "json", "css", "html", "yaml", "css", "vimdoc", "query"},
-  -- ignore_install = { "javascript", "tsx" }, -- List of parsers to ignore installing
+  ensure_installed = {
+    "c",
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "query",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml",
+  },
   highlight = {
     enable = true
   },
@@ -131,6 +154,13 @@ require('nvim-treesitter.configs').setup {
   textobjects = {enable = true},
   -- autotag = {
   --   enable = true
+  -- }
+
+  -- playground = {
+  --   enable = true,
+  --   disable = {},
+  --   updatetime = 25,
+  --   persist_queries = false,
   -- }
 }
 
