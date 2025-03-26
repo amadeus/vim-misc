@@ -73,7 +73,6 @@ blink_cmp.setup({
     documentation = {
       auto_show = true,
     },
-
   },
 
   cmdline = {
@@ -123,10 +122,6 @@ require('nvim-treesitter.configs').setup {
   -- ignore_install = { "javascript", "tsx" }, -- List of parsers to ignore installing
   highlight = {
     enable = true
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-    -- custom_captures = {
-    --   ["function_declaration.identifier"] = "TSCFuncName"
-    -- },
   },
   indent = {
     enable = true,
@@ -216,6 +211,35 @@ require('lualine').setup({
     }
   }
 })
+
+-- Diagnostics config
+-- I should look at configuring this with eslint and all that, so I won't need to use Ale
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "",  -- Remove default prefix (usually severity indicator)
+    suffix = "",  -- Remove default suffix
+    spacing = 0,
+    source = true,
+    current_line = true,
+    virt_text_pos = "eol",
+    hl_mode = "replace",
+    -- In case I want to format the text in a future life
+    -- format = function(diagnostic)
+    --   return 'gottem'
+    -- end,
+  },
+  virtual_lines = {
+    current_line = true,
+  },
+  float = {
+    scope = "cursor",
+  },
+  signs = true,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
 
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
