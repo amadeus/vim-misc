@@ -158,56 +158,132 @@ require('ayu').setup({
 -- end
 -- remove_underline();
 
+local separators_config = {
+  left = '',
+  right = '',
+}
+
+local mode_config = {
+  'mode',
+  padding = 0,
+  -- Print 3 letter shorthands for all modes
+  fmt = function(name)
+    local firstChar = string.sub(name, 1, 1)
+    local secondChar = string.sub(name, 2, 2)
+    -- If the first character is not "V", return it with spaces around
+    if firstChar ~= "V" or secondChar ~= '-' then
+      return " " .. string.sub(name, 1, 3) .. " "
+    end
+
+    local afterDash = string.sub(name, 3, 3)
+    return " V:" .. afterDash .. " "
+  end
+}
+
+local filename_component = {
+  'filename',
+  path = 1,
+  symbols = {
+    modified = '+',
+    readonly = '×',
+    unnamed = '',
+    newfile = 'New'
+  },
+  padding = {
+    left = 1,
+    right = 0,
+  }
+}
+
+
+local branch_component = {
+  'branch',
+  separator = '',
+  padding = {
+    left = 1,
+    right = 0
+  }
+}
+
+local filetype_component = {
+  'filetype',
+  colored = false,
+  padding = {
+    left = 1,
+    right = 1,
+  },
+}
+
+local diagnostics_component = {
+  'diagnostics',
+  sections = { 'error', 'warn' },
+  colored = true,
+  diagnostics_color = {
+    error = {fg = "#ffffff", bg = '#e60000'},
+    warn = {fg = "#ffffff", bg = '#fff600'},
+  },
+}
+
+local diff_component = { 'dif' }
+
+local selection_component = {
+  'selectioncount',
+  padding = {
+    left = 0,
+    right = 0,
+  },
+  separator = '',
+  fmt = function(str)
+    if str == nill or str == "" then
+      return ''
+    end
+    return "["..str.."]"
+  end
+}
+
 require('lualine').setup({
   options = {
     theme = 'ayu_mirage',
     icons_enabled = false,
-    section_separators = { left = '', right = '' },
-    component_separators = { left = '', right = '' },
+    section_separators = separators_config,
+    component_separators = separators_config,
   },
   sections = {
     lualine_a = {
-      {
-        'mode',
-        padding = 0,
-        -- Print 3 letter shorthands for all modes
-        fmt = function(name)
-          local firstChar = string.sub(name, 1, 1)
-          local secondChar = string.sub(name, 2, 2)
-          -- If the first character is not "V", return it with spaces around
-          if firstChar ~= "V" or secondChar ~= '-' then
-            return " " .. string.sub(name, 1, 3) .. " "
-          end
-
-          local afterDash = string.sub(name, 3, 3)
-          return " V:" .. afterDash .. " "
-        end
-      }
+      mode_config
     },
     lualine_b = {
-      { 'branch', separator = '', padding = {left = 1, right = 0} },
-      { 'diff' },
+      filename_component,
+      diff_component,
     },
     lualine_c = {
-      {
-        'filename',
-        path = 1,
-        symbols = {
-          modified = '+',
-          readonly = '-',
-          unnamed = '----',
-          newfile = 'New'
-        }
-      }
+      branch_component
     },
-    lualine_x = { 'filetype' },
-    lualine_y = {
+    lualine_x = {
+      selection_component,
+      filetype_component
     },
+    lualine_y = {},
     lualine_z = {
-      {
-        'diagnostics',
-        color = { fg = '#bfbdb6', bg = '#d85757' }
-      }
+      diagnostics_component
+    }
+  },
+  -- INACTIVE BUFFER
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {
+      filename_component,
+      diff_component,
+    },
+    lualine_c = {
+      branch_component
+    },
+    lualine_x = {
+      filetype_component
+    },
+    lualine_y = {},
+    lualine_z = {
+      diagnostics_component
     }
   }
 })
@@ -301,6 +377,7 @@ set ttimeoutlen=0
 set belloff=esc
 set clipboard=unnamed
 set backupcopy=yes
+set noshowcmd
 
 " Show invisibles
 set list
