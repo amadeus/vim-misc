@@ -483,7 +483,8 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.1
   vim.g.neovide_cursor_trail_size = 0.1
   vim.g.neovide_cursor_animate_command_line = false
-  vim.opt.linespace = 3
+  vim.g.neovide_floating_shadow = false;
+  -- vim.opt.linespace = 3
   -- vim.o.guifont="Berkeley Mono:h16"
   local default_path = vim.fn.expand("~")
   vim.api.nvim_set_current_dir(default_path)
