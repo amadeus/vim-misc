@@ -103,6 +103,15 @@ blink_cmp.setup({
       ['<left>'] = { 'fallback' },
       ['<right>'] = { 'fallback' },
     },
+    -- Doesn't appear to do anything...
+    -- sources = function()
+    --   local type = vim.fn.getcmdtype()
+    --   -- Search forward and backward
+    --   if type == '/' or type == '?' then return { 'buffer' } end
+    --   -- Commands
+    --   if type == ':' or type == '@' then return { 'cmdline' } end
+    --   return {}
+    -- end,
     completion = {
       list = {
         selection = {
