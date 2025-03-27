@@ -72,6 +72,8 @@ blink_cmp.setup({
       }
     },
     trigger = {
+      show_on_keyword = true,
+      show_on_trigger_character = true;
       show_on_blocked_trigger_characters = {},
       -- show_on_blocked_trigger_characters = { ' ', '\n', '\t' },
     },
@@ -115,18 +117,18 @@ blink_cmp.setup({
 
   sources = {
     default = { 'lsp', 'path', 'buffer' },
-    providers = {
-      lsp = {
-        override = {
-          -- Appears to be broken at the moment, see: https://github.com/Saghen/blink.cmp/issues/836
-          get_trigger_characters = function(self)
-            local trigger_characters = self:get_trigger_characters()
-            vim.list_extend(trigger_characters, { '\n', '\t', ' ' })
-            return trigger_characters
-          end
-        },
-      },
-    },
+    -- Appears to be broken at the moment, see: https://github.com/Saghen/blink.cmp/issues/836
+    -- providers = {
+    --   lsp = {
+    --     override = {
+    --       get_trigger_characters = function(self)
+    --         local trigger_characters = self:get_trigger_characters()
+    --         vim.list_extend(trigger_characters, { '\n', '\t', ' ' })
+    --         return trigger_characters
+    --       end
+    --     },
+    --   },
+    -- },
   },
 
   -- Experimental signature help support
