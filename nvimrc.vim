@@ -89,7 +89,9 @@ blink_cmp.setup({
     -- enabled = false,
     keymap = {
       preset = 'cmdline',
-      ['<Tab>'] = { 'select_and_accept' },
+      ['<tab>'] = { 'select_and_accept' },
+      ['<left>'] = { 'fallback' },
+      ['<right>'] = { 'fallback' },
     },
     completion = {
       list = {
@@ -389,7 +391,7 @@ vim.diagnostic.config({
     prefix = "",  -- Remove default prefix (usually severity indicator)
     suffix = "",  -- Remove default suffix
     spacing = 0,
-    source = true,
+    source = false,
     current_line = true,
     virt_text_pos = "eol",
     hl_mode = "replace",
@@ -399,21 +401,34 @@ vim.diagnostic.config({
     },
     -- In case I want to format the text in a future life
     -- format = function(diagnostic)
-    --   return 'gottem'
+    --   return diagnostic.message
     -- end,
   },
   -- virtual_lines = {
   --   current_line = true,
   -- },
-  float = {
-    scope = "cursor",
-    severity = {
-      vim.diagnostic.severity.WARN,
-      vim.diagnostic.severity.ERROR
-    },
+  -- float = false,
+  float = false,
+  -- float = {
+  --   scope = "cursor",
+  --   severity = {
+  --     vim.diagnostic.severity.WARN,
+  --     vim.diagnostic.severity.ERROR
+  --   },
+  -- },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '×',
+      [vim.diagnostic.severity.WARN] = '·',
+    }
   },
-  signs = true,
   underline = false,
+  -- underline = {
+  --   severity = {
+  --     vim.diagnostic.severity.WARN,
+  --     vim.diagnostic.severity.ERROR
+  --   },
+  -- },
   update_in_insert = false,
   severity_sort = true,
 })
@@ -467,12 +482,12 @@ if vim.g.neovide then
   --   return string.format("%x", 255)
   -- end
   -- vim.g.neovide_background_color = '#1b1b13' .. alpha()
-  vim.keymap.set('n', '∆', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
-  vim.keymap.set('n', '˚', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
+  vim.keymap.set('n', '∆', function() vim.diagnostic.goto_next({float = false}) end, { desc = 'Go to next diagnostic' })
+  vim.keymap.set('n', '˚', function() vim.diagnostic.goto_prev({float = false}) end, { desc = 'Go to previous diagnostic' })
 else
   -- Navigate through the diagnostics in the file
-  vim.keymap.set('n', '<A-j>', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
-  vim.keymap.set('n', '<A-k>', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
+  vim.keymap.set('n', '<A-j>', function() vim.diagnostic.goto_next({float = false}) end, { desc = 'Go to next diagnostic' })
+  vim.keymap.set('n', '<A-k>', function() vim.diagnostic.goto_prev({float = false}) end, { desc = 'Go to previous diagnostic' })
 end
 
 -- Allow clipboard copy paste in neovim
@@ -485,7 +500,7 @@ vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 vim.cmd([[ autocmd BufRead,BufNewFile */doc/* set filetype=help ]])
 
 -- Think about this boi-oh a bit more...
-vim.o.winborder = 'none'
+vim.o.winborder = 'rounded'
 
 -- Setup Hop.nvim
 require'hop'.setup { case_insensitive = true }
