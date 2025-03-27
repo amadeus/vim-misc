@@ -575,6 +575,7 @@ set background=dark
 syntax on
 syntax sync fromstart
 set cursorline
+set cursorlineopt=number
 
 " Fold Settings
 set foldlevel=99
