@@ -39,16 +39,6 @@ let g:ale_fixers.stylus = ['prettier']
 let g:ale_fixers.c = ['clang-format']
 let g:ale_save_hidden = 1
 
-nnoremap <leader>at  :ALEToggle<cr>
-nnoremap <leader>ff  :ALEFix<cr>
-nnoremap <leader>fw  :ALEFix trim_whitespace<cr>
-nnoremap <leader>jd  :ALEGoToDefinition<cr>
-nnoremap <leader>aa  :ALEHover<cr>
-nnoremap <leader>ad  :ALEDetail<cr>
-nnoremap <leader>fe  :ALEFix eslint<cr>
-nnoremap <leader>fr  :ALEFindReferences<cr>
-nnoremap <leader>rr  :ALERename<cr>
-nnoremap <leader>ca  :ALECodeAction<cr>
 let g:ale_use_neovim_diagnostics_api = 0
 
 "nmap <silent> <a-k> <Plug>(ale_previous_wrap)

@@ -82,9 +82,55 @@ blink_cmp.setup({
     documentation = {
       auto_show = true,
     },
+    -- menu = {
+    --   draw = {
+    --     components = {
+    --       kind_icon = {
+    --         text = function(ctx)
+    --           local lspkind = require("lspkind")
+    --           local icon = ctx.kind_icon
+    --           if vim.tbl_contains({ "Path" }, ctx.source_name) then
+    --               local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+    --               if dev_icon then
+    --                   icon = dev_icon
+    --               end
+    --           else
+    --               icon = require("lspkind").symbolic(ctx.kind, {
+    --                   mode = "symbol",
+    --               })
+    --           end
+    --
+    --           return icon .. ctx.icon_gap
+    --         end,
+    --
+    --         -- Optionally, use the highlight groups from nvim-web-devicons
+    --         -- You can also add the same function for `kind.highlight` if you want to
+    --         -- keep the highlight groups in sync with the icons.
+    --         highlight = function(ctx)
+    --           local hl = ctx.kind_hl
+    --           if vim.tbl_contains({ "Path" }, ctx.source_name) then
+    --             local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+    --             if dev_icon then
+    --               hl = dev_hl
+    --             end
+    --           end
+    --           return hl
+    --         end,
+    --       }
+    --     }
+    --   }
+    -- }
   },
 
   cmdline = {
+    -- This seems to build grepper for some reason :thonk:
+    -- enabled = false,
+    keymap = {
+      preset = 'cmdline',
+      ['<Tab>'] = { 'select_and_accept' },
+      -- ['<C-n>'] = { 'show', 'select_next', 'fallback' },
+      -- ['<C-k>'] = { 'fallback' },
+    },
     completion = {
       list = {
         selection = {
@@ -164,16 +210,16 @@ require('nvim-treesitter.configs').setup {
   -- }
 }
 
-require('ayu').setup({
-  mirage = true,
-  overrides = {
-    Normal = { bg = "None" },
-    -- CursorColumn = { bg = "None" },
-    -- CursorLine = { style = '' },
-    SignColumn = { bg = "None" },
-    EndOfBuffer = { fg = "#0f1419" },
-  }
-})
+-- require('ayu').setup({
+--   mirage = true,
+--   overrides = {
+--     Normal = { bg = "None" },
+--     -- CursorColumn = { bg = "None" },
+--     -- CursorLine = { style = '' },
+--     SignColumn = { bg = "None" },
+--     EndOfBuffer = { fg = "#0f1419" },
+--   }
+-- })
 
 -- local function remove_underline()
 --   local groups_to_update = {
@@ -210,6 +256,15 @@ local mode_config = {
   end
 }
 
+function convertPath(input)
+  local _, actualPath = input:match("^vaffle://(%d+)//(.*)")
+  if actualPath then
+    return "/" .. actualPath
+  else
+    return "Vaffle "
+  end
+end
+
 local filename_component = {
   'filename',
   path = 1,
@@ -221,8 +276,20 @@ local filename_component = {
   },
   padding = {
     left = 1,
-    right = 0,
-  }
+    right = 1,
+  },
+  fmt = function(str, ctx)
+    if string.match(str, "^fugitive:") then
+      return 'Fugitive '
+    end
+
+    if string.match(str, "^vaffle:") then
+      return convertPath(str)
+    end
+    -- vim.api.nvim_notify('notcaught', 1, {})
+    -- vim.api.nvim_echo({{vim.inspect(ctx), "Normal"}}, true, {})
+    return str
+  end,
 }
 
 
@@ -250,7 +317,7 @@ local diagnostics_component = {
   colored = true,
   diagnostics_color = {
     error = {fg = "#ffffff", bg = '#e60000'},
-    warn = {fg = "#ffffff", bg = '#fff600'},
+    warn = {fg = "#000000", bg = '#fff600'},
   },
 }
 
@@ -273,7 +340,8 @@ local selection_component = {
 
 require('lualine').setup({
   options = {
-    theme = 'ayu_mirage',
+    -- theme = 'ayu_mirage',
+    theme = 'auto',
     icons_enabled = false,
     section_separators = separators_config,
     component_separators = separators_config,
@@ -329,26 +397,57 @@ vim.diagnostic.config({
     current_line = true,
     virt_text_pos = "eol",
     hl_mode = "replace",
+    severity = {
+      vim.diagnostic.severity.WARN,
+      vim.diagnostic.severity.ERROR
+    },
     -- In case I want to format the text in a future life
     -- format = function(diagnostic)
     --   return 'gottem'
     -- end,
   },
-  virtual_lines = {
-    current_line = true,
-  },
+  -- virtual_lines = {
+  --   current_line = true,
+  -- },
   float = {
     scope = "cursor",
+    severity = {
+      vim.diagnostic.severity.WARN,
+      vim.diagnostic.severity.ERROR
+    },
   },
   signs = true,
   underline = false,
   update_in_insert = false,
   severity_sort = true,
 })
--- Navigate through the diagnostics in the file
-vim.keymap.set('n', '<A-j>', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
-vim.keymap.set('n', '<A-k>', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
 
+-- Leader Key Config
+vim.keymap.set("n", "q", "<nop>")
+vim.keymap.set("v", "q", "<nop>")
+vim.g.mapleader = "q"
+vim.g.maplocalleader = "q"
+vim.keymap.set("n", "Q", "q")
+vim.keymap.set("v", "Q", "q")
+
+-- Formatting (equivalent to ALEFix)
+vim.keymap.set('n', '<leader>ff', function()
+  vim.lsp.buf.format({ async = true })
+end, { desc = 'Format document' })
+vim.keymap.set('n', '<leader>fw', function()
+  vim.lsp.buf.format({ async = true })
+end, { desc = 'Trim whitespace' })
+
+vim.keymap.set('n', '<leader>aa', vim.lsp.buf.hover, { desc = 'Show hover documentation' })
+vim.keymap.set('n', '<leader>ad', vim.diagnostic.open_float, { desc = 'Show diagnostic details' })
+vim.keymap.set('n', '<leader>fe', function()
+  vim.lsp.buf.format({ async = true, name = "eslint" })
+end, { desc = 'Fix with ESLint' })
+
+vim.keymap.set('n', '<leader>jd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', '<leader>fr', vim.lsp.buf.references, { desc = 'Find references' })
+vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
 
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
@@ -372,6 +471,12 @@ if vim.g.neovide then
   --   return string.format("%x", 255)
   -- end
   -- vim.g.neovide_background_color = '#1b1b13' .. alpha()
+  vim.keymap.set('n', '∆', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
+  vim.keymap.set('n', '˚', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
+else
+  -- Navigate through the diagnostics in the file
+  vim.keymap.set('n', '<A-j>', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
+  vim.keymap.set('n', '<A-k>', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
 end
 
 -- Allow clipboard copy paste in neovim
@@ -382,6 +487,12 @@ vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 
 -- Fix various help files being detected properly
 vim.cmd([[ autocmd BufRead,BufNewFile */doc/* set filetype=help ]])
+
+-- Think about this boi-oh a bit more...
+vim.o.winborder = 'none'
+
+-- Setup Hop.nvim
+require'hop'.setup { case_insensitive = true }
 EOF
 
 " Misc app settings
@@ -411,6 +522,7 @@ set belloff=esc
 set clipboard=unnamed
 set backupcopy=yes
 set noshowcmd
+set mousescroll=ver:1,hor:1
 
 " Show invisibles
 set list
@@ -484,7 +596,6 @@ else
   colorscheme molokai
 endif
 
-set guioptions=c
 set guicursor=n-v-c:block-Cursor/lCursor-blinkwait300-blinkoff150-blinkon150,ve:ver35-Cursor,o:hor15-Cursor,i-ci-c:ver25-Cursor/lCursor-blinkwait300-blinkoff150-blinkon150,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait300-blinkoff150-blinkon150
 set shortmess=ITFaocC
 " Set title string to current working directory!
@@ -584,12 +695,6 @@ vnoremap k gk
 nnoremap k gk
 
 " Various leader shortcuts
-nnoremap q <nop>
-vnoremap q <nop>
-let g:mapleader='q'
-let g:maplocalleader='q'
-nnoremap Q q
-vnoremap Q q
 nnoremap <F5> :syntax sync fromstart<cr>
 nnoremap <leader>nn  :set hls!<cr>
 nnoremap <leader>e   :e ~/.vim/bundle/vim-misc/nvimrc.vim<cr>
@@ -787,16 +892,12 @@ let g:goyo_margin_top=5
 let g:goyo_margin_bottom=5
 let g:goyo_width = 90
 
-" Easymotion mappings
-map  <leader>/ <Plug>(easymotion-sn)
-omap <leader>/ <Plug>(easymotion-tn)
-map  <leader>n <Plug>(easymotion-next)
-map  <leader>N <Plug>(easymotion-prev)
-map  <leader>kk <Plug>(easymotion-bd-jk)
-map  <leader>jj <Plug>(easymotion-bd-jk)
-map  <leader><leader><leader> <Plug>(easymotion-repeat)
-map  <space> <Plug>(easymotion-s)
-let g:EasyMotion_smartcase = 1
+" Hop.nvim Mappings
+map  <leader>/ <cmd>HopPattern<CR>
+omap <leader>/ <cmd>HopPattern<CR>
+map  <leader>kk <cmd>HopLine<CR>
+map  <leader>jj <cmd>HopLine<CR>
+map  <space> <cmd>HopChar1<CR>
 
 " LocalVimRC Settings
 let g:localvimrc_sandbox = 0
