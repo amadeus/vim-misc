@@ -82,44 +82,6 @@ blink_cmp.setup({
     documentation = {
       auto_show = true,
     },
-    -- menu = {
-    --   draw = {
-    --     components = {
-    --       kind_icon = {
-    --         text = function(ctx)
-    --           local lspkind = require("lspkind")
-    --           local icon = ctx.kind_icon
-    --           if vim.tbl_contains({ "Path" }, ctx.source_name) then
-    --               local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-    --               if dev_icon then
-    --                   icon = dev_icon
-    --               end
-    --           else
-    --               icon = require("lspkind").symbolic(ctx.kind, {
-    --                   mode = "symbol",
-    --               })
-    --           end
-    --
-    --           return icon .. ctx.icon_gap
-    --         end,
-    --
-    --         -- Optionally, use the highlight groups from nvim-web-devicons
-    --         -- You can also add the same function for `kind.highlight` if you want to
-    --         -- keep the highlight groups in sync with the icons.
-    --         highlight = function(ctx)
-    --           local hl = ctx.kind_hl
-    --           if vim.tbl_contains({ "Path" }, ctx.source_name) then
-    --             local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
-    --             if dev_icon then
-    --               hl = dev_hl
-    --             end
-    --           end
-    --           return hl
-    --         end,
-    --       }
-    --     }
-    --   }
-    -- }
   },
 
   cmdline = {
@@ -128,8 +90,6 @@ blink_cmp.setup({
     keymap = {
       preset = 'cmdline',
       ['<Tab>'] = { 'select_and_accept' },
-      -- ['<C-n>'] = { 'show', 'select_next', 'fallback' },
-      -- ['<C-k>'] = { 'fallback' },
     },
     completion = {
       list = {
@@ -345,6 +305,7 @@ require('lualine').setup({
     icons_enabled = false,
     section_separators = separators_config,
     component_separators = separators_config,
+    always_show_tabline = false,
   },
   sections = {
     lualine_a = {
@@ -361,7 +322,21 @@ require('lualine').setup({
       selection_component,
       filetype_component
     },
-    lualine_y = {},
+    lualine_y = {
+      {
+        'lsp_status',
+        icon = '', -- f013
+        symbols = {
+          -- Standard unicode symbols to cycle through for LSP progress:
+          spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+          -- Standard unicode symbol for when LSP is done:
+          done = '✓',
+          -- Delimiter inserted between LSP names:
+          separator = ' ',
+        },
+        ignore_lsp = {},
+      }
+    },
     lualine_z = {
       diagnostics_component
     }
@@ -383,7 +358,28 @@ require('lualine').setup({
     lualine_z = {
       diagnostics_component
     }
-  }
+  },
+  tabline = {
+    lualine_a = {},
+    lualine_b = {
+      {
+        'tabs',
+        path = 0,
+        mode = 1,
+        tabs_color = {
+          -- Same values as the general color option can be used here.
+          active = 'lualine_a_normal',     -- Color for active tab.
+          inactive = 'lualine_c_inactive', -- Color for inactive tab.
+        },
+        symbols = {
+          modified = '+',  -- Text to show when the file is modified.
+        },
+      },
+    },
+  },
+  -- winbar = {
+  --   lualine_c = { 'filename' },
+  -- }
 })
 
 -- Diagnostics config
