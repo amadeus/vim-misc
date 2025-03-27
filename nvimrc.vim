@@ -460,6 +460,19 @@ vim.g.maplocalleader = "q"
 vim.keymap.set("n", "Q", "q")
 vim.keymap.set("v", "Q", "q")
 
+-- Trying out some improved Term buffer interactions
+-- Match Vim's hotkeys for popping into normal mode and using <c-w>
+vim.api.nvim_set_keymap('t', '<C-w>N', '<C-\\><C-n>', {noremap = true})
+vim.api.nvim_set_keymap('t', '<C-w>.', '<C-w>', {noremap = true})
+
+-- By default neovim's terminal isn't in insert mode, I always want to be in
+-- insert mode when I spawn a buffer
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.cmd("startinsert")
+  end
+})
+
 -- Formatting (equivalent to ALEFix)
 vim.keymap.set('n', '<leader>ff', function()
   vim.lsp.buf.format({ async = true })
