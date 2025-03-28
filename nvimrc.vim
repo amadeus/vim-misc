@@ -215,6 +215,34 @@ require('nvim-treesitter.configs').setup {
 -- end
 -- remove_underline();
 
+-- Hardcoded theme from what I had prior...
+local Evokai = {
+  normal = {
+    a = { fg = '#085e0b', bg = '#49fd2f', gui = 'bold' },
+    b = { fg = '#efefef', bg = '#444444' },
+    c = { fg = '#9e9e9e', bg = '#303030' },
+  },
+  insert = {
+    a = { fg = '#0087dd', bg = '#ffffff', gui = 'bold' },
+    b = { fg = '#ffffff', bg = '#0087dd', },
+  },
+  visual = {
+    a = { fg = '#ff4b00', bg = '#ffffff', gui = 'bold' },
+    b = { fg = '#ffffff', bg = '#ff4b00' },
+  },
+  replace = {
+    a = { fg = '#ff027f', bg = '#ffffff', gui = 'bold' },
+    b = { fg = '#ffffff', bg = '#ff027f' },
+  },
+  inactive = {
+    a = { fg = '#5f5f5f', bg = '#262622' },
+    b = { fg = '#5f5f5f', bg = '#262622' },
+    c = { fg = '#5f5f5f', bg = '#262622' },
+  },
+}
+
+Evokai.terminal = Evokai.insert
+
 local separators_config = {
   left = '',
   right = '',
@@ -321,8 +349,7 @@ local selection_component = {
 
 require('lualine').setup({
   options = {
-    -- theme = 'ayu_mirage',
-    theme = 'auto',
+    theme = Evokai,
     icons_enabled = false,
     section_separators = separators_config,
     component_separators = separators_config,
@@ -369,12 +396,8 @@ require('lualine').setup({
       filename_component,
       diff_component,
     },
-    lualine_c = {
-      branch_component
-    },
-    lualine_x = {
-      filetype_component
-    },
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {
       diagnostics_component
@@ -389,7 +412,7 @@ require('lualine').setup({
         mode = 1,
         tabs_color = {
           -- Same values as the general color option can be used here.
-          active = 'lualine_a_normal',     -- Color for active tab.
+          active = 'lualine_b_normal',     -- Color for active tab.
           inactive = 'lualine_c_inactive', -- Color for inactive tab.
         },
         symbols = {
