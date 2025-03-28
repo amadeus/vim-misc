@@ -403,6 +403,26 @@ require('lualine').setup({
   -- }
 })
 
+require("conform").setup({
+  -- Define formatters by filetype
+  formatters_by_ft = {
+    javascript = { "prettier", "biome" },
+    typescript = { "prettier", "biome" },
+    javascriptreact = { "prettier", "biome" },
+    typescriptreact = { "prettier", "biome" },
+    json = { "prettier", "biome" },
+    html = { "prettier" },
+    css = { "prettier" },
+    markdown = { "prettier" },
+    lua = { "stylua" },
+  },
+  -- Format on save
+  -- format_on_save = {
+  --   lsp_fallback = true,
+  --   timeout_ms = 500,
+  -- },
+})
+
 -- Diagnostics config
 -- I should look at configuring this with eslint and all that, so I won't need to use Ale
 vim.diagnostic.config({
@@ -474,9 +494,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 -- Formatting (equivalent to ALEFix)
-vim.keymap.set('n', '<leader>ff', function()
-  vim.lsp.buf.format({ async = true })
-end, { desc = 'Format document' })
+vim.keymap.set("n", "<leader>ff", function()
+  require("conform").format({
+    lsp_fallback = true,
+    timeout_ms = 500,
+  })
+end, { desc = "Format document" })
 vim.keymap.set('n', '<leader>fw', function()
   vim.lsp.buf.format({ async = true })
 end, { desc = 'Trim whitespace' })
