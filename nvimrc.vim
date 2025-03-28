@@ -423,6 +423,18 @@ require("conform").setup({
   -- },
 })
 
+-- .lvimrc snippet to fix on save
+-- if has('nvim')
+-- lua <<EOF
+-- require("conform").setup({
+--   format_on_save = {
+--     lsp_fallback = true,
+--     timeout_ms = 2000,
+--   },
+-- })
+-- EOF
+-- endif
+
 -- Diagnostics config
 -- I should look at configuring this with eslint and all that, so I won't need to use Ale
 vim.diagnostic.config({
@@ -497,7 +509,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.keymap.set("n", "<leader>ff", function()
   require("conform").format({
     lsp_fallback = true,
-    timeout_ms = 500,
+    timeout_ms = 2000,
   })
 end, { desc = "Format document" })
 vim.keymap.set('n', '<leader>fw', function()
