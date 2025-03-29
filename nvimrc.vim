@@ -254,14 +254,15 @@ local mode_config = {
   -- Print 3 letter shorthands for all modes
   fmt = function(name)
     local firstChar = string.sub(name, 1, 1)
-    local secondChar = string.sub(name, 2, 2)
-    -- If the first character is not "V", return it with spaces around
-    if firstChar ~= "V" or secondChar ~= '-' then
-      return " " .. string.sub(name, 1, 3) .. " "
-    end
-
-    local afterDash = string.sub(name, 3, 3)
-    return " V:" .. afterDash .. " "
+    return " "..firstChar.." "
+    -- local secondChar = string.sub(name, 2, 2)
+    -- -- If the first character is not "V", return it with spaces around
+    -- if firstChar ~= "V" or secondChar ~= '-' then
+    --   return " " .. string.sub(name, 1, 3) .. " "
+    -- end
+    --
+    -- local afterDash = string.sub(name, 3, 3)
+    -- return " V:" .. afterDash .. " "
   end
 }
 
@@ -335,7 +336,7 @@ local diff_component = { 'dif' }
 local selection_component = {
   'selectioncount',
   padding = {
-    left = 0,
+    left = 1,
     right = 0,
   },
   separator = '',
@@ -360,6 +361,7 @@ require('lualine').setup({
       mode_config
     },
     lualine_b = {
+      selection_component,
       filename_component,
       diff_component,
     },
@@ -367,7 +369,6 @@ require('lualine').setup({
       branch_component
     },
     lualine_x = {
-      selection_component,
       filetype_component
     },
     lualine_y = {
